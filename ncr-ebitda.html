@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCR EBITDA Dashboard</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; padding: 24px 32px; height: 100vh; overflow: hidden; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.brand { font-size: 12px; color: #e8a020; letter-spacing: 3px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 20px; font-weight: bold; color: #fff; }
+.subtitle { font-size: 12px; color: #aab4cc; margin-top: 2px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 12px; font-weight: bold; padding: 6px 14px; border-radius: 6px; text-align: center; }
+.divider { height: 2px; background: #e8a020; margin: 10px 0 16px; border-radius: 1px; }
+
+/* TOTAL ROW */
+.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 8px; padding: 12px 16px; text-align: center; }
+.total-label { font-size: 10px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.total-val { font-size: 22px; font-weight: bold; color: #e8a020; }
+.total-pct { font-size: 12px; color: #aab4cc; margin-top: 2px; }
+
+/* TABLE */
+.table-wrap { overflow: hidden; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead tr { background: #1a3160; }
+thead th { padding: 8px 10px; text-align: center; color: #e8a020; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #e8a020; }
+thead th:first-child { text-align: left; }
+tbody tr { border-bottom: 1px solid #1e3060; }
+tbody tr:nth-child(even) { background: #162a52; }
+tbody tr:hover { background: #1e3a6a; }
+td { padding: 9px 10px; text-align: center; color: #fff; }
+td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 12px; }
+.pct { font-size: 10px; color: #aab4cc; display: block; margin-top: 1px; }
+.pos { color: #4cde88; }
+.neg { color: #ff5c5c; }
+.neutral { color: #fff; }
+.ebitda-pos { color: #4cde88; font-weight: bold; font-size: 13px; }
+.ebitda-neg { color: #ff5c5c; font-weight: bold; font-size: 13px; }
+.vs-budget { font-size: 10px; display: block; margin-top: 2px; }
+.section-note { font-size: 10px; color: #aab4cc; margin-top: 10px; text-align: right; font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="brand">NCR Ventures</div>
+    <div class="title">Year-To-Date Performance Dashboard</div>
+    <div class="subtitle">Sales · COGS · Labor · EBITDA — Through Week 14</div>
+  </div>
+  <div class="date-badge">YTD 2026<br>Week 14</div>
+</div>
+<div class="divider"></div>
+
+<!-- NCR TOTALS -->
+<div class="total-row">
+  <div class="total-card">
+    <div class="total-label">Total Sales</div>
+    <div class="total-val">$14.3M</div>
+    <div class="total-pct">vs Budget $14.7M</div>
+  </div>
+  <div class="total-card">
+    <div class="total-label">Food Cost</div>
+    <div class="total-val">29.3%</div>
+    <div class="total-pct">$2,982,793</div>
+  </div>
+  <div class="total-card">
+    <div class="total-label">Bar Cost</div>
+    <div class="total-val">21.8%</div>
+    <div class="total-pct">$895,784</div>
+  </div>
+  <div class="total-card">
+    <div class="total-label">Total Labor</div>
+    <div class="total-val">30.6%</div>
+    <div class="total-pct">FOH 6.6% · BOH 13.8%</div>
+  </div>
+  <div class="total-card">
+    <div class="total-label">EBITDA</div>
+    <div class="total-val" style="color:#4cde88;">$1.61M</div>
+    <div class="total-pct">11.7% · ($245K) vs Budget</div>
+  </div>
+</div>
+
+<!-- LOCATION TABLE -->
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:14%;">Location</th>
+      <th>Sales YTD</th>
+      <th>Food Cost %</th>
+      <th>Bar Cost %</th>
+      <th>FOH Labor %</th>
+      <th>BOH Labor %</th>
+      <th>EBITDA $</th>
+      <th>EBITDA %</th>
+      <th>vs Budget</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Beachwood</td>
+      <td>$2,563,654</td>
+      <td><span class="neutral">30.9%</span></td>
+      <td><span class="neutral">22.5%</span></td>
+      <td><span class="pos">6.4%</span></td>
+      <td><span class="neutral">14.5%</span></td>
+      <td class="ebitda-pos">$324,024</td>
+      <td class="ebitda-pos">13.1%</td>
+      <td><span class="neg">($18,313)</span></td>
+    </tr>
+    <tr>
+      <td>17 River</td>
+      <td>$1,580,776</td>
+      <td><span class="neutral">29.0%</span></td>
+      <td><span class="neutral">20.1%</span></td>
+      <td><span class="pos">5.4%</span></td>
+      <td><span class="neutral">14.2%</span></td>
+      <td class="ebitda-pos">$200,661</td>
+      <td class="ebitda-pos">13.1%</td>
+      <td><span class="neg">($53,468)</span></td>
+    </tr>
+    <tr>
+      <td>JoJo's Bar</td>
+      <td>$1,183,027</td>
+      <td><span class="neutral">34.2%</span></td>
+      <td><span class="neutral">24.9%</span></td>
+      <td><span class="pos">5.1%</span></td>
+      <td><span class="neutral">13.0%</span></td>
+      <td class="ebitda-pos">$72,579</td>
+      <td class="ebitda-pos">6.4%</td>
+      <td><span class="neg">($32,048)</span></td>
+    </tr>
+    <tr>
+      <td>The Lakehouse</td>
+      <td>$262,234</td>
+      <td><span class="neg">36.4%</span></td>
+      <td><span class="neutral">20.4%</span></td>
+      <td><span class="neg">5.9%</span></td>
+      <td><span class="neg">18.7%</span></td>
+      <td class="ebitda-neg">($133,321)</td>
+      <td class="ebitda-neg">-52.2%</td>
+      <td><span class="neg">($14,515)</span></td>
+    </tr>
+    <tr>
+      <td>Lakewood</td>
+      <td>$971,229</td>
+      <td><span class="pos">27.8%</span></td>
+      <td><span class="neutral">23.2%</span></td>
+      <td><span class="pos">4.5%</span></td>
+      <td><span class="neutral">15.1%</span></td>
+      <td class="ebitda-pos">$121,038</td>
+      <td class="ebitda-pos">13.0%</td>
+      <td><span class="neg">($24,941)</span></td>
+    </tr>
+    <tr>
+      <td>Winter Park</td>
+      <td>$2,278,841</td>
+      <td><span class="pos">26.0%</span></td>
+      <td><span class="neutral">21.6%</span></td>
+      <td><span class="neg">8.4%</span></td>
+      <td><span class="neutral">12.8%</span></td>
+      <td class="ebitda-pos">$361,166</td>
+      <td class="ebitda-pos">16.4%</td>
+      <td><span class="pos">$31,842</span></td>
+    </tr>
+    <tr>
+      <td>Sarasota</td>
+      <td>$2,397,392</td>
+      <td><span class="pos">26.9%</span></td>
+      <td><span class="neutral">21.1%</span></td>
+      <td><span class="pos">8.0%</span></td>
+      <td><span class="pos">11.3%</span></td>
+      <td class="ebitda-pos">$442,200</td>
+      <td class="ebitda-pos">19.2%</td>
+      <td><span class="neg">($30,071)</span></td>
+    </tr>
+    <tr>
+      <td>Easton</td>
+      <td>$1,764,932</td>
+      <td><span class="neutral">26.8%</span></td>
+      <td><span class="neutral">20.2%</span></td>
+      <td><span class="neutral">6.2%</span></td>
+      <td><span class="neutral">14.3%</span></td>
+      <td class="ebitda-pos">$145,746</td>
+      <td class="ebitda-pos">8.6%</td>
+      <td><span class="neg">($91,156)</span></td>
+    </tr>
+    <tr>
+      <td>Lola's Bistro</td>
+      <td>$1,285,723</td>
+      <td><span class="neg">34.7%</span></td>
+      <td><span class="neutral">22.5%</span></td>
+      <td><span class="neutral">6.2%</span></td>
+      <td><span class="neg">15.8%</span></td>
+      <td class="ebitda-pos">$79,650</td>
+      <td class="ebitda-pos">6.3%</td>
+      <td><span class="neg">($12,502)</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-note">Green = at or better than target &nbsp;|&nbsp; Red = needs attention &nbsp;|&nbsp; Food cost target 29% · Bar cost target 22% · FOH target 8.5% OH / 6.5% FL · BOH target 13.5%</div>
+
+</body>
+</html>
