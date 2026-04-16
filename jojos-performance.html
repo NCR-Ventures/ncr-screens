@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>JoJo's Bar — Weekly Performance</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
+body { padding: 32px 56px; display: flex; flex-direction: column; height: 1080px; }
+
+.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 52px; font-weight: bold; color: #fff; line-height: 1.1; }
+.subtitle { font-size: 20px; color: #aab4cc; margin-top: 4px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 22px; font-weight: bold; padding: 12px 28px; border-radius: 8px; text-align: center; line-height: 1.5; }
+.divider { height: 3px; background: #e8a020; margin: 10px 0 14px; border-radius: 1px; flex-shrink: 0; }
+
+.content { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 20px; min-height: 0; }
+
+.panel { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.panel-title { font-size: 26px; font-weight: bold; color: #e8a020; border-bottom: 2px solid #e8a020; padding-bottom: 8px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 1px; }
+
+/* COGS */
+.cogs-table { flex: 1; display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+.cogs-header { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 10px 14px; background: #1a3160; border-radius: 6px; flex-shrink: 0; }
+.cogs-header span { font-size: 17px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+.cogs-header span:first-child { text-align: left; }
+.cogs-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 14px 14px; background: #162a52; border-radius: 6px; border-left: 5px solid #1a4a8a; align-items: center; flex: 1; }
+.cogs-row.gold { border-left: 5px solid #e8a020; }
+.cogs-row span { font-size: 26px; color: #fff; text-align: center; }
+.cogs-row span:first-child { font-size: 26px; font-weight: bold; color: #e8a020; text-align: left; }
+.pos { color: #4cde88; }
+.neg { color: #ff5c5c; }
+
+.total-cogs { display: flex; justify-content: space-between; align-items: center; background: #1a3160; border: 2px solid #e8a020; border-radius: 8px; padding: 14px 20px; flex-shrink: 0; }
+.total-cogs-label { font-size: 20px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; }
+.total-cogs-val { font-size: 38px; font-weight: bold; color: #e8a020; }
+.total-cogs-pct { font-size: 38px; font-weight: bold; }
+
+/* LABOR */
+.labor-cards { flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.labor-card { background: #162a52; border-radius: 8px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid #1a4a8a; flex: 1; }
+.labor-card.green { border-left: 5px solid #4cde88; }
+.labor-card.red { border-left: 5px solid #ff5c5c; }
+.labor-left { display: flex; flex-direction: column; }
+.labor-name { font-size: 20px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; }
+.labor-val { font-size: 42px; font-weight: bold; color: #fff; margin-top: 4px; }
+.labor-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.labor-target { font-size: 18px; color: #aab4cc; }
+.labor-hrs { font-size: 18px; color: #aab4cc; }
+.labor-status { font-size: 20px; font-weight: bold; padding: 6px 14px; border-radius: 4px; }
+.status-good { background: rgba(76,222,136,0.15); color: #4cde88; }
+.status-bad { background: rgba(255,92,92,0.15); color: #ff5c5c; }
+
+.splh-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 8px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.splh-label { font-size: 20px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; }
+.splh-target { font-size: 18px; color: #aab4cc; margin-top: 4px; }
+.splh-val { font-size: 42px; font-weight: bold; color: #4cde88; }
+
+.ot-section { flex-shrink: 0; }
+.ot-title { font-size: 20px; color: #e8a020; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.ot-row { display: flex; justify-content: space-between; align-items: center; background: #162a52; border-radius: 6px; padding: 10px 16px; margin-bottom: 8px; border-left: 5px solid #ff5c5c; }
+.ot-name { font-size: 22px; color: #fff; font-weight: bold; }
+.ot-dept { font-size: 16px; color: #aab4cc; }
+.ot-hrs { font-size: 22px; color: #ff5c5c; font-weight: bold; }
+
+/* REVIEWS */
+.review-stars { display: flex; justify-content: space-between; align-items: center; background: #1a3160; border: 2px solid #e8a020; border-radius: 8px; padding: 16px 22px; flex-shrink: 0; }
+.star-rating { font-size: 52px; font-weight: bold; color: #e8a020; }
+.star-label { font-size: 18px; color: #aab4cc; margin-top: 4px; }
+.star-right { text-align: right; }
+.review-count { font-size: 32px; font-weight: bold; color: #fff; }
+.review-sub { font-size: 18px; color: #aab4cc; margin-top: 4px; }
+
+.review-breakdown { display: flex; gap: 10px; flex-shrink: 0; }
+.review-pill { flex: 1; background: #162a52; border-radius: 8px; padding: 14px; text-align: center; }
+.pill-val { font-size: 42px; font-weight: bold; }
+.pill-lbl { font-size: 17px; color: #aab4cc; margin-top: 4px; }
+.five-star { color: #4cde88; }
+.four-star { color: #e8a020; }
+.low-star { color: #ff5c5c; }
+
+.issue-box { flex: 1; background: #162a52; border-radius: 8px; padding: 18px 20px; border-left: 5px solid #ff5c5c; display: flex; flex-direction: column; justify-content: center; }
+.issue-title { font-size: 18px; color: #ff5c5c; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.issue-item { font-size: 26px; color: #fff; margin-bottom: 10px; line-height: 1.4; }
+
+.trend-row { display: flex; justify-content: space-between; align-items: center; background: #1a3160; border-radius: 8px; padding: 14px 18px; flex-shrink: 0; }
+.trend-item { text-align: center; }
+.trend-val { font-size: 26px; font-weight: bold; color: #fff; }
+.trend-lbl { font-size: 15px; color: #aab4cc; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="brand">JoJo's Bar &amp; Bar Fuoco</div>
+    <div class="title">Weekly Performance Board</div>
+    <div class="subtitle">Period 4 · Week 2 · Reviewed Wednesday P&amp;L Call</div>
+  </div>
+  <div class="date-badge">Week Ending<br>April 12, 2026</div>
+</div>
+<div class="divider"></div>
+
+<div class="content">
+
+  <!-- COLUMN 1: COGS -->
+  <div class="panel">
+    <div class="panel-title">Sales &amp; Cost of Goods</div>
+    <div class="cogs-table">
+      <div class="cogs-header">
+        <span>Category</span>
+        <span>Sales</span>
+        <span>Actual %</span>
+        <span>Budget %</span>
+      </div>
+      <div class="cogs-row gold">
+        <span>Food</span>
+        <span>$63,905</span>
+        <span class="pos">31.8%</span>
+        <span>34.1%</span>
+      </div>
+      <div class="cogs-row">
+        <span>Liquor</span>
+        <span>$16,367</span>
+        <span class="pos">14.0%</span>
+        <span>21.5%</span>
+      </div>
+      <div class="cogs-row">
+        <span>Beer</span>
+        <span>$1,033</span>
+        <span class="neg">21.7%</span>
+        <span>21.0%</span>
+      </div>
+      <div class="cogs-row">
+        <span>Wine</span>
+        <span>$13,391</span>
+        <span class="neg">29.1%</span>
+        <span>26.9%</span>
+      </div>
+      <div class="cogs-row gold">
+        <span>LBW Total</span>
+        <span>$30,791</span>
+        <span class="pos">20.8%</span>
+        <span>23.6%</span>
+      </div>
+    </div>
+    <div class="total-cogs">
+      <div>
+        <div class="total-cogs-label">Total Gross Sales</div>
+        <div class="total-cogs-val">$94,696</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="total-cogs-label">Total COGS</div>
+        <div class="total-cogs-pct pos">28.2%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMN 2: LABOR + OT -->
+  <div class="panel">
+    <div class="panel-title">Labor</div>
+    <div class="labor-cards">
+      <div class="labor-card green">
+        <div class="labor-left">
+          <div class="labor-name">FOH Labor</div>
+          <div class="labor-val">4.9%</div>
+        </div>
+        <div class="labor-right">
+          <div class="labor-target">Target ≤ 6.1%</div>
+          <div class="labor-hrs">655 hrs · $4,621</div>
+          <div class="labor-status status-good">✔ On Target</div>
+        </div>
+      </div>
+      <div class="labor-card green">
+        <div class="labor-left">
+          <div class="labor-name">BOH Labor</div>
+          <div class="labor-val">12.6%</div>
+        </div>
+        <div class="labor-right">
+          <div class="labor-target">Target ≤ 13.5%</div>
+          <div class="labor-hrs">554 hrs · $11,923</div>
+          <div class="labor-status status-good">✔ On Target</div>
+        </div>
+      </div>
+    </div>
+    <div class="splh-card">
+      <div>
+        <div class="splh-label">Blended SPLH</div>
+        <div class="splh-target">Target ≥ $65.00 &nbsp;·&nbsp; 1,209 combined hrs</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="splh-val">$78.31</div>
+        <div class="labor-status status-good" style="display:inline-block; margin-top:6px;">✔ On Target</div>
+      </div>
+    </div>
+    <div class="ot-section">
+      <div class="ot-title">⚠ Overtime This Week</div>
+      <div class="ot-row">
+        <div>
+          <div class="ot-name">Darrel Howell</div>
+          <div class="ot-dept">BOH — Easter prep</div>
+        </div>
+        <div class="ot-hrs">6.69 OT hrs</div>
+      </div>
+      <div class="ot-row">
+        <div>
+          <div class="ot-name">Wendi Escarte</div>
+          <div class="ot-dept">BOH — Easter Brunch call-in</div>
+        </div>
+        <div class="ot-hrs">2.70 OT hrs</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLUMN 3: REVIEWS -->
+  <div class="panel">
+    <div class="panel-title">Guest Reviews</div>
+    <div class="review-stars">
+      <div>
+        <div class="star-rating">★ 4.61</div>
+        <div class="star-label">This Week</div>
+      </div>
+      <div class="star-right">
+        <div class="review-count">23 Reviews</div>
+        <div class="review-sub">Last week: ★ 4.65 · 34 reviews</div>
+      </div>
+    </div>
+    <div class="review-breakdown">
+      <div class="review-pill">
+        <div class="pill-val five-star">16</div>
+        <div class="pill-lbl">5 Stars</div>
+      </div>
+      <div class="review-pill">
+        <div class="pill-val four-star">5</div>
+        <div class="pill-lbl">4 Stars</div>
+      </div>
+      <div class="review-pill">
+        <div class="pill-val low-star">2</div>
+        <div class="pill-lbl">3 or Below</div>
+      </div>
+    </div>
+    <div class="issue-box">
+      <div class="issue-title">⚠ Guest Feedback to Address</div>
+      <div class="issue-item">Noise level — mentioned in low reviews</div>
+      <div class="issue-item">Bill timing — guests flagging slow check delivery</div>
+    </div>
+    <div class="trend-row">
+      <div class="trend-item">
+        <div class="trend-val neg">↓ 4.61</div>
+        <div class="trend-lbl">Rating vs Last Week</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-val neg">-11 Reviews</div>
+        <div class="trend-lbl">Volume vs Last Week</div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-val pos">$78.31 SPLH</div>
+        <div class="trend-lbl">Strong Week</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
