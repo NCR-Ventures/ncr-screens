@@ -2,549 +2,289 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920">
 <title>Bar Italia ETC — Weekly COGS Report</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
-
-  :root {
-    --navy:       #0f1f3d;
-    --navy-mid:   #1a3260;
-    --gold:       #e8a020;
-    --gold-dim:   #b87d18;
-    --white:      #f5f2eb;
-    --off:        #e0ddd4;
-    --dim:        #8a8070;
-    --green:      #2ecc71;
-    --red:        #e74c3c;
-    --amber:      #f39c12;
-    --card-bg:    #162040;
-    --row-alt:    #1e2e52;
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:1920px; height:1080px; overflow:hidden;
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    background:#0f1f3d; color:#f4ede0;
   }
+  .stage { width:1920px; height:1080px; position:relative; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .hdr {
+    padding:28px 60px 20px;
+    border-bottom:3px solid #e8a020;
+    display:flex; justify-content:space-between; align-items:flex-end;
+  }
+  .brand { font-size:20px; letter-spacing:4px; color:#e8a020; text-transform:uppercase; font-weight:700; }
+  .title { font-size:52px; font-weight:700; color:#fff; letter-spacing:1px; margin-top:4px;
+           font-family:'Georgia','Times New Roman',serif; }
+  .subtitle { font-size:22px; color:#aab6c9; margin-top:6px; letter-spacing:1px; }
+  .week-block { text-align:right; }
+  .week-num { font-size:38px; color:#e8a020; font-weight:700; font-family:'Georgia',serif; }
+  .week-lbl { font-size:14px; color:#aab6c9; letter-spacing:3px; text-transform:uppercase; margin-top:2px; }
+  .week-date { font-size:16px; color:#aab6c9; margin-top:6px; }
 
-  body {
-    width: 1920px;
-    height: 1080px;
-    overflow: hidden;
-    background: var(--navy);
-    color: var(--white);
-    font-family: 'IBM Plex Sans', sans-serif;
-    display: grid;
-    grid-template-rows: 80px 1fr 64px;
-    grid-template-columns: 1fr;
+  .body {
+    padding:22px 60px 20px;
+    display:flex; flex-direction:column; gap:18px;
+    height:calc(1080px - 130px);
   }
 
-  /* ── HEADER ── */
-  header {
-    background: var(--navy-mid);
-    border-bottom: 3px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 36px;
+  .section-label {
+    font-size:14px; letter-spacing:5px; color:#e8a020;
+    text-transform:uppercase; font-weight:700;
+    margin-bottom:10px; display:flex; align-items:center; gap:14px;
   }
-  .brand {
-    display: flex;
-    align-items: baseline;
-    gap: 18px;
-  }
-  .brand-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 4px;
-    color: var(--white);
-  }
-  .brand-loc {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  .header-center {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 6px;
-    color: var(--gold);
-  }
-  .header-right {
-    text-align: right;
-  }
-  .header-right .period {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 2px;
-  }
-  .header-right .submitted {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 12px;
-    color: var(--dim);
-    margin-top: 3px;
-  }
+  .section-label::after { content:""; flex:1; height:1px; background:rgba(232,160,32,0.25); }
 
-  /* ── MAIN GRID ── */
-  main {
-    display: grid;
-    grid-template-columns: 520px 1fr 340px;
-    grid-template-rows: 1fr;
-    gap: 0;
-    padding: 20px 28px;
-    gap: 16px;
-    overflow: hidden;
+  .cogs-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .cogs-card {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(232,160,32,0.2);
+    border-radius:6px; padding:16px 18px; display:flex; flex-direction:column;
   }
+  .cogs-card.total { background:rgba(232,160,32,0.1); border-color:#e8a020; }
+  .cogs-cat { font-size:13px; letter-spacing:2px; color:#aab6c9; text-transform:uppercase; font-weight:600; }
+  .cogs-card.total .cogs-cat { color:#e8a020; }
+  .cogs-sales { font-size:24px; color:#fff; margin-top:6px; font-weight:700; font-family:'Georgia',serif; }
+  .cogs-pct-row { margin-top:10px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .cogs-pct { font-size:30px; color:#fff; font-weight:700; }
+  .cogs-var { font-size:15px; font-weight:700; padding:3px 8px; border-radius:3px; }
+  .cogs-var.good { color:#4ade80; background:rgba(74,222,128,0.1); }
+  .cogs-var.bad  { color:#f87171; background:rgba(248,113,113,0.1); }
+  .cogs-var.flat { color:#aab6c9; background:rgba(170,182,201,0.1); }
+  .cogs-bud { font-size:12px; color:#aab6c9; margin-top:4px; letter-spacing:1px; }
 
-  /* ── PANELS ── */
+  .labor-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:14px; }
+  .labor-card {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(232,160,32,0.2);
+    border-radius:6px; padding:16px 18px; display:flex; flex-direction:column;
+  }
+  .labor-lbl { font-size:13px; letter-spacing:2px; color:#aab6c9; text-transform:uppercase; font-weight:600; }
+  .labor-row { display:flex; justify-content:space-between; align-items:baseline; margin-top:8px; }
+  .labor-pct { font-size:34px; color:#fff; font-weight:700; }
+  .labor-status { font-size:14px; font-weight:700; padding:3px 10px; border-radius:3px; letter-spacing:1px; text-transform:uppercase; }
+  .labor-status.ok   { color:#4ade80; background:rgba(74,222,128,0.12); }
+  .labor-status.over { color:#f87171; background:rgba(248,113,113,0.12); }
+  .labor-detail { font-size:13px; color:#aab6c9; margin-top:6px; letter-spacing:1px; }
+  .labor-splh { font-size:18px; color:#e8a020; font-weight:700; margin-top:4px; }
+
+  .bottom-row { display:grid; grid-template-columns:1.6fr 1fr; gap:18px; flex:1; min-height:0; }
   .panel {
-    background: var(--card-bg);
-    border-radius: 6px;
-    border: 1px solid rgba(232,160,32,0.15);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(232,160,32,0.2);
+    border-radius:6px; padding:18px 22px; display:flex; flex-direction:column;
   }
   .panel-title {
-    background: var(--navy-mid);
-    border-bottom: 2px solid var(--gold);
-    padding: 8px 16px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    flex-shrink: 0;
-  }
-  .panel-body {
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    font-size:13px; letter-spacing:5px; color:#e8a020; text-transform:uppercase; font-weight:700;
+    margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(232,160,32,0.25);
   }
 
-  /* ── COGS TABLE ── */
-  .cogs-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
+  .ot-summary {
+    display:flex; align-items:center; gap:24px; margin-bottom:16px;
+    padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  .cogs-table thead tr {
-    background: var(--navy-mid);
-  }
-  .cogs-table th {
-    padding: 7px 10px;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--dim);
-    text-align: right;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(232,160,32,0.2);
-  }
-  .cogs-table th:first-child { text-align: left; }
-  .cogs-table td {
-    padding: 8px 10px;
-    text-align: right;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .cogs-table td:first-child { text-align: left; color: var(--off); }
-  .cogs-table tr:nth-child(even) td { background: var(--row-alt); }
-  .cogs-table .cat-label { font-size: 12px; font-family: 'IBM Plex Sans',sans-serif; font-weight: 600; }
-  .cogs-table .total-row td {
-    background: rgba(232,160,32,0.12) !important;
-    border-top: 1px solid rgba(232,160,32,0.4);
-    color: var(--gold);
-    font-weight: 600;
-  }
-  .cogs-table .sub-row td {
-    background: rgba(255,255,255,0.03) !important;
-    color: var(--dim);
-    font-size: 12px;
-  }
-  .favorable { color: var(--green); }
-  .unfavorable { color: var(--red); }
-  .neutral { color: var(--dim); }
-  .pct { font-size: 11px; }
+  .ot-hero { display:flex; align-items:center; gap:14px; flex:1; }
+  .ot-big { font-size:56px; color:#e8a020; font-weight:700; font-family:'Georgia',serif; line-height:1; }
+  .ot-big-lbl { font-size:13px; color:#aab6c9; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; line-height:1.3; }
+  .ot-split { display:flex; gap:20px; }
+  .ot-stat { text-align:center; }
+  .ot-stat-num { font-size:38px; color:#fff; font-weight:700; font-family:'Georgia',serif; line-height:1; }
+  .ot-stat-lbl { font-size:11px; color:#aab6c9; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; margin-top:4px; line-height:1.3; }
 
-  /* ── GROSS SALES HERO ── */
-  .gross-hero {
-    padding: 14px 16px 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .gross-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--dim);
-    text-transform: uppercase;
-  }
-  .gross-value {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
-    color: var(--white);
-    line-height: 1;
-    letter-spacing: 2px;
-  }
-  .gross-sub {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--dim);
-    margin-top: 2px;
-  }
-
-  /* ── CENTER PANEL: LABOR ── */
-  .center-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .labor-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    padding: 14px 16px;
-    flex-shrink: 0;
-  }
-  .labor-card {
-    background: var(--navy);
-    border-radius: 5px;
-    padding: 12px 14px;
-    border: 1px solid rgba(255,255,255,0.07);
-    position: relative;
-    overflow: hidden;
-  }
-  .labor-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-  }
-  .labor-card.on-target::before { background: var(--green); }
-  .labor-card.warn::before { background: var(--amber); }
-  .labor-card.over::before { background: var(--red); }
-  .lc-dept {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: var(--dim);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .lc-splh {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px;
-    line-height: 1;
-    color: var(--white);
-  }
-  .lc-unit { font-size: 16px; color: var(--dim); }
-  .lc-pct {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    margin-top: 4px;
-  }
-  .lc-target {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--dim);
-    margin-top: 3px;
-  }
-  .lc-status {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    padding: 2px 7px;
-    border-radius: 2px;
-    text-transform: uppercase;
-  }
-  .status-on { background: rgba(46,204,113,0.15); color: var(--green); }
-  .status-warn { background: rgba(243,156,18,0.15); color: var(--amber); }
-  .status-over { background: rgba(231,76,60,0.15); color: var(--red); }
-
-  /* OT TABLE */
-  .ot-section { padding: 0 16px 12px; flex: 1; }
-  .section-sub {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .ot-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-  }
+  .ot-table { width:100%; border-collapse:collapse; }
   .ot-table th {
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    color: var(--dim);
-    text-align: right;
-    padding: 4px 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-weight: 600;
+    font-size:10px; letter-spacing:2px; color:#aab6c9; text-transform:uppercase; font-weight:600;
+    padding:4px 8px; border-bottom:1px solid rgba(255,255,255,0.08); text-align:left;
   }
-  .ot-table th:first-child { text-align: left; }
-  .ot-table td {
-    padding: 6px 8px;
-    text-align: right;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    color: var(--off);
-  }
-  .ot-table td:first-child { text-align: left; color: var(--white); }
-  .ot-table tr:nth-child(even) td { background: rgba(255,255,255,0.025); }
-  .ot-total-row td {
-    border-top: 1px solid rgba(232,160,32,0.3);
-    color: var(--gold);
-    font-weight: 600;
-  }
-  .ot-hrs { color: var(--amber); }
+  .ot-table th:not(:first-child) { text-align:right; }
+  .ot-table td { font-size:13px; color:#f4ede0; padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.04); }
+  .ot-table td:not(:first-child) { text-align:right; }
+  .ot-hrs { color:#e8a020; font-weight:700; }
+  .ot-total-row td { color:#e8a020; font-weight:700; border-top:1px solid rgba(232,160,32,0.3); border-bottom:none; }
 
-  /* ── RIGHT PANEL: REVIEWS + NARRATIVE ── */
-  .right-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .ot-note {
+    margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08);
+    font-size:12px; color:#aab6c9; letter-spacing:1px; font-style:italic;
   }
 
-  .review-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 12px 14px;
+  .rev-hero { display:flex; align-items:baseline; gap:14px; margin-bottom:14px; }
+  .rev-rating { font-size:64px; font-weight:700; color:#e8a020; font-family:'Georgia',serif; line-height:1; }
+  .rev-stars { font-size:24px; color:#e8a020; letter-spacing:2px; }
+  .rev-trend { font-size:14px; color:#aab6c9; margin-left:auto; text-align:right; }
+  .rev-trend .arrow-up { color:#4ade80; font-weight:700; }
+  .rev-breakdown { display:flex; flex-direction:column; gap:8px; }
+  .rev-bar-row { display:flex; align-items:center; gap:12px; }
+  .rev-bar-lbl { font-size:14px; color:#aab6c9; width:50px; font-weight:600; }
+  .rev-bar-track { flex:1; height:22px; background:rgba(255,255,255,0.06); border-radius:3px; overflow:hidden; }
+  .rev-bar-fill { height:100%; background:#e8a020; border-radius:3px; }
+  .rev-bar-fill.low { background:#f87171; }
+  .rev-bar-count { font-size:14px; color:#fff; width:40px; text-align:right; font-weight:700; }
+  .rev-total {
+    margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.1);
+    font-size:13px; color:#aab6c9; letter-spacing:1px;
   }
-  .review-big {
-    grid-column: span 2;
-    text-align: center;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    margin-bottom: 4px;
-  }
-  .star-rating {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 52px;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .star-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--dim);
-    letter-spacing: 2px;
-  }
-  .trend-badge {
-    display: inline-block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    padding: 2px 8px;
-    border-radius: 2px;
-    margin-top: 4px;
-  }
-  .trend-up { background: rgba(46,204,113,0.15); color: var(--green); }
-  .trend-down { background: rgba(231,76,60,0.1); color: var(--red); }
-
-  .review-stat {
-    background: var(--navy);
-    border-radius: 4px;
-    padding: 8px 10px;
-    text-align: center;
-  }
-  .rs-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    line-height: 1;
-  }
-  .rs-label {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 9px;
-    color: var(--dim);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 2px;
+  .rev-total strong { color:#fff; }
+  .rev-flag {
+    margin-top:10px; padding:7px 12px;
+    background:rgba(248,113,113,0.08); border-left:2px solid #f87171;
+    font-size:12px; color:#f87171; letter-spacing:0.5px; border-radius:0 3px 3px 0;
   }
 
-  /* NARRATIVE */
-  .narrative-body {
-    padding: 10px 14px;
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 11.5px;
-    line-height: 1.65;
-    color: var(--off);
-    flex: 1;
-    overflow: hidden;
-  }
-  .narrative-flag {
-    display: inline-block;
-    background: rgba(232,160,32,0.12);
-    border-left: 2px solid var(--gold);
-    padding: 4px 8px;
-    margin-bottom: 8px;
-    font-size: 10px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--gold);
-    letter-spacing: 1px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy-mid);
-    border-top: 1px solid rgba(232,160,32,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 36px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: var(--dim);
-  }
-  .footer-left { letter-spacing: 1px; }
-  .footer-center { color: var(--gold-dim); letter-spacing: 2px; }
-  .clock {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--white);
+  .ftr {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:10px 60px; display:flex; justify-content:space-between;
+    font-size:13px; color:#aab6c9; letter-spacing:2px; text-transform:uppercase;
+    border-top:1px solid rgba(232,160,32,0.2); background:rgba(0,0,0,0.3);
   }
 </style>
 </head>
 <body>
+<div class="stage">
 
-<!-- HEADER -->
-<header>
-  <div class="brand">
-    <span class="brand-name">Bar Italia</span>
-    <span class="brand-loc">Easton Town Center</span>
-  </div>
-  <div class="header-center">Weekly COGS Report</div>
-  <div class="header-right">
-    <div class="period">Period 4 &nbsp;·&nbsp; Week 4 &nbsp;·&nbsp; Week Ending 4/27/26</div>
-    <div class="submitted">Submitted by: Braden Pentz</div>
-  </div>
-</header>
-
-<!-- MAIN -->
-<main>
-
-  <!-- LEFT: COGS -->
-  <div class="panel">
-    <div class="panel-title">Sales &amp; Cost of Goods</div>
-    <div class="panel-body">
-      <div class="gross-hero">
-        <div class="gross-label">Gross Revenue</div>
-        <div class="gross-value">$148,454</div>
-        <div class="gross-sub">LBW: $47,724 &nbsp;|&nbsp; Food: $100,729</div>
-      </div>
-
-      <table class="cogs-table">
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Sales</th>
-            <th>COGS $</th>
-            <th>Actual %</th>
-            <th>Budget %</th>
-            <th>Var</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="cat-label">Food</td>
-            <td>$100,730</td>
-            <td>$26,212</td>
-            <td>26.0%</td>
-            <td>26.5%</td>
-            <td class="favorable">▼ 0.48</td>
-          </tr>
-          <tr>
-            <td class="cat-label">Liquor</td>
-            <td>$24,368</td>
-            <td>$4,286</td>
-            <td>17.6%</td>
-            <td>19.0%</td>
-            <td class="favorable">▼ 1.41</td>
-          </tr>
-          <tr>
-            <td class="cat-label">Beer</td>
-            <td>$2,739</td>
-            <td>$549</td>
-            <td>20.0%</td>
-            <td>22.0%</td>
-            <td class="favorable">▼ 1.97</td>
-          </tr>
-          <tr>
-            <td class="cat-label">Wine</td>
-            <td>$20,618</td>
-            <td>$4,949</td>
-            <td>24.0%</td>
-            <td>24.0%</td>
-            <td class="neutral">— 0.00</td>
-          </tr>
-          <tr class="total-row">
-            <td>Total COGS</td>
-            <td>$148,454</td>
-            <td>$35,995</td>
-            <td>24.2%</td>
-            <td></td>
-            <td class="favorable">✔ Fav</td>
-          </tr>
-          <tr class="sub-row">
-            <td>Total Bev (LBW)</td>
-            <td>$47,724</td>
-            <td>$9,783</td>
-            <td class="pct">20.5%</td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Cleaning Labor Note -->
-      <div style="padding: 10px 14px; margin-top: auto; border-top: 1px solid rgba(255,255,255,0.05);">
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1px; margin-bottom:5px;">CLEANING LABOR — EXCLUDED FROM SPLH</div>
-        <div style="display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--off);">
-          <span>Esmerelda Elias &nbsp;·&nbsp; Alfredo Giron &nbsp;·&nbsp; Telest Perez Jimenez</span>
-          <span style="color:var(--amber);">$858.79 &nbsp;|&nbsp; 42.61 hrs</span>
-        </div>
-      </div>
+  <div class="hdr">
+    <div>
+      <div class="brand">NCR Ventures  •  Bar Italia Easton Town Center</div>
+      <div class="title">Weekly COGS Report</div>
+      <div class="subtitle">COGS  ·  Labor  ·  Overtime  ·  Guest Reviews</div>
+    </div>
+    <div class="week-block">
+      <div class="week-num">P4 · W4</div>
+      <div class="week-lbl">Period 4 · Week 4</div>
+      <div class="week-date">Week Ending 4.27.26</div>
     </div>
   </div>
 
-  <!-- CENTER: LABOR + OT -->
-  <div class="center-panel">
+  <div class="body">
 
-    <div class="panel" style="flex:0 0 auto;">
-      <div class="panel-title">Labor Performance</div>
-      <div class="labor-cards">
-        <div class="labor-card on-target">
-          <div class="lc-dept">FOH Labor</div>
-          <div class="lc-splh"><span class="lc-unit">$</span>127<span style="font-size:22px">.77</span></div>
-          <div class="lc-pct favorable">5.59% of Gross</div>
-          <div class="lc-target">Target: ≤6.20% &nbsp;·&nbsp; $120 SPLH</div>
-          <div class="lc-status status-on">✔ On Target</div>
+    <!-- COGS -->
+    <div>
+      <div class="section-label">Cost of Goods</div>
+      <div class="cogs-grid">
+
+        <div class="cogs-card">
+          <div class="cogs-cat">Food</div>
+          <div class="cogs-sales">$100,730</div>
+          <div class="cogs-pct-row">
+            <div class="cogs-pct">26.0%</div>
+            <div class="cogs-var good">−0.5 pts</div>
+          </div>
+          <div class="cogs-bud">Budget 26.5%</div>
         </div>
-        <div class="labor-card on-target">
-          <div class="lc-dept">BOH Labor</div>
-          <div class="lc-splh"><span class="lc-unit">$</span>153<span style="font-size:22px">.15</span></div>
-          <div class="lc-pct favorable">13.12% of Gross</div>
-          <div class="lc-target">Target: ≤13.50% &nbsp;·&nbsp; $160 SPLH</div>
-          <div class="lc-status status-on">✔ On Target</div>
+
+        <div class="cogs-card">
+          <div class="cogs-cat">Liquor</div>
+          <div class="cogs-sales">$24,368</div>
+          <div class="cogs-pct-row">
+            <div class="cogs-pct">17.6%</div>
+            <div class="cogs-var good">−1.4 pts</div>
+          </div>
+          <div class="cogs-bud">Budget 19.0%</div>
         </div>
-        <div class="labor-card on-target">
-          <div class="lc-dept">Blended SPLH</div>
-          <div class="lc-splh"><span class="lc-unit">$</span>69<span style="font-size:22px">.66</span></div>
-          <div class="lc-pct favorable">18.7% Combined</div>
-          <div class="lc-target">Floor: $65.00 &nbsp;·&nbsp; 2,131 hrs</div>
-          <div class="lc-status status-on">✔ On Target</div>
+
+        <div class="cogs-card">
+          <div class="cogs-cat">Beer</div>
+          <div class="cogs-sales">$2,739</div>
+          <div class="cogs-pct-row">
+            <div class="cogs-pct">20.0%</div>
+            <div class="cogs-var good">−2.0 pts</div>
+          </div>
+          <div class="cogs-bud">Budget 22.0%</div>
         </div>
+
+        <div class="cogs-card">
+          <div class="cogs-cat">Wine</div>
+          <div class="cogs-sales">$20,618</div>
+          <div class="cogs-pct-row">
+            <div class="cogs-pct">24.0%</div>
+            <div class="cogs-var flat">— flat</div>
+          </div>
+          <div class="cogs-bud">Budget 24.0%</div>
+        </div>
+
+        <div class="cogs-card total">
+          <div class="cogs-cat">Total Gross Sales</div>
+          <div class="cogs-sales">$148,454</div>
+          <div class="cogs-pct-row">
+            <div class="cogs-pct">24.2%</div>
+            <div class="cogs-var flat">Total COGS</div>
+          </div>
+          <div class="cogs-bud">LBW Blended 20.5%</div>
+        </div>
+
       </div>
     </div>
 
-    <div class="panel" style="flex:1;">
-      <div class="panel-title">Overtime — Hourly Staff</div>
-      <div class="panel-body" style="padding: 12px 16px;">
+    <!-- LABOR -->
+    <div>
+      <div class="section-label">Labor  &amp;  SPLH</div>
+      <div class="labor-grid">
+
+        <div class="labor-card">
+          <div class="labor-lbl">FOH Labor</div>
+          <div class="labor-row">
+            <div class="labor-pct">5.6%</div>
+            <div class="labor-status ok">On Target</div>
+          </div>
+          <div class="labor-detail">Target ≤ 6.2%  ·  1,162 hrs</div>
+          <div class="labor-splh">SPLH  $127.77</div>
+        </div>
+
+        <div class="labor-card">
+          <div class="labor-lbl">BOH Labor</div>
+          <div class="labor-row">
+            <div class="labor-pct">13.1%</div>
+            <div class="labor-status ok">On Target</div>
+          </div>
+          <div class="labor-detail">Target ≤ 13.5%  ·  969 hrs</div>
+          <div class="labor-splh">SPLH  $153.15</div>
+        </div>
+
+        <div class="labor-card">
+          <div class="labor-lbl">Blended Labor</div>
+          <div class="labor-row">
+            <div class="labor-pct">18.7%</div>
+            <div class="labor-status ok">On Target</div>
+          </div>
+          <div class="labor-detail">2,131 total hrs  ·  $27,771</div>
+          <div class="labor-splh">SPLH  $69.66</div>
+        </div>
+
+        <div class="labor-card">
+          <div class="labor-lbl">Blended SPLH Floor</div>
+          <div class="labor-row">
+            <div class="labor-pct" style="color:#e8a020;">$69.66</div>
+            <div class="labor-status ok">+$4.66</div>
+          </div>
+          <div class="labor-detail">Floor $65.00  ·  Company Standard</div>
+          <div class="labor-splh" style="color:#4ade80;">Above floor this week</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div class="bottom-row">
+
+      <div class="panel">
+        <div class="panel-title">Overtime — Hourly Staff</div>
+        <div class="ot-summary">
+          <div class="ot-hero">
+            <div class="ot-big">$43.76</div>
+            <div class="ot-big-lbl">Total OT Premium<br>This Week</div>
+          </div>
+          <div class="ot-split">
+            <div class="ot-stat">
+              <div class="ot-stat-num">4</div>
+              <div class="ot-stat-lbl">Hourly Staff<br>with OT</div>
+            </div>
+            <div class="ot-stat">
+              <div class="ot-stat-num">4.88</div>
+              <div class="ot-stat-lbl">Total OT<br>Hours</div>
+            </div>
+          </div>
+        </div>
+
         <table class="ot-table">
           <thead>
             <tr>
@@ -597,91 +337,60 @@
           </tbody>
         </table>
 
-        <div style="margin-top:16px; padding:10px 12px; background:rgba(232,160,32,0.06); border-left:2px solid var(--gold); border-radius:3px;">
-          <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1.5px; margin-bottom:4px;">LABOR SUMMARY</div>
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:12px;">
-            <div><div style="color:var(--dim);font-size:9px;margin-bottom:2px;">FOH LABOR $</div><div style="color:var(--white);">$8,298.33</div></div>
-            <div><div style="color:var(--dim);font-size:9px;margin-bottom:2px;">BOH LABOR $</div><div style="color:var(--white);">$19,472.78</div></div>
-            <div><div style="color:var(--dim);font-size:9px;margin-bottom:2px;">TOTAL LABOR $</div><div style="color:var(--gold);">$27,771.11</div></div>
-          </div>
+        <div class="ot-note">
+          Cleaning labor excluded from SPLH — Esmerelda Elias · Alfredo Giron · Telest Perez Jimenez &nbsp;|&nbsp; $858.79 · 42.61 hrs
         </div>
       </div>
-    </div>
 
-  </div>
-
-  <!-- RIGHT: REVIEWS + NARRATIVE -->
-  <div class="right-panel">
-
-    <div class="panel" style="flex:0 0 auto;">
-      <div class="panel-title">Guest Reviews</div>
-      <div class="review-grid">
-        <div class="review-big">
-          <div class="star-rating">4.71 ★</div>
-          <div class="star-label">Overall Rating This Week</div>
+      <div class="panel">
+        <div class="panel-title">Guest Reviews</div>
+        <div class="rev-hero">
+          <div class="rev-rating">4.71</div>
           <div>
-            <span class="trend-badge trend-up">▲ +0.05 vs Last Week</span>
+            <div class="rev-stars">★★★★★</div>
+            <div style="font-size:13px; color:#aab6c9; margin-top:2px; letter-spacing:1px;">AVG RATING</div>
+          </div>
+          <div class="rev-trend">
+            Last week 4.66<br>
+            <span class="arrow-up">▲ +0.05</span>
           </div>
         </div>
-        <div class="review-stat">
-          <div class="rs-val" style="color:var(--white);">28</div>
-          <div class="rs-label">Reviews This Week</div>
-        </div>
-        <div class="review-stat">
-          <div class="rs-val" style="color:var(--green);">22</div>
-          <div class="rs-label">5★ Reviews</div>
-        </div>
-        <div class="review-stat">
-          <div class="rs-val" style="color:var(--gold);">5</div>
-          <div class="rs-label">4★ Reviews</div>
-        </div>
-        <div class="review-stat">
-          <div class="rs-val" style="color:var(--amber);">1</div>
-          <div class="rs-label">3★ or Below</div>
-        </div>
-      </div>
-      <div style="padding: 0 14px 10px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--amber); letter-spacing:1px;">
-        ⚠ 2★ anonymous review — OpenTable
-      </div>
-    </div>
 
-    <div class="panel" style="flex:1; overflow:hidden;">
-      <div class="panel-title">GM Narrative — Braden Pentz</div>
-      <div class="narrative-body">
-        <div class="narrative-flag">PERIOD 4 / WEEK 4 — SUBMITTED 4.27.26</div>
-        <p>Good week all around — came just shy of budget for the week and finished $11.5K below for the period, a stark improvement from the $50K miss last period. Business continues to pick up as the weather warms. Fridays and Saturdays holding strong; pushing weekday specials to keep foot traffic high.</p>
-        <br>
-        <p>Wine cost came back elevated due to volume of spritz sales driving a prosecco purchase from the store. Continuing to drive pour consistency and glass sales discipline. Will leverage dead-stock white wines for happy hour and build premium specials around Mother's Day.</p>
-        <br>
-        <p>Focus this week: Mother's Day and graduation week prep, continued hiring and training, and getting the pre-shift board installed today.</p>
-      </div>
-    </div>
+        <div class="rev-breakdown">
+          <div class="rev-bar-row">
+            <div class="rev-bar-lbl">5 ★</div>
+            <div class="rev-bar-track"><div class="rev-bar-fill" style="width:78.6%;"></div></div>
+            <div class="rev-bar-count">22</div>
+          </div>
+          <div class="rev-bar-row">
+            <div class="rev-bar-lbl">4 ★</div>
+            <div class="rev-bar-track"><div class="rev-bar-fill" style="width:17.9%;"></div></div>
+            <div class="rev-bar-count">5</div>
+          </div>
+          <div class="rev-bar-row">
+            <div class="rev-bar-lbl">≤ 3 ★</div>
+            <div class="rev-bar-track"><div class="rev-bar-fill low" style="width:3.6%;"></div></div>
+            <div class="rev-bar-count">1</div>
+          </div>
+        </div>
 
+        <div class="rev-total">
+          <strong>28</strong> total reviews this week  ·  <strong>27</strong> at 4★ or better  ·  <strong>96%</strong> favorable
+        </div>
+
+        <div class="rev-flag">
+          ⚠ 2★ anonymous review — OpenTable · No actionable detail
+        </div>
+      </div>
+
+    </div>
   </div>
 
-</main>
+  <div class="ftr">
+    <div>Bar Italia Easton Town Center  ·  BOH Performance Board</div>
+    <div>Submitted by Braden Pentz  ·  Period 4 · Week 4  ·  Week Ending 4.27.26</div>
+  </div>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-left">NCR Ventures &nbsp;·&nbsp; Bar Italia ETC &nbsp;·&nbsp; Confidential Internal Use Only</span>
-  <span class="footer-center">COGS@ncrventures.com &nbsp;·&nbsp; P&amp;L Call Wednesdays 3:00 PM</span>
-  <span class="clock" id="clock"></span>
-</footer>
-
-<script>
-  function tick() {
-    const now = new Date();
-    const h = now.getHours();
-    const m = String(now.getMinutes()).padStart(2,'0');
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    const h12 = h % 12 || 12;
-    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    document.getElementById('clock').textContent =
-      `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()} · ${h12}:${m} ${ampm}`;
-  }
-  tick();
-  setInterval(tick, 30000);
-</script>
+</div>
 </body>
 </html>
