@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bar Italia Easton — Mother's Day</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .slide {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse at top left, #fce8ec 0%, transparent 55%),
+      radial-gradient(ellipse at bottom right, #e8f0e2 0%, transparent 55%),
+      linear-gradient(135deg, #fef7f0 0%, #fdf4ec 50%, #f6ebe0 100%);
+    overflow: hidden;
+  }
+
+  /* Soft botanical accents */
+  .botanical {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  .botanical.top-left {
+    top: -60px;
+    left: -60px;
+    width: 520px;
+    height: 520px;
+  }
+
+  .botanical.bottom-right {
+    bottom: -80px;
+    right: -80px;
+    width: 560px;
+    height: 560px;
+    transform: rotate(180deg);
+  }
+
+  .botanical.mid-right {
+    top: 280px;
+    right: -100px;
+    width: 380px;
+    height: 380px;
+    opacity: 0.35;
+  }
+
+  .botanical.mid-left {
+    bottom: 220px;
+    left: -80px;
+    width: 340px;
+    height: 340px;
+    opacity: 0.35;
+    transform: rotate(180deg);
+  }
+
+  /* Floating petals */
+  .petal {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50% 0 50% 0;
+    opacity: 0.6;
+  }
+
+  .petal.p1 { top: 140px; left: 720px; background: #f4b8c4; transform: rotate(25deg); }
+  .petal.p2 { top: 220px; right: 480px; background: #f8c8a0; transform: rotate(-15deg); }
+  .petal.p3 { bottom: 220px; left: 380px; background: #f4b8c4; transform: rotate(45deg); }
+  .petal.p4 { top: 380px; left: 200px; background: #e8c2d4; transform: rotate(-30deg); width: 18px; height: 18px; }
+  .petal.p5 { bottom: 340px; right: 320px; background: #f8c8a0; transform: rotate(60deg); width: 18px; height: 18px; }
+  .petal.p6 { top: 480px; right: 240px; background: #e8c2d4; transform: rotate(15deg); width: 14px; height: 14px; }
+
+  /* Header */
+  .header {
+    position: relative;
+    text-align: center;
+    padding-top: 70px;
+    z-index: 5;
+  }
+
+  .brand-mark {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    color: #6b4423;
+    text-transform: uppercase;
+    padding: 0 30px;
+    position: relative;
+  }
+
+  .brand-mark::before,
+  .brand-mark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 80px;
+    height: 1px;
+    background: #6b4423;
+  }
+
+  .brand-mark::before { left: -90px; }
+  .brand-mark::after { right: -90px; }
+
+  .location {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: #8b6f47;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  /* Main content */
+  .main {
+    position: relative;
+    text-align: center;
+    margin-top: 70px;
+    z-index: 5;
+  }
+
+  .first-tag {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 38px;
+    color: #c44569;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .first-tag .star {
+    color: #d4a574;
+    margin: 0 14px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    font-weight: 600;
+    color: #2d4a2b;
+    line-height: 0.95;
+    letter-spacing: -2px;
+  }
+
+  h1 .ampersand {
+    font-style: italic;
+    font-weight: 400;
+    color: #c44569;
+    font-size: 180px;
+  }
+
+  h1 .day {
+    display: block;
+    margin-top: -10px;
+  }
+
+  /* Time card */
+  .time-card {
+    position: relative;
+    margin: 60px auto 0;
+    width: 1100px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(196, 69, 105, 0.25);
+    border-radius: 8px;
+    padding: 38px 50px;
+    z-index: 5;
+    box-shadow: 0 8px 40px rgba(139, 111, 71, 0.08);
+  }
+
+  .time-card-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .time-block {
+    text-align: center;
+  }
+
+  .time-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: #8b6f47;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .time-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 600;
+    color: #2d4a2b;
+    line-height: 1;
+  }
+
+  .time-value .meridiem {
+    font-size: 32px;
+    font-weight: 400;
+    color: #6b4423;
+    margin-left: 4px;
+  }
+
+  .time-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, #c44569 50%, transparent);
+  }
+
+  .date-block {
+    text-align: center;
+  }
+
+  .date-month {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: #c44569;
+    font-weight: 500;
+  }
+
+  .date-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 600;
+    color: #2d4a2b;
+    line-height: 1;
+  }
+
+  .date-year {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #8b6f47;
+    margin-top: 4px;
+  }
+
+  /* Footer message */
+  .footer-message {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+  }
+
+  .footer-message .quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: #6b4423;
+    font-weight: 400;
+  }
+
+  .footer-message .ornament {
+    margin: 12px auto 0;
+    width: 240px;
+    height: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-message .ornament::before,
+  .footer-message .ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d4a574;
+  }
+
+  .footer-message .ornament .diamond {
+    width: 6px;
+    height: 6px;
+    background: #c44569;
+    transform: rotate(45deg);
+    margin: 0 12px;
+  }
+
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Botanical SVG accents -->
+  <svg class="botanical top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#7a9168" stroke-width="1.2" stroke-linecap="round">
+      <path d="M 30 170 Q 60 120 90 80 Q 110 50 130 30"/>
+      <path d="M 30 170 Q 50 140 70 120"/>
+      <path d="M 60 130 Q 80 110 95 95"/>
+    </g>
+    <!-- Leaves -->
+    <g fill="#9bb087" opacity="0.85">
+      <ellipse cx="55" cy="145" rx="14" ry="6" transform="rotate(-30 55 145)"/>
+      <ellipse cx="78" cy="115" rx="12" ry="5" transform="rotate(-40 78 115)"/>
+      <ellipse cx="98" cy="85" rx="14" ry="6" transform="rotate(-45 98 85)"/>
+      <ellipse cx="118" cy="60" rx="11" ry="5" transform="rotate(-50 118 60)"/>
+    </g>
+    <!-- Pink blossoms -->
+    <g>
+      <g transform="translate(135, 35)">
+        <circle cx="0" cy="-8" r="6" fill="#f4b8c4"/>
+        <circle cx="7" cy="-2" r="6" fill="#f4b8c4"/>
+        <circle cx="4" cy="7" r="6" fill="#f4b8c4"/>
+        <circle cx="-4" cy="7" r="6" fill="#f4b8c4"/>
+        <circle cx="-7" cy="-2" r="6" fill="#f4b8c4"/>
+        <circle cx="0" cy="0" r="3" fill="#d4a574"/>
+      </g>
+      <g transform="translate(95, 75)">
+        <circle cx="0" cy="-6" r="4.5" fill="#f8c8d4"/>
+        <circle cx="5.5" cy="-1.5" r="4.5" fill="#f8c8d4"/>
+        <circle cx="3" cy="5.5" r="4.5" fill="#f8c8d4"/>
+        <circle cx="-3" cy="5.5" r="4.5" fill="#f8c8d4"/>
+        <circle cx="-5.5" cy="-1.5" r="4.5" fill="#f8c8d4"/>
+        <circle cx="0" cy="0" r="2" fill="#d4a574"/>
+      </g>
+      <g transform="translate(60, 125)">
+        <circle cx="0" cy="-5" r="4" fill="#f4b8c4"/>
+        <circle cx="4.5" cy="-1" r="4" fill="#f4b8c4"/>
+        <circle cx="2.5" cy="4.5" r="4" fill="#f4b8c4"/>
+        <circle cx="-2.5" cy="4.5" r="4" fill="#f4b8c4"/>
+        <circle cx="-4.5" cy="-1" r="4" fill="#f4b8c4"/>
+        <circle cx="0" cy="0" r="1.5" fill="#d4a574"/>
+      </g>
+    </g>
+  </svg>
+
+  <svg class="botanical bottom-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#7a9168" stroke-width="1.2" stroke-linecap="round">
+      <path d="M 30 170 Q 60 120 90 80 Q 110 50 130 30"/>
+      <path d="M 30 170 Q 50 140 70 120"/>
+      <path d="M 60 130 Q 80 110 95 95"/>
+    </g>
+    <g fill="#9bb087" opacity="0.85">
+      <ellipse cx="55" cy="145" rx="14" ry="6" transform="rotate(-30 55 145)"/>
+      <ellipse cx="78" cy="115" rx="12" ry="5" transform="rotate(-40 78 115)"/>
+      <ellipse cx="98" cy="85" rx="14" ry="6" transform="rotate(-45 98 85)"/>
+      <ellipse cx="118" cy="60" rx="11" ry="5" transform="rotate(-50 118 60)"/>
+    </g>
+    <g>
+      <g transform="translate(135, 35)">
+        <circle cx="0" cy="-8" r="6" fill="#f8c8a0"/>
+        <circle cx="7" cy="-2" r="6" fill="#f8c8a0"/>
+        <circle cx="4" cy="7" r="6" fill="#f8c8a0"/>
+        <circle cx="-4" cy="7" r="6" fill="#f8c8a0"/>
+        <circle cx="-7" cy="-2" r="6" fill="#f8c8a0"/>
+        <circle cx="0" cy="0" r="3" fill="#c44569"/>
+      </g>
+      <g transform="translate(95, 75)">
+        <circle cx="0" cy="-6" r="4.5" fill="#f4b8c4"/>
+        <circle cx="5.5" cy="-1.5" r="4.5" fill="#f4b8c4"/>
+        <circle cx="3" cy="5.5" r="4.5" fill="#f4b8c4"/>
+        <circle cx="-3" cy="5.5" r="4.5" fill="#f4b8c4"/>
+        <circle cx="-5.5" cy="-1.5" r="4.5" fill="#f4b8c4"/>
+        <circle cx="0" cy="0" r="2" fill="#d4a574"/>
+      </g>
+      <g transform="translate(60, 125)">
+        <circle cx="0" cy="-5" r="4" fill="#f8c8a0"/>
+        <circle cx="4.5" cy="-1" r="4" fill="#f8c8a0"/>
+        <circle cx="2.5" cy="4.5" r="4" fill="#f8c8a0"/>
+        <circle cx="-2.5" cy="4.5" r="4" fill="#f8c8a0"/>
+        <circle cx="-4.5" cy="-1" r="4" fill="#f8c8a0"/>
+        <circle cx="0" cy="0" r="1.5" fill="#c44569"/>
+      </g>
+    </g>
+  </svg>
+
+  <svg class="botanical mid-right" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#7a9168" stroke-width="1" stroke-linecap="round">
+      <path d="M 100 180 Q 100 100 100 30"/>
+      <path d="M 100 130 Q 70 110 50 95"/>
+      <path d="M 100 90 Q 130 70 150 55"/>
+    </g>
+    <g fill="#9bb087" opacity="0.7">
+      <ellipse cx="75" cy="120" rx="12" ry="5" transform="rotate(20 75 120)"/>
+      <ellipse cx="125" cy="80" rx="12" ry="5" transform="rotate(-20 125 80)"/>
+    </g>
+    <g transform="translate(100, 30)">
+      <circle cx="0" cy="-7" r="5" fill="#f4b8c4"/>
+      <circle cx="6" cy="-2" r="5" fill="#f4b8c4"/>
+      <circle cx="3.5" cy="6" r="5" fill="#f4b8c4"/>
+      <circle cx="-3.5" cy="6" r="5" fill="#f4b8c4"/>
+      <circle cx="-6" cy="-2" r="5" fill="#f4b8c4"/>
+      <circle cx="0" cy="0" r="2.5" fill="#d4a574"/>
+    </g>
+  </svg>
+
+  <svg class="botanical mid-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#7a9168" stroke-width="1" stroke-linecap="round">
+      <path d="M 100 180 Q 100 100 100 30"/>
+      <path d="M 100 130 Q 70 110 50 95"/>
+      <path d="M 100 90 Q 130 70 150 55"/>
+    </g>
+    <g fill="#9bb087" opacity="0.7">
+      <ellipse cx="75" cy="120" rx="12" ry="5" transform="rotate(20 75 120)"/>
+      <ellipse cx="125" cy="80" rx="12" ry="5" transform="rotate(-20 125 80)"/>
+    </g>
+    <g transform="translate(100, 30)">
+      <circle cx="0" cy="-7" r="5" fill="#f8c8a0"/>
+      <circle cx="6" cy="-2" r="5" fill="#f8c8a0"/>
+      <circle cx="3.5" cy="6" r="5" fill="#f8c8a0"/>
+      <circle cx="-3.5" cy="6" r="5" fill="#f8c8a0"/>
+      <circle cx="-6" cy="-2" r="5" fill="#f8c8a0"/>
+      <circle cx="0" cy="0" r="2.5" fill="#c44569"/>
+    </g>
+  </svg>
+
+  <!-- Floating petals -->
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="petal p4"></div>
+  <div class="petal p5"></div>
+  <div class="petal p6"></div>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="brand-mark">Bar Italia</div>
+    <div class="location">Easton Town Center</div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="first-tag">
+      <span class="star">✿</span>our very first<span class="star">✿</span>
+    </div>
+    <h1>
+      Mother's <span class="ampersand">&</span>
+      <span class="day">Day</span>
+    </h1>
+  </div>
+
+  <!-- Time / Date card -->
+  <div class="time-card">
+    <div class="time-card-inner">
+      <div class="date-block">
+        <div class="date-month">Sunday</div>
+        <div class="date-day">May 10</div>
+        <div class="date-year">2026</div>
+      </div>
+      <div class="time-divider"></div>
+      <div class="time-block">
+        <div class="time-label">Doors Open</div>
+        <div class="time-value">10:30<span class="meridiem">AM</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer message -->
+  <div class="footer-message">
+    <div class="quote">Let's make her day unforgettable.</div>
+    <div class="ornament">
+      <div class="diamond"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
