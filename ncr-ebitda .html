@@ -7,35 +7,68 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
-body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 28px 48px 20px; display: flex; flex-direction: column; height: 1080px; }
 
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 .brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 52px; font-weight: bold; color: #fff; line-height: 1.1; }
-.subtitle { font-size: 20px; color: #aab4cc; margin-top: 4px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 22px; font-weight: bold; padding: 12px 28px; border-radius: 8px; text-align: center; line-height: 1.4; }
-.divider { height: 3px; background: #e8a020; margin: 12px 0 16px; border-radius: 1px; flex-shrink: 0; }
+.title { font-size: 48px; font-weight: bold; color: #fff; line-height: 1.1; }
+.subtitle { font-size: 19px; color: #aab4cc; margin-top: 4px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 22px; font-weight: bold; padding: 12px 28px; border-radius: 8px; text-align: center; line-height: 1.5; }
 
-.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; flex-shrink: 0; }
-.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 10px; padding: 16px 24px; text-align: center; }
-.total-label { font-size: 16px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.total-val { font-size: 38px; font-weight: bold; color: #e8a020; }
-.total-pct { font-size: 16px; color: #aab4cc; margin-top: 4px; }
+.divider { height: 3px; background: #e8a020; margin: 10px 0 12px; border-radius: 1px; flex-shrink: 0; }
 
-.table-wrap { flex: 1; display: flex; flex-direction: column; margin-top: 16px; }
-table { width: 100%; border-collapse: collapse; flex: 1; table-layout: fixed; }
+.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; flex-shrink: 0; }
+.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 10px; padding: 13px 20px; text-align: center; }
+.total-label { font-size: 15px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.total-val { font-size: 36px; font-weight: bold; color: #e8a020; }
+.total-pct { font-size: 15px; color: #aab4cc; margin-top: 3px; }
+
+.table-wrap { flex: 1; display: flex; flex-direction: column; margin-top: 14px; min-height: 0; }
+
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+
 thead tr { background: #1a3160; }
-thead th { padding: 14px 14px; text-align: center; color: #e8a020; font-size: 18px; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #e8a020; }
-thead th:first-child { text-align: left; }
+thead th {
+  padding: 13px 10px;
+  text-align: center;
+  color: #e8a020;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e8a020;
+  white-space: nowrap;
+}
+thead th:first-child { text-align: left; padding-left: 14px; }
+
 tbody tr { border-bottom: 1px solid #1e3060; }
 tbody tr:nth-child(even) { background: #162a52; }
-td { padding: 0 14px; text-align: center; color: #fff; font-size: 28px; height: 66px; vertical-align: middle; }
-td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 28px; }
+
+td {
+  padding: 0 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 26px;
+  height: 72px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+td:first-child {
+  text-align: left;
+  font-weight: bold;
+  color: #e8a020;
+  font-size: 26px;
+  padding-left: 14px;
+}
+
 .pos { color: #4cde88; }
 .neg { color: #ff5c5c; }
-.ebitda-pos { color: #4cde88; font-weight: bold; font-size: 30px; }
-.ebitda-neg { color: #ff5c5c; font-weight: bold; font-size: 30px; }
-.section-note { font-size: 16px; color: #aab4cc; margin-top: 10px; text-align: right; font-style: italic; flex-shrink: 0; }
+.ebitda-pos { color: #4cde88; font-weight: bold; font-size: 28px; }
+.ebitda-neg { color: #ff5c5c; font-weight: bold; font-size: 28px; }
+
+.section-note {
+  font-size: 15px; color: #aab4cc; margin-top: 8px;
+  text-align: right; font-style: italic; flex-shrink: 0;
+}
 </style>
 </head>
 <body>
@@ -46,35 +79,35 @@ td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size:
     <div class="title">Year-To-Date Performance Dashboard</div>
     <div class="subtitle">Sales · Food Cost · Bar Cost · FOH Labor · BOH Labor · EBITDA</div>
   </div>
-  <div class="date-badge">YTD 2026<br>Through Period 4</div>
+  <div class="date-badge">YTD 2026<br>Week Ending 4/26/26</div>
 </div>
 <div class="divider"></div>
 
 <div class="total-row">
   <div class="total-card">
     <div class="total-label">Gross Sales</div>
-    <div class="total-val">$16.5M</div>
-    <div class="total-pct">Budget $17.0M</div>
+    <div class="total-val">$17.7M</div>
+    <div class="total-pct">Budget $17.7M</div>
   </div>
   <div class="total-card">
     <div class="total-label">Food Cost</div>
     <div class="total-val">29.2%</div>
-    <div class="total-pct">$3,436,253</div>
+    <div class="total-pct">$4,782,793 total COGS</div>
   </div>
   <div class="total-card">
     <div class="total-label">Bar Cost</div>
     <div class="total-val">21.7%</div>
-    <div class="total-pct">$1,035,592</div>
+    <div class="total-pct">Bev blended</div>
   </div>
   <div class="total-card">
     <div class="total-label">Total Labor</div>
-    <div class="total-val">30.5%</div>
+    <div class="total-val">30.4%</div>
     <div class="total-pct">FOH 6.6% · BOH 13.7%</div>
   </div>
   <div class="total-card">
     <div class="total-label">EBITDA</div>
-    <div class="total-val" style="color:#4cde88;">$1.89M</div>
-    <div class="total-pct">11.4% · ($200,734) vs Budget</div>
+    <div class="total-val" style="color:#4cde88;">$2.03M</div>
+    <div class="total-pct">11.9% · ($165K) vs Budget</div>
   </div>
 </div>
 
@@ -82,122 +115,134 @@ td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size:
 <table>
   <thead>
     <tr>
-      <th style="width:14%;">Location</th>
-      <th>Sales YTD</th>
-      <th>Food Cost</th>
-      <th>Bar Cost</th>
-      <th>FOH Labor</th>
-      <th>BOH Labor</th>
-      <th>EBITDA $</th>
-      <th>EBITDA %</th>
-      <th>vs Budget</th>
+      <th style="width:13%;">Location</th>
+      <th style="width:11%;">Sales YTD</th>
+      <th style="width:9%;">Food Cost</th>
+      <th style="width:9%;">Bar Cost</th>
+      <th style="width:9%;">FOH Labor</th>
+      <th style="width:9%;">BOH Labor</th>
+      <th style="width:11%;">EBITDA $</th>
+      <th style="width:9%;">EBITDA %</th>
+      <th style="width:10%;">vs Budget</th>
+      <th style="width:10%;">vs 2025</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Beachwood</td>
-      <td>$2,951,805</td>
-      <td class="neg">30.8%</td>
-      <td>22.3%</td>
+      <td>$3,148,895</td>
+      <td class="neg">30.7%</td>
+      <td>22.2%</td>
       <td class="pos">6.3%</td>
       <td>14.4%</td>
-      <td class="ebitda-pos">$376,488</td>
+      <td class="ebitda-pos">$403,398</td>
       <td class="ebitda-pos">13.2%</td>
-      <td class="neg">($6,821)</td>
+      <td class="neg">($398)</td>
+      <td class="pos">+$89,970</td>
     </tr>
     <tr>
-      <td>17 River</td>
-      <td>$1,868,925</td>
-      <td class="pos">28.9%</td>
+      <td>17 River Grille</td>
+      <td>$2,028,013</td>
+      <td class="pos">28.8%</td>
       <td class="pos">20.2%</td>
+      <td class="pos">5.2%</td>
+      <td>13.7%</td>
+      <td class="ebitda-pos">$284,704</td>
+      <td class="ebitda-pos">14.5%</td>
+      <td class="neg">($53,630)</td>
+      <td class="pos">+$18,986</td>
+    </tr>
+    <tr>
+      <td>JoJo's &amp; Bar Fuoco</td>
+      <td>$1,481,508</td>
+      <td class="neg">34.0%</td>
+      <td class="neg">24.5%</td>
       <td class="pos">5.3%</td>
-      <td>13.9%</td>
-      <td class="ebitda-pos">$251,510</td>
-      <td class="ebitda-pos">13.9%</td>
-      <td class="neg">($58,756)</td>
-    </tr>
-    <tr>
-      <td>JoJo's Bar</td>
-      <td>$1,372,266</td>
-      <td class="neg">33.9%</td>
-      <td class="neg">24.3%</td>
-      <td class="pos">5.1%</td>
       <td class="pos">13.1%</td>
-      <td class="ebitda-pos">$90,034</td>
-      <td class="ebitda-pos">6.8%</td>
-      <td class="neg">($28,771)</td>
+      <td class="ebitda-pos">$95,335</td>
+      <td class="ebitda-pos">6.7%</td>
+      <td class="neg">($30,559)</td>
+      <td class="neg">($33,807)</td>
     </tr>
     <tr>
-      <td>The Lakehouse</td>
-      <td>$328,510</td>
-      <td class="neg">35.2%</td>
-      <td>20.0%</td>
-      <td>6.8%</td>
-      <td class="neg">19.8%</td>
-      <td class="ebitda-neg">($162,940)</td>
-      <td class="ebitda-neg">-51.2%</td>
-      <td class="pos">$6,529</td>
+      <td>The Lakehouse ★</td>
+      <td>$370,365</td>
+      <td class="neg">34.9%</td>
+      <td>19.7%</td>
+      <td>7.3%</td>
+      <td class="neg">20.8%</td>
+      <td class="ebitda-neg">($184,611)</td>
+      <td class="ebitda-neg">-51.6%</td>
+      <td class="neg">($4,874)</td>
+      <td class="pos">+$24,511</td>
     </tr>
     <tr>
       <td>Lakewood</td>
-      <td>$1,110,077</td>
+      <td>$1,184,563</td>
       <td class="pos">28.0%</td>
       <td>23.2%</td>
       <td class="pos">4.5%</td>
       <td class="neg">14.9%</td>
-      <td class="ebitda-pos">$137,351</td>
-      <td class="ebitda-pos">12.9%</td>
-      <td class="neg">($26,528)</td>
+      <td class="ebitda-pos">$146,326</td>
+      <td class="ebitda-pos">12.8%</td>
+      <td class="neg">($26,504)</td>
+      <td class="neg">($26,639)</td>
     </tr>
     <tr>
       <td>Winter Park</td>
-      <td>$2,636,358</td>
-      <td class="pos">25.8%</td>
-      <td>21.5%</td>
+      <td>$2,815,994</td>
+      <td class="pos">25.9%</td>
+      <td class="pos">21.3%</td>
       <td class="pos">8.3%</td>
-      <td class="pos">12.8%</td>
-      <td class="ebitda-pos">$426,358</td>
+      <td class="pos">12.9%</td>
+      <td class="ebitda-pos">$455,460</td>
       <td class="ebitda-pos">16.8%</td>
-      <td class="pos">$51,799</td>
+      <td class="pos">+$58,283</td>
+      <td class="pos">+$70,788</td>
     </tr>
     <tr>
       <td>Sarasota</td>
-      <td>$2,725,241</td>
+      <td>$2,875,417</td>
       <td class="pos">26.8%</td>
       <td class="pos">21.1%</td>
       <td class="pos">8.0%</td>
       <td class="pos">11.5%</td>
-      <td class="ebitda-pos">$494,418</td>
-      <td class="ebitda-pos">18.8%</td>
-      <td class="neg">($36,540)</td>
+      <td class="ebitda-pos">$516,689</td>
+      <td class="ebitda-pos">18.7%</td>
+      <td class="neg">($14,269)</td>
+      <td class="neg">($42,782)</td>
     </tr>
     <tr>
-      <td>Easton</td>
-      <td>$2,041,816</td>
+      <td>Easton ↗ 6/30/25</td>
+      <td>$2,190,270</td>
       <td class="pos">26.7%</td>
       <td class="pos">20.5%</td>
-      <td>6.2%</td>
+      <td>6.1%</td>
       <td class="neg">14.2%</td>
-      <td class="ebitda-pos">$170,776</td>
-      <td class="ebitda-pos">8.7%</td>
-      <td class="neg">($96,629)</td>
+      <td class="ebitda-pos">$189,168</td>
+      <td class="ebitda-pos">9.0%</td>
+      <td class="neg">($93,489)</td>
+      <td>—</td>
     </tr>
     <tr>
-      <td>Lola's Bistro</td>
-      <td>$1,500,704</td>
+      <td>Lola's Bistro ↗ 9/9/25</td>
+      <td>$1,611,082</td>
       <td class="neg">34.4%</td>
-      <td class="neg">22.5%</td>
-      <td>6.1%</td>
-      <td class="neg">15.2%</td>
-      <td class="ebitda-pos">$107,491</td>
-      <td class="ebitda-pos">7.3%</td>
-      <td class="neg">($5,017)</td>
+      <td class="neg">22.6%</td>
+      <td>5.5%</td>
+      <td class="neg">15.0%</td>
+      <td class="ebitda-pos">$123,544</td>
+      <td class="ebitda-pos">7.9%</td>
+      <td class="pos">+$857</td>
+      <td>—</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<div class="section-note">Green = at or better than target &nbsp;|&nbsp; Red = needs attention &nbsp;|&nbsp; Food cost target 29% · Bar cost target 22% · FOH target 8.5% FL / 6.1% OH · BOH target 13.5%</div>
+<div class="section-note">
+  ★ Lakehouse seasonal ramp — training labor is intentional; metrics not reflective of operational performance until summer &nbsp;|&nbsp; Green = at/better than target · Red = needs attention &nbsp;|&nbsp; Food target 29% · Bar target 22% · FOH target 8.5% FL / 6.1% OH · BOH target 13.5%
+</div>
 
 </body>
 </html>
