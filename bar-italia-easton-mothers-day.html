@@ -9,16 +9,26 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
+    background: #000;
+  }
+
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .slide {
     position: relative;
     width: 1920px;
     height: 1080px;
+    transform-origin: center center;
     background:
       radial-gradient(ellipse at top left, #fce8ec 0%, transparent 55%),
       radial-gradient(ellipse at bottom right, #e8f0e2 0%, transparent 55%),
@@ -26,7 +36,13 @@
     overflow: hidden;
   }
 
-  /* Soft botanical accents */
+  @media (max-aspect-ratio: 16/9) {
+    .slide { transform: scale(calc(100vw / 1920)); }
+  }
+  @media (min-aspect-ratio: 16/9) {
+    .slide { transform: scale(calc(100vh / 1080)); }
+  }
+
   .botanical {
     position: absolute;
     pointer-events: none;
@@ -34,70 +50,66 @@
   }
 
   .botanical.top-left {
-    top: -60px;
-    left: -60px;
-    width: 520px;
-    height: 520px;
+    top: -40px;
+    left: -40px;
+    width: 380px;
+    height: 380px;
   }
 
   .botanical.bottom-right {
-    bottom: -80px;
-    right: -80px;
-    width: 560px;
-    height: 560px;
+    bottom: -50px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
     transform: rotate(180deg);
   }
 
   .botanical.mid-right {
-    top: 280px;
-    right: -100px;
-    width: 380px;
-    height: 380px;
+    top: 240px;
+    right: -60px;
+    width: 260px;
+    height: 260px;
     opacity: 0.35;
   }
 
   .botanical.mid-left {
-    bottom: 220px;
-    left: -80px;
-    width: 340px;
-    height: 340px;
+    bottom: 200px;
+    left: -50px;
+    width: 240px;
+    height: 240px;
     opacity: 0.35;
     transform: rotate(180deg);
   }
 
-  /* Floating petals */
   .petal {
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     border-radius: 50% 0 50% 0;
     opacity: 0.6;
   }
+  .petal.p1 { top: 160px; left: 720px; background: #f4b8c4; transform: rotate(25deg); }
+  .petal.p2 { top: 240px; right: 480px; background: #f8c8a0; transform: rotate(-15deg); }
+  .petal.p3 { bottom: 240px; left: 380px; background: #f4b8c4; transform: rotate(45deg); }
+  .petal.p4 { top: 380px; left: 240px; background: #e8c2d4; transform: rotate(-30deg); width: 14px; height: 14px; }
+  .petal.p5 { bottom: 340px; right: 320px; background: #f8c8a0; transform: rotate(60deg); width: 14px; height: 14px; }
 
-  .petal.p1 { top: 140px; left: 720px; background: #f4b8c4; transform: rotate(25deg); }
-  .petal.p2 { top: 220px; right: 480px; background: #f8c8a0; transform: rotate(-15deg); }
-  .petal.p3 { bottom: 220px; left: 380px; background: #f4b8c4; transform: rotate(45deg); }
-  .petal.p4 { top: 380px; left: 200px; background: #e8c2d4; transform: rotate(-30deg); width: 18px; height: 18px; }
-  .petal.p5 { bottom: 340px; right: 320px; background: #f8c8a0; transform: rotate(60deg); width: 18px; height: 18px; }
-  .petal.p6 { top: 480px; right: 240px; background: #e8c2d4; transform: rotate(15deg); width: 14px; height: 14px; }
-
-  /* Header */
   .header {
     position: relative;
     text-align: center;
-    padding-top: 70px;
+    padding-top: 80px;
     z-index: 5;
   }
 
   .brand-mark {
     display: inline-block;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 500;
-    letter-spacing: 8px;
+    letter-spacing: 6px;
     color: #6b4423;
     text-transform: uppercase;
-    padding: 0 30px;
+    padding: 0 24px;
     position: relative;
   }
 
@@ -106,29 +118,27 @@
     content: '';
     position: absolute;
     top: 50%;
-    width: 80px;
+    width: 60px;
     height: 1px;
     background: #6b4423;
   }
-
-  .brand-mark::before { left: -90px; }
-  .brand-mark::after { right: -90px; }
+  .brand-mark::before { left: -70px; }
+  .brand-mark::after { right: -70px; }
 
   .location {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    letter-spacing: 6px;
+    letter-spacing: 5px;
     color: #8b6f47;
     text-transform: uppercase;
-    margin-top: 16px;
+    margin-top: 12px;
   }
 
-  /* Main content */
   .main {
     position: relative;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 50px;
     z-index: 5;
   }
 
@@ -136,49 +146,48 @@
     display: inline-block;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 38px;
+    font-size: 30px;
     color: #c44569;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     font-weight: 500;
   }
 
   .first-tag .star {
     color: #d4a574;
-    margin: 0 14px;
+    margin: 0 12px;
   }
 
   h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 200px;
+    font-size: 132px;
     font-weight: 600;
     color: #2d4a2b;
-    line-height: 0.95;
-    letter-spacing: -2px;
+    line-height: 1.0;
+    letter-spacing: -1px;
   }
 
   h1 .ampersand {
     font-style: italic;
     font-weight: 400;
     color: #c44569;
-    font-size: 180px;
+    font-size: 120px;
   }
 
   h1 .day {
     display: block;
-    margin-top: -10px;
+    margin-top: -6px;
   }
 
-  /* Time card */
   .time-card {
     position: relative;
-    margin: 60px auto 0;
-    width: 1100px;
+    margin: 50px auto 0;
+    width: 900px;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(196, 69, 105, 0.25);
     border-radius: 8px;
-    padding: 38px 50px;
+    padding: 28px 40px;
     z-index: 5;
-    box-shadow: 0 8px 40px rgba(139, 111, 71, 0.08);
+    box-shadow: 0 8px 30px rgba(139, 111, 71, 0.08);
   }
 
   .time-card-inner {
@@ -188,30 +197,28 @@
     gap: 50px;
   }
 
-  .time-block {
-    text-align: center;
-  }
+  .time-block, .date-block { text-align: center; }
 
   .time-label {
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     color: #8b6f47;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .time-value {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 64px;
+    font-size: 50px;
     font-weight: 600;
     color: #2d4a2b;
     line-height: 1;
   }
 
   .time-value .meridiem {
-    font-size: 32px;
+    font-size: 26px;
     font-weight: 400;
     color: #6b4423;
     margin-left: 4px;
@@ -219,25 +226,21 @@
 
   .time-divider {
     width: 1px;
-    height: 80px;
+    height: 70px;
     background: linear-gradient(to bottom, transparent, #c44569 50%, transparent);
-  }
-
-  .date-block {
-    text-align: center;
   }
 
   .date-month {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 32px;
+    font-size: 26px;
     color: #c44569;
     font-weight: 500;
   }
 
   .date-day {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 64px;
+    font-size: 50px;
     font-weight: 600;
     color: #2d4a2b;
     line-height: 1;
@@ -245,13 +248,12 @@
 
   .date-year {
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 4px;
     color: #8b6f47;
     margin-top: 4px;
   }
 
-  /* Footer message */
   .footer-message {
     position: absolute;
     bottom: 70px;
@@ -264,16 +266,15 @@
   .footer-message .quote {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 32px;
+    font-size: 26px;
     color: #6b4423;
     font-weight: 400;
   }
 
   .footer-message .ornament {
-    margin: 12px auto 0;
-    width: 240px;
-    height: 12px;
-    position: relative;
+    margin: 10px auto 0;
+    width: 200px;
+    height: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -294,27 +295,24 @@
     transform: rotate(45deg);
     margin: 0 12px;
   }
-
 </style>
 </head>
 <body>
+<div class="stage">
 <div class="slide">
 
-  <!-- Botanical SVG accents -->
   <svg class="botanical top-left" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <g fill="none" stroke="#7a9168" stroke-width="1.2" stroke-linecap="round">
       <path d="M 30 170 Q 60 120 90 80 Q 110 50 130 30"/>
       <path d="M 30 170 Q 50 140 70 120"/>
       <path d="M 60 130 Q 80 110 95 95"/>
     </g>
-    <!-- Leaves -->
     <g fill="#9bb087" opacity="0.85">
       <ellipse cx="55" cy="145" rx="14" ry="6" transform="rotate(-30 55 145)"/>
       <ellipse cx="78" cy="115" rx="12" ry="5" transform="rotate(-40 78 115)"/>
       <ellipse cx="98" cy="85" rx="14" ry="6" transform="rotate(-45 98 85)"/>
       <ellipse cx="118" cy="60" rx="11" ry="5" transform="rotate(-50 118 60)"/>
     </g>
-    <!-- Pink blossoms -->
     <g>
       <g transform="translate(135, 35)">
         <circle cx="0" cy="-8" r="6" fill="#f4b8c4"/>
@@ -423,21 +421,17 @@
     </g>
   </svg>
 
-  <!-- Floating petals -->
   <div class="petal p1"></div>
   <div class="petal p2"></div>
   <div class="petal p3"></div>
   <div class="petal p4"></div>
   <div class="petal p5"></div>
-  <div class="petal p6"></div>
 
-  <!-- Header -->
   <div class="header">
     <div class="brand-mark">Bar Italia</div>
     <div class="location">Easton Town Center</div>
   </div>
 
-  <!-- Main -->
   <div class="main">
     <div class="first-tag">
       <span class="star">✿</span>our very first<span class="star">✿</span>
@@ -448,7 +442,6 @@
     </h1>
   </div>
 
-  <!-- Time / Date card -->
   <div class="time-card">
     <div class="time-card-inner">
       <div class="date-block">
@@ -464,7 +457,6 @@
     </div>
   </div>
 
-  <!-- Footer message -->
   <div class="footer-message">
     <div class="quote">Let's make her day unforgettable.</div>
     <div class="ornament">
@@ -472,6 +464,7 @@
     </div>
   </div>
 
+</div>
 </div>
 </body>
 </html>
