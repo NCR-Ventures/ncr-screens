@@ -7,106 +7,134 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
-body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 18px 50px; display: flex; flex-direction: column; height: 1080px; }
 
 /* HEADER */
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-.brand { font-size: 18px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 42px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 2px; }
-.subtitle { font-size: 18px; color: #aab4cc; margin-top: 4px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 22px; font-weight: bold; padding: 10px 22px; border-radius: 8px; text-align: center; line-height: 1.2; }
-.divider { height: 3px; background: #e8a020; margin: 10px 0 12px; border-radius: 2px; flex-shrink: 0; }
+.brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 50px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 3px; }
+.subtitle { font-size: 20px; color: #aab4cc; margin-top: 4px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 24px; font-weight: bold; padding: 12px 26px; border-radius: 10px; text-align: center; line-height: 1.2; }
+.divider { height: 4px; background: #e8a020; margin: 8px 0 10px; border-radius: 2px; flex-shrink: 0; }
 
 /* TOP ROW CARDS */
-.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 14px; margin-bottom: 12px; flex-shrink: 0; }
-.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 10px; padding: 12px 20px; }
+.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; margin-bottom: 14px; flex-shrink: 0; }
+.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 16px 24px; }
 .card.gold { border: 2px solid #e8a020; }
-.card-label { font-size: 14px; color: #aab4cc; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: bold; }
-.card-big { font-size: 42px; font-weight: bold; color: #e8a020; line-height: 1; }
-.card-mid { font-size: 30px; font-weight: bold; color: #fff; line-height: 1.1; }
-.card-sub { font-size: 14px; color: #aab4cc; margin-top: 6px; }
+.card-label { font-size: 16px; color: #aab4cc; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 8px; font-weight: bold; }
+.card-big { font-size: 52px; font-weight: bold; color: #e8a020; line-height: 1; }
+.card-mid { font-size: 36px; font-weight: bold; color: #fff; line-height: 1.1; }
+.card-sub { font-size: 16px; color: #aab4cc; margin-top: 6px; }
 
 /* SECTION HEADERS */
-.section-head { font-size: 16px; color: #e8a020; letter-spacing: 2.5px; text-transform: uppercase; margin: 4px 0 6px; font-weight: bold; flex-shrink: 0; }
+.section-head { font-size: 20px; color: #e8a020; letter-spacing: 3px; text-transform: uppercase; margin: 4px 0 6px; font-weight: bold; flex-shrink: 0; }
 
 /* COGS TABLE */
 .cogs-table { width: 100%; border-collapse: collapse; flex-shrink: 0; }
-.cogs-table th { background: #1a3160; color: #e8a020; font-size: 14px; padding: 8px 10px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
+.cogs-table th { background: #1a3160; color: #e8a020; font-size: 16px; padding: 10px 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #e8a020; }
 .cogs-table th:first-child { text-align: left; }
-.cogs-table td { background: #162a52; color: #fff; padding: 8px 10px; text-align: center; font-size: 20px; border-bottom: 1px solid #1e3060; }
+.cogs-table td { background: #162a52; color: #fff; padding: 11px 12px; text-align: center; font-size: 24px; border-bottom: 1px solid #1e3060; }
 .cogs-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; }
 .cogs-table tr:nth-child(even) td { background: #142647; }
 .pos { color: #4cde88; font-weight: bold; }
 .neg { color: #ff5c5c; font-weight: bold; }
 
 /* MIDDLE ROW */
-.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; flex: 1; min-height: 0; }
+.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; flex: 1; min-height: 0; }
 .col { display: flex; flex-direction: column; min-height: 0; }
 
 /* LABOR TABLE */
 .labor-table { width: 100%; border-collapse: collapse; }
-.labor-table th { background: #1a3160; color: #e8a020; font-size: 12px; padding: 7px 6px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
+.labor-table th { background: #1a3160; color: #e8a020; font-size: 13px; padding: 8px 8px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
 .labor-table th:first-child { text-align: left; }
-.labor-table td { background: #162a52; color: #fff; padding: 7px 8px; text-align: center; font-size: 16px; border-bottom: 1px solid #1e3060; }
-.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 15px; }
+.labor-table td { background: #162a52; color: #fff; padding: 9px 10px; text-align: center; font-size: 18px; border-bottom: 1px solid #1e3060; }
+.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 17px; }
 .labor-table tr:nth-child(even) td { background: #142647; }
-.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 4px 8px; border-radius: 3px; font-weight: bold; font-size: 12px; }
-.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 4px 8px; border-radius: 3px; font-weight: bold; font-size: 12px; }
-.status-info { background: rgba(232,160,32,0.18); color: #e8a020; padding: 4px 8px; border-radius: 3px; font-weight: bold; font-size: 12px; }
+.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-info { background: rgba(232,160,32,0.18); color: #e8a020; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
 
 /* OT CARD */
-.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 10px 16px; margin-top: 10px; }
-.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 6px; }
-.ot-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 6px; }
-.ot-val { font-size: 24px; font-weight: bold; color: #fff; line-height: 1; }
-.ot-lbl { font-size: 11px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; font-weight: bold; }
-.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-.ot-dept { background: #1a3160; padding: 8px 12px; border-radius: 6px; border-left: 3px solid #e8a020; }
-.ot-dept-name { font-size: 11px; color: #aab4cc; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
-.ot-dept-val { font-size: 16px; font-weight: bold; color: #fff; margin-top: 3px; }
-.ot-dept-sub { font-size: 11px; color: #aab4cc; margin-top: 2px; }
+.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; margin-top: 10px; }
+.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+.ot-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 8px; }
+.ot-val { font-size: 26px; font-weight: bold; color: #fff; line-height: 1; }
+.ot-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
+.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.ot-dept { background: #1a3160; padding: 9px 14px; border-radius: 8px; border-left: 4px solid #e8a020; }
+.ot-dept-name { font-size: 12px; color: #aab4cc; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
+.ot-dept-val { font-size: 19px; font-weight: bold; color: #fff; margin-top: 3px; }
+.ot-dept-sub { font-size: 12px; color: #aab4cc; margin-top: 2px; }
 
 /* REVIEW CARD */
-.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 10px 16px; }
-.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; margin-top: 6px; }
-.review-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 6px; }
-.review-val { font-size: 26px; font-weight: bold; color: #4cde88; line-height: 1; }
-.review-lbl { font-size: 11px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; font-weight: bold; }
+.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; }
+.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.review-stat { text-align: center; padding: 9px 6px; background: #1a3160; border-radius: 8px; }
+.review-val { font-size: 28px; font-weight: bold; color: #4cde88; line-height: 1; }
+.review-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
 
 /* BOTTOM BARS */
-.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 10px; padding: 10px 18px; margin-top: 10px; flex-shrink: 0; }
-.bottom-label { font-size: 13px; color: #e8a020; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; font-weight: bold; }
-.bottom-text { font-size: 14px; color: #fff; line-height: 1.4; }
-.action-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 10px; padding: 10px 18px; margin-top: 10px; flex-shrink: 0; }
+.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
+.bottom-label { font-size: 14px; color: #e8a020; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: bold; }
+.bottom-text { font-size: 16px; color: #fff; line-height: 1.4; }
+.action-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+TEMPLATE PLACEHOLDERS — REPLACE EACH WEEK:
+4            e.g. 4
+4          e.g. 17
+Ivanne, Julia &amp; Brad      e.g. Sam Mitchell
+April 26, 2026     e.g. April 26, 2026
+$41,855       e.g. $159,088
+$31,648        e.g. $119,577
+$6,538      e.g. $22,696
+$1,391        e.g. $13,291
+$2,278        e.g. $3,524
+$11,504 e.g. $41,869
+27.5%    e.g. 26.3%
+30.8%     e.g. 28.8%
+17.2%      e.g. 18.9%
+$16,546 e.g. $25,355
+39.5%   e.g. 15.9%
+$34.32      e.g. $81.97
+training ramp + slow weather, below floor  e.g. on target / below floor
+
+LOCATION TARGETS (HARDCODED FOR THIS STORE):
+  FOH target: 6.1%
+  BOH target: 13.5%
+  Blended SPLH floor: $65 (company standard)
+
+LAYOUT: Sized to fill 1920x1080 — ~98% vertical fill, ~19px safety buffer.
+============================================================ -->
 
 <div class="header">
   <div>
     <div class="brand">NCR Ventures · The Lakehouse</div>
     <div class="title">Weekly COGS &amp; Labor Snapshot</div>
-    <div class="subtitle">Period 4 · Week 3 · Submitted by Ivanne, Julia &amp; Brad</div>
+    <div class="subtitle">Period 4 · Week 4 · Submitted by Ivanne, Julia &amp; Brad</div>
   </div>
-  <div class="date-badge">Week Ending<br>April 19, 2026</div>
+  <div class="date-badge">Week Ending<br>April 26, 2026</div>
 </div>
 <div class="divider"></div>
 
 <div class="top-row">
   <div class="card gold">
     <div class="card-label">Gross Sales</div>
-    <div class="card-big">$36,414</div>
-    <div class="card-sub">Food $26,890 · Liquor $6,240 · Wine $1,346 · Beer $1,938</div>
+    <div class="card-big">$41,855</div>
+    <div class="card-sub">Food $31,648 · Liquor $6,538 · Wine $1,391 · Beer $2,278</div>
   </div>
   <div class="card">
     <div class="card-label">Total COGS</div>
-    <div class="card-mid">$10,134 <span class="pos" style="font-size:22px;">27.8%</span></div>
-    <div class="card-sub">Food cost 30.1% · LBW 21.4%</div>
+    <div class="card-mid">$11,504 <span class="pos" style="font-size:26px;">27.5%</span></div>
+    <div class="card-sub">Food cost 30.8% · LBW 17.2%</div>
   </div>
   <div class="card">
     <div class="card-label">Total Labor</div>
-    <div class="card-mid">$13,993 <span style="color:#ff5c5c;font-size:22px;">38.4%</span></div>
-    <div class="card-sub">Blended SPLH $36.44 — training ramp, below floor</div>
+    <div class="card-mid">$16,546 <span style="color:#fff;font-size:26px;">39.5%</span></div>
+    <div class="card-sub">Blended SPLH $34.32 — training ramp + slow weather, below floor</div>
   </div>
 </div>
 
@@ -123,10 +151,10 @@ body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px
     </tr>
   </thead>
   <tbody>
-    <tr><td>Food</td><td>$26,890</td><td>$8,094.54</td><td>30.1%</td><td>30.2%</td><td class="pos">−0.1 pts</td></tr>
-    <tr><td>Liquor</td><td>$6,240</td><td>$1,141.33</td><td>18.3%</td><td>17.5%</td><td class="neg">+0.8 pts</td></tr>
-    <tr><td>Beer</td><td>$1,938</td><td>$442.00</td><td>22.8%</td><td>23.0%</td><td class="pos">−0.2 pts</td></tr>
-    <tr><td>Wine</td><td>$1,346</td><td>$456.18</td><td>33.9%</td><td>24.5%</td><td class="neg">+9.4 pts</td></tr>
+    <tr><td>Food</td><td>$31,648</td><td>$9,747.67</td><td>30.8%</td><td>30.2%</td><td class="neg">+0.6 pts</td></tr>
+    <tr><td>Liquor</td><td>$6,538</td><td>$922.82</td><td>14.1%</td><td>17.5%</td><td class="pos">−3.4 pts</td></tr>
+    <tr><td>Beer</td><td>$2,278</td><td>$461.49</td><td>20.3%</td><td>23.0%</td><td class="pos">−2.7 pts</td></tr>
+    <tr><td>Wine</td><td>$1,391</td><td>$371.67</td><td>26.7%</td><td>24.5%</td><td class="neg">+2.2 pts</td></tr>
   </tbody>
 </table>
 
@@ -148,27 +176,27 @@ body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px
       <tbody>
         <tr>
           <td>FOH (excl. mgr)</td>
-          <td>507</td>
-          <td>$3,806.84</td>
-          <td class="neg">10.5%</td>
+          <td>606</td>
+          <td>$4,662.96</td>
+          <td class="neg">11.1%</td>
           <td>6.1%</td>
           <td><span class="status-info">Training ramp</span></td>
         </tr>
         <tr>
           <td>BOH (excl. mgr)</td>
-          <td>492</td>
-          <td>$10,185.93</td>
-          <td class="neg">28.0%</td>
+          <td>614</td>
+          <td>$11,883.49</td>
+          <td class="neg">28.4%</td>
           <td>13.5%</td>
           <td><span class="status-info">Training ramp</span></td>
         </tr>
         <tr>
           <td>Blended</td>
-          <td>999</td>
-          <td>$13,992.77</td>
-          <td>38.4%</td>
+          <td>1,220</td>
+          <td>$16,546</td>
+          <td>39.5%</td>
           <td>SPLH ≥ $65</td>
-          <td><span class="status-over">SPLH $36.44</span></td>
+          <td><span class="status-over">SPLH $34.32</span></td>
         </tr>
       </tbody>
     </table>
@@ -176,20 +204,20 @@ body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px
     <div class="ot-card">
       <div class="card-label">Overtime — Store-Level Overview</div>
       <div class="ot-grid">
-        <div class="ot-stat"><div class="ot-val">0</div><div class="ot-lbl">Staff w/ OT</div></div>
-        <div class="ot-stat"><div class="ot-val">0</div><div class="ot-lbl">Total OT Hrs</div></div>
-        <div class="ot-stat"><div class="ot-val">$0</div><div class="ot-lbl">OT Premium</div></div>
+        <div class="ot-stat"><div class="ot-val">1</div><div class="ot-lbl">Staff w/ OT</div></div>
+        <div class="ot-stat"><div class="ot-val">1.70</div><div class="ot-lbl">Total OT Hrs</div></div>
+        <div class="ot-stat"><div class="ot-val">$4.68</div><div class="ot-lbl">OT Premium</div></div>
       </div>
       <div class="ot-split">
         <div class="ot-dept">
           <div class="ot-dept-name">BOH</div>
           <div class="ot-dept-val">0 hrs · $0</div>
-          <div class="ot-dept-sub">Clean week — no hourly OT</div>
+          <div class="ot-dept-sub">Clean week — no BOH OT</div>
         </div>
         <div class="ot-dept">
           <div class="ot-dept-name">FOH</div>
-          <div class="ot-dept-val">0 hrs · $0</div>
-          <div class="ot-dept-sub">Clean week — no hourly OT</div>
+          <div class="ot-dept-val">1.70 hrs · $4.68</div>
+          <div class="ot-dept-sub">Mile Clark — server/bar shift overlap</div>
         </div>
       </div>
     </div>
@@ -200,21 +228,21 @@ body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">
-        <div class="review-stat"><div class="review-val">3.5★</div><div class="review-lbl">Avg Rating</div></div>
-        <div class="review-stat"><div class="review-val">8</div><div class="review-lbl">Total Reviews</div></div>
+        <div class="review-stat"><div class="review-val">5.0★</div><div class="review-lbl">Avg Rating</div></div>
+        <div class="review-stat"><div class="review-val">3</div><div class="review-lbl">Total Reviews</div></div>
         <div class="review-stat"><div class="review-val">3</div><div class="review-lbl">5★ Reviews</div></div>
-        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">3</div><div class="review-lbl">3★ or Below</div></div>
+        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">0</div><div class="review-lbl">3★ or Below</div></div>
       </div>
-      <div style="margin-top:8px; font-size:13px; color:#aab4cc;">
-        Last week: 5★ · 1 review · 1 five-star
-        <span class="pos" style="margin-left:10px;">Up from 2★ two weeks ago — volume returning</span>
+      <div style="margin-top:10px; font-size:15px; color:#aab4cc;">
+        Last week: 3.5★ · 8 reviews · 3 five-star
+        <span class="pos" style="margin-left:12px;">Clean sweep — three 5★, zero low ratings</span>
       </div>
     </div>
 
     <div class="bottom-bar" style="margin-top:10px;">
-      <div class="bottom-label">GM Narrative — Week 3</div>
+      <div class="bottom-label">GM Narrative — Week 4</div>
       <div class="bottom-text">
-        Training continues to drive labor hours and dollars across both FOH and BOH — needed and going well. Wine ran high because someone (likely a trainee) opened a BTG bottle and sold it by the glass. Hiring slowed during manager training, mocks, and new menu rollout — interviews ramping back up next two weeks. Cleaning crew expected to start this week pending Laney walk-through.
+        Slower week. Labor stays high through inconsistent weather and continued training — patio set up but guests not arriving yet. LBW and reviews look great, food cost right on. Brad watching how many serving shifts bartenders pick up to avoid OT (one this week — Mile Clark, 1.7 hrs). Devvin Teague worked 9.16 hrs transferred from CCG (Type A — payroll combine).
       </div>
     </div>
   </div>
@@ -224,9 +252,9 @@ body { padding: 22px 50px; display: flex; flex-direction: column; height: 1080px
 <div class="action-bar">
   <div class="bottom-label">Action Items</div>
   <div class="bottom-text">
-    Brad / Julia — coach trainees on BTG vs bottle service; lock down wine pour discipline before next week&nbsp;&nbsp;|&nbsp;&nbsp;
-    Ivanne — add missing batch recipes to R365 and reassign baguette case transferred in for Mo&nbsp;&nbsp;|&nbsp;&nbsp;
-    Brad — direct conversation with employee on the 1★ service review; confirm cleaning crew start date with Laney
+    Brad — limit bartender-to-server shift cross-overs; Mile Clark hit 1.7 OT hrs this week&nbsp;&nbsp;|&nbsp;&nbsp;
+    Ivanne — food cost ticked up to 30.8% on smaller volume; tighten prep yields and waste tracking before next week&nbsp;&nbsp;|&nbsp;&nbsp;
+    Dan / Brad — confirm Devvin Teague's CCG home-store payroll captures the 9.16 transfer hours (Type A combine)
   </div>
 </div>
 
