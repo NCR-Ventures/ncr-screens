@@ -7,104 +7,134 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
-body { padding: 24px 44px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 18px 50px; display: flex; flex-direction: column; height: 1080px; }
 
-/* HEADER - tight */
-.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-bottom: 8px; }
-.brand { font-size: 18px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 42px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 2px; }
-.subtitle { font-size: 18px; color: #aab4cc; margin-top: 2px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 22px; font-weight: bold; padding: 10px 24px; border-radius: 8px; text-align: center; line-height: 1.3; }
-.divider { height: 3px; background: #e8a020; margin: 8px 0 12px; border-radius: 2px; flex-shrink: 0; }
+/* HEADER */
+.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 50px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 3px; }
+.subtitle { font-size: 20px; color: #aab4cc; margin-top: 4px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 24px; font-weight: bold; padding: 12px 26px; border-radius: 10px; text-align: center; line-height: 1.2; }
+.divider { height: 4px; background: #e8a020; margin: 8px 0 10px; border-radius: 2px; flex-shrink: 0; }
 
 /* TOP ROW CARDS */
-.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 14px; margin-bottom: 12px; flex-shrink: 0; }
-.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 10px; padding: 12px 20px; }
+.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; margin-bottom: 14px; flex-shrink: 0; }
+.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 16px 24px; }
 .card.gold { border: 2px solid #e8a020; }
-.card-label { font-size: 13px; color: #aab4cc; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: bold; }
-.card-big { font-size: 44px; font-weight: bold; color: #e8a020; line-height: 1; }
-.card-mid { font-size: 30px; font-weight: bold; color: #fff; }
-.card-sub { font-size: 14px; color: #aab4cc; margin-top: 4px; }
+.card-label { font-size: 16px; color: #aab4cc; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 8px; font-weight: bold; }
+.card-big { font-size: 52px; font-weight: bold; color: #e8a020; line-height: 1; }
+.card-mid { font-size: 36px; font-weight: bold; color: #fff; line-height: 1.1; }
+.card-sub { font-size: 16px; color: #aab4cc; margin-top: 6px; }
 
 /* SECTION HEADERS */
-.section-head { font-size: 16px; color: #e8a020; letter-spacing: 2px; text-transform: uppercase; margin: 4px 0 6px; font-weight: bold; flex-shrink: 0; }
+.section-head { font-size: 20px; color: #e8a020; letter-spacing: 3px; text-transform: uppercase; margin: 4px 0 6px; font-weight: bold; flex-shrink: 0; }
 
 /* COGS TABLE */
 .cogs-table { width: 100%; border-collapse: collapse; flex-shrink: 0; }
-.cogs-table th { background: #1a3160; color: #e8a020; font-size: 14px; padding: 8px 10px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
+.cogs-table th { background: #1a3160; color: #e8a020; font-size: 16px; padding: 10px 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #e8a020; }
 .cogs-table th:first-child { text-align: left; }
-.cogs-table td { background: #162a52; color: #fff; padding: 10px 10px; text-align: center; font-size: 22px; border-bottom: 1px solid #1e3060; }
+.cogs-table td { background: #162a52; color: #fff; padding: 11px 12px; text-align: center; font-size: 24px; border-bottom: 1px solid #1e3060; }
 .cogs-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; }
 .cogs-table tr:nth-child(even) td { background: #142647; }
 .pos { color: #4cde88; font-weight: bold; }
 .neg { color: #ff5c5c; font-weight: bold; }
 
 /* MIDDLE ROW */
-.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; flex: 1; min-height: 0; }
-.middle-col { display: flex; flex-direction: column; min-height: 0; }
+.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; flex: 1; min-height: 0; }
+.col { display: flex; flex-direction: column; min-height: 0; }
 
 /* LABOR TABLE */
-.labor-table { width: 100%; border-collapse: collapse; flex-shrink: 0; }
-.labor-table th { background: #1a3160; color: #e8a020; font-size: 13px; padding: 8px 6px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
+.labor-table { width: 100%; border-collapse: collapse; }
+.labor-table th { background: #1a3160; color: #e8a020; font-size: 13px; padding: 8px 8px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
 .labor-table th:first-child { text-align: left; }
-.labor-table td { background: #162a52; color: #fff; padding: 9px 8px; text-align: center; font-size: 17px; border-bottom: 1px solid #1e3060; }
-.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 16px; }
+.labor-table td { background: #162a52; color: #fff; padding: 9px 10px; text-align: center; font-size: 18px; border-bottom: 1px solid #1e3060; }
+.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 17px; }
 .labor-table tr:nth-child(even) td { background: #142647; }
-.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
-.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-info { background: rgba(232,160,32,0.18); color: #e8a020; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
 
 /* OT CARD */
-.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
-.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 6px; }
-.ot-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 6px; }
-.ot-val { font-size: 24px; font-weight: bold; color: #fff; }
-.ot-lbl { font-size: 11px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 3px; font-weight: bold; }
-.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-.ot-dept { background: #1a3160; padding: 9px 14px; border-radius: 6px; border-left: 3px solid #e8a020; }
+.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; margin-top: 10px; }
+.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+.ot-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 8px; }
+.ot-val { font-size: 26px; font-weight: bold; color: #fff; line-height: 1; }
+.ot-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
+.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.ot-dept { background: #1a3160; padding: 9px 14px; border-radius: 8px; border-left: 4px solid #e8a020; }
 .ot-dept-name { font-size: 12px; color: #aab4cc; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
-.ot-dept-val { font-size: 18px; font-weight: bold; color: #fff; margin-top: 3px; }
+.ot-dept-val { font-size: 19px; font-weight: bold; color: #fff; margin-top: 3px; }
 .ot-dept-sub { font-size: 12px; color: #aab4cc; margin-top: 2px; }
 
 /* REVIEW CARD */
-.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 12px 20px; flex-shrink: 0; }
-.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 6px; }
-.review-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 6px; }
-.review-val { font-size: 24px; font-weight: bold; color: #4cde88; }
-.review-lbl { font-size: 11px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 3px; font-weight: bold; }
+.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; }
+.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.review-stat { text-align: center; padding: 9px 6px; background: #1a3160; border-radius: 8px; }
+.review-val { font-size: 28px; font-weight: bold; color: #4cde88; line-height: 1; }
+.review-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
 
 /* BOTTOM BARS */
-.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 10px; padding: 12px 22px; margin-top: 10px; flex-shrink: 0; }
-.bottom-label { font-size: 14px; color: #e8a020; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; font-weight: bold; }
-.bottom-text { font-size: 15px; color: #fff; line-height: 1.4; }
+.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
+.bottom-label { font-size: 14px; color: #e8a020; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: bold; }
+.bottom-text { font-size: 16px; color: #fff; line-height: 1.4; }
+.action-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+TEMPLATE PLACEHOLDERS — REPLACE EACH WEEK:
+5            e.g. 4
+1          e.g. 17
+Joe, Austin, Kate &amp; Nick      e.g. Sam Mitchell
+May 3, 2026     e.g. April 26, 2026
+$107,130       e.g. $159,088
+$75,428        e.g. $119,577
+$15,516      e.g. $22,696
+$14,841        e.g. $13,291
+$1,345        e.g. $3,524
+$31,072 e.g. $41,869
+29.0%    e.g. 26.3%
+31.5%     e.g. 28.8%
+23.0%      e.g. 18.9%
+$19,745 e.g. $25,355
+18.4%   e.g. 15.9%
+$68.61      e.g. $81.97
+above $65 floor ✓  e.g. on target / below floor
+
+LOCATION TARGETS (HARDCODED FOR THIS STORE):
+  FOH target: 6.1%
+  BOH target: 13.5%
+  Blended SPLH floor: $65 (company standard)
+
+LAYOUT: Sized to fill 1920x1080 — ~98% vertical fill, ~19px safety buffer.
+============================================================ -->
 
 <div class="header">
   <div>
     <div class="brand">NCR Ventures · Lola's Bistro</div>
     <div class="title">Weekly COGS &amp; Labor Snapshot</div>
-    <div class="subtitle">Period 4 · Week 4 · Submitted by Joe / Austin / Kate / Nick</div>
+    <div class="subtitle">Period 5 · Week 1 · Submitted by Joe, Austin, Kate &amp; Nick</div>
   </div>
-  <div class="date-badge">Week Ending<br>April 26, 2026</div>
+  <div class="date-badge">Week Ending<br>May 3, 2026</div>
 </div>
 <div class="divider"></div>
 
 <div class="top-row">
   <div class="card gold">
     <div class="card-label">Gross Sales</div>
-    <div class="card-big">$110,378</div>
-    <div class="card-sub">Food $77,242 · Liquor $15,533 · Wine $16,105 · Beer $1,498</div>
+    <div class="card-big">$107,130</div>
+    <div class="card-sub">Food $75,428 · Liquor $15,516 · Wine $14,841 · Beer $1,345</div>
   </div>
   <div class="card">
     <div class="card-label">Total COGS</div>
-    <div class="card-mid">$33,153 <span class="pos" style="font-size:24px;">30.0%</span></div>
-    <div class="card-sub">Food cost 32.8% · LBW 23.5%</div>
+    <div class="card-mid">$31,072 <span class="pos" style="font-size:26px;">29.0%</span></div>
+    <div class="card-sub">Food cost 31.5% · LBW 23.0%</div>
   </div>
   <div class="card">
     <div class="card-label">Total Labor</div>
-    <div class="card-mid">$19,302 <span style="color:#fff;font-size:24px;">17.5%</span></div>
-    <div class="card-sub">Blended SPLH $71.71 — above $65 floor</div>
+    <div class="card-mid">$19,745 <span style="color:#fff;font-size:26px;">18.4%</span></div>
+    <div class="card-sub">Blended SPLH $68.61 — above $65 floor ✓</div>
   </div>
 </div>
 
@@ -121,16 +151,16 @@ body { padding: 24px 44px; display: flex; flex-direction: column; height: 1080px
     </tr>
   </thead>
   <tbody>
-    <tr><td>Food</td><td>$77,242</td><td>$25,366</td><td>32.8%</td><td>33.5%</td><td class="pos">−0.7 pts</td></tr>
-    <tr><td>Liquor</td><td>$15,533</td><td>$3,095</td><td>19.9%</td><td>20.0%</td><td class="pos">−0.1 pts</td></tr>
-    <tr><td>Beer</td><td>$1,498</td><td>$361</td><td>24.1%</td><td>24.0%</td><td class="neg">+0.1 pts</td></tr>
-    <tr><td>Wine</td><td>$16,105</td><td>$4,330</td><td>26.9%</td><td>26.5%</td><td class="neg">+0.4 pts</td></tr>
+    <tr><td>Food</td><td>$75,428</td><td>$23,770.29</td><td>31.5%</td><td>33.5%</td><td class="pos">−2.0 pts</td></tr>
+    <tr><td>Liquor</td><td>$15,516</td><td>$3,019.13</td><td>19.5%</td><td>20.0%</td><td class="pos">−0.5 pts</td></tr>
+    <tr><td>Beer</td><td>$1,345</td><td>$336.48</td><td>25.0%</td><td>24.0%</td><td class="neg">+1.0 pts</td></tr>
+    <tr><td>Wine</td><td>$14,841</td><td>$3,946.44</td><td>26.6%</td><td>26.5%</td><td class="neg">+0.1 pts</td></tr>
   </tbody>
 </table>
 
 <div class="middle-row">
 
-  <div class="middle-col">
+  <div class="col">
     <div class="section-head">Section 2 — Labor &amp; Blended SPLH</div>
     <table class="labor-table">
       <thead>
@@ -146,27 +176,27 @@ body { padding: 24px 44px; display: flex; flex-direction: column; height: 1080px
       <tbody>
         <tr>
           <td>FOH (excl. mgr)</td>
-          <td>889</td>
-          <td>$6,181</td>
+          <td>883</td>
+          <td>$6,027.13</td>
           <td class="pos">5.6%</td>
           <td>6.1%</td>
           <td><span class="status-ok">Under target</span></td>
         </tr>
         <tr>
           <td>BOH (excl. mgr)</td>
-          <td>650</td>
-          <td>$13,121</td>
-          <td class="pos">11.9%</td>
+          <td>678</td>
+          <td>$13,717.92</td>
+          <td class="pos">12.8%</td>
           <td>13.5%</td>
           <td><span class="status-ok">Under target</span></td>
         </tr>
         <tr>
           <td>Blended</td>
-          <td>1,539</td>
-          <td>$19,302</td>
-          <td>17.5%</td>
+          <td>1,561</td>
+          <td>$19,745</td>
+          <td>18.4%</td>
           <td>SPLH ≥ $65</td>
-          <td><span class="status-ok">SPLH $71.71</span></td>
+          <td><span class="status-ok">SPLH $68.61</span></td>
         </tr>
       </tbody>
     </table>
@@ -174,57 +204,57 @@ body { padding: 24px 44px; display: flex; flex-direction: column; height: 1080px
     <div class="ot-card">
       <div class="card-label">Overtime — Store-Level Overview</div>
       <div class="ot-grid">
-        <div class="ot-stat"><div class="ot-val">1</div><div class="ot-lbl">Staff w/ OT</div></div>
-        <div class="ot-stat"><div class="ot-val">6.5</div><div class="ot-lbl">Total OT Hrs</div></div>
-        <div class="ot-stat"><div class="ot-val">$18</div><div class="ot-lbl">OT Premium</div></div>
+        <div class="ot-stat"><div class="ot-val">2</div><div class="ot-lbl">Staff w/ OT</div></div>
+        <div class="ot-stat"><div class="ot-val">4.42</div><div class="ot-lbl">Total OT Hrs</div></div>
+        <div class="ot-stat"><div class="ot-val">$12.16</div><div class="ot-lbl">OT Premium</div></div>
       </div>
       <div class="ot-split">
         <div class="ot-dept">
           <div class="ot-dept-name">BOH</div>
-          <div class="ot-dept-val">0.0 hrs · $0</div>
-          <div class="ot-dept-sub">No OT — clean week</div>
+          <div class="ot-dept-val">0 hrs · $0</div>
+          <div class="ot-dept-sub">Clean week — no BOH OT</div>
         </div>
         <div class="ot-dept">
           <div class="ot-dept-name">FOH</div>
-          <div class="ot-dept-val">6.5 hrs · $18</div>
-          <div class="ot-dept-sub">1 staff · sick call coverage</div>
+          <div class="ot-dept-val">4.42 hrs · $12.16</div>
+          <div class="ot-dept-sub">Brittany &amp; Joseph — Wendy Party setup</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="middle-col">
+  <div class="col">
     <div class="section-head">Section 6 — Guest Reviews</div>
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">
-        <div class="review-stat"><div class="review-val">4.70★</div><div class="review-lbl">Avg Rating</div></div>
-        <div class="review-stat"><div class="review-val">21</div><div class="review-lbl">Total Reviews</div></div>
-        <div class="review-stat"><div class="review-val">15</div><div class="review-lbl">5★ Reviews</div></div>
-        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">2</div><div class="review-lbl">3★ or Below</div></div>
+        <div class="review-stat"><div class="review-val">4.5★</div><div class="review-lbl">Avg Rating</div></div>
+        <div class="review-stat"><div class="review-val">23</div><div class="review-lbl">Total Reviews</div></div>
+        <div class="review-stat"><div class="review-val">18</div><div class="review-lbl">5★ Reviews</div></div>
+        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">3</div><div class="review-lbl">3★ or Below</div></div>
       </div>
-      <div style="margin-top:10px; font-size:13px; color:#aab4cc;">
-        Last week: 4.90★ · 21 reviews · 19 five-star
-        <span class="neg" style="margin-left:10px;">↓ Slip — 2 lower reviews vs 0 last week</span>
+      <div style="margin-top:10px; font-size:15px; color:#aab4cc;">
+        Last week: 4.7★ · 21 reviews · 15 five-star
+        <span class="neg" style="margin-left:12px;">Down 0.2 pts · 1×1★ + 2×3★ on price/value &amp; portion comments</span>
       </div>
     </div>
 
-    <div class="bottom-bar">
-      <div class="bottom-label">GM Narrative — Week 4</div>
+    <div class="bottom-bar" style="margin-top:10px;">
+      <div class="bottom-label">GM Narrative — Week 1</div>
       <div class="bottom-text">
-        Strong week — beat budget by $8,982 with Period 4 closing $9K over. Costs and labor clean across the board; only flag is wine 0.4 pts over from a Sancerre menu price miss (already corrected) and HH discount math.
+        Sales $107,130, short budget $7,870 — Friday lunch and dinner strong on patio, Saturday and Sunday hurt by rain and cold. Lunch check $55 (vs $36.51 bdgt), dinner $100.18 (vs $62.21 bdgt) — combined $89. Food cost 31.5%, holding 31-32% trend. Wine 26.6% on lower-cost SKU swaps and carafe pour discipline. Labor solid both sides, OT only $12 from Wendy Party setup. Austin took control of a Celiac table to walk guests through allergens — credit there.
       </div>
     </div>
   </div>
 
 </div>
 
-<div class="bottom-bar">
+<div class="action-bar">
   <div class="bottom-label">Action Items</div>
   <div class="bottom-text">
-    Wine 26.9% — Sancerre price now corrected; HH discount tracking to be reviewed.&nbsp;&nbsp;|&nbsp;&nbsp;
-    Period 4 closed $9K over budget — protect flow-through to EBITDA.&nbsp;&nbsp;|&nbsp;&nbsp;
-    Continue host coverage practice — proactive cuts working when manager has floor presence.
+    Joe / Nick — three sub-4★ reviews this week with consistent theme on price/value/portion (no salad, no bread for $28 entrée); pre-shift this with servers — set expectations on what comes vs what's add-on, especially at lunch&nbsp;&nbsp;|&nbsp;&nbsp;
+    Joseph — sales missed budget $7,870; check averages strong but cover counts soft; review weekend daypart staffing relative to actual weather-day patterns rather than calendar plan&nbsp;&nbsp;|&nbsp;&nbsp;
+    Joe — confirm sheet BOH target reads 13.5% NCR standard going forward, not 15.2%; team is beating either, but variance reads more accurately at standard
   </div>
 </div>
 
