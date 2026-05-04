@@ -7,130 +7,134 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
-body { padding: 32px 50px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 18px 50px; display: flex; flex-direction: column; height: 1080px; }
 
 /* HEADER */
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-.brand { font-size: 22px; color: #e8a020; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 56px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 4px; }
-.subtitle { font-size: 22px; color: #aab4cc; margin-top: 6px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 26px; font-weight: bold; padding: 14px 30px; border-radius: 10px; text-align: center; line-height: 1.3; }
-.divider { height: 4px; background: #e8a020; margin: 14px 0 18px; border-radius: 2px; flex-shrink: 0; }
+.brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 50px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 3px; }
+.subtitle { font-size: 20px; color: #aab4cc; margin-top: 4px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 24px; font-weight: bold; padding: 12px 26px; border-radius: 10px; text-align: center; line-height: 1.2; }
+.divider { height: 4px; background: #e8a020; margin: 8px 0 10px; border-radius: 2px; flex-shrink: 0; }
 
 /* TOP ROW CARDS */
-.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 20px 28px; }
+.top-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; margin-bottom: 14px; flex-shrink: 0; }
+.card { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 16px 24px; }
 .card.gold { border: 2px solid #e8a020; }
-.card-label { font-size: 18px; color: #aab4cc; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; font-weight: bold; }
-.card-big { font-size: 60px; font-weight: bold; color: #e8a020; line-height: 1; }
-.card-mid { font-size: 40px; font-weight: bold; color: #fff; }
-.card-sub { font-size: 18px; color: #aab4cc; margin-top: 8px; }
+.card-label { font-size: 16px; color: #aab4cc; text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 8px; font-weight: bold; }
+.card-big { font-size: 52px; font-weight: bold; color: #e8a020; line-height: 1; }
+.card-mid { font-size: 36px; font-weight: bold; color: #fff; line-height: 1.1; }
+.card-sub { font-size: 16px; color: #aab4cc; margin-top: 6px; }
 
 /* SECTION HEADERS */
-.section-head { font-size: 22px; color: #e8a020; letter-spacing: 3px; text-transform: uppercase; margin: 6px 0 10px; font-weight: bold; }
+.section-head { font-size: 20px; color: #e8a020; letter-spacing: 3px; text-transform: uppercase; margin: 4px 0 6px; font-weight: bold; flex-shrink: 0; }
 
 /* COGS TABLE */
-.cogs-table { width: 100%; border-collapse: collapse; }
-.cogs-table th { background: #1a3160; color: #e8a020; font-size: 18px; padding: 14px 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #e8a020; }
+.cogs-table { width: 100%; border-collapse: collapse; flex-shrink: 0; }
+.cogs-table th { background: #1a3160; color: #e8a020; font-size: 16px; padding: 10px 12px; text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #e8a020; }
 .cogs-table th:first-child { text-align: left; }
-.cogs-table td { background: #162a52; color: #fff; padding: 16px 12px; text-align: center; font-size: 28px; border-bottom: 1px solid #1e3060; }
+.cogs-table td { background: #162a52; color: #fff; padding: 11px 12px; text-align: center; font-size: 24px; border-bottom: 1px solid #1e3060; }
 .cogs-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; }
 .cogs-table tr:nth-child(even) td { background: #142647; }
 .pos { color: #4cde88; font-weight: bold; }
 .neg { color: #ff5c5c; font-weight: bold; }
 
 /* MIDDLE ROW */
-.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; flex: 1; }
+.middle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 12px; flex: 1; min-height: 0; }
+.col { display: flex; flex-direction: column; min-height: 0; }
 
 /* LABOR TABLE */
 .labor-table { width: 100%; border-collapse: collapse; }
-.labor-table th { background: #1a3160; color: #e8a020; font-size: 16px; padding: 12px 8px; text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #e8a020; }
+.labor-table th { background: #1a3160; color: #e8a020; font-size: 13px; padding: 8px 8px; text-align: center; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 2px solid #e8a020; }
 .labor-table th:first-child { text-align: left; }
-.labor-table td { background: #162a52; color: #fff; padding: 14px 10px; text-align: center; font-size: 22px; border-bottom: 1px solid #1e3060; }
-.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 20px; }
+.labor-table td { background: #162a52; color: #fff; padding: 9px 10px; text-align: center; font-size: 18px; border-bottom: 1px solid #1e3060; }
+.labor-table td:first-child { text-align: left; font-weight: bold; color: #e8a020; font-size: 17px; }
 .labor-table tr:nth-child(even) td { background: #142647; }
-.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 16px; }
-.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 16px; }
+.status-ok { background: rgba(76,222,136,0.18); color: #4cde88; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-over { background: rgba(255,92,92,0.18); color: #ff5c5c; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
+.status-info { background: rgba(232,160,32,0.18); color: #e8a020; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 13px; }
 
 /* OT CARD */
-.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 18px 24px; }
-.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 10px; }
-.ot-stat { text-align: center; padding: 14px 8px; background: #1a3160; border-radius: 8px; }
-.ot-val { font-size: 36px; font-weight: bold; color: #fff; }
-.ot-lbl { font-size: 14px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; font-weight: bold; }
-.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
-.ot-dept { background: #1a3160; padding: 12px 16px; border-radius: 8px; border-left: 4px solid #e8a020; }
-.ot-dept-name { font-size: 14px; color: #aab4cc; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-.ot-dept-val { font-size: 26px; font-weight: bold; color: #fff; margin-top: 6px; }
-.ot-dept-sub { font-size: 14px; color: #aab4cc; margin-top: 4px; }
+.ot-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; margin-top: 10px; }
+.ot-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+.ot-stat { text-align: center; padding: 8px 6px; background: #1a3160; border-radius: 8px; }
+.ot-val { font-size: 26px; font-weight: bold; color: #fff; line-height: 1; }
+.ot-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
+.ot-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.ot-dept { background: #1a3160; padding: 9px 14px; border-radius: 8px; border-left: 4px solid #e8a020; }
+.ot-dept-name { font-size: 12px; color: #aab4cc; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
+.ot-dept-val { font-size: 19px; font-weight: bold; color: #fff; margin-top: 3px; }
+.ot-dept-sub { font-size: 12px; color: #aab4cc; margin-top: 2px; }
 
 /* REVIEW CARD */
-.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 18px 24px; }
-.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 10px; }
-.review-stat { text-align: center; padding: 14px 8px; background: #1a3160; border-radius: 8px; }
-.review-val { font-size: 36px; font-weight: bold; color: #4cde88; }
-.review-lbl { font-size: 14px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; font-weight: bold; }
+.review-card { background: #162a52; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 18px; }
+.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 8px; }
+.review-stat { text-align: center; padding: 9px 6px; background: #1a3160; border-radius: 8px; }
+.review-val { font-size: 28px; font-weight: bold; color: #4cde88; line-height: 1; }
+.review-lbl { font-size: 12px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; font-weight: bold; }
 
 /* BOTTOM BARS */
-.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 16px 28px; margin-top: 14px; flex-shrink: 0; }
-.bottom-label { font-size: 18px; color: #e8a020; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; font-weight: bold; }
-.bottom-text { font-size: 20px; color: #fff; line-height: 1.45; }
+.bottom-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
+.bottom-label { font-size: 14px; color: #e8a020; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; font-weight: bold; }
+.bottom-text { font-size: 16px; color: #fff; line-height: 1.4; }
+.action-bar { background: #1a3160; border: 1px solid #2a4070; border-radius: 12px; padding: 12px 20px; margin-top: 10px; flex-shrink: 0; }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
 TEMPLATE PLACEHOLDERS — REPLACE EACH WEEK:
-4            e.g. 4
-4          e.g. 17
-Mark Kawada      e.g. Sam Mitchell
-April 26, 2026     e.g. April 26, 2026
-$109,242       e.g. $159,088
-$75,393        e.g. $119,577
-$18,232      e.g. $22,696
-$14,178        e.g. $13,291
-$1,439        e.g. $3,524
-$33,930 e.g. $41,869
-31.1%    e.g. 26.3%
-33.5%     e.g. 28.8%
-25.6%      e.g. 18.9%
-$23,497 e.g. $25,355
-21.5%   e.g. 15.9%
-$64.95      e.g. $81.97
-just below $65 floor  e.g. on target  /  below floor
+5            e.g. 4
+1          e.g. 17
+Mark      e.g. Sam Mitchell
+May 3, 2026     e.g. April 26, 2026
+$100,942       e.g. $159,088
+$68,374        e.g. $119,577
+$15,306      e.g. $22,696
+$15,793        e.g. $13,291
+$1,469        e.g. $3,524
+$29,583 e.g. $41,869
+29.3%    e.g. 26.3%
+32.5%     e.g. 28.8%
+22.6%      e.g. 18.9%
+$15,380 e.g. $25,355
+15.2%   e.g. 15.9%
+$80.38      e.g. $81.97
+above $65 floor ✓  e.g. on target / below floor
 
-(see remaining placeholders inline)
 LOCATION TARGETS (HARDCODED FOR THIS STORE):
   FOH target: 6.1%
   BOH target: 13.5%
   Blended SPLH floor: $65 (company standard)
+
+LAYOUT: Sized to fill 1920x1080 — ~98% vertical fill, ~19px safety buffer.
 ============================================================ -->
 
 <div class="header">
   <div>
     <div class="brand">NCR Ventures · JoJo's Bar & Bar Fuoco</div>
     <div class="title">Weekly COGS &amp; Labor Snapshot</div>
-    <div class="subtitle">Period 4 · Week 4 · Submitted by Mark Kawada</div>
+    <div class="subtitle">Period 5 · Week 1 · Submitted by Mark</div>
   </div>
-  <div class="date-badge">Week Ending<br>April 26, 2026</div>
+  <div class="date-badge">Week Ending<br>May 3, 2026</div>
 </div>
 <div class="divider"></div>
 
 <div class="top-row">
   <div class="card gold">
     <div class="card-label">Gross Sales</div>
-    <div class="card-big">$109,242</div>
-    <div class="card-sub">Food $75,393 · Liquor $18,232 · Wine $14,178 · Beer $1,439</div>
+    <div class="card-big">$100,942</div>
+    <div class="card-sub">Food $68,374 · Liquor $15,306 · Wine $15,793 · Beer $1,469</div>
   </div>
   <div class="card">
     <div class="card-label">Total COGS</div>
-    <div class="card-mid">$33,930 <span class="pos" style="font-size:30px;">31.1%</span></div>
-    <div class="card-sub">Food cost 33.5% · LBW 25.6%</div>
+    <div class="card-mid">$29,583 <span class="pos" style="font-size:26px;">29.3%</span></div>
+    <div class="card-sub">Food cost 32.5% · LBW 22.6%</div>
   </div>
   <div class="card">
     <div class="card-label">Total Labor</div>
-    <div class="card-mid">$23,497 <span style="color:#fff;font-size:30px;">21.5%</span></div>
-    <div class="card-sub">Blended SPLH $64.95 — just below $65 floor</div>
+    <div class="card-mid">$15,380 <span style="color:#fff;font-size:26px;">15.2%</span></div>
+    <div class="card-sub">Blended SPLH $80.38 — above $65 floor ✓</div>
   </div>
 </div>
 
@@ -147,16 +151,16 @@ LOCATION TARGETS (HARDCODED FOR THIS STORE):
     </tr>
   </thead>
   <tbody>
-    <tr><td>Food</td><td>$75,393</td><td>$25,259</td><td>33.5%</td><td>34.1%</td><td class="pos">−0.6 pts</td></tr>
-    <tr><td>Liquor</td><td>$18,232</td><td>$3,766</td><td>20.7%</td><td>21.5%</td><td class="pos">−0.8 pts</td></tr>
-    <tr><td>Beer</td><td>$1,439</td><td>$310</td><td>21.6%</td><td>21.0%</td><td class="neg">+0.6 pts</td></tr>
-    <tr><td>Wine</td><td>$14,178</td><td>$4,595</td><td>32.4%</td><td>26.9%</td><td class="neg">+5.5 pts</td></tr>
+    <tr><td>Food</td><td>$68,374</td><td>$22,222.09</td><td>32.5%</td><td>34.1%</td><td class="pos">−1.6 pts</td></tr>
+    <tr><td>Liquor</td><td>$15,306</td><td>$2,500.05</td><td>16.3%</td><td>21.5%</td><td class="pos">−5.2 pts</td></tr>
+    <tr><td>Beer</td><td>$1,469</td><td>$271.16</td><td>18.5%</td><td>21.0%</td><td class="pos">−2.5 pts</td></tr>
+    <tr><td>Wine</td><td>$15,793</td><td>$4,589.51</td><td>29.1%</td><td>26.9%</td><td class="neg">+2.2 pts</td></tr>
   </tbody>
 </table>
 
 <div class="middle-row">
 
-  <div>
+  <div class="col">
     <div class="section-head">Section 2 — Labor &amp; Blended SPLH</div>
     <table class="labor-table">
       <thead>
@@ -172,85 +176,85 @@ LOCATION TARGETS (HARDCODED FOR THIS STORE):
       <tbody>
         <tr>
           <td>FOH (excl. mgr)</td>
-          <td>986</td>
-          <td>$8,358</td>
-          <td class="neg">7.7%</td>
+          <td>861</td>
+          <td>$6,857.51</td>
+          <td class="neg">6.8%</td>
           <td>6.1%</td>
-          <td><span class="status-over">OVER</span></td>
+          <td><span class="status-info">+0.7 pts (Fuoco cross-training)</span></td>
         </tr>
         <tr>
           <td>BOH (excl. mgr)</td>
-          <td>696</td>
-          <td>$15,140</td>
-          <td class="neg">13.9%</td>
+          <td>395</td>
+          <td>$8,522.91</td>
+          <td class="pos">8.4%</td>
           <td>13.5%</td>
-          <td><span class="status-over">OVER</span></td>
+          <td><span class="status-ok">Under target — verify</span></td>
         </tr>
         <tr>
           <td>Blended</td>
-          <td>1,682</td>
-          <td>$23,497</td>
-          <td>21.5%</td>
+          <td>1,256</td>
+          <td>$15,380</td>
+          <td>15.2%</td>
           <td>SPLH ≥ $65</td>
-          <td><span class="status-over">Blended SPLH $64.95</span></td>
+          <td><span class="status-ok">SPLH $80.38</span></td>
         </tr>
       </tbody>
     </table>
 
-    <div class="ot-card" style="margin-top:18px;">
+    <div class="ot-card">
       <div class="card-label">Overtime — Store-Level Overview</div>
       <div class="ot-grid">
-        <div class="ot-stat"><div class="ot-val">6</div><div class="ot-lbl">Staff w/ OT</div></div>
-        <div class="ot-stat"><div class="ot-val">21.0</div><div class="ot-lbl">Total OT Hrs</div></div>
-        <div class="ot-stat"><div class="ot-val">$236</div><div class="ot-lbl">OT Premium</div></div>
+        <div class="ot-stat"><div class="ot-val">3</div><div class="ot-lbl">Staff w/ OT</div></div>
+        <div class="ot-stat"><div class="ot-val">10.28</div><div class="ot-lbl">Total OT Hrs</div></div>
+        <div class="ot-stat"><div class="ot-val">$118.48</div><div class="ot-lbl">OT Premium</div></div>
       </div>
       <div class="ot-split">
         <div class="ot-dept">
           <div class="ot-dept-name">BOH</div>
-          <div class="ot-dept-val">21.0 hrs · $236</div>
-          <div class="ot-dept-sub">Driven by Bar Fuoco prep — schedule should resolve next week</div>
+          <div class="ot-dept-val">10.28 hrs · $118.48</div>
+          <div class="ot-dept-sub">Wendi, Darrel Howell, Derrick Johnson — Fuoco training</div>
         </div>
         <div class="ot-dept">
           <div class="ot-dept-name">FOH</div>
-          <div class="ot-dept-val">0.0 hrs · $0</div>
-          <div class="ot-dept-sub">No FOH hourly OT this week</div>
+          <div class="ot-dept-val">0 hrs · $0</div>
+          <div class="ot-dept-sub">Clean week — no FOH OT</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div>
+  <div class="col">
     <div class="section-head">Section 6 — Guest Reviews</div>
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">
-        <div class="review-stat"><div class="review-val">4.48★</div><div class="review-lbl">Avg Rating</div></div>
-        <div class="review-stat"><div class="review-val">27</div><div class="review-lbl">Total Reviews</div></div>
-        <div class="review-stat"><div class="review-val">17</div><div class="review-lbl">5★ Reviews</div></div>
-        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">3</div><div class="review-lbl">3★ or Below</div></div>
+        <div class="review-stat"><div class="review-val">4.71★</div><div class="review-lbl">Avg Rating</div></div>
+        <div class="review-stat"><div class="review-val">24</div><div class="review-lbl">Total Reviews</div></div>
+        <div class="review-stat"><div class="review-val">19</div><div class="review-lbl">5★ Reviews</div></div>
+        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">2</div><div class="review-lbl">3★ or Below</div></div>
       </div>
-      <div style="margin-top:14px; font-size:18px; color:#aab4cc;">
-        Last week: 4.85★ · 27 reviews · 23 five-star
-        <span class="neg" style="margin-left:14px;">Down 0.37 ★ — service & ambiance flagged</span>
+      <div style="margin-top:10px; font-size:15px; color:#aab4cc;">
+        Last week: 4.48★ · 27 reviews · 17 five-star
+        <span class="pos" style="margin-left:12px;">Up 0.23 pts WoW · sub-4★ on side plates, ambiance, drink/wine service</span>
       </div>
     </div>
 
-    <div class="bottom-bar" style="margin-top:18px;">
-      <div class="bottom-label">GM Narrative — Week 4</div>
+    <div class="bottom-bar" style="margin-top:10px;">
+      <div class="bottom-label">GM Narrative — Week 1</div>
       <div class="bottom-text">
-        Wine cost still elevated at 32.4%; two-week blended is 29% — count variances between Mark and Ryan flagged. Liquor recalculated to 20.7% (narrative said 22.6%). Amarena cherries no longer routing to liquor. Prawns continuing to win as app/entrée at JoJo's.
+        Sales $100,942, week ended strong. Food 32.5% (−1.6) on volume ordering and Fuoco prep training the cooks. Liquor 16.3% (−5.2) — bounceback from prior week's Amarena cherry mixup. Beer 18.5% (−2.5) recovering after distributor product changes. Wine 29.1% (+2.2) coming down slowly with bar pour discipline. FOH includes $1,902 in cross-training labor between JoJo's and Fuoco; BOH includes $1,616 in Fuoco setup/breakdown — both intentional Fuoco ramp investment. BOH OT $118 from 3 cooks training Fuoco team.
       </div>
     </div>
   </div>
 
 </div>
 
-<div class="bottom-bar">
+<div class="action-bar">
   <div class="bottom-label">Action Items</div>
   <div class="bottom-text">
-    <b>Wine — AGM:</b> Reconcile two-week count variance with Mark; tighten weekly count process before next inventory&nbsp;&nbsp;|&nbsp;&nbsp;
-    <b>Labor — GM:</b> Bar Fuoco training labor ($2,847) winding down; rebuild schedule to clear blended SPLH back over $65&nbsp;&nbsp;|&nbsp;&nbsp;
-    <b>Reviews — GM:</b> 3-star drops cited service (side plates, wine service) and ambiance — coach FOH on table awareness
+    Landon — BOH 8.4% reads suspiciously low even after Fuoco labor included; verify the schedule and labor coding before P5W2; either the number is real (great) or there's a coding miss (bad)&nbsp;&nbsp;|&nbsp;&nbsp;
+    Ryan / Mark — wine +2.2 pts third week trending the wrong way; pour discipline needs to be more than "working with bar staff" — set a target % and a date to hit it&nbsp;&nbsp;|&nbsp;&nbsp;
+    Mark — sub-4★ reviews on side plates, ambiance (kids party next to guests), and bottle-opening service; pre-shift this week on noise-management, table seating, and bottle service rituals
   </div>
 </div>
 
