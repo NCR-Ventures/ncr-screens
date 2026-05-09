@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>17 River Grille — Mother's Day Specials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:1920px; height:1080px; overflow:hidden;
+    font-family:'Cormorant Garamond','Georgia','Times New Roman',serif;
+    background:#fdf2ec; color:#3a2a26;
+  }
+
+  .stage {
+    width:1920px; height:1080px; position:relative;
+    background:
+      radial-gradient(ellipse at top left, rgba(232,160,170,0.25), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(247,206,180,0.25), transparent 55%),
+      radial-gradient(ellipse at center, rgba(255,255,255,0.4), transparent 70%),
+      #fdf2ec;
+  }
+
+  .border-frame {
+    position:absolute;
+    top:30px; left:30px; right:30px; bottom:30px;
+    border:1px solid rgba(201,162,74,0.45);
+    border-radius:4px;
+    pointer-events:none;
+  }
+
+  /* ---- Floral garland — top left ---- */
+  .garland-tl {
+    position:absolute;
+    top:30px; left:30px;
+    width:480px; height:280px;
+    pointer-events:none;
+    z-index:2;
+  }
+
+  /* ---- Floral garland — top right (mirrored) ---- */
+  .garland-tr {
+    position:absolute;
+    top:30px; right:30px;
+    width:480px; height:280px;
+    pointer-events:none;
+    z-index:2;
+    transform:scaleX(-1);
+  }
+
+  /* ---- 17 River wordmark ---- */
+  .wordmark {
+    position:absolute;
+    top:60px; left:50%; transform:translateX(-50%);
+    text-align:center;
+    z-index:6;
+  }
+  .wordmark .seventeen {
+    font-family:'Cinzel','Georgia',serif;
+    color:#3d4a2a;
+    font-weight:600;
+    font-size:30px;
+    letter-spacing:14px;
+    text-indent:14px;
+    line-height:1.0;
+  }
+  .wordmark .grille {
+    font-family:'Cormorant Garamond','Georgia',serif;
+    font-style:italic;
+    font-size:18px;
+    color:#a8946a;
+    letter-spacing:5px;
+    margin-top:6px;
+    text-indent:5px;
+  }
+  .wordmark .ornament {
+    display:inline-block;
+    width:46px; height:1px;
+    background:#c9a24a;
+    margin:0 12px;
+    vertical-align:middle;
+  }
+
+  /* ---- Title block ---- */
+  .title-block {
+    position:absolute;
+    top:200px; left:0; right:0;
+    text-align:center;
+    z-index:5;
+  }
+  .mothers-day {
+    font-family:'Great Vibes', cursive;
+    font-size:140px;
+    color:#d97a8e;
+    line-height:0.9;
+    font-weight:400;
+    text-shadow:0 2px 6px rgba(217,122,142,0.18);
+  }
+  .specials {
+    font-family:'Cinzel','Georgia',serif;
+    font-size:50px;
+    color:#3a2a26;
+    letter-spacing:24px;
+    font-weight:600;
+    text-indent:24px;
+    margin-top:-4px;
+  }
+  .divider-row {
+    display:flex; align-items:center; justify-content:center;
+    margin-top:12px; gap:18px;
+  }
+  .divider-line { width:200px; height:1px; background:#c9a24a; }
+  .divider-heart { color:#c9a24a; font-size:22px; }
+
+  /* ---- Menu list ---- */
+  .menu {
+    position:absolute;
+    top:470px; bottom:80px;
+    left:240px; right:240px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    z-index:4;
+  }
+  .item {
+    text-align:center;
+  }
+  .dish {
+    font-family:'Cormorant Garamond','Georgia',serif;
+    font-size:44px;
+    color:#3a2a26;
+    font-weight:700;
+    letter-spacing:0.5px;
+    line-height:1.0;
+  }
+  .desc {
+    font-family:'Cormorant Garamond','Georgia',serif;
+    font-size:24px;
+    font-style:italic;
+    color:#6a564a;
+    margin-top:10px;
+    font-weight:400;
+    line-height:1.3;
+  }
+  .price {
+    color:#a8324a;
+    font-weight:700;
+    font-style:normal;
+    margin-left:8px;
+    font-size:26px;
+  }
+  .item-divider {
+    display:flex; align-items:center; justify-content:center;
+    margin:0;
+  }
+  .item-divider .line {
+    width:140px; height:1px;
+    background:#e89aa8;
+    opacity:0.7;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+17 RIVER GRILLE — MOTHER'S DAY SPECIALS
+The Daily — Special-event menu screen · 1920 × 1080
+Source: 17 River Mother's Day Menu PDF (5/8/2026)
+============================================================ -->
+
+<div class="stage">
+
+  <div class="border-frame"></div>
+
+  <!-- Top-left floral garland -->
+  <svg class="garland-tl" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+    <!-- Greenery base sweeps -->
+    <path d="M -10 30 Q 80 60 180 80 Q 280 100 400 70 Q 460 60 490 40"
+          stroke="#5a7240" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M -10 60 Q 100 110 220 130 Q 340 145 480 110"
+          stroke="#4a5d34" stroke-width="2.5" fill="none" opacity="0.6"/>
+
+    <!-- Leaves scattered -->
+    <g fill="#5a7240" opacity="0.85">
+      <ellipse cx="40" cy="35" rx="22" ry="9" transform="rotate(-20 40 35)"/>
+      <ellipse cx="80" cy="55" rx="20" ry="8" transform="rotate(15 80 55)"/>
+      <ellipse cx="180" cy="35" rx="24" ry="10" transform="rotate(-30 180 35)"/>
+      <ellipse cx="280" cy="50" rx="22" ry="9" transform="rotate(20 280 50)"/>
+      <ellipse cx="380" cy="40" rx="20" ry="8" transform="rotate(-15 380 40)"/>
+    </g>
+    <g fill="#3d5128" opacity="0.75">
+      <ellipse cx="120" cy="80" rx="20" ry="8" transform="rotate(35 120 80)"/>
+      <ellipse cx="220" cy="100" rx="22" ry="9" transform="rotate(-25 220 100)"/>
+      <ellipse cx="320" cy="90" rx="20" ry="8" transform="rotate(40 320 90)"/>
+      <ellipse cx="420" cy="80" rx="18" ry="7" transform="rotate(-20 420 80)"/>
+      <ellipse cx="60" cy="95" rx="18" ry="7" transform="rotate(45 60 95)"/>
+    </g>
+
+    <!-- Pink peony rose, large center -->
+    <g transform="translate(140,100)">
+      <circle r="58" fill="#f5b8c2" opacity="0.95"/>
+      <circle r="44" fill="#e89aa8" opacity="0.95"/>
+      <circle r="30" fill="#d97a8e"/>
+      <circle r="18" fill="#c45c72"/>
+      <circle cx="-3" cy="-2" r="6" fill="#a83a52" opacity="0.7"/>
+    </g>
+
+    <!-- Lighter peony, right -->
+    <g transform="translate(280,110)">
+      <circle r="48" fill="#fce0e6" opacity="0.95"/>
+      <circle r="36" fill="#f5b8c2" opacity="0.95"/>
+      <circle r="22" fill="#e89aa8"/>
+      <circle r="12" fill="#d97a8e"/>
+    </g>
+
+    <!-- Smaller peony, left -->
+    <g transform="translate(60,140)">
+      <circle r="34" fill="#f5b8c2" opacity="0.9"/>
+      <circle r="24" fill="#e89aa8"/>
+      <circle r="14" fill="#d97a8e"/>
+    </g>
+
+    <!-- Tiny accent flowers -->
+    <g transform="translate(360,90)">
+      <circle r="14" fill="#e89aa8" opacity="0.85"/>
+      <circle r="6" fill="#c45c72"/>
+    </g>
+    <g transform="translate(420,140)">
+      <circle r="11" fill="#f5b8c2"/>
+      <circle r="4" fill="#d97a8e"/>
+    </g>
+
+    <!-- Tiny blue/yellow wildflowers, like the source -->
+    <circle cx="200" cy="60" r="5" fill="#7ba3c4"/>
+    <circle cx="200" cy="60" r="2" fill="#fdd674"/>
+    <circle cx="240" cy="160" r="5" fill="#7ba3c4"/>
+    <circle cx="240" cy="160" r="2" fill="#fdd674"/>
+    <circle cx="100" cy="170" r="4" fill="#fdd674"/>
+
+    <!-- Hanging buds -->
+    <g fill="#e89aa8" opacity="0.9">
+      <ellipse cx="180" cy="190" rx="6" ry="10"/>
+      <ellipse cx="200" cy="210" rx="5" ry="8"/>
+      <ellipse cx="320" cy="180" rx="6" ry="10"/>
+      <ellipse cx="340" cy="200" rx="5" ry="8"/>
+    </g>
+
+    <!-- Trailing greenery -->
+    <path d="M 180 200 Q 175 230 170 260" stroke="#4a5d34" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 320 195 Q 325 230 335 265" stroke="#4a5d34" stroke-width="2" fill="none" opacity="0.6"/>
+  </svg>
+
+  <!-- Top-right floral garland (same SVG, mirrored via CSS) -->
+  <svg class="garland-tr" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+    <path d="M -10 30 Q 80 60 180 80 Q 280 100 400 70 Q 460 60 490 40"
+          stroke="#5a7240" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M -10 60 Q 100 110 220 130 Q 340 145 480 110"
+          stroke="#4a5d34" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <g fill="#5a7240" opacity="0.85">
+      <ellipse cx="40" cy="35" rx="22" ry="9" transform="rotate(-20 40 35)"/>
+      <ellipse cx="80" cy="55" rx="20" ry="8" transform="rotate(15 80 55)"/>
+      <ellipse cx="180" cy="35" rx="24" ry="10" transform="rotate(-30 180 35)"/>
+      <ellipse cx="280" cy="50" rx="22" ry="9" transform="rotate(20 280 50)"/>
+      <ellipse cx="380" cy="40" rx="20" ry="8" transform="rotate(-15 380 40)"/>
+    </g>
+    <g fill="#3d5128" opacity="0.75">
+      <ellipse cx="120" cy="80" rx="20" ry="8" transform="rotate(35 120 80)"/>
+      <ellipse cx="220" cy="100" rx="22" ry="9" transform="rotate(-25 220 100)"/>
+      <ellipse cx="320" cy="90" rx="20" ry="8" transform="rotate(40 320 90)"/>
+      <ellipse cx="420" cy="80" rx="18" ry="7" transform="rotate(-20 420 80)"/>
+      <ellipse cx="60" cy="95" rx="18" ry="7" transform="rotate(45 60 95)"/>
+    </g>
+    <g transform="translate(140,100)">
+      <circle r="58" fill="#f5b8c2" opacity="0.95"/>
+      <circle r="44" fill="#e89aa8" opacity="0.95"/>
+      <circle r="30" fill="#d97a8e"/>
+      <circle r="18" fill="#c45c72"/>
+      <circle cx="-3" cy="-2" r="6" fill="#a83a52" opacity="0.7"/>
+    </g>
+    <g transform="translate(280,110)">
+      <circle r="48" fill="#fce0e6" opacity="0.95"/>
+      <circle r="36" fill="#f5b8c2" opacity="0.95"/>
+      <circle r="22" fill="#e89aa8"/>
+      <circle r="12" fill="#d97a8e"/>
+    </g>
+    <g transform="translate(60,140)">
+      <circle r="34" fill="#f5b8c2" opacity="0.9"/>
+      <circle r="24" fill="#e89aa8"/>
+      <circle r="14" fill="#d97a8e"/>
+    </g>
+    <g transform="translate(360,90)">
+      <circle r="14" fill="#e89aa8" opacity="0.85"/>
+      <circle r="6" fill="#c45c72"/>
+    </g>
+    <g transform="translate(420,140)">
+      <circle r="11" fill="#f5b8c2"/>
+      <circle r="4" fill="#d97a8e"/>
+    </g>
+    <circle cx="200" cy="60" r="5" fill="#7ba3c4"/>
+    <circle cx="200" cy="60" r="2" fill="#fdd674"/>
+    <circle cx="240" cy="160" r="5" fill="#7ba3c4"/>
+    <circle cx="240" cy="160" r="2" fill="#fdd674"/>
+    <circle cx="100" cy="170" r="4" fill="#fdd674"/>
+    <g fill="#e89aa8" opacity="0.9">
+      <ellipse cx="180" cy="190" rx="6" ry="10"/>
+      <ellipse cx="200" cy="210" rx="5" ry="8"/>
+      <ellipse cx="320" cy="180" rx="6" ry="10"/>
+      <ellipse cx="340" cy="200" rx="5" ry="8"/>
+    </g>
+    <path d="M 180 200 Q 175 230 170 260" stroke="#4a5d34" stroke-width="2" fill="none" opacity="0.6"/>
+    <path d="M 320 195 Q 325 230 335 265" stroke="#4a5d34" stroke-width="2" fill="none" opacity="0.6"/>
+  </svg>
+
+  <div class="wordmark">
+    <div class="seventeen"><span class="ornament"></span>17 RIVER GRILLE<span class="ornament"></span></div>
+    <div class="grille">Rocky River, Ohio</div>
+  </div>
+
+  <div class="title-block">
+    <div class="mothers-day">Mother's Day</div>
+    <div class="specials">SPECIALS</div>
+    <div class="divider-row">
+      <div class="divider-line"></div>
+      <div class="divider-heart">&#9829;</div>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <div class="menu">
+
+    <div class="item">
+      <div class="dish">Tomato Caprese Salad</div>
+      <div class="desc">heirloom tomatoes, baby heirloom tomatoes, burrata cheese, balsamic, basil <span class="price">16</span></div>
+    </div>
+
+    <div class="item-divider"><span class="line"></span></div>
+
+    <div class="item">
+      <div class="dish">Filet Skewers</div>
+      <div class="desc">filet steak, mixed vegetables, chimichurri <span class="price">19</span></div>
+    </div>
+
+    <div class="item-divider"><span class="line"></span></div>
+
+    <div class="item">
+      <div class="dish">Grilled Red Snapper</div>
+      <div class="desc">tri-color cauliflower, carrot puree, beurre blanc <span class="price">38</span></div>
+    </div>
+
+    <div class="item-divider"><span class="line"></span></div>
+
+    <div class="item">
+      <div class="dish">Surf &amp; Turf</div>
+      <div class="desc">12 oz strip steak, 3 shrimp, asparagus, chimichurri <span class="price">60</span></div>
+    </div>
+
+    <div class="item-divider"><span class="line"></span></div>
+
+    <div class="item">
+      <div class="dish">Berry Cake</div>
+      <div class="desc">butter cake, mixed berry compote <span class="price">12</span></div>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
