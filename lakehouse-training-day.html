@@ -41,8 +41,8 @@
     position: relative;
     width: 1920px; height: 1080px;
     display: grid;
-    grid-template-columns: 1080px 840px;
-    gap: 0;
+    grid-template-columns: 1040px 740px;
+    column-gap: 20px;
     padding: 70px 60px 50px 60px;
   }
 
@@ -50,7 +50,8 @@
   .left {
     display: flex;
     flex-direction: column;
-    padding-right: 40px;
+    padding-right: 10px;
+    min-width: 0;
   }
 
   .brand {
@@ -64,7 +65,7 @@
 
   .title {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 88px;
+    font-size: 82px;
     line-height: 0.95;
     font-weight: 700;
     color: #ffffff;
@@ -73,10 +74,10 @@
   .title .accent { color: #e8a020; font-style: italic; }
 
   .subtitle {
-    font-size: 28px;
+    font-size: 26px;
     color: #cfd9ea;
     font-weight: 300;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     letter-spacing: 1px;
   }
 
@@ -85,72 +86,73 @@
     background: rgba(255,255,255,0.06);
     border: 2px solid #e8a020;
     border-radius: 14px;
-    padding: 22px 28px;
+    padding: 20px 24px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 28px;
+    gap: 16px;
+    margin-bottom: 24px;
   }
   .when-block { text-align: center; }
   .when-label {
-    font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
     color: #e8a020; font-weight: 600; margin-bottom: 6px;
   }
   .when-value {
-    font-size: 26px; font-weight: 700; color: #ffffff; line-height: 1.15;
+    font-size: 24px; font-weight: 700; color: #ffffff; line-height: 1.15;
   }
-  .when-sub { font-size: 16px; color: #cfd9ea; font-weight: 400; }
+  .when-sub { font-size: 15px; color: #cfd9ea; font-weight: 400; margin-top: 2px; }
 
   /* THE GOAL */
   .goal-row {
-    display: flex; gap: 14px; margin-bottom: 24px;
+    display: flex; gap: 12px; margin-bottom: 22px;
   }
   .goal-pill {
     flex: 1;
     background: linear-gradient(135deg, #e8a020 0%, #f0b73f 100%);
     color: #0f1f3d;
     border-radius: 999px;
-    padding: 14px 8px;
+    padding: 12px 6px;
     text-align: center;
     font-weight: 800;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 0.5px;
     box-shadow: 0 6px 18px rgba(232,160,32,0.35);
+    white-space: nowrap;
   }
 
   /* SECTION HEADER */
   .section-head {
-    font-size: 22px;
+    font-size: 20px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: #e8a020;
     font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     display: flex; align-items: center; gap: 12px;
   }
   .section-head::before {
-    content: ''; display: inline-block; width: 40px; height: 3px; background: #e8a020;
+    content: ''; display: inline-block; width: 36px; height: 3px; background: #e8a020;
   }
 
   /* STATIONS GRID */
   .stations {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px 22px;
-    margin-bottom: 26px;
+    gap: 8px 20px;
+    margin-bottom: 22px;
   }
   .station {
-    font-size: 20px;
+    font-size: 19px;
     color: #ffffff;
-    padding: 8px 0 8px 30px;
+    padding: 6px 0 6px 28px;
     position: relative;
     line-height: 1.25;
     font-weight: 400;
   }
   .station::before {
     content: '';
-    position: absolute; left: 0; top: 14px;
-    width: 16px; height: 16px;
+    position: absolute; left: 0; top: 12px;
+    width: 14px; height: 14px;
     background: #e8a020;
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(232,160,32,0.18);
@@ -161,16 +163,16 @@
     background: rgba(232,160,32,0.10);
     border-left: 6px solid #e8a020;
     border-radius: 8px;
-    padding: 18px 22px;
+    padding: 16px 20px;
     margin-top: auto;
   }
   .mock-title {
     font-family: Georgia, serif;
-    font-size: 26px; font-weight: 700; color: #ffd380;
+    font-size: 24px; font-weight: 700; color: #ffd380;
     margin-bottom: 4px;
   }
   .mock-text {
-    font-size: 19px; color: #ffffff; line-height: 1.35;
+    font-size: 18px; color: #ffffff; line-height: 1.35;
   }
   .mock-text em { color: #ffd380; font-style: italic; }
 
@@ -181,11 +183,12 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+    min-width: 0;
   }
   .hero-wrap {
     position: relative;
     width: 100%;
-    height: 720px;
+    height: 640px;
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 0 0 4px #e8a020, 0 0 0 8px rgba(232,160,32,0.25);
@@ -195,33 +198,33 @@
   }
   .hero-tag {
     position: absolute;
-    top: 22px; left: 22px;
+    top: 20px; left: 20px;
     background: #e8a020; color: #0f1f3d;
-    padding: 10px 22px; border-radius: 999px;
-    font-weight: 800; font-size: 18px; letter-spacing: 2px;
+    padding: 9px 20px; border-radius: 999px;
+    font-weight: 800; font-size: 16px; letter-spacing: 2px;
     text-transform: uppercase;
     box-shadow: 0 6px 16px rgba(0,0,0,0.4);
   }
 
   /* RIGHT SIDE TAGLINE BLOCK */
   .tagline-block {
-    margin-top: 26px;
+    margin-top: 22px;
     background: #ffffff;
     color: #0f1f3d;
     border-radius: 16px;
-    padding: 28px 30px;
+    padding: 24px 26px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
   }
   .tagline-top {
     font-family: Georgia, serif;
-    font-size: 38px; font-weight: 700; color: #0f1f3d; line-height: 1.05;
+    font-size: 34px; font-weight: 700; color: #0f1f3d; line-height: 1.05;
     margin-bottom: 10px;
   }
   .tagline-top span { color: #e8a020; font-style: italic; }
   .tagline-bottom {
-    font-size: 20px; color: #1a3766; font-weight: 500;
-    letter-spacing: 1px;
+    font-size: 18px; color: #1a3766; font-weight: 500;
+    letter-spacing: 0.5px;
   }
   .tagline-bottom strong { color: #e8a020; font-weight: 800; }
 
