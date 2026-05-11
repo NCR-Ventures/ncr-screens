@@ -15,25 +15,25 @@
   /* string lights across the top */
   .lights {
     position: absolute; top: 0; left: 0; width: 100%; height: 60px;
-    background-image: radial-gradient(circle at 4% 30px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 9% 38px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 14% 26px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 19% 34px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 24% 28px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 29% 36px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 34% 30px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 39% 38px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 44% 26px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 49% 34px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 54% 28px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 59% 36px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 64% 30px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 69% 38px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 74% 26px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 79% 34px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 84% 28px, #ffd86b 0 6px, transparent 7px),
-                      radial-gradient(circle at 89% 36px, #ffe89a 0 5px, transparent 6px),
-                      radial-gradient(circle at 94% 30px, #ffd86b 0 6px, transparent 7px);
+    background-image: radial-gradient(circle at 4% 30px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 9% 38px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 14% 26px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 19% 34px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 24% 28px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 29% 36px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 34% 30px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 39% 38px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 44% 26px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 49% 34px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 54% 28px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 59% 36px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 64% 30px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 69% 38px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 74% 26px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 79% 34px, #ffe89a 0 6px, transparent 8px),
+                      radial-gradient(circle at 84% 28px, #ffd86b 0 7px, transparent 8px),
+                      radial-gradient(circle at 89% 36px, #ffe89a 0 6px, transparent 7px),
+                      radial-gradient(circle at 94% 30px, #ffd86b 0 7px, transparent 8px);
     z-index: 5;
   }
 
@@ -52,69 +52,71 @@
     flex-direction: column;
     padding-right: 10px;
     min-width: 0;
+    height: 100%;
   }
 
   .brand {
-    font-size: 22px;
-    letter-spacing: 8px;
+    font-size: 26px;
+    letter-spacing: 10px;
     color: #e8a020;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 10px;
     text-transform: uppercase;
   }
 
   .title {
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 82px;
-    line-height: 0.95;
+    font-size: 108px;
+    line-height: 0.92;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
   }
   .title .accent { color: #e8a020; font-style: italic; }
 
   .subtitle {
-    font-size: 26px;
+    font-size: 32px;
     color: #cfd9ea;
     font-weight: 300;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     letter-spacing: 1px;
   }
 
   /* DATE/TIME CARD */
   .when-card {
-    background: rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.07);
     border: 2px solid #e8a020;
-    border-radius: 14px;
-    padding: 20px 24px;
+    border-radius: 16px;
+    padding: 24px 26px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 20px;
+    margin-bottom: 28px;
   }
   .when-block { text-align: center; }
   .when-label {
-    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
-    color: #e8a020; font-weight: 600; margin-bottom: 6px;
+    font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
+    color: #e8a020; font-weight: 700; margin-bottom: 8px;
   }
   .when-value {
-    font-size: 24px; font-weight: 700; color: #ffffff; line-height: 1.15;
+    font-size: 30px; font-weight: 700; color: #ffffff; line-height: 1.1;
   }
-  .when-sub { font-size: 15px; color: #cfd9ea; font-weight: 400; margin-top: 2px; }
+  .when-sub { font-size: 17px; color: #cfd9ea; font-weight: 400; margin-top: 4px; }
 
   /* THE GOAL */
   .goal-row {
-    display: flex; gap: 12px; margin-bottom: 22px;
+    display: flex; gap: 14px; margin-bottom: 30px;
   }
   .goal-pill {
     flex: 1;
     background: linear-gradient(135deg, #e8a020 0%, #f0b73f 100%);
     color: #0f1f3d;
     border-radius: 999px;
-    padding: 12px 6px;
+    padding: 16px 6px;
     text-align: center;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 21px;
     letter-spacing: 0.5px;
     box-shadow: 0 6px 18px rgba(232,160,32,0.35);
     white-space: nowrap;
@@ -122,37 +124,37 @@
 
   /* SECTION HEADER */
   .section-head {
-    font-size: 20px;
+    font-size: 24px;
     letter-spacing: 4px;
     text-transform: uppercase;
     color: #e8a020;
     font-weight: 700;
-    margin-bottom: 12px;
-    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 14px;
   }
   .section-head::before {
-    content: ''; display: inline-block; width: 36px; height: 3px; background: #e8a020;
+    content: ''; display: inline-block; width: 44px; height: 3px; background: #e8a020;
   }
 
   /* STATIONS GRID */
   .stations {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px 20px;
-    margin-bottom: 22px;
+    gap: 12px 22px;
+    margin-bottom: 28px;
   }
   .station {
-    font-size: 19px;
+    font-size: 23px;
     color: #ffffff;
-    padding: 6px 0 6px 28px;
+    padding: 8px 0 8px 32px;
     position: relative;
     line-height: 1.25;
     font-weight: 400;
   }
   .station::before {
     content: '';
-    position: absolute; left: 0; top: 12px;
-    width: 14px; height: 14px;
+    position: absolute; left: 0; top: 16px;
+    width: 16px; height: 16px;
     background: #e8a020;
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(232,160,32,0.18);
@@ -162,69 +164,74 @@
   .mock {
     background: rgba(232,160,32,0.10);
     border-left: 6px solid #e8a020;
-    border-radius: 8px;
-    padding: 16px 20px;
+    border-radius: 10px;
+    padding: 20px 24px;
     margin-top: auto;
   }
   .mock-title {
     font-family: Georgia, serif;
-    font-size: 24px; font-weight: 700; color: #ffd380;
-    margin-bottom: 4px;
+    font-size: 30px; font-weight: 700; color: #ffd380;
+    margin-bottom: 6px;
   }
   .mock-text {
-    font-size: 18px; color: #ffffff; line-height: 1.35;
+    font-size: 22px; color: #ffffff; line-height: 1.35;
   }
   .mock-text em { color: #ffd380; font-style: italic; }
 
-  /* RIGHT COLUMN - hero image */
+  /* RIGHT COLUMN - hero image fills the whole column */
   .right {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
     min-width: 0;
+    height: 100%;
   }
   .hero-wrap {
     position: relative;
     width: 100%;
-    height: 640px;
+    height: 700px;
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 0 0 4px #e8a020, 0 0 0 8px rgba(232,160,32,0.25);
+    flex-shrink: 0;
   }
   .hero-wrap img {
     width: 100%; height: 100%; object-fit: cover; display: block;
   }
   .hero-tag {
     position: absolute;
-    top: 20px; left: 20px;
+    top: 24px; left: 24px;
     background: #e8a020; color: #0f1f3d;
-    padding: 9px 20px; border-radius: 999px;
-    font-weight: 800; font-size: 16px; letter-spacing: 2px;
+    padding: 12px 26px; border-radius: 999px;
+    font-weight: 800; font-size: 20px; letter-spacing: 2px;
     text-transform: uppercase;
     box-shadow: 0 6px 16px rgba(0,0,0,0.4);
   }
 
-  /* RIGHT SIDE TAGLINE BLOCK */
+  /* RIGHT SIDE TAGLINE BLOCK - fills remaining space */
   .tagline-block {
-    margin-top: 22px;
+    margin-top: 24px;
+    flex: 1;
     background: #ffffff;
     color: #0f1f3d;
-    border-radius: 16px;
-    padding: 24px 26px;
+    border-radius: 18px;
+    padding: 28px 32px;
     text-align: center;
     box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
   }
   .tagline-top {
     font-family: Georgia, serif;
-    font-size: 34px; font-weight: 700; color: #0f1f3d; line-height: 1.05;
-    margin-bottom: 10px;
+    font-size: 46px; font-weight: 700; color: #0f1f3d; line-height: 1.05;
   }
   .tagline-top span { color: #e8a020; font-style: italic; }
   .tagline-bottom {
-    font-size: 18px; color: #1a3766; font-weight: 500;
+    font-size: 22px; color: #1a3766; font-weight: 500;
     letter-spacing: 0.5px;
+    line-height: 1.3;
   }
   .tagline-bottom strong { color: #e8a020; font-weight: 800; }
 
