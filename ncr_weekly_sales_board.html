@@ -9,82 +9,128 @@
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
 body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px; }
 
+/* HEADER */
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-.brand { font-size: 20px; color: #e8a020; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 52px; font-weight: bold; color: #fff; line-height: 1.1; }
-.week-label { font-size: 20px; color: #aab4cc; margin-top: 4px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 28px; font-weight: bold; padding: 14px 32px; border-radius: 8px; text-align: center; line-height: 1.4; }
-.divider { height: 3px; background: #e8a020; margin: 12px 0 16px; border-radius: 1px; flex-shrink: 0; }
+.brand { font-size: 22px; color: #e8a020; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 56px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 4px; }
+.week-label { font-size: 22px; color: #aab4cc; margin-top: 6px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-size: 28px; font-weight: bold; padding: 14px 32px; border-radius: 10px; text-align: center; line-height: 1.3; }
+.divider { height: 4px; background: #e8a020; margin: 14px 0 18px; border-radius: 2px; flex-shrink: 0; }
 
-.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 10px; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; margin-bottom: 16px; }
+/* TOTAL CARD (always present) */
+.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 12px; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; margin-bottom: 18px; }
 .total-left { display: flex; flex-direction: column; }
-.total-label { font-size: 16px; color: #aab4cc; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-.total-sales { font-size: 52px; font-weight: bold; color: #e8a020; }
-.total-meta { display: flex; gap: 40px; }
+.total-label { font-size: 18px; color: #aab4cc; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
+.total-sales { font-size: 60px; font-weight: bold; color: #e8a020; line-height: 1; }
+.total-meta { display: flex; gap: 48px; }
 .meta-item { text-align: center; }
-.meta-val { font-size: 30px; font-weight: bold; color: #fff; }
-.meta-lbl { font-size: 16px; color: #aab4cc; margin-top: 4px; }
-.meta-pct { font-size: 24px; font-weight: bold; }
+.meta-val { font-size: 34px; font-weight: bold; color: #fff; }
+.meta-lbl { font-size: 18px; color: #aab4cc; margin-top: 6px; font-weight: bold; }
+.meta-pct { font-size: 28px; font-weight: bold; }
 .pos { color: #4cde88; }
 .neg { color: #ff5c5c; }
 
-.content { flex: 1; display: flex; flex-direction: column; gap: 12px; }
-.section-head { font-size: 18px; color: #aab4cc; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
-.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.inner2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* CONTENT */
+.content { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.section-head { font-size: 20px; color: #aab4cc; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.inner2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-.loc-card { background: #162a52; border: 1px solid #2a4070; border-radius: 8px; padding: 16px 20px; display: flex; flex-direction: column; justify-content: center; }
+.loc-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; }
 .loc-card.dark { background: #0f2240; }
 .loc-card.darker { background: #141e38; }
-.loc-name { font-size: 18px; color: #e8a020; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid #2a4070; padding-bottom: 6px; }
-.loc-sales { font-size: 38px; font-weight: bold; color: #fff; }
-.loc-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-.loc-sub { font-size: 16px; color: #aab4cc; }
-.loc-pct { font-size: 18px; font-weight: bold; padding: 3px 10px; border-radius: 4px; }
+.loc-name { font-size: 20px; color: #e8a020; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid #2a4070; padding-bottom: 8px; }
+.loc-sales { font-size: 42px; font-weight: bold; color: #fff; line-height: 1; }
+.loc-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.loc-sub { font-size: 18px; color: #aab4cc; }
+.loc-pct { font-size: 20px; font-weight: bold; padding: 4px 12px; border-radius: 4px; }
 .pos-bg { background: rgba(76,222,136,0.15); color: #4cde88; }
 .neg-bg { background: rgba(255,92,92,0.15); color: #ff5c5c; }
+.new-bg { background: rgba(232,160,32,0.18); color: #e8a020; }
 
-.ytd-bar { background: #1a3160; border-radius: 8px; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2a4070; flex-shrink: 0; }
-.ytd-item { text-align: center; }
-.ytd-val { font-size: 28px; font-weight: bold; color: #fff; }
-.ytd-lbl { font-size: 15px; color: #aab4cc; margin-top: 2px; }
-.ytd-pct { font-size: 24px; font-weight: bold; }
+/* BOTTOM BARS — PTD AND YTD (optional, delete blocks not needed) */
+.summary-bar { background: #1a3160; border-radius: 10px; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2a4070; flex-shrink: 0; margin-top: 12px; }
+.summary-label { font-size: 16px; color: #e8a020; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; }
+.summary-item { text-align: center; }
+.summary-val { font-size: 30px; font-weight: bold; color: #fff; }
+.summary-lbl { font-size: 16px; color: #aab4cc; margin-top: 4px; font-weight: bold; }
+.summary-pct { font-size: 26px; font-weight: bold; }
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+NCR VENTURES WEEKLY SALES BOARD — FLEXIBLE TEMPLATE
+Source: Heather's weekly sales PDF (Mondays)
+Display: Staff-facing screens (BOH locations + home office)
+
+VARIANTS — DELETE BARS NOT NEEDED:
+  Weekly only:        keep top card + location grid only
+  Weekly + PTD:       add the PTD summary bar
+  Weekly + PTD + YTD: add both summary bars
+
+PLACEHOLDERS — fill each week:
+  Header: 19 May 10, 2026
+  Total:  $1,397,072 $1,380,642 $1,050,870
+          +32.9% pos
+          +1.2% pos
+
+  Location cards (per location):
+    {{LOC_X_SALES}} {{LOC_X_BUDGET}} {{LOC_X_LY_PCT}} {{LOC_X_LY_CLASS}}
+    LY class options: pos-bg / neg-bg / new-bg
+    LY pct options: "+X.X% LY" / "-X.X% LY" / "New 2026"
+
+  PTD bar (delete if not needed):
+    4 $4,562,052 $4,506,338
+    +36.4% pos
+    +$55,714 pos
+
+  YTD bar (delete if not needed):
+    $20,212,976 $20,716,662
+    +31.6% pos
+    -$503,686 neg
+
+LOCATION ORDER (locked):
+  East Side OH (4): Cedar Creek Grille, Bar Italia Beachwood, 17 River Grille, JoJo's Bar
+  Center row (3):   Lola's Bistro, The Lakehouse, Bar Italia Lakewood
+  Columbus + FL (3): Bar Italia Easton, Bar Italia Winter Park, Bar Italia Sarasota
+
+NEW LOCATION RULE: Stores opened mid-LY use "New 2026" badge until they have full prior-year comp data.
+============================================================ -->
 
 <div class="header">
   <div>
     <div class="brand">NCR Ventures</div>
     <div class="title">Weekly Sales Report</div>
-    <div class="week-label">Week 18</div>
+    <div class="week-label">Week 19</div>
   </div>
-  <div class="date-badge">Week Ending<br>May 3, 2026</div>
+  <div class="date-badge">Week Ending<br>May 10, 2026</div>
 </div>
 <div class="divider"></div>
 
+<!-- TOTAL CARD — ALWAYS PRESENT -->
 <div class="total-card">
   <div class="total-left">
     <div class="total-label">NCR Total — This Week</div>
-    <div class="total-sales">$1,111,735</div>
+    <div class="total-sales">$1,397,072</div>
   </div>
   <div class="total-meta">
     <div class="meta-item">
-      <div class="meta-val">$1,166,390</div>
+      <div class="meta-val">$1,380,642</div>
       <div class="meta-lbl">2026 Budget</div>
     </div>
     <div class="meta-item">
-      <div class="meta-val">$858,442</div>
+      <div class="meta-val">$1,050,870</div>
       <div class="meta-lbl">2025 Actual</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct pos">+29.5% vs LY</div>
+      <div class="meta-pct pos">+32.9% vs LY</div>
       <div class="meta-lbl">vs Last Year</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct neg">-4.7% vs Budget</div>
+      <div class="meta-pct pos">+1.2% vs Budget</div>
       <div class="meta-lbl">vs Budget</div>
     </div>
   </div>
@@ -92,42 +138,54 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 
 <div class="content">
 
+  <!-- EAST SIDE OH — 4 stores -->
   <div>
     <div class="section-head">East Side Ohio</div>
     <div class="grid4">
-      <div class="loc-card"><div class="loc-name">Cedar Creek Grille</div><div class="loc-sales">$119,166</div><div class="loc-row"><span class="loc-sub">Budget: $105,000</span><span class="loc-pct pos-bg">+17.4% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">Beachwood Bar Italia</div><div class="loc-sales">$77,302</div><div class="loc-row"><span class="loc-sub">Budget: $73,000</span><span class="loc-pct pos-bg">+16.1% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">17 River Grille</div><div class="loc-sales">$139,360</div><div class="loc-row"><span class="loc-sub">Budget: $145,000</span><span class="loc-pct neg-bg">-0.2% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">JoJo's Bar</div><div class="loc-sales">$100,942</div><div class="loc-row"><span class="loc-sub">Budget: $88,235</span><span class="loc-pct pos-bg">+17.8% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">Cedar Creek Grille</div><div class="loc-sales">$153,225</div><div class="loc-row"><span class="loc-sub">Budget: $145,000</span><span class="loc-pct pos-bg">+14.3% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">Beachwood Bar Italia</div><div class="loc-sales">$107,827</div><div class="loc-row"><span class="loc-sub">Budget: $95,000</span><span class="loc-pct pos-bg">+21.5% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">17 River Grille</div><div class="loc-sales">$148,566</div><div class="loc-row"><span class="loc-sub">Budget: $170,000</span><span class="loc-pct neg-bg">-14.4% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">JoJo's Bar</div><div class="loc-sales">$126,081</div><div class="loc-row"><span class="loc-sub">Budget: $127,765</span><span class="loc-pct pos-bg">+1.6% LY</span></div></div>
     </div>
   </div>
 
+  <!-- CENTER ROW — Lola's + Lakehouse + Lakewood -->
   <div class="grid2">
-    <div class="loc-card"><div class="loc-name">Lola's Bistro</div><div class="loc-sales">$107,130</div><div class="loc-row"><span class="loc-sub">Budget: $115,000</span><span class="loc-pct pos-bg">New 2026</span></div></div>
+    <div class="loc-card"><div class="loc-name">Lola's Bistro</div><div class="loc-sales">$126,181</div><div class="loc-row"><span class="loc-sub">Budget: $125,000</span><span class="loc-pct new-bg">New 2026</span></div></div>
     <div class="inner2">
-      <div class="loc-card dark"><div class="section-head" style="margin: 0 0 4px;">West Side Ohio</div><div class="loc-name">The Lakehouse</div><div class="loc-sales">$34,656</div><div class="loc-row"><span class="loc-sub">Budget: $66,589</span><span class="loc-pct neg-bg">-36.5% LY</span></div></div>
-      <div class="loc-card dark"><div class="section-head" style="margin: 0 0 4px;">West Side Ohio</div><div class="loc-name">Bar Italia Lakewood</div><div class="loc-sales">$71,695</div><div class="loc-row"><span class="loc-sub">Budget: $73,000</span><span class="loc-pct pos-bg">+3.3% LY</span></div></div>
+      <div class="loc-card dark"><div class="section-head" style="margin: 0 0 4px;">West Side Ohio</div><div class="loc-name">The Lakehouse</div><div class="loc-sales">$72,638</div><div class="loc-row"><span class="loc-sub">Budget: $91,316</span><span class="loc-pct neg-bg">-17.6% LY</span></div></div>
+      <div class="loc-card dark"><div class="section-head" style="margin: 0 0 4px;">West Side Ohio</div><div class="loc-name">Bar Italia Lakewood</div><div class="loc-sales">$84,778</div><div class="loc-row"><span class="loc-sub">Budget: $85,000</span><span class="loc-pct pos-bg">+2.7% LY</span></div></div>
     </div>
   </div>
 
+  <!-- COLUMBUS + FLORIDA — 3 stores -->
   <div>
     <div class="section-head">Columbus &amp; Florida</div>
     <div class="grid3">
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Easton</div><div class="loc-sales">$138,650</div><div class="loc-row"><span class="loc-sub">Budget: $153,500</span><span class="loc-pct pos-bg">New 2026</span></div></div>
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Winter Park</div><div class="loc-sales">$180,114</div><div class="loc-row"><span class="loc-sub">Budget: $179,066</span><span class="loc-pct pos-bg">+2.6% LY</span></div></div>
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Sarasota</div><div class="loc-sales">$142,720</div><div class="loc-row"><span class="loc-sub">Budget: $168,000</span><span class="loc-pct neg-bg">-13.7% LY</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Easton</div><div class="loc-sales">$186,360</div><div class="loc-row"><span class="loc-sub">Budget: $170,500</span><span class="loc-pct new-bg">New 2026</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Winter Park</div><div class="loc-sales">$217,720</div><div class="loc-row"><span class="loc-sub">Budget: $191,861</span><span class="loc-pct pos-bg">+15.7% LY</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Sarasota</div><div class="loc-sales">$173,696</div><div class="loc-row"><span class="loc-sub">Budget: $179,200</span><span class="loc-pct pos-bg">+1.2% LY</span></div></div>
     </div>
   </div>
 
 </div>
 
-<div class="ytd-bar">
-  <div class="ytd-item"><div class="ytd-val">$13,142,117</div><div class="ytd-lbl">Q1 Actual</div></div>
-  <div class="ytd-item"><div class="ytd-val">$13,663,292</div><div class="ytd-lbl">Q1 Budget</div></div>
-  <div class="ytd-item"><div class="ytd-val">$18,815,904</div><div class="ytd-lbl">YTD Actual</div></div>
-  <div class="ytd-item"><div class="ytd-val">$19,336,020</div><div class="ytd-lbl">YTD Budget</div></div>
-  <div class="ytd-item"><div class="ytd-pct pos">+31.5% vs LY</div><div class="ytd-lbl">vs Last Year</div></div>
-  <div class="ytd-item"><div class="ytd-pct neg">($520,116)</div><div class="ytd-lbl">Behind Budget</div></div>
+<!-- ===== PTD SUMMARY BAR — DELETE ENTIRE BLOCK IF NOT INCLUDED ===== -->
+<div class="summary-bar">
+  <div class="summary-label">Period 4<br>To Date</div>
+  <div class="summary-item"><div class="summary-val">$4,562,052</div><div class="summary-lbl">PTD Actual</div></div>
+  <div class="summary-item"><div class="summary-val">$4,506,338</div><div class="summary-lbl">PTD Budget</div></div>
+  <div class="summary-item"><div class="summary-pct pos">+36.4% vs LY</div><div class="summary-lbl">vs Last Year</div></div>
+  <div class="summary-item"><div class="summary-pct pos">+$55,714</div><div class="summary-lbl">vs Budget</div></div>
+</div>
+
+<!-- ===== YTD SUMMARY BAR — DELETE ENTIRE BLOCK IF NOT INCLUDED ===== -->
+<div class="summary-bar">
+  <div class="summary-label">Year<br>To Date</div>
+  <div class="summary-item"><div class="summary-val">$20,212,976</div><div class="summary-lbl">YTD Actual</div></div>
+  <div class="summary-item"><div class="summary-val">$20,716,662</div><div class="summary-lbl">YTD Budget</div></div>
+  <div class="summary-item"><div class="summary-pct pos">+31.6% vs LY</div><div class="summary-lbl">vs Last Year</div></div>
+  <div class="summary-item"><div class="summary-pct neg">-$503,686</div><div class="summary-lbl">vs Budget</div></div>
 </div>
 
 </body>
