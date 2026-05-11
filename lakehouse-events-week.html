@@ -24,107 +24,135 @@
     padding-bottom: 10px;
     margin-bottom: 14px;
   }
-  .brand { font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: #e8a020; font-weight: 700; }
-  .week { font-size: 22px; color: #ccd; font-weight: 600; }
+  .brand { font-size: 22px; letter-spacing: .14em; text-transform: uppercase; color: #e8a020; font-weight: 700; }
+  .week { font-size: 24px; color: #ccd; font-weight: 600; }
   .title {
-    font-size: 44px; font-weight: 800; line-height: 1.05;
-    margin-bottom: 4px;
+    font-size: 48px; font-weight: 800; line-height: 1.05;
+    margin-bottom: 6px;
   }
   .title .accent { color: #e8a020; }
   .subtitle {
-    font-size: 19px; color: #b9c4d6; margin-bottom: 14px;
+    font-size: 22px; color: #b9c4d6; margin-bottom: 16px;
     max-width: 1700px;
   }
 
-  /* The headline — Marathon Sunday */
+  /* Two-column body */
+  .body-row {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr;
+    gap: 22px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* LEFT: Week grid - vertical stack of 7 day rows */
+  .week-stack {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    gap: 8px;
+  }
+  .day-row {
+    background: #152844;
+    border-radius: 10px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-left: 5px solid #2a4570;
+  }
+  .day-row.hot { border-left-color: #e8a020; background: #1c3358; }
+  .day-row.today { border-left-color: #4ade80; }
+  .day-tag {
+    flex-shrink: 0;
+    min-width: 130px;
+  }
+  .day-tag .dow {
+    font-size: 18px; font-weight: 800; color: #e8a020;
+    letter-spacing: .1em; text-transform: uppercase;
+    line-height: 1;
+  }
+  .day-tag .date { font-size: 15px; color: #99a4b8; margin-top: 3px; }
+  .day-events {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    font-size: 17px;
+    line-height: 1.3;
+  }
+  .ev {
+    display: flex;
+    flex-direction: column;
+  }
+  .ev-title { font-weight: 700; color: #fff; font-size: 17px; }
+  .ev-meta { color: #99a4b8; font-size: 14px; margin-top: 2px; }
+  .quiet { color: #6b7a94; font-style: italic; font-size: 16px; align-self: center; }
+
+  /* RIGHT: Headline + Closures + Weather stacked */
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* Headline */
   .headline-block {
     background: linear-gradient(135deg, #1a3a6e 0%, #0f1f3d 100%);
     border: 2px solid #e8a020;
     border-radius: 12px;
-    padding: 16px 24px;
-    margin-bottom: 14px;
-    display: flex; gap: 22px; align-items: center;
+    padding: 18px 22px;
   }
-  .headline-day {
-    flex-shrink: 0;
-    text-align: center;
-    background: #e8a020;
-    color: #0f1f3d;
-    border-radius: 10px;
-    padding: 10px 18px;
-    min-width: 150px;
-  }
-  .headline-day .dow { font-size: 18px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .headline-day .date { font-size: 32px; font-weight: 900; line-height: 1; margin-top: 2px; }
-  .headline-content { flex: 1; }
-  .headline-label { font-size: 14px; color: #e8a020; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 4px; }
-  .headline-title { font-size: 26px; font-weight: 800; margin-bottom: 4px; line-height: 1.15; }
-  .headline-text { font-size: 16px; color: #d8dde7; line-height: 1.35; }
-
-  /* The grid of days */
-  .week-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-  .day-card {
-    background: #152844;
-    border-radius: 10px;
-    padding: 10px 10px;
-    display: flex; flex-direction: column;
-    min-height: 240px;
-    border-top: 4px solid #2a4570;
-  }
-  .day-card.hot { border-top-color: #e8a020; background: #1c3358; }
-  .day-card.today { border-top-color: #4ade80; }
-  .day-head {
-    font-size: 15px; font-weight: 800; color: #e8a020;
-    letter-spacing: .1em; text-transform: uppercase;
-    margin-bottom: 1px;
-  }
-  .day-date { font-size: 13px; color: #99a4b8; margin-bottom: 8px; }
-  .day-event { font-size: 13px; line-height: 1.3; color: #e8eef8; margin-bottom: 6px; }
-  .day-event .ev-title { font-weight: 700; color: #fff; display: block; }
-  .day-event .ev-meta { color: #99a4b8; font-size: 11px; display: block; margin-top: 1px; }
-  .quiet { color: #6b7a94; font-style: italic; font-size: 12px; }
-
-  /* Three bottom panels: closures, weather, action */
-  .bottom-row {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 14px;
+  .headline-day-line {
+    display: flex; align-items: center; gap: 14px;
     margin-bottom: 10px;
   }
+  .headline-day {
+    background: #e8a020;
+    color: #0f1f3d;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 900;
+  }
+  .headline-day .dow { font-size: 16px; letter-spacing: .1em; text-transform: uppercase; line-height: 1; }
+  .headline-day .date { font-size: 26px; line-height: 1; margin-top: 3px; }
+  .headline-label { font-size: 15px; color: #e8a020; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+  .headline-title { font-size: 26px; font-weight: 800; margin-bottom: 6px; line-height: 1.18; color: #fff; }
+  .headline-text { font-size: 18px; color: #d8dde7; line-height: 1.4; }
+
+  /* Info boxes */
   .info-box {
     background: #152844;
-    border-radius: 10px;
-    padding: 14px 18px;
-    display: flex; gap: 14px;
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex; gap: 16px;
+    flex: 1;
   }
   .info-box.closure { border-left: 5px solid #e74c3c; }
   .info-box.weather { border-left: 5px solid #4ade80; }
-  .info-icon { font-size: 32px; flex-shrink: 0; }
+  .info-icon { font-size: 38px; flex-shrink: 0; line-height: 1; }
   .info-body { flex: 1; }
-  .info-label { font-size: 13px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-label { font-size: 15px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
   .info-label.closure { color: #e74c3c; }
   .info-label.weather { color: #4ade80; }
-  .info-text { font-size: 14px; color: #e8eef8; line-height: 1.4; }
+  .info-text { font-size: 17px; color: #e8eef8; line-height: 1.5; }
   .info-text strong { color: #fff; }
   .info-text .key { color: #e8a020; font-weight: 700; }
+  .info-text p { margin-bottom: 6px; }
+  .info-text p:last-child { margin-bottom: 0; }
 
+  /* Bottom call */
   .bottom-call {
-    margin-top: auto;
-    padding-top: 10px;
+    margin-top: 14px;
+    padding-top: 12px;
     border-top: 2px solid #e8a020;
-    font-size: 20px; font-weight: 700;
+    font-size: 22px; font-weight: 700;
     color: #fff;
     text-align: center;
   }
   .bottom-call .accent { color: #e8a020; }
   .footer {
     margin-top: 6px;
-    font-size: 12px; color: #6b7a94;
+    font-size: 13px; color: #6b7a94;
     text-align: center;
   }
 </style>
@@ -141,142 +169,131 @@
   <div class="title">The biggest weekend of the spring is <span class="accent">in the Flats.</span></div>
   <div class="subtitle">Cleveland Marathon runs right past us, Cavs in the conference semis, Guardians home all week with Battle of Ohio Friday–Sunday. Staff up, prep up, patio out.</div>
 
-  <!-- Headline: Marathon Sunday -->
-  <div class="headline-block">
-    <div class="headline-day">
-      <div class="dow">Sun</div>
-      <div class="date">5/17</div>
-    </div>
-    <div class="headline-content">
-      <div class="headline-label">★ THE BIG ONE</div>
-      <div class="headline-title">UH Cleveland Marathon — new route runs through The Flats at Mile 5.2</div>
-      <div class="headline-text">26.2 race day. The redesigned course passes Flats East Bank at Mile 5.2, finishes downhill through Hingetown to the downtown finish on Mall B. Add the Guardians vs. Reds 1:40pm first pitch and the all-day Marathon After-Party on Mall B — downtown is full from dawn until late evening.</div>
-    </div>
-  </div>
+  <div class="body-row">
 
-  <!-- Week grid -->
-  <div class="week-grid">
+    <!-- LEFT: Week stack -->
+    <div class="week-stack">
 
-    <div class="day-card today">
-      <div class="day-head">Mon</div>
-      <div class="day-date">May 11 — Today</div>
-      <div class="day-event">
-        <span class="ev-title">🏀 Cavs Game 4 vs. Detroit</span>
-        <span class="ev-meta">HOME · Rocket Arena · 8:00pm</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Guardians vs. Angels</span>
-        <span class="ev-meta">HOME · Progressive Field · 6:10pm</span>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head">Tue</div>
-      <div class="day-date">May 12</div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Guardians vs. Angels</span>
-        <span class="ev-meta">HOME · Progressive Field · 6:10pm</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">🏀 Cavs Game 5 (if needed)</span>
-        <span class="ev-meta">Away @ Detroit · TV crowd</span>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head">Wed</div>
-      <div class="day-date">May 13</div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Guardians vs. Angels</span>
-        <span class="ev-meta">HOME · Day game · 1:10pm</span>
-      </div>
-      <div class="day-event quiet">Light dinner night downtown.</div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head">Thu</div>
-      <div class="day-date">May 14</div>
-      <div class="day-event">
-        <span class="ev-title">🏀 Cavs Game 6 (if needed)</span>
-        <span class="ev-meta">HOME · Rocket Arena · TBD</span>
-      </div>
-      <div class="day-event quiet">Off-day for Guardians.</div>
-    </div>
-
-    <div class="day-card hot">
-      <div class="day-head">Fri</div>
-      <div class="day-date">May 15</div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Battle of Ohio — Guardians vs. Reds</span>
-        <span class="ev-meta">HOME · Progressive Field · 7:10pm</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">🏃 Marathon Expo opens</span>
-        <span class="ev-meta">Huntington Conv. Center · 12–6pm</span>
-      </div>
-    </div>
-
-    <div class="day-card hot">
-      <div class="day-head">Sat</div>
-      <div class="day-date">May 16</div>
-      <div class="day-event">
-        <span class="ev-title">🏃 Marathon 5K + 10K</span>
-        <span class="ev-meta">Mall B · 7:30am start</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Battle of Ohio Game 2</span>
-        <span class="ev-meta">HOME · Progressive Field · 6:10pm</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">🎉 Marathon After-Party</span>
-        <span class="ev-meta">Mall B · 8:00am–10:30am</span>
-      </div>
-    </div>
-
-    <div class="day-card hot">
-      <div class="day-head">Sun</div>
-      <div class="day-date">May 17</div>
-      <div class="day-event">
-        <span class="ev-title">🏃 Full Marathon + Half</span>
-        <span class="ev-meta">7:00am · 26.2 through the Flats</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">⚾ Battle of Ohio Game 3</span>
-        <span class="ev-meta">HOME · Progressive Field · 1:40pm</span>
-      </div>
-      <div class="day-event">
-        <span class="ev-title">🎉 After-Party on Mall B</span>
-        <span class="ev-meta">8:00am – 1:00pm</span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Bottom row: Road closures + Weather -->
-  <div class="bottom-row">
-
-    <div class="info-box closure">
-      <div class="info-icon">🚧</div>
-      <div class="info-body">
-        <div class="info-label closure">Marathon Road Closures — Plan Routes Now</div>
-        <div class="info-text">
-          <strong>Sat 5/16:</strong> Rolling closures begin 7:30am, downtown reopens roughly 11am.<br>
-          <strong>Sun 5/17:</strong> <span class="key">Shoreway closed from E. 55th to West Blvd until 3:00pm</span> — this is the artery to the Flats. Course closure runs until 2:00pm. St. Clair, W. 9th, and the Detroit–Superior Bridge all impacted.<br>
-          <strong>Staff arrival:</strong> Everyone on property before 6:00am Sunday or expect detours. Deliveries Friday only — no Sunday morning trucks. Tell guests to use RTA Rapid to Tower City or park early.
+      <div class="day-row today">
+        <div class="day-tag">
+          <div class="dow">Mon</div>
+          <div class="date">May 11 — Today</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">🏀 Cavs Game 4 vs. Detroit</span><span class="ev-meta">HOME · Rocket Arena · 8:00pm</span></div>
+          <div class="ev"><span class="ev-title">⚾ Guardians vs. Angels</span><span class="ev-meta">HOME · Progressive Field · 6:10pm</span></div>
         </div>
       </div>
-    </div>
 
-    <div class="info-box weather">
-      <div class="info-icon">☀️</div>
-      <div class="info-body">
-        <div class="info-label weather">Weekend Forecast</div>
-        <div class="info-text">
-          <strong>Fri 5/15:</strong> 66°, dry — patio set.<br>
-          <strong>Sat 5/16:</strong> Upper 70s, partly sunny, slight afternoon storm risk.<br>
-          <strong>Sun 5/17:</strong> Low 80s, chance of afternoon shower/thunderstorm. Patio weather all weekend. Re-check Friday morning for storm timing.
+      <div class="day-row">
+        <div class="day-tag">
+          <div class="dow">Tue</div>
+          <div class="date">May 12</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">⚾ Guardians vs. Angels</span><span class="ev-meta">HOME · Progressive Field · 6:10pm</span></div>
+          <div class="ev"><span class="ev-title">🏀 Cavs Game 5 (if needed)</span><span class="ev-meta">Away @ Detroit · TV crowd</span></div>
         </div>
       </div>
+
+      <div class="day-row">
+        <div class="day-tag">
+          <div class="dow">Wed</div>
+          <div class="date">May 13</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">⚾ Guardians vs. Angels</span><span class="ev-meta">HOME · Day game · 1:10pm</span></div>
+          <div class="quiet">Light dinner night downtown.</div>
+        </div>
+      </div>
+
+      <div class="day-row">
+        <div class="day-tag">
+          <div class="dow">Thu</div>
+          <div class="date">May 14</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">🏀 Cavs Game 6 (if needed)</span><span class="ev-meta">HOME · Rocket Arena · TBD</span></div>
+          <div class="quiet">Off-day for Guardians.</div>
+        </div>
+      </div>
+
+      <div class="day-row hot">
+        <div class="day-tag">
+          <div class="dow">Fri</div>
+          <div class="date">May 15</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">⚾ Battle of Ohio — Guardians vs. Reds</span><span class="ev-meta">HOME · Progressive Field · 7:10pm</span></div>
+          <div class="ev"><span class="ev-title">🏃 Marathon Expo opens</span><span class="ev-meta">Huntington Conv. Center · 12–6pm</span></div>
+        </div>
+      </div>
+
+      <div class="day-row hot">
+        <div class="day-tag">
+          <div class="dow">Sat</div>
+          <div class="date">May 16</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">🏃 Marathon 5K + 10K</span><span class="ev-meta">Mall B · 7:30am start</span></div>
+          <div class="ev"><span class="ev-title">⚾ Battle of Ohio Game 2</span><span class="ev-meta">HOME · Progressive Field · 6:10pm</span></div>
+          <div class="ev"><span class="ev-title">🎉 Marathon After-Party</span><span class="ev-meta">Mall B · 8:00–10:30am</span></div>
+        </div>
+      </div>
+
+      <div class="day-row hot">
+        <div class="day-tag">
+          <div class="dow">Sun</div>
+          <div class="date">May 17</div>
+        </div>
+        <div class="day-events">
+          <div class="ev"><span class="ev-title">🏃 Full Marathon + Half</span><span class="ev-meta">7:00am · 26.2 through the Flats</span></div>
+          <div class="ev"><span class="ev-title">⚾ Battle of Ohio Game 3</span><span class="ev-meta">HOME · Progressive Field · 1:40pm</span></div>
+          <div class="ev"><span class="ev-title">🎉 After-Party on Mall B</span><span class="ev-meta">8:00am – 1:00pm</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Headline + Closures + Weather -->
+    <div class="right-col">
+
+      <div class="headline-block">
+        <div class="headline-day-line">
+          <div class="headline-day">
+            <div class="dow">Sun</div>
+            <div class="date">5/17</div>
+          </div>
+          <div class="headline-label">★ The Big One</div>
+        </div>
+        <div class="headline-title">UH Cleveland Marathon — new route runs through The Flats at Mile 5.2</div>
+        <div class="headline-text">The redesigned 26.2 course passes Flats East Bank at Mile 5.2 and finishes downhill through Hingetown to Mall B. Stack the Guardians vs. Reds 1:40pm first pitch on top, plus the all-day After-Party on Mall B — downtown is full from dawn until late evening.</div>
+      </div>
+
+      <div class="info-box closure">
+        <div class="info-icon">🚧</div>
+        <div class="info-body">
+          <div class="info-label closure">Marathon Road Closures — Plan Routes Now</div>
+          <div class="info-text">
+            <p><strong>Sat 5/16:</strong> Rolling closures begin 7:30am, downtown reopens roughly 11am.</p>
+            <p><strong>Sun 5/17:</strong> <span class="key">Shoreway closed E. 55th to West Blvd until 3:00pm</span> — the artery to the Flats. Course closure runs until 2:00pm. St. Clair, W. 9th, and the Detroit–Superior Bridge all impacted.</p>
+            <p><strong>Staff arrival:</strong> Everyone on property before 6:00am Sunday or expect detours. Deliveries Friday only — no Sunday morning trucks. Tell guests to use RTA Rapid to Tower City or park early.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box weather">
+        <div class="info-icon">☀️</div>
+        <div class="info-body">
+          <div class="info-label weather">Weekend Forecast</div>
+          <div class="info-text">
+            <p><strong>Fri 5/15:</strong> 66°, dry — patio set.</p>
+            <p><strong>Sat 5/16:</strong> Upper 70s, partly sunny, slight afternoon storm risk.</p>
+            <p><strong>Sun 5/17:</strong> Low 80s, chance of afternoon shower or thunderstorm. Patio weather all weekend. Re-check Friday morning for storm timing.</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
