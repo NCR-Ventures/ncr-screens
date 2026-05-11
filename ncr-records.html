@@ -2,222 +2,370 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=1920">
 <title>NCR Ventures — Sales Records</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1920px; height: 1080px;
+    overflow: hidden;
+    background: #0f1f3d;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .slide {
+    width: 1920px; height: 1080px;
+    position: absolute; top: 0; left: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 80px;
+    overflow: hidden;
+  }
+  .slide.active { opacity: 1; }
 
-.slideshow { width: 1920px; height: 1080px; position: relative; }
-.slide {
-  position: absolute; top: 0; left: 0;
-  width: 1920px; height: 1080px;
-  display: none; flex-direction: column;
-  padding: 60px 80px;
-  background: radial-gradient(ellipse at top, #1a3160 0%, #0f1f3d 70%);
-}
-.slide.active { display: flex; }
+  /* Radial glow */
+  .glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1400px; height: 1400px;
+    background: radial-gradient(circle, rgba(232,160,32,0.18) 0%, rgba(232,160,32,0.05) 35%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-/* Decorative confetti dots */
-.confetti { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; overflow: hidden; }
-.confetti span {
-  position: absolute; display: block;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  opacity: 0.55;
-}
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .confetti span {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    opacity: 0.85;
+  }
 
-/* Header band */
-.banner {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-shrink: 0;
-  z-index: 2; position: relative;
-}
-.brand { font-size: 26px; color: #e8a020; letter-spacing: 6px; font-weight: bold; text-transform: uppercase; }
-.date-badge {
-  background: #e8a020; color: #0f1f3d;
-  font-size: 26px; font-weight: bold;
-  padding: 12px 30px; border-radius: 10px;
-  text-align: center; line-height: 1.3;
-  letter-spacing: 1px;
-}
+  /* Top banner */
+  .banner {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #e8a020;
+  }
+  .brand {
+    font-size: 22px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #e8a020;
+    font-weight: 800;
+  }
+  .date-badge {
+    font-size: 22px;
+    color: #ccd;
+    font-weight: 600;
+  }
 
-/* Congratulations banner */
-.congrats {
-  text-align: center;
-  margin-top: 28px;
-  z-index: 2; position: relative;
-  flex-shrink: 0;
-}
-.congrats-word {
-  font-size: 96px; font-weight: bold;
-  color: #e8a020;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  line-height: 1;
-  text-shadow: 0 4px 24px rgba(232, 160, 32, 0.4);
-}
-.congrats-sub {
-  font-size: 38px; color: #fff;
-  margin-top: 18px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
+  /* Congratulations header */
+  .congrats {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .congrats-word {
+    font-size: 76px;
+    font-weight: 900;
+    letter-spacing: .04em;
+    color: #fff;
+    line-height: 1;
+  }
+  .congrats-sub {
+    font-size: 32px;
+    color: #e8a020;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-top: 14px;
+  }
 
-/* The BIG number block */
-.hero {
-  flex: 1;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  z-index: 2; position: relative;
-}
-.hero-label {
-  font-size: 32px;
-  color: #aab4cc;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  font-weight: bold;
-}
-.hero-number {
-  font-size: 260px;
-  font-weight: bold;
-  color: #fff;
-  line-height: 1;
-  letter-spacing: -4px;
-  text-shadow: 0 8px 40px rgba(232, 160, 32, 0.3);
-}
-.hero-number.with-second {
-  font-size: 200px;
-}
-.hero-divider {
-  width: 180px; height: 4px;
-  background: #e8a020;
-  margin: 38px 0;
-  border-radius: 2px;
-}
-.hero-second-label {
-  font-size: 28px;
-  color: #aab4cc;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-  font-weight: bold;
-}
-.hero-second-number {
-  font-size: 130px;
-  font-weight: bold;
-  color: #e8a020;
-  line-height: 1;
-  letter-spacing: -2px;
-}
+  /* Hero for slide 1 (single big number) */
+  .hero {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 26px;
+    color: #b9c4d6;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .hero-number {
+    font-size: 220px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 8px 36px rgba(232,160,32,0.45);
+    letter-spacing: -.02em;
+  }
+  .hero-secondary {
+    margin-top: 32px;
+    padding: 18px 50px;
+    background: rgba(232,160,32,0.18);
+    border: 2px solid #e8a020;
+    border-radius: 14px;
+  }
+  .hero-secondary-label {
+    font-size: 18px;
+    color: #e8a020;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .hero-secondary-number {
+    font-size: 64px;
+    font-weight: 900;
+    color: #e8a020;
+    line-height: 1;
+  }
 
-/* Footer location */
-.footer {
-  text-align: center;
-  flex-shrink: 0;
-  z-index: 2; position: relative;
-  margin-top: 20px;
-}
-.footer-loc {
-  font-size: 64px;
-  font-weight: bold;
-  color: #fff;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-.footer-sub {
-  font-size: 24px; color: #e8a020;
-  letter-spacing: 5px;
-  margin-top: 10px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
+  /* Hero grid for slide 2 (4 records) */
+  .records-grid {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 22px;
+    align-items: stretch;
+    margin-top: 24px;
+  }
+  .record-card {
+    background: rgba(232,160,32,0.10);
+    border: 2px solid rgba(232,160,32,0.55);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px;
+    text-align: center;
+  }
+  .record-card .day {
+    font-size: 28px;
+    color: #e8a020;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .record-card .label {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .record-card .stamp {
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    background: #e8a020;
+    color: #0f1f3d;
+    padding: 10px 24px;
+    border-radius: 8px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
 
-/* Progress bar */
-.progress-bar {
-  position: fixed; bottom: 0; left: 0;
-  height: 6px; background: #e8a020;
-  transition: width 0.1s linear;
-}
+  .weekly-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(232,160,32,0.28) 0%, rgba(232,160,32,0.10) 100%);
+    border: 3px solid #e8a020;
+    border-radius: 20px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+  .weekly-left .weekly-label {
+    font-size: 22px;
+    color: #e8a020;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .weekly-left .weekly-name {
+    font-size: 34px;
+    color: #fff;
+    font-weight: 900;
+    line-height: 1.05;
+  }
+  .weekly-right .weekly-number {
+    font-size: 100px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 6px 24px rgba(232,160,32,0.5);
+    letter-spacing: -.02em;
+  }
+
+  /* Footer */
+  .footer {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #e8a020;
+  }
+  .footer-loc {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: .04em;
+  }
+  .footer-sub {
+    font-size: 20px;
+    color: #b9c4d6;
+    margin-top: 8px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: fixed;
+    bottom: 0; left: 0;
+    height: 6px;
+    background: #e8a020;
+    width: 0%;
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
 </style>
 </head>
 <body>
 
-<div class="slideshow" id="slideshow">
+<!-- SLIDE 1: Beachwood -->
+<div class="slide active" id="slide-1">
+  <div class="glow"></div>
+  <div class="confetti">
+    <span style="background:#e8a020; top:8%; left:12%; width:10px; height:10px;"></span>
+    <span style="background:#fff;    top:14%; left:80%;"></span>
+    <span style="background:#e8a020; top:22%; left:35%; width:12px; height:12px;"></span>
+    <span style="background:#4cde88; top:30%; left:88%;"></span>
+    <span style="background:#fff;    top:68%; left:8%; width:10px; height:10px;"></span>
+    <span style="background:#e8a020; top:74%; left:78%; width:14px; height:14px;"></span>
+    <span style="background:#fff;    top:82%; left:24%;"></span>
+    <span style="background:#4cde88; top:88%; left:62%; width:10px; height:10px;"></span>
+    <span style="background:#e8a020; top:94%; left:90%;"></span>
+  </div>
 
-  <!-- ===== SLIDE 1 — BEACHWOOD DUAL RECORD ===== -->
-  <div class="slide active">
-    <div class="confetti">
-      <span style="background:#e8a020; top:8%;  left:6%;"></span>
-      <span style="background:#4cde88; top:14%; left:88%;"></span>
-      <span style="background:#e8a020; top:22%; left:18%; width:10px; height:10px;"></span>
-      <span style="background:#fff;    top:30%; left:78%; width:8px; height:8px;"></span>
-      <span style="background:#e8a020; top:74%; left:7%; width:12px; height:12px;"></span>
-      <span style="background:#4cde88; top:82%; left:92%; width:10px; height:10px;"></span>
-      <span style="background:#fff;    top:88%; left:22%; width:8px; height:8px;"></span>
-      <span style="background:#e8a020; top:90%; left:70%;"></span>
-    </div>
+  <div class="banner">
+    <div class="brand">NCR Ventures</div>
+    <div class="date-badge">Week Ending May 10, 2026</div>
+  </div>
 
-    <div class="banner">
-      <div class="brand">NCR Ventures</div>
-      <div class="date-badge">Week Ending May 10, 2026</div>
-    </div>
+  <div class="congrats">
+    <div class="congrats-word">Congratulations</div>
+    <div class="congrats-sub">Two Records · One Week</div>
+  </div>
 
-    <div class="congrats">
-      <div class="congrats-word">Congratulations</div>
-      <div class="congrats-sub">Two Records · One Week</div>
-    </div>
-
-    <div class="hero">
-      <div class="hero-label">Single-Day Sales Record</div>
-      <div class="hero-number with-second">$85,603</div>
-      <div class="hero-divider"></div>
-      <div class="hero-second-label">Weekly Sales Record</div>
-      <div class="hero-second-number">$261,052</div>
-    </div>
-
-    <div class="footer">
-      <div class="footer-loc">Beachwood</div>
-      <div class="footer-sub">Cedar Creek Grille · Bar Italia</div>
+  <div class="hero">
+    <div class="hero-label">Single Day Sales Record</div>
+    <div class="hero-number">$85,603</div>
+    <div class="hero-secondary">
+      <div class="hero-secondary-label">Weekly Sales Record</div>
+      <div class="hero-secondary-number">$261,052</div>
     </div>
   </div>
 
-  <!-- ===== SLIDE 2 — WINTER PARK RECORD ===== -->
-  <div class="slide">
-    <div class="confetti">
-      <span style="background:#e8a020; top:10%; left:9%; width:12px; height:12px;"></span>
-      <span style="background:#4cde88; top:16%; left:84%;"></span>
-      <span style="background:#fff;    top:24%; left:24%; width:8px; height:8px;"></span>
-      <span style="background:#e8a020; top:30%; left:72%; width:10px; height:10px;"></span>
-      <span style="background:#4cde88; top:72%; left:10%; width:10px; height:10px;"></span>
-      <span style="background:#e8a020; top:78%; left:88%; width:12px; height:12px;"></span>
-      <span style="background:#fff;    top:86%; left:32%;"></span>
-      <span style="background:#e8a020; top:92%; left:65%; width:10px; height:10px;"></span>
-    </div>
+  <div class="footer">
+    <div class="footer-loc">Cedar Creek Grille · Bar Italia Beachwood</div>
+    <div class="footer-sub">Engage Souls · Be 1% Better</div>
+  </div>
+</div>
 
-    <div class="banner">
-      <div class="brand">NCR Ventures</div>
-      <div class="date-badge">Week Ending May 10, 2026</div>
-    </div>
-
-    <div class="congrats">
-      <div class="congrats-word">Congratulations</div>
-      <div class="congrats-sub">New Weekly Sales Record</div>
-    </div>
-
-    <div class="hero">
-      <div class="hero-label">Weekly Sales Record</div>
-      <div class="hero-number">$217,224</div>
-    </div>
-
-    <div class="footer">
-      <div class="footer-loc">Bar Italia Winter Park</div>
-      <div class="footer-sub">Engage Souls · Be 1% Better</div>
-    </div>
+<!-- SLIDE 2: Winter Park -->
+<div class="slide" id="slide-2">
+  <div class="glow"></div>
+  <div class="confetti">
+    <span style="background:#e8a020; top:6%; left:18%; width:12px; height:12px;"></span>
+    <span style="background:#fff;    top:12%; left:72%;"></span>
+    <span style="background:#4cde88; top:20%; left:48%;"></span>
+    <span style="background:#e8a020; top:28%; left:6%; width:10px; height:10px;"></span>
+    <span style="background:#fff;    top:60%; left:92%; width:10px; height:10px;"></span>
+    <span style="background:#e8a020; top:68%; left:14%; width:14px; height:14px;"></span>
+    <span style="background:#4cde88; top:78%; left:55%;"></span>
+    <span style="background:#fff;    top:86%; left:28%;"></span>
+    <span style="background:#e8a020; top:92%; left:82%; width:10px; height:10px;"></span>
   </div>
 
+  <div class="banner">
+    <div class="brand">NCR Ventures</div>
+    <div class="date-badge">Week Ending May 10, 2026</div>
+  </div>
+
+  <div class="congrats">
+    <div class="congrats-word">Congratulations</div>
+    <div class="congrats-sub">Four Records · One Weekend</div>
+  </div>
+
+  <div class="records-grid">
+
+    <div class="record-card">
+      <div class="day">Friday</div>
+      <div class="label">Single Day<br>Sales Record</div>
+      <div class="stamp">★ NEW RECORD ★</div>
+    </div>
+
+    <div class="record-card">
+      <div class="day">Saturday</div>
+      <div class="label">Single Day<br>Sales Record</div>
+      <div class="stamp">★ NEW RECORD ★</div>
+    </div>
+
+    <div class="record-card">
+      <div class="day">Sunday</div>
+      <div class="label">Single Day<br>Sales Record</div>
+      <div class="stamp">★ NEW RECORD ★</div>
+    </div>
+
+    <div class="weekly-card">
+      <div class="weekly-left">
+        <div class="weekly-label">Weekly Sales Record</div>
+        <div class="weekly-name">Mother's Day Week</div>
+      </div>
+      <div class="weekly-right">
+        <div class="weekly-number">$217,224</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-loc">Bar Italia Winter Park</div>
+    <div class="footer-sub">Engage Souls · Be 1% Better</div>
+  </div>
 </div>
 
 <div class="progress-bar" id="progress"></div>
@@ -225,7 +373,7 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3
 <script>
   var slides = document.querySelectorAll('.slide');
   var current = 0;
-  var duration = 15000;  // 15 seconds per slide
+  var duration = 15000;
   var interval = 100;
   var elapsed = 0;
   var progress = document.getElementById('progress');
