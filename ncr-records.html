@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>NCR Ventures — Sales Records</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
+
+.slideshow { width: 1920px; height: 1080px; position: relative; }
+.slide {
+  position: absolute; top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  display: none; flex-direction: column;
+  padding: 60px 80px;
+  background: radial-gradient(ellipse at top, #1a3160 0%, #0f1f3d 70%);
+}
+.slide.active { display: flex; }
+
+/* Decorative confetti dots */
+.confetti { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; overflow: hidden; }
+.confetti span {
+  position: absolute; display: block;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  opacity: 0.55;
+}
+
+/* Header band */
+.banner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+  z-index: 2; position: relative;
+}
+.brand { font-size: 26px; color: #e8a020; letter-spacing: 6px; font-weight: bold; text-transform: uppercase; }
+.date-badge {
+  background: #e8a020; color: #0f1f3d;
+  font-size: 26px; font-weight: bold;
+  padding: 12px 30px; border-radius: 10px;
+  text-align: center; line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+/* Congratulations banner */
+.congrats {
+  text-align: center;
+  margin-top: 28px;
+  z-index: 2; position: relative;
+  flex-shrink: 0;
+}
+.congrats-word {
+  font-size: 96px; font-weight: bold;
+  color: #e8a020;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 4px 24px rgba(232, 160, 32, 0.4);
+}
+.congrats-sub {
+  font-size: 38px; color: #fff;
+  margin-top: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* The BIG number block */
+.hero {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 2; position: relative;
+}
+.hero-label {
+  font-size: 32px;
+  color: #aab4cc;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  font-weight: bold;
+}
+.hero-number {
+  font-size: 260px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -4px;
+  text-shadow: 0 8px 40px rgba(232, 160, 32, 0.3);
+}
+.hero-number.with-second {
+  font-size: 200px;
+}
+.hero-divider {
+  width: 180px; height: 4px;
+  background: #e8a020;
+  margin: 38px 0;
+  border-radius: 2px;
+}
+.hero-second-label {
+  font-size: 28px;
+  color: #aab4cc;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  font-weight: bold;
+}
+.hero-second-number {
+  font-size: 130px;
+  font-weight: bold;
+  color: #e8a020;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+/* Footer location */
+.footer {
+  text-align: center;
+  flex-shrink: 0;
+  z-index: 2; position: relative;
+  margin-top: 20px;
+}
+.footer-loc {
+  font-size: 64px;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.footer-sub {
+  font-size: 24px; color: #e8a020;
+  letter-spacing: 5px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Progress bar */
+.progress-bar {
+  position: fixed; bottom: 0; left: 0;
+  height: 6px; background: #e8a020;
+  transition: width 0.1s linear;
+}
+</style>
+</head>
+<body>
+
+<div class="slideshow" id="slideshow">
+
+  <!-- ===== SLIDE 1 — BEACHWOOD DUAL RECORD ===== -->
+  <div class="slide active">
+    <div class="confetti">
+      <span style="background:#e8a020; top:8%;  left:6%;"></span>
+      <span style="background:#4cde88; top:14%; left:88%;"></span>
+      <span style="background:#e8a020; top:22%; left:18%; width:10px; height:10px;"></span>
+      <span style="background:#fff;    top:30%; left:78%; width:8px; height:8px;"></span>
+      <span style="background:#e8a020; top:74%; left:7%; width:12px; height:12px;"></span>
+      <span style="background:#4cde88; top:82%; left:92%; width:10px; height:10px;"></span>
+      <span style="background:#fff;    top:88%; left:22%; width:8px; height:8px;"></span>
+      <span style="background:#e8a020; top:90%; left:70%;"></span>
+    </div>
+
+    <div class="banner">
+      <div class="brand">NCR Ventures</div>
+      <div class="date-badge">Week Ending May 10, 2026</div>
+    </div>
+
+    <div class="congrats">
+      <div class="congrats-word">Congratulations</div>
+      <div class="congrats-sub">Two Records · One Week</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-label">Single-Day Sales Record</div>
+      <div class="hero-number with-second">$85,603</div>
+      <div class="hero-divider"></div>
+      <div class="hero-second-label">Weekly Sales Record</div>
+      <div class="hero-second-number">$261,052</div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-loc">Beachwood</div>
+      <div class="footer-sub">Cedar Creek Grille · Bar Italia</div>
+    </div>
+  </div>
+
+  <!-- ===== SLIDE 2 — WINTER PARK RECORD ===== -->
+  <div class="slide">
+    <div class="confetti">
+      <span style="background:#e8a020; top:10%; left:9%; width:12px; height:12px;"></span>
+      <span style="background:#4cde88; top:16%; left:84%;"></span>
+      <span style="background:#fff;    top:24%; left:24%; width:8px; height:8px;"></span>
+      <span style="background:#e8a020; top:30%; left:72%; width:10px; height:10px;"></span>
+      <span style="background:#4cde88; top:72%; left:10%; width:10px; height:10px;"></span>
+      <span style="background:#e8a020; top:78%; left:88%; width:12px; height:12px;"></span>
+      <span style="background:#fff;    top:86%; left:32%;"></span>
+      <span style="background:#e8a020; top:92%; left:65%; width:10px; height:10px;"></span>
+    </div>
+
+    <div class="banner">
+      <div class="brand">NCR Ventures</div>
+      <div class="date-badge">Week Ending May 10, 2026</div>
+    </div>
+
+    <div class="congrats">
+      <div class="congrats-word">Congratulations</div>
+      <div class="congrats-sub">New Weekly Sales Record</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-label">Weekly Sales Record</div>
+      <div class="hero-number">$217,224</div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-loc">Bar Italia Winter Park</div>
+      <div class="footer-sub">Engage Souls · Be 1% Better</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="progress-bar" id="progress"></div>
+
+<script>
+  var slides = document.querySelectorAll('.slide');
+  var current = 0;
+  var duration = 15000;  // 15 seconds per slide
+  var interval = 100;
+  var elapsed = 0;
+  var progress = document.getElementById('progress');
+
+  function showSlide(index) {
+    slides[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    elapsed = 0;
+    progress.style.width = '0%';
+  }
+
+  setInterval(function() {
+    elapsed += interval;
+    progress.style.width = ((elapsed / duration) * 100) + '%';
+    if (elapsed >= duration) { showSlide(current + 1); }
+  }, interval);
+</script>
+
+</body>
+</html>
