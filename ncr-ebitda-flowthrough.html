@@ -60,7 +60,6 @@ td:first-child {
   padding-left: 14px;
 }
 
-/* flow-through ratings */
 .ft-green  { color: #4cde88; font-weight: bold; }
 .ft-yellow { color: #f5c542; font-weight: bold; }
 .ft-red    { color: #ff5c5c; font-weight: bold; }
@@ -73,10 +72,9 @@ td:first-child {
 .ebitda-pos { color: #4cde88; font-weight: bold; }
 .ebitda-neg { color: #ff5c5c; font-weight: bold; }
 
-/* rating badge */
 .badge {
   display: inline-block;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   padding: 3px 10px;
   border-radius: 4px;
@@ -100,38 +98,37 @@ td:first-child {
   <div>
     <div class="brand">NCR Ventures</div>
     <div class="title">EBITDA &amp; Flow-Through Dashboard</div>
-    <div class="subtitle">Same-Store EBITDA Conversion · Target ≥ 35% on Rising Sales · Home Office Only</div>
+    <div class="subtitle">YTD 2026 vs. 2025 · Same-Store EBITDA Conversion · Target ≥ 35% · Home Office Only</div>
   </div>
-  <div class="date-badge">YTD 2026<br>Week Ending 5/3/26</div>
+  <div class="date-badge">YTD 2026<br>Week Ending 5/11/26<br><span style="font-size:17px;">Mother's Day Week</span></div>
 </div>
 <div class="divider"></div>
 
-<!-- KPI strip -->
 <div class="total-row">
   <div class="total-card">
-    <div class="total-label">YTD Gross Sales</div>
-    <div class="total-val">$18.7M</div>
-    <div class="total-pct">Budget $18.8M · ($790K)</div>
+    <div class="total-label">YTD Gross Revenue</div>
+    <div class="total-val">$20.2M</div>
+    <div class="total-pct">Budget $20.8M · ($544K)</div>
   </div>
   <div class="total-card">
-    <div class="total-label">Same-Store Sales Δ</div>
-    <div class="total-val" style="color:#4cde88;">+$317K</div>
-    <div class="total-pct">vs Prior Year · 7 stores</div>
+    <div class="total-label">W2 Revenue</div>
+    <div class="total-val" style="color:#4cde88;">$1.40M</div>
+    <div class="total-pct">Mother's Day · Strong Week</div>
   </div>
   <div class="total-card">
-    <div class="total-label">Same-Store EBITDA Δ</div>
-    <div class="total-val" style="color:#4cde88;">+$87K</div>
-    <div class="total-pct">vs Prior Year · 7 stores</div>
+    <div class="total-label">W2 EBITDA</div>
+    <div class="total-val" style="color:#4cde88;">$234K</div>
+    <div class="total-pct">16.8% rate · Above budget</div>
   </div>
   <div class="total-card">
     <div class="total-label">Blended Flow-Through</div>
-    <div class="total-val" style="color:#f5c542;">27.5%</div>
+    <div class="total-val" style="color:#ff5c5c;">19.9%</div>
     <div class="total-pct">Target ≥ 35% · Below target</div>
   </div>
   <div class="total-card">
     <div class="total-label">YTD EBITDA</div>
-    <div class="total-val" style="color:#4cde88;">$2.13M</div>
-    <div class="total-pct">11.8% · ($274K) vs Budget</div>
+    <div class="total-val" style="color:#4cde88;">$2.37M</div>
+    <div class="total-pct">12.1% · ($206K) vs Budget</div>
   </div>
 </div>
 
@@ -155,118 +152,118 @@ td:first-child {
 
     <tr>
       <td>Beachwood</td>
-      <td>$3,345,363</td>
-      <td class="dim">$2,943,865</td>
-      <td class="pos">+$401,498</td>
-      <td class="ebitda-pos">$429,132</td>
-      <td class="dim">$327,153</td>
-      <td class="pos">+$101,979</td>
-      <td class="ft-yellow">25.4%</td>
-      <td class="neg">($5,212)</td>
+      <td>$3,606,415</td>
+      <td class="dim">$3,166,641</td>
+      <td class="pos">+$439,774</td>
+      <td class="ebitda-pos">$481,468</td>
+      <td class="dim">$369,089</td>
+      <td class="pos">+$112,379</td>
+      <td class="ft-yellow">25.6%</td>
+      <td class="pos">+$16,575</td>
       <td><span class="badge badge-yellow">Near Target</span></td>
     </tr>
 
     <tr>
       <td>17 River Grille</td>
-      <td>$2,165,373</td>
-      <td class="dim">$2,063,215</td>
-      <td class="pos">+$102,158</td>
-      <td class="ebitda-pos">$301,414</td>
-      <td class="dim">$288,560</td>
-      <td class="pos">+$12,854</td>
-      <td class="ft-red">12.6%</td>
-      <td class="neg">($76,646)</td>
+      <td>$2,313,939</td>
+      <td class="dim">$2,236,772</td>
+      <td class="pos">+$77,167</td>
+      <td class="ebitda-pos">$322,461</td>
+      <td class="dim">$330,475</td>
+      <td class="neg">($8,014)</td>
+      <td class="ft-red">(10.4%)</td>
+      <td class="neg">($95,324)</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>JoJo's &amp; Bar Fuoco</td>
-      <td>$1,582,450</td>
-      <td class="dim">$1,527,786</td>
-      <td class="pos">+$54,664</td>
-      <td class="ebitda-pos">$102,633</td>
-      <td class="dim">$133,546</td>
-      <td class="neg">($30,913)</td>
-      <td class="ft-red">(56.6%)</td>
-      <td class="neg">($35,660)</td>
+      <td>$1,708,531</td>
+      <td class="dim">$1,651,855</td>
+      <td class="pos">+$56,676</td>
+      <td class="ebitda-pos">$118,940</td>
+      <td class="dim">$151,490</td>
+      <td class="neg">($32,550)</td>
+      <td class="ft-red">(57.4%)</td>
+      <td class="neg">($31,752)</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>The Lakehouse ★</td>
-      <td>$405,022</td>
-      <td class="dim">$514,379</td>
-      <td class="neg">($109,357)</td>
-      <td class="ebitda-neg">($207,125)</td>
-      <td class="dim">($225,266)</td>
-      <td class="pos">+$18,141</td>
+      <td>$477,660</td>
+      <td class="dim">$602,520</td>
+      <td class="neg">($124,860)</td>
+      <td class="ebitda-neg">($218,867)</td>
+      <td class="dim">($223,984)</td>
+      <td class="pos">+$5,117</td>
       <td class="ft-green">↓ Protected</td>
-      <td class="neg">($25,456)</td>
+      <td class="neg">($35,267)</td>
       <td><span class="badge badge-green">Protected</span></td>
     </tr>
 
     <tr>
       <td>Lakewood</td>
-      <td>$1,256,257</td>
-      <td class="dim">$1,247,538</td>
-      <td class="pos">+$8,719</td>
-      <td class="ebitda-pos">$157,484</td>
-      <td class="dim">$181,443</td>
-      <td class="neg">($23,959)</td>
-      <td class="ft-red">(274.8%)</td>
-      <td class="neg">($26,380)</td>
+      <td>$1,341,035</td>
+      <td class="dim">$1,330,078</td>
+      <td class="pos">+$10,957</td>
+      <td class="ebitda-pos">$171,559</td>
+      <td class="dim">$194,269</td>
+      <td class="neg">($22,710)</td>
+      <td class="ft-red">(207.3%)</td>
+      <td class="neg">($23,339)</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>Winter Park</td>
-      <td>$2,996,109</td>
-      <td class="dim">$2,844,221</td>
-      <td class="pos">+$151,888</td>
-      <td class="ebitda-pos">$487,607</td>
-      <td class="dim">$411,488</td>
-      <td class="pos">+$76,119</td>
-      <td class="ft-green">50.1%</td>
-      <td class="pos">+$64,783</td>
+      <td>$3,213,829</td>
+      <td class="dim">$3,032,596</td>
+      <td class="pos">+$181,233</td>
+      <td class="ebitda-pos">$533,461</td>
+      <td class="dim">$445,207</td>
+      <td class="pos">+$88,254</td>
+      <td class="ft-green">48.7%</td>
+      <td class="pos">+$84,990</td>
       <td><span class="badge badge-green">Strong ✓</span></td>
     </tr>
 
     <tr>
       <td>Sarasota</td>
-      <td>$2,875,417</td>
-      <td class="dim">$3,167,691</td>
-      <td class="neg">($292,274)</td>
-      <td class="ebitda-pos">$516,089</td>
-      <td class="dim">$583,139</td>
-      <td class="neg">($67,050)</td>
-      <td class="ft-red">↓ (22.9%)</td>
-      <td class="neg">($67,994)</td>
+      <td>$3,191,834</td>
+      <td class="dim">$3,339,404</td>
+      <td class="neg">($147,570)</td>
+      <td class="ebitda-pos">$565,778</td>
+      <td class="dim">$609,843</td>
+      <td class="neg">($44,065)</td>
+      <td class="ft-red">↓ (29.9%)</td>
+      <td class="neg">($42,087)</td>
       <td><span class="badge badge-red">Not Protected</span></td>
     </tr>
 
     <tr>
       <td>Easton ↗ 6/30/25</td>
-      <td>$2,328,921</td>
+      <td>$2,515,282</td>
       <td class="ft-na">No LY Comp</td>
       <td class="ft-na">—</td>
-      <td class="ebitda-pos">$203,432</td>
+      <td class="ebitda-pos">$236,700</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
-      <td class="neg">($99,691)</td>
+      <td class="neg">($86,889)</td>
       <td><span class="badge badge-na">No LY Comp</span></td>
     </tr>
 
     <tr>
       <td>Lola's Bistro ↗ 9/9/25</td>
-      <td>$1,718,212</td>
+      <td>$1,844,393</td>
       <td class="ft-na">No LY Comp</td>
       <td class="ft-na">—</td>
-      <td class="ebitda-pos">$136,623</td>
+      <td class="ebitda-pos">$160,166</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
-      <td class="neg">($1,318)</td>
+      <td class="pos">+$6,971</td>
       <td><span class="badge badge-na">No LY Comp</span></td>
     </tr>
 
@@ -275,9 +272,9 @@ td:first-child {
 </div>
 
 <div class="section-note">
-  ★ Lakehouse seasonal ramp — sales decline and EBITDA loss are intentional; metrics improve year-over-year (protected) &nbsp;|&nbsp;
-  Flow-Through target ≥ 35% on rising sales · Sales down: EBITDA must improve vs. LY to be "protected" &nbsp;|&nbsp;
-  Same-store blended 27.5% vs. 35% target · 17 River most urgent: ($76,646) EBITDA budget gap &nbsp;|&nbsp;
+  ★ Lakehouse seasonal ramp — sales decline and EBITDA loss are intentional; loss improved $5,117 vs. 2025 (protected) &nbsp;|&nbsp;
+  Flow-Through target ≥ 35% on rising sales · Sales down: EBITDA must improve vs. LY &nbsp;|&nbsp;
+  Same-store blended 19.9% vs. 35% target · 17 River most urgent: ($95,324) EBITDA budget gap &nbsp;|&nbsp;
   Home Office Only — Never Staff-Facing
 </div>
 
