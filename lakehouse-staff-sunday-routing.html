@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>The Lakehouse — Staff Routing · Marathon Sunday Pre-9 AM</title>
+<style>
+  /* LAKEHOUSE BRAND
+     --navy:   #0e2748   primary (Digital)
+     --blue:   #3e5170   secondary (Pantone 540 U)
+     --white:  #ffffff
+     Fonts: Montserrat (headers), Karma (subheaders), Noto Serif (body italic)
+  */
+  @import url('https://fonts.googleapis.com/css2?family=Karma:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:1920px; height:1080px; overflow:hidden;
+    font-family:'Karma', Georgia, serif;
+    background:#0e2748;
+    color:#fff;
+  }
+  .stage {
+    width:1920px; height:1080px; position:relative;
+    background:
+      linear-gradient(180deg, #0e2748 0%, #16345e 55%, #0e2748 100%);
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Lakehouse-style frame */
+  .frame {
+    position:absolute;
+    top:30px; left:30px; right:30px; bottom:30px;
+    border:3px solid #fff;
+    pointer-events:none;
+  }
+  .frame-inner {
+    position:absolute;
+    top:44px; left:44px; right:44px; bottom:44px;
+    border:1px solid rgba(255,255,255,0.35);
+    pointer-events:none;
+  }
+
+  .inner {
+    position:relative;
+    z-index:2;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding:60px 100px 50px;
+  }
+
+  /* HEADER STRIP */
+  .header {
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    padding-bottom:24px;
+    border-bottom:1px solid rgba(255,255,255,0.35);
+  }
+  .header-left {
+    font-family:'Montserrat', sans-serif;
+    font-size:18px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:0.85;
+  }
+  .header-center {
+    text-align:center;
+  }
+  .brand-the {
+    font-family:'Montserrat', sans-serif;
+    font-size:18px;
+    letter-spacing:8px;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .brand-name {
+    font-family:'Montserrat', sans-serif;
+    font-size:48px;
+    font-weight:900;
+    letter-spacing:5px;
+    line-height:1;
+  }
+  .header-right {
+    text-align:right;
+    font-family:'Montserrat', sans-serif;
+    font-size:18px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:0.85;
+  }
+
+  /* HEADLINE */
+  .head {
+    text-align:center;
+    margin-top:30px;
+  }
+  .eyebrow {
+    font-family:'Montserrat', sans-serif;
+    font-size:18px;
+    letter-spacing:9px;
+    font-weight:700;
+    text-transform:uppercase;
+    opacity:0.85;
+  }
+  .headline {
+    font-family:'Montserrat', sans-serif;
+    font-size:78px;
+    font-weight:900;
+    line-height:0.98;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:8px;
+  }
+  .sub {
+    font-family:'Noto Serif', serif;
+    font-style:italic;
+    font-size:24px;
+    margin-top:14px;
+    opacity:0.92;
+  }
+
+  /* BODY: route + alerts */
+  .body {
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:28px;
+    margin-top:30px;
+    flex:1;
+  }
+
+  /* ROUTE CARD */
+  .route {
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.35);
+    padding:30px 36px 26px;
+    display:flex;
+    flex-direction:column;
+  }
+  .route-head {
+    text-align:center;
+    padding-bottom:18px;
+    border-bottom:1px solid rgba(255,255,255,0.35);
+    margin-bottom:22px;
+  }
+  .route-eyebrow {
+    font-family:'Montserrat', sans-serif;
+    font-size:14px;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:0.8;
+  }
+  .route-title {
+    font-family:'Montserrat', sans-serif;
+    font-size:44px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-top:4px;
+    text-transform:uppercase;
+  }
+  .steps {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    justify-content:space-around;
+    gap:14px;
+  }
+  .step {
+    display:grid;
+    grid-template-columns:54px 1fr;
+    gap:18px;
+    align-items:flex-start;
+  }
+  .step-num {
+    background:#fff;
+    color:#0e2748;
+    font-family:'Montserrat', sans-serif;
+    font-size:24px;
+    font-weight:900;
+    width:54px;
+    height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+  }
+  .step-body { padding-top:8px; }
+  .step-instr {
+    font-family:'Karma', serif;
+    font-size:28px;
+    font-weight:700;
+    line-height:1.2;
+  }
+  .step-detail {
+    font-family:'Noto Serif', serif;
+    font-style:italic;
+    font-size:18px;
+    opacity:0.88;
+    margin-top:4px;
+    line-height:1.4;
+  }
+
+  /* RIGHT SIDE: closures + tips */
+  .side {
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .closures {
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.4);
+    padding:22px 26px;
+    flex:1;
+  }
+  .closures-title {
+    font-family:'Montserrat', sans-serif;
+    font-size:16px;
+    letter-spacing:5px;
+    font-weight:800;
+    text-transform:uppercase;
+    text-align:center;
+    padding-bottom:12px;
+    margin-bottom:14px;
+    border-bottom:1px solid rgba(255,255,255,0.35);
+  }
+  .clos {
+    display:grid;
+    grid-template-columns: 1fr auto;
+    gap:8px 12px;
+    align-items:baseline;
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .clos:last-child { border-bottom:none; }
+  .clos-street {
+    font-family:'Karma', serif;
+    font-size:18px;
+    font-weight:700;
+    line-height:1.2;
+  }
+  .clos-sub {
+    font-family:'Noto Serif', serif;
+    font-style:italic;
+    font-size:13px;
+    opacity:0.78;
+    margin-top:2px;
+    line-height:1.3;
+  }
+  .clos-time {
+    font-family:'Montserrat', sans-serif;
+    background:#fff;
+    color:#0e2748;
+    padding:5px 11px;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    white-space:nowrap;
+  }
+
+  /* TIPS BOX */
+  .tips {
+    background:#fff;
+    color:#0e2748;
+    padding:20px 24px;
+  }
+  .tips-title {
+    font-family:'Montserrat', sans-serif;
+    font-size:15px;
+    letter-spacing:5px;
+    font-weight:800;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    text-align:center;
+  }
+  .tips ul {
+    list-style:none;
+  }
+  .tips li {
+    font-family:'Karma', serif;
+    font-size:17px;
+    font-weight:600;
+    padding:5px 0 5px 18px;
+    position:relative;
+    line-height:1.32;
+  }
+  .tips li::before {
+    content:"▸";
+    position:absolute;
+    left:0;
+    color:#3e5170;
+    font-weight:900;
+  }
+  .tips li em {
+    font-family:'Noto Serif', serif;
+    font-style:italic;
+    font-weight:400;
+    opacity:0.78;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px solid rgba(255,255,255,0.35);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Montserrat', sans-serif;
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-weight:700;
+    opacity:0.85;
+  }
+  .footer .right {
+    font-family:'Noto Serif', serif;
+    font-style:italic;
+    font-weight:400;
+    letter-spacing:1px;
+    text-transform:none;
+    font-size:16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="frame"></div>
+  <div class="frame-inner"></div>
+
+  <div class="inner">
+
+    <div class="header">
+      <div class="header-left">Staff Only · The Daily</div>
+      <div class="header-center">
+        <div class="brand-the">THE</div>
+        <div class="brand-name">LAKEHOUSE</div>
+      </div>
+      <div class="header-right">Sunday · May 17</div>
+    </div>
+
+    <div class="head">
+      <div class="eyebrow">Marathon Sunday · Pre-Open Routing</div>
+      <div class="headline">Getting In Before 9 AM</div>
+      <div class="sub">Our street and W9 are closed 6 – 9 AM. Use the south approach.</div>
+    </div>
+
+    <div class="body">
+
+      <div class="route">
+        <div class="route-head">
+          <div class="route-eyebrow">The Only Open Route Before 9 AM</div>
+          <div class="route-title">South Approach</div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-instr">I-490 West OR I-77 / I-71 to I-490</div>
+              <div class="step-detail">From either side of town. Don't try to come in via downtown surface streets — they're shut.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-instr">Exit West 14th Street</div>
+              <div class="step-detail">Head north into Tremont.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-instr">Right on Columbus Road, into The Flats</div>
+              <div class="step-detail">Down the hill. Cross the Cuyahoga.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <div class="step-instr">Left on Carter Road → Left on Old River</div>
+              <div class="step-detail">Approach from the south end. We're at 1148.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+
+        <div class="closures">
+          <div class="closures-title">⚠ Closed Before 9 AM</div>
+
+          <div class="clos">
+            <div>
+              <div class="clos-street">Old River Road</div>
+              <div class="clos-sub">Front to Carter</div>
+            </div>
+            <div class="clos-time">6 – 9 AM</div>
+          </div>
+
+          <div class="clos">
+            <div>
+              <div class="clos-street">West 9th Street</div>
+              <div class="clos-sub">Lakeside to Front</div>
+            </div>
+            <div class="clos-time">6 – 9 AM</div>
+          </div>
+
+          <div class="clos">
+            <div>
+              <div class="clos-street">Shoreway</div>
+              <div class="clos-sub">E55 to West Blvd</div>
+            </div>
+            <div class="clos-time">2 AM – 3 PM</div>
+          </div>
+
+          <div class="clos">
+            <div>
+              <div class="clos-street">St. Clair Downtown</div>
+              <div class="clos-sub">E6 to Ontario · start/finish</div>
+            </div>
+            <div class="clos-time">12 AM – 3 PM</div>
+          </div>
+
+          <div class="clos">
+            <div>
+              <div class="clos-street">W9 Downtown</div>
+              <div class="clos-sub">St. Clair to Superior</div>
+            </div>
+            <div class="clos-time">6 AM – 3 PM</div>
+          </div>
+        </div>
+
+        <div class="tips">
+          <div class="tips-title">Heads-Up</div>
+          <ul>
+            <li>Build in 20 extra minutes <em>— traffic detours, runner crossings, and crowd footwork all add time.</em></li>
+            <li>After 9 AM, Old River Rd reopens <em>— normal route works again.</em></li>
+            <li>Shoreway stays closed until 3 PM <em>— don't try it any time today.</em></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="left">Source: Cleveland Marathon Official Closures</div>
+      <div class="right">"Life is better at the lake."</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
