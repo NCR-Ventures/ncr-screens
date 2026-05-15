@@ -154,33 +154,33 @@
   /* ---------- MATCHUP CARD ---------- */
   .matchup {
     position: absolute;
-    bottom: 260px;
+    top: 280px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 70px;
+    gap: 40px;
     z-index: 4;
   }
   .team {
     text-align: center;
-    width: 560px;
-  }
-  .team-name {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 130px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 4px;
-    line-height: 1;
+    width: 680px;
   }
   .team-sub {
     font-family: 'Arial', sans-serif;
-    font-size: 32px;
+    font-size: 44px;
     color: #fdbb30;
-    letter-spacing: 6px;
-    margin-top: 14px;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
     font-weight: 700;
+  }
+  .team-name {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 240px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    line-height: 0.95;
   }
   .team.cavs .team-name {
     color: #fdbb30;
@@ -189,7 +189,7 @@
 
   .versus {
     font-family: 'Arial Black', sans-serif;
-    font-size: 130px;
+    font-size: 160px;
     font-weight: 900;
     color: #fff;
     opacity: 0.5;
@@ -311,13 +311,13 @@
     <!-- MATCHUP -->
     <div class="matchup">
       <div class="team cavs">
-        <div class="team-name">CAVS</div>
         <div class="team-sub">CLEVELAND</div>
+        <div class="team-name">CAVS</div>
       </div>
       <div class="versus">VS</div>
       <div class="team">
-        <div class="team-name">PISTONS</div>
         <div class="team-sub">DETROIT</div>
+        <div class="team-name">PISTONS</div>
       </div>
     </div>
 
