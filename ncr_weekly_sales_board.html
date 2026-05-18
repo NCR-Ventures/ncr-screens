@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1920">
-<title>NCR Weekly Sales</title>
+<title>NCR Weekly Sales — Week 20</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f4f1ea; font-family: Arial, sans-serif; color: #0f1f3d; }
 body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px; }
 
-/* HEADER */
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 .brand { font-size: 22px; color: #b8801a; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
 .title { font-size: 56px; font-weight: bold; color: #0f1f3d; line-height: 1.05; margin-top: 4px; }
@@ -17,7 +16,6 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 .date-badge { background: #0f1f3d; color: #e8a020; font-size: 28px; font-weight: bold; padding: 14px 32px; border-radius: 10px; text-align: center; line-height: 1.3; border: 2px solid #e8a020; }
 .divider { height: 4px; background: #0f1f3d; margin: 14px 0 18px; border-radius: 2px; flex-shrink: 0; }
 
-/* TOTAL CARD */
 .total-card { background: #0f1f3d; border: 2px solid #e8a020; border-radius: 12px; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; margin-bottom: 16px; color: #fff; }
 .total-left { display: flex; flex-direction: column; }
 .total-label { font-size: 18px; color: #e8a020; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
@@ -27,10 +25,9 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 .meta-val { font-size: 34px; font-weight: bold; color: #fff; }
 .meta-lbl { font-size: 18px; color: #aab4cc; margin-top: 6px; font-weight: bold; }
 .meta-pct { font-size: 30px; font-weight: bold; }
-.pos { color: #1e9e4f; }
-.neg { color: #c92525; }
+.meta-pct.pos { color: #4cde88; }
+.meta-pct.neg { color: #ff5c5c; }
 
-/* CONTENT */
 .content { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
 .section-head { font-size: 20px; color: #6a7388; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
 .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
@@ -54,7 +51,6 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 .neg-bg { background: rgba(201, 37, 37, 0.12); color: #c92525; }
 .new-bg { background: rgba(232, 160, 32, 0.18); color: #b8801a; }
 
-/* COMBINED PTD + YTD BAR (one block, two rows) */
 .combo-summary { background: #fff; border-radius: 10px; border: 2px solid #0f1f3d; flex-shrink: 0; margin-top: 14px; overflow: hidden; }
 .combo-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; }
 .combo-row + .combo-row { border-top: 1px solid #d8d2c4; background: #faf7f0; }
@@ -63,6 +59,8 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 .combo-val { font-size: 28px; font-weight: bold; color: #0f1f3d; }
 .combo-lbl { font-size: 14px; color: #6a7388; margin-top: 2px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
 .combo-pct { font-size: 26px; font-weight: bold; }
+.combo-pct.pos { color: #1e9e4f; }
+.combo-pct.neg { color: #c92525; }
 </style>
 </head>
 <body>
@@ -71,32 +69,32 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
   <div>
     <div class="brand">NCR Ventures</div>
     <div class="title">Weekly Sales Report</div>
-    <div class="week-label">Week 19</div>
+    <div class="week-label">Week 20</div>
   </div>
-  <div class="date-badge">Week Ending<br>May 10, 2026</div>
+  <div class="date-badge">Week Ending<br>May 17, 2026</div>
 </div>
 <div class="divider"></div>
 
 <div class="total-card">
   <div class="total-left">
     <div class="total-label">NCR Total — This Week</div>
-    <div class="total-sales">$1,397,072</div>
+    <div class="total-sales">$1,225,464</div>
   </div>
   <div class="total-meta">
     <div class="meta-item">
-      <div class="meta-val">$1,380,642</div>
+      <div class="meta-val">$1,285,879</div>
       <div class="meta-lbl">2026 Budget</div>
     </div>
     <div class="meta-item">
-      <div class="meta-val">$1,050,870</div>
+      <div class="meta-val">$992,206</div>
       <div class="meta-lbl">2025 Actual</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct pos" style="color:#4cde88">+32.9% vs LY</div>
+      <div class="meta-pct pos">+23.5% vs LY</div>
       <div class="meta-lbl">vs Last Year</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct pos" style="color:#4cde88">+1.2% vs Budget</div>
+      <div class="meta-pct neg">-4.7% vs Budget</div>
       <div class="meta-lbl">vs Budget</div>
     </div>
   </div>
@@ -104,55 +102,51 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 
 <div class="content">
 
-  <!-- EAST SIDE OH — 4 stores -->
   <div class="east-block">
     <div class="section-head">East Side Ohio</div>
     <div class="grid4">
-      <div class="loc-card"><div class="loc-name">Cedar Creek Grille</div><div class="loc-sales">$153,225</div><div class="loc-row"><span class="loc-sub">Budget: $145,000</span><span class="loc-pct pos-bg">+14.3% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">Beachwood Bar Italia</div><div class="loc-sales">$107,827</div><div class="loc-row"><span class="loc-sub">Budget: $95,000</span><span class="loc-pct pos-bg">+21.5% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">17 River Grille</div><div class="loc-sales">$148,566</div><div class="loc-row"><span class="loc-sub">Budget: $170,000</span><span class="loc-pct neg-bg">-14.4% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">JoJo's Bar</div><div class="loc-sales">$126,081</div><div class="loc-row"><span class="loc-sub">Budget: $127,765</span><span class="loc-pct pos-bg">+1.6% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">Cedar Creek Grille</div><div class="loc-sales">$129,871</div><div class="loc-row"><span class="loc-sub">Budget: $117,000</span><span class="loc-pct pos-bg">+11.7% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">Beachwood Bar Italia</div><div class="loc-sales">$85,132</div><div class="loc-row"><span class="loc-sub">Budget: $90,000</span><span class="loc-pct pos-bg">+3.2% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">17 River Grille</div><div class="loc-sales">$165,018</div><div class="loc-row"><span class="loc-sub">Budget: $190,000</span><span class="loc-pct neg-bg">-15.4% LY</span></div></div>
+      <div class="loc-card"><div class="loc-name">JoJo's Bar</div><div class="loc-sales">$111,592</div><div class="loc-row"><span class="loc-sub">Budget: $119,767</span><span class="loc-pct neg-bg">-4.0% LY</span></div></div>
     </div>
   </div>
 
-  <!-- CENTER ROW — Lola's + Lakehouse + Lakewood -->
   <div class="center-block">
     <div class="grid2">
-      <div class="loc-card"><div class="loc-name">Lola's Bistro</div><div class="loc-sales">$126,181</div><div class="loc-row"><span class="loc-sub">Budget: $125,000</span><span class="loc-pct new-bg">New 2026</span></div></div>
+      <div class="loc-card"><div class="loc-name">Lola's Bistro</div><div class="loc-sales">$113,072</div><div class="loc-row"><span class="loc-sub">Budget: $115,000</span><span class="loc-pct new-bg">New 2026</span></div></div>
       <div class="inner2">
-        <div class="loc-card dark"><div class="loc-name">The Lakehouse</div><div class="loc-sales">$72,638</div><div class="loc-row"><span class="loc-sub">Budget: $91,316</span><span class="loc-pct neg-bg">-17.6% LY</span></div></div>
-        <div class="loc-card dark"><div class="loc-name">Bar Italia Lakewood</div><div class="loc-sales">$84,778</div><div class="loc-row"><span class="loc-sub">Budget: $85,000</span><span class="loc-pct pos-bg">+2.7% LY</span></div></div>
+        <div class="loc-card dark"><div class="loc-name">The Lakehouse</div><div class="loc-sales">$66,472</div><div class="loc-row"><span class="loc-sub">Budget: $106,663</span><span class="loc-pct neg-bg">-31.7% LY</span></div></div>
+        <div class="loc-card dark"><div class="loc-name">Bar Italia Lakewood</div><div class="loc-sales">$75,226</div><div class="loc-row"><span class="loc-sub">Budget: $83,500</span><span class="loc-pct neg-bg">-8.1% LY</span></div></div>
       </div>
     </div>
   </div>
 
-  <!-- COLUMBUS + FLORIDA — 3 stores -->
   <div class="south-block">
     <div class="section-head">Columbus &amp; Florida</div>
     <div class="grid3">
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Easton</div><div class="loc-sales">$186,360</div><div class="loc-row"><span class="loc-sub">Budget: $170,500</span><span class="loc-pct new-bg">New 2026</span></div></div>
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Winter Park</div><div class="loc-sales">$217,720</div><div class="loc-row"><span class="loc-sub">Budget: $191,861</span><span class="loc-pct pos-bg">+15.7% LY</span></div></div>
-      <div class="loc-card darker"><div class="loc-name">Bar Italia Sarasota</div><div class="loc-sales">$173,696</div><div class="loc-row"><span class="loc-sub">Budget: $179,200</span><span class="loc-pct pos-bg">+1.2% LY</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Easton</div><div class="loc-sales">$158,200</div><div class="loc-row"><span class="loc-sub">Budget: $155,500</span><span class="loc-pct new-bg">New 2026</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Winter Park</div><div class="loc-sales">$181,842</div><div class="loc-row"><span class="loc-sub">Budget: $155,749</span><span class="loc-pct pos-bg">+19.1% LY</span></div></div>
+      <div class="loc-card darker"><div class="loc-name">Bar Italia Sarasota</div><div class="loc-sales">$139,039</div><div class="loc-row"><span class="loc-sub">Budget: $152,700</span><span class="loc-pct neg-bg">-7.4% LY</span></div></div>
     </div>
   </div>
 
 </div>
 
-<!-- COMBINED PTD + YTD BAR — one block, two rows -->
 <div class="combo-summary">
   <div class="combo-row">
-    <div class="combo-label">Period 4<br>To Date</div>
-    <div class="combo-item"><div class="combo-val">$4,562,052</div><div class="combo-lbl">PTD Actual</div></div>
-    <div class="combo-item"><div class="combo-val">$4,506,338</div><div class="combo-lbl">PTD Budget</div></div>
-    <div class="combo-item"><div class="combo-pct pos">+36.4% vs LY</div><div class="combo-lbl">vs Last Year</div></div>
-    <div class="combo-item"><div class="combo-pct pos">+$55,714</div><div class="combo-lbl">vs Budget</div></div>
+    <div class="combo-label">Period 5<br>To Date</div>
+    <div class="combo-item"><div class="combo-val">$3,734,271</div><div class="combo-lbl">PTD Actual</div></div>
+    <div class="combo-item"><div class="combo-val">$3,832,911</div><div class="combo-lbl">PTD Budget</div></div>
+    <div class="combo-item"><div class="combo-pct pos">+28.7% vs LY</div><div class="combo-lbl">vs Last Year</div></div>
+    <div class="combo-item"><div class="combo-pct neg">-$98,640</div><div class="combo-lbl">vs Budget</div></div>
   </div>
   <div class="combo-row">
     <div class="combo-label">Year<br>To Date</div>
-    <div class="combo-item"><div class="combo-val">$20,212,976</div><div class="combo-lbl">YTD Actual</div></div>
-    <div class="combo-item"><div class="combo-val">$20,716,662</div><div class="combo-lbl">YTD Budget</div></div>
-    <div class="combo-item"><div class="combo-pct pos">+31.6% vs LY</div><div class="combo-lbl">vs Last Year</div></div>
-    <div class="combo-item"><div class="combo-pct neg">-$503,686</div><div class="combo-lbl">vs Budget</div></div>
+    <div class="combo-item"><div class="combo-val">$21,438,440</div><div class="combo-lbl">YTD Actual</div></div>
+    <div class="combo-item"><div class="combo-val">$22,002,541</div><div class="combo-lbl">YTD Budget</div></div>
+    <div class="combo-item"><div class="combo-pct pos">+31.1% vs LY</div><div class="combo-lbl">vs Last Year</div></div>
+    <div class="combo-item"><div class="combo-pct neg">-$564,101</div><div class="combo-lbl">vs Budget</div></div>
   </div>
 </div>
 
