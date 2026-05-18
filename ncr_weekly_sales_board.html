@@ -6,33 +6,33 @@
 <title>NCR Weekly Sales</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f4f1ea; font-family: Arial, sans-serif; color: #0f1f3d; }
 body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px; }
 
 /* HEADER */
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-.brand { font-size: 22px; color: #e8a020; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 56px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 4px; }
-.week-label { font-size: 22px; color: #aab4cc; margin-top: 6px; }
-.date-badge { background: #e8a020; color: #0f1f3d; font-size: 28px; font-weight: bold; padding: 14px 32px; border-radius: 10px; text-align: center; line-height: 1.3; }
-.divider { height: 4px; background: #e8a020; margin: 14px 0 18px; border-radius: 2px; flex-shrink: 0; }
+.brand { font-size: 22px; color: #b8801a; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 56px; font-weight: bold; color: #0f1f3d; line-height: 1.05; margin-top: 4px; }
+.week-label { font-size: 22px; color: #6a7388; margin-top: 6px; }
+.date-badge { background: #0f1f3d; color: #e8a020; font-size: 28px; font-weight: bold; padding: 14px 32px; border-radius: 10px; text-align: center; line-height: 1.3; border: 2px solid #e8a020; }
+.divider { height: 4px; background: #0f1f3d; margin: 14px 0 18px; border-radius: 2px; flex-shrink: 0; }
 
 /* TOTAL CARD */
-.total-card { background: #1a3160; border: 2px solid #e8a020; border-radius: 12px; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; margin-bottom: 16px; }
+.total-card { background: #0f1f3d; border: 2px solid #e8a020; border-radius: 12px; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; margin-bottom: 16px; color: #fff; }
 .total-left { display: flex; flex-direction: column; }
-.total-label { font-size: 18px; color: #aab4cc; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
+.total-label { font-size: 18px; color: #e8a020; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
 .total-sales { font-size: 64px; font-weight: bold; color: #e8a020; line-height: 1; }
 .total-meta { display: flex; gap: 48px; }
 .meta-item { text-align: center; }
 .meta-val { font-size: 34px; font-weight: bold; color: #fff; }
 .meta-lbl { font-size: 18px; color: #aab4cc; margin-top: 6px; font-weight: bold; }
 .meta-pct { font-size: 30px; font-weight: bold; }
-.pos { color: #4cde88; }
-.neg { color: #ff5c5c; }
+.pos { color: #1e9e4f; }
+.neg { color: #c92525; }
 
 /* CONTENT */
 .content { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
-.section-head { font-size: 20px; color: #aab4cc; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
+.section-head { font-size: 20px; color: #6a7388; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; font-weight: bold; }
 .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -42,26 +42,26 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
 .east-block .grid4, .center-block .grid2, .south-block .grid3 { flex: 1; }
 .inner2 { height: 100%; }
 
-.loc-card { background: #162a52; border: 1px solid #2a4070; border-radius: 10px; padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
-.loc-card.dark { background: #0f2240; }
-.loc-card.darker { background: #141e38; }
-.loc-name { font-size: 22px; color: #e8a020; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 1px solid #2a4070; padding-bottom: 10px; }
-.loc-sales { font-size: 52px; font-weight: bold; color: #fff; line-height: 1; margin: 6px 0; }
+.loc-card { background: #fff; border: 1px solid #d8d2c4; border-radius: 10px; padding: 20px 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; box-shadow: 0 2px 6px rgba(15, 31, 61, 0.06); }
+.loc-card.dark { background: #faf7f0; }
+.loc-card.darker { background: #f7f4ec; }
+.loc-name { font-size: 22px; color: #0f1f3d; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 2px solid #e8a020; padding-bottom: 10px; }
+.loc-sales { font-size: 52px; font-weight: bold; color: #0f1f3d; line-height: 1; margin: 6px 0; }
 .loc-row { display: flex; justify-content: space-between; align-items: center; }
-.loc-sub { font-size: 18px; color: #aab4cc; }
+.loc-sub { font-size: 18px; color: #6a7388; }
 .loc-pct { font-size: 20px; font-weight: bold; padding: 5px 14px; border-radius: 4px; }
-.pos-bg { background: rgba(76,222,136,0.15); color: #4cde88; }
-.neg-bg { background: rgba(255,92,92,0.15); color: #ff5c5c; }
-.new-bg { background: rgba(232,160,32,0.18); color: #e8a020; }
+.pos-bg { background: rgba(30, 158, 79, 0.12); color: #1e9e4f; }
+.neg-bg { background: rgba(201, 37, 37, 0.12); color: #c92525; }
+.new-bg { background: rgba(232, 160, 32, 0.18); color: #b8801a; }
 
 /* COMBINED PTD + YTD BAR (one block, two rows) */
-.combo-summary { background: #1a3160; border-radius: 10px; border: 1px solid #2a4070; flex-shrink: 0; margin-top: 14px; overflow: hidden; }
+.combo-summary { background: #fff; border-radius: 10px; border: 2px solid #0f1f3d; flex-shrink: 0; margin-top: 14px; overflow: hidden; }
 .combo-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; }
-.combo-row + .combo-row { border-top: 1px solid #2a4070; }
-.combo-label { font-size: 18px; color: #e8a020; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; min-width: 200px; line-height: 1.15; }
+.combo-row + .combo-row { border-top: 1px solid #d8d2c4; background: #faf7f0; }
+.combo-label { font-size: 18px; color: #0f1f3d; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; min-width: 200px; line-height: 1.15; border-left: 4px solid #e8a020; padding-left: 12px; }
 .combo-item { text-align: center; }
-.combo-val { font-size: 28px; font-weight: bold; color: #fff; }
-.combo-lbl { font-size: 14px; color: #aab4cc; margin-top: 2px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+.combo-val { font-size: 28px; font-weight: bold; color: #0f1f3d; }
+.combo-lbl { font-size: 14px; color: #6a7388; margin-top: 2px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
 .combo-pct { font-size: 26px; font-weight: bold; }
 </style>
 </head>
@@ -92,11 +92,11 @@ body { padding: 36px 56px; display: flex; flex-direction: column; height: 1080px
       <div class="meta-lbl">2025 Actual</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct pos">+32.9% vs LY</div>
+      <div class="meta-pct pos" style="color:#4cde88">+32.9% vs LY</div>
       <div class="meta-lbl">vs Last Year</div>
     </div>
     <div class="meta-item">
-      <div class="meta-pct pos">+1.2% vs Budget</div>
+      <div class="meta-pct pos" style="color:#4cde88">+1.2% vs Budget</div>
       <div class="meta-lbl">vs Budget</div>
     </div>
   </div>
