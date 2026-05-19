@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>Cleveland — Now Hiring Floor Managers</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:1920px; height:1080px; overflow:hidden;
+    font-family:'Georgia','Times New Roman',serif;
+    background:#2b2622; color:#ffffff;
+  }
+  .stage {
+    width:1920px; height:1080px; position:relative;
+    background:
+      radial-gradient(ellipse at top right, rgba(233,134,56,0.35), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(213,107,39,0.28), transparent 55%),
+      radial-gradient(ellipse at center, rgba(233,134,56,0.08), transparent 70%),
+      #2b2622;
+  }
+
+  /* Spark overlay — subtle ember texture */
+  .embers {
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,180,80,0.5) 0%, transparent 2px),
+      radial-gradient(circle at 78% 32%, rgba(255,150,60,0.4) 0%, transparent 2px),
+      radial-gradient(circle at 24% 72%, rgba(255,200,100,0.45) 0%, transparent 2px),
+      radial-gradient(circle at 64% 84%, rgba(255,140,50,0.35) 0%, transparent 2px),
+      radial-gradient(circle at 92% 60%, rgba(255,180,80,0.4) 0%, transparent 2px),
+      radial-gradient(circle at 8% 48%, rgba(255,160,70,0.35) 0%, transparent 2px),
+      radial-gradient(circle at 42% 12%, rgba(255,190,90,0.4) 0%, transparent 2px),
+      radial-gradient(circle at 56% 58%, rgba(255,170,80,0.3) 0%, transparent 2px);
+    pointer-events:none;
+  }
+
+  /* Header */
+  .hdr {
+    padding:42px 80px 26px;
+    border-bottom:2px solid rgba(233,134,56,0.45);
+    display:flex; justify-content:space-between; align-items:center;
+    position:relative; z-index:2;
+  }
+  .brand {
+    font-family:'Georgia','Times New Roman',serif;
+    font-size:36px;
+    color:#e98638;
+    letter-spacing:2px;
+    font-weight:700;
+    line-height:1;
+  }
+  .brand-sub {
+    font-size:14px;
+    color:#c4bcb7;
+    letter-spacing:5px;
+    margin-top:8px;
+    text-transform:uppercase;
+    font-style:italic;
+    font-family:Arial, sans-serif;
+  }
+  .summer-tag {
+    text-align:right;
+  }
+  .summer-tag .sun {
+    font-size:18px;
+    color:#d56b27;
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+  }
+  .summer-tag .yr {
+    font-size:30px;
+    color:#e98638;
+    letter-spacing:4px;
+    font-style:italic;
+    margin-top:6px;
+    font-weight:700;
+  }
+
+  /* Hero — the headline */
+  .hero {
+    padding: 48px 80px 28px;
+    position:relative; z-index:2;
+    text-align:center;
+  }
+  .eyebrow {
+    font-size:22px;
+    letter-spacing:10px;
+    color:#d56b27;
+    text-transform:uppercase;
+    font-weight:700;
+    font-family:Arial, sans-serif;
+    margin-bottom:18px;
+  }
+  .headline {
+    font-size:108px;
+    font-family:'Georgia','Times New Roman',serif;
+    font-weight:700;
+    line-height:0.98;
+    letter-spacing:-1px;
+    color:#fff5e8;
+  }
+  .headline .fire {
+    color:#e98638;
+    font-style:italic;
+  }
+  .subhead {
+    font-size:30px;
+    margin-top:22px;
+    color:#e6d9ce;
+    font-family:Arial, sans-serif;
+    letter-spacing:1px;
+    font-weight:300;
+  }
+  .subhead strong {
+    color:#ffb766;
+    font-weight:700;
+  }
+
+  /* Three pillars row */
+  .pillars {
+    padding: 30px 80px 0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:32px;
+    position:relative; z-index:2;
+  }
+  .pillar {
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(233,134,56,0.35);
+    border-radius:14px;
+    padding:28px 30px 26px;
+    text-align:center;
+    position:relative;
+  }
+  .pillar-num {
+    position:absolute;
+    top:-22px; left:50%; transform:translateX(-50%);
+    background:#e98638;
+    color:#2b2622;
+    width:44px; height:44px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Georgia',serif;
+    font-size:24px; font-weight:700;
+  }
+  .pillar-head {
+    font-size:30px;
+    color:#ffb766;
+    font-family:'Georgia',serif;
+    font-weight:700;
+    letter-spacing:0.5px;
+    margin-bottom:10px;
+    font-style:italic;
+  }
+  .pillar-body {
+    font-size:19px;
+    color:#e6d9ce;
+    font-family:Arial, sans-serif;
+    line-height:1.4;
+  }
+
+  /* Track record — the proof line */
+  .proof {
+    margin: 32px 80px 0;
+    background: linear-gradient(90deg, rgba(233,134,56,0.18) 0%, rgba(213,107,39,0.25) 50%, rgba(233,134,56,0.18) 100%);
+    border-top:2px solid rgba(233,134,56,0.55);
+    border-bottom:2px solid rgba(233,134,56,0.55);
+    padding:22px 40px;
+    text-align:center;
+    position:relative; z-index:2;
+    border-radius:6px;
+  }
+  .proof-big {
+    font-size:48px;
+    color:#fff5e8;
+    font-family:'Georgia',serif;
+    font-weight:700;
+    letter-spacing:0.5px;
+    line-height:1.1;
+  }
+  .proof-big .six {
+    color:#e98638;
+    font-size:64px;
+    font-style:italic;
+    vertical-align:-3px;
+  }
+  .proof-sub {
+    font-size:18px;
+    color:#c4bcb7;
+    font-family:Arial,sans-serif;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-top:6px;
+  }
+
+  /* CTA bar */
+  .cta {
+    position:absolute;
+    bottom:0; left:0; right:0;
+    background:linear-gradient(180deg, rgba(43,38,34,0) 0%, #1f1b18 30%);
+    padding: 36px 80px 28px;
+    z-index:3;
+  }
+  .cta-inner {
+    display:flex; align-items:center; justify-content:space-between;
+    gap:40px;
+    background:#1f1b18;
+    border:2px solid #e98638;
+    border-radius:12px;
+    padding: 22px 36px;
+    box-shadow: 0 0 40px rgba(233,134,56,0.25);
+  }
+  .cta-left {
+    flex:1;
+  }
+  .cta-eyebrow {
+    font-size:14px;
+    letter-spacing:5px;
+    color:#d56b27;
+    text-transform:uppercase;
+    font-family:Arial,sans-serif;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .cta-line {
+    font-size:30px;
+    color:#fff5e8;
+    font-family:'Georgia',serif;
+    font-weight:700;
+    line-height:1.2;
+  }
+  .cta-line strong {
+    color:#e98638;
+    font-style:italic;
+  }
+  .cta-right {
+    text-align:right;
+    border-left:1px solid rgba(233,134,56,0.35);
+    padding-left:36px;
+  }
+  .cta-right-label {
+    font-size:13px;
+    letter-spacing:4px;
+    color:#c4bcb7;
+    text-transform:uppercase;
+    font-family:Arial,sans-serif;
+    margin-bottom:4px;
+  }
+  .cta-right-line {
+    font-size:24px;
+    color:#ffb766;
+    font-family:'Georgia',serif;
+    font-style:italic;
+    font-weight:700;
+  }
+  .cta-foot {
+    text-align:center;
+    font-size:13px;
+    letter-spacing:5px;
+    color:#7a6e63;
+    text-transform:uppercase;
+    font-family:Arial,sans-serif;
+    margin-top:14px;
+  }
+
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="embers"></div>
+
+  <div class="hdr">
+    <div>
+      <div class="brand">NCR VENTURES &mdash; CLEVELAND</div>
+      <div class="brand-sub">Lola&rsquo;s Bistro &middot; Bar Fuoco &middot; JoJo&rsquo;s Bar &middot; 17 River &middot; Cedar Creek &middot; Bar Italia &middot; The Lakehouse</div>
+    </div>
+    <div class="summer-tag">
+      <div class="sun">&#9788; Summer Hiring</div>
+      <div class="yr">2026</div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Ready to make the next move?</div>
+    <div class="headline">We&rsquo;re hiring <span class="fire">Floor&nbsp;Managers</span></div>
+    <div class="subhead">Hourly leadership roles at <strong>Lola&rsquo;s Bistro</strong> and <strong>Bar Fuoco</strong> &mdash; right now.</div>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-num">1</div>
+      <div class="pillar-head">Step up this summer</div>
+      <div class="pillar-body">Lead a section, run a shift, own the floor. Hourly &mdash; flexible &mdash; designed for people who want to grow.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">2</div>
+      <div class="pillar-head">Real path, real pace</div>
+      <div class="pillar-body">Floor manager today. Salaried FOH manager. AGM. GM. We promote from within because it works.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">3</div>
+      <div class="pillar-head">Two iconic rooms</div>
+      <div class="pillar-body">Lola&rsquo;s &mdash; Chagrin Falls fine dining. Bar Fuoco &mdash; the hottest pizza bar in town. Both growing fast.</div>
+    </div>
+  </div>
+
+  <div class="proof">
+    <div class="proof-big"><span class="six">6</span> &nbsp;of our current Cleveland managers started as hourly floor managers.</div>
+    <div class="proof-sub">This isn&rsquo;t marketing. It&rsquo;s the resume of half our leadership team.</div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <div class="cta-eyebrow">How to throw your hat in</div>
+        <div class="cta-line">Tell your <strong>GM</strong> you&rsquo;re interested. That&rsquo;s the whole first step.</div>
+      </div>
+      <div class="cta-right">
+        <div class="cta-right-label">Open at</div>
+        <div class="cta-right-line">Lola&rsquo;s Bistro<br/>Bar Fuoco</div>
+      </div>
+    </div>
+    <div class="cta-foot">If you want it, say so. We&rsquo;re watching for the ones who do.</div>
+  </div>
+
+</div>
+</body>
+</html>
