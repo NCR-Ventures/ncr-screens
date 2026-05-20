@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NCR Ventures &mdash; Employee Meal &amp; Dining Benefit</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1920px; height: 1080px;
+    background: #0f1f3d;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #fff;
+    overflow: hidden;
+  }
+  body {
+    padding: 32px 44px 22px 44px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ───── TOP BAR ───── */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid #e8a020;
+    padding-bottom: 12px;
+    flex-shrink: 0;
+  }
+  .brand-line {
+    font-size: 18px; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: #e8a020;
+  }
+  .sub-line {
+    font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    color: #9fb1cc; margin-top: 4px;
+  }
+  .week-block { text-align: right; }
+  .week-label {
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: #9fb1cc; margin-bottom: 4px;
+  }
+  .week-date {
+    font-size: 22px; font-weight: 700;
+    color: #e8a020; letter-spacing: .04em;
+  }
+
+  /* ───── HERO TITLE ───── */
+  .title-row { padding: 18px 0 12px 0; flex-shrink: 0; }
+  .eyebrow {
+    font-size: 15px; letter-spacing: .28em; text-transform: uppercase;
+    color: #e8a020; margin-bottom: 6px; font-weight: 700;
+  }
+  .title {
+    font-size: 58px; font-weight: 800; line-height: 1; letter-spacing: -.01em;
+  }
+  .title em { color: #e8a020; font-style: normal; }
+  .tagline {
+    font-size: 18px; color: #ccd6e6; margin-top: 8px; line-height: 1.35;
+  }
+
+  /* ───── ZONE GRID ───── */
+  .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 14px;
+    min-height: 0;
+  }
+  .zone {
+    background: #16294d;
+    border: 1px solid #2a3e63;
+    border-radius: 12px;
+    padding: 16px 18px 14px 18px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .zone-num {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #e8a020; color: #0f1f3d;
+    font-size: 20px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+  }
+  .zone-title {
+    font-size: 26px; font-weight: 800; line-height: 1.05; margin-bottom: 3px;
+  }
+  .zone-sub {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    color: #e8a020; margin-bottom: 12px; font-weight: 700;
+  }
+  .zone-body {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-between; gap: 8px;
+  }
+  .points {
+    display: flex; flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+  }
+  .point { display: flex; gap: 11px; align-items: flex-start; }
+  .point-icon {
+    flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%;
+    background: #e8a020; margin-top: 10px;
+  }
+  .point-text {
+    font-size: 18px; line-height: 1.45; color: #e8edf5;
+  }
+  .point-text b { color: #fff; font-weight: 700; }
+  .callout {
+    background: rgba(232, 160, 32, 0.12);
+    border-left: 3px solid #e8a020;
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-size: 15px; line-height: 1.42; color: #ffe2b3;
+    margin-top: 10px;
+  }
+  .callout b {
+    color: #e8a020; text-transform: uppercase; letter-spacing: .08em;
+    font-size: 12px; display: block; margin-bottom: 4px; font-weight: 800;
+  }
+
+  /* ───── RULE BAND ───── */
+  .rule-band {
+    margin-top: 12px;
+    background: linear-gradient(90deg, #e8a020 0%, #d68f0c 100%);
+    border-radius: 12px;
+    padding: 14px 26px;
+    display: flex; align-items: center; gap: 22px;
+    flex-shrink: 0;
+  }
+  .rule-icon { font-size: 36px; line-height: 1; flex-shrink: 0; }
+  .rule-body { flex: 1; }
+  .rule-headline {
+    font-size: 22px; font-weight: 800; color: #0f1f3d;
+    letter-spacing: .02em; line-height: 1.1;
+  }
+  .rule-sub {
+    font-size: 14px; color: #2d1f00; margin-top: 3px; line-height: 1.35;
+  }
+  .rule-sub b { font-weight: 800; }
+
+  /* ───── BLACKOUT STRIP ───── */
+  .blackout {
+    margin-top: 10px;
+    display: flex; gap: 8px;
+    flex-shrink: 0;
+  }
+  .black-pill {
+    flex: 1;
+    background: #0a1530;
+    border: 1px solid #2a3e63;
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .black-x { color: #d44; font-size: 17px; font-weight: 800; flex-shrink: 0; }
+  .black-text { font-size: 12px; color: #ccd6e6; line-height: 1.3; }
+  .black-text b { color: #fff; font-weight: 700; }
+
+  /* ───── FOOTER ───── */
+  .footer {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px solid #2a3e63;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .footer-q { font-size: 16px; color: #fff; }
+  .footer-q b {
+    color: #e8a020; font-weight: 800; letter-spacing: .03em;
+  }
+  .footer-brand {
+    font-size: 11px; color: #6e7d99;
+    letter-spacing: .14em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div>
+      <div class="brand-line">NCR Ventures &mdash; The Daily</div>
+      <div class="sub-line">Team Benefit Guide &middot; All Locations</div>
+    </div>
+    <div class="week-block">
+      <div class="week-label">Week of</div>
+      <div class="week-date" id="week-display"></div>
+    </div>
+  </div>
+
+  <div class="title-row">
+    <div class="eyebrow">A Perk Of Working Here</div>
+    <div class="title">Eat With Us. <em>It&rsquo;s On The House</em> &mdash; Or Pretty Close To It.</div>
+    <div class="tagline">Three ways the team eats at NCR Ventures. The rules are short. The food is good. Read this once and you&rsquo;re set.</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="zone">
+      <div class="zone-num">1</div>
+      <div class="zone-title">Family Meal</div>
+      <div class="zone-sub">Before Service &middot; On The House</div>
+      <div class="zone-body">
+        <div class="points">
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>Generally 10:30 AM and 4:00 PM</b> at most locations, before the doors open.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">Could be <b>eggs and hashbrowns.</b> Could be <b>spaghetti marinara.</b> Whatever the kitchen made for the team that day.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">It&rsquo;s <b>for you.</b> No charge. No paperwork. Sit down and eat before your shift.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">Not every store every day &mdash; ask your GM about your location&rsquo;s schedule.</div></div>
+        </div>
+        <div class="callout">
+          <b>The Idea</b>
+          We feed each other before we feed the guests. Show up hungry.
+        </div>
+      </div>
+    </div>
+
+    <div class="zone">
+      <div class="zone-num">2</div>
+      <div class="zone-title">Shift Meal</div>
+      <div class="zone-sub">On The Clock &middot; 50% Off</div>
+      <div class="zone-body">
+        <div class="points">
+          <div class="point"><div class="point-icon"></div><div class="point-text">Work a shift of <b>4.5 hours or more</b> and you get <b>one item at 50% off</b> the menu.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>Pay when you order.</b> Don&rsquo;t leave without paying &mdash; the next one will be full price.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>Not between 6&ndash;8 PM.</b> That&rsquo;s the rush. Eat before or after.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">To-go after shift: <b>one item.</b> On a day off: <b>two items.</b> Manager rings it in.</div></div>
+        </div>
+        <div class="callout">
+          <b>Heads Up</b>
+          Food only. No kids&rsquo; menu, no happy hour items, no alcohol discount &mdash; 21 and up, 2-drink limit.
+        </div>
+      </div>
+    </div>
+
+    <div class="zone">
+      <div class="zone-num">3</div>
+      <div class="zone-title">Dine With Us</div>
+      <div class="zone-sub">Off The Clock &middot; Up To 50% Off</div>
+      <div class="zone-body">
+        <div class="points">
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>You alone:</b> 50% off food. <b>You + 1:</b> 50%. <b>You + 2:</b> 30%. <b>You + 3:</b> 25%.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">Visit <b>any NCR location</b> &mdash; 17 River, JoJo&rsquo;s, Lola&rsquo;s, Lakehouse, every Bar Italia, Beachwood, Arlington.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">You need: <b>1 month employed, 3 shifts/week average, good standing.</b></div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>Table only, off the clock.</b> Not at the bar. Be a guest, not staff.</div></div>
+        </div>
+        <div class="callout">
+          <b>Fine Print</b>
+          Alcohol not discounted. 20% gratuity on the pre-discount total. You represent us &mdash; act like it.
+        </div>
+      </div>
+    </div>
+
+    <div class="zone" style="background:#1a3055;border:2px solid #e8a020;">
+      <div class="zone-num" style="background:#fff;color:#0f1f3d;">!</div>
+      <div class="zone-title" style="color:#e8a020;">The Reservation Rule</div>
+      <div class="zone-sub" style="color:#fff;">Read This Carefully</div>
+      <div class="zone-body">
+        <div class="points">
+          <div class="point"><div class="point-icon"></div><div class="point-text">There is <b>one way</b> to book the dining discount. <b>Just one.</b></div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>1.</b> You call your GM.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>2.</b> Your GM calls the GM where you&rsquo;re dining.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text"><b>3.</b> That GM books it as an employee reservation.</div></div>
+          <div class="point"><div class="point-icon"></div><div class="point-text">No OpenTable. No Resy. No walking up to the host. No texting a friend who works there.</div></div>
+        </div>
+        <div class="callout" style="background:rgba(212,68,68,0.18);border-left-color:#d44;color:#ffd4d4;">
+          <b style="color:#ff6b6b;">If You Skip This</b>
+          You pay full price. No retroactive discount &mdash; ever.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule-band">
+    <div class="rule-icon">&#9742;</div>
+    <div class="rule-body">
+      <div class="rule-headline">GM To GM. By Phone. Every Time.</div>
+      <div class="rule-sub">That call is the whole secret. Make it at least 24 hours ahead. <b>Not Fri/Sat 5&ndash;9 PM. Not holidays.</b> Patio seats need approval.</div>
+    </div>
+  </div>
+
+  <div class="blackout">
+    <div class="black-pill">
+      <div class="black-x">&#10005;</div>
+      <div class="black-text"><b>Holidays</b> &mdash; benefit closed</div>
+    </div>
+    <div class="black-pill">
+      <div class="black-x">&#10005;</div>
+      <div class="black-text"><b>Fri/Sat 5&ndash;9 PM</b> &mdash; no reservations</div>
+    </div>
+    <div class="black-pill">
+      <div class="black-x">&#10005;</div>
+      <div class="black-text"><b>Bar seating</b> &mdash; tables only</div>
+    </div>
+    <div class="black-pill">
+      <div class="black-x">&#10005;</div>
+      <div class="black-text"><b>Private events</b> &mdash; never discounted</div>
+    </div>
+    <div class="black-pill">
+      <div class="black-x">&#10005;</div>
+      <div class="black-text"><b>Online bookings</b> &mdash; no discount applies</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-q">Questions? <b>Ask your GM.</b> &nbsp;&middot;&nbsp; The benefit is a privilege &mdash; show up like a guest, leave like one too.</div>
+    <div class="footer-brand">NCR Ventures &middot; Engaging Souls &middot; 2026</div>
+  </div>
+
+<script>
+  var now = new Date();
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var monday = new Date(now);
+  var day = now.getDay();
+  var diff = day === 0 ? -6 : 1 - day;
+  monday.setDate(now.getDate() + diff);
+  var sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  document.getElementById('week-display').textContent =
+    months[monday.getMonth()] + ' ' + monday.getDate() + ' - ' + sunday.getDate() + ', ' + sunday.getFullYear();
+</script>
+
+</body>
+</html>
