@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NCR Ventures — Summer Operations Intern</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; font-family: 'Helvetica Neue', Arial, sans-serif; background: #0f1f3d; color: #fff; }
+
+  .slide {
+    width: 1920px; height: 1080px;
+    background: linear-gradient(135deg, #0f1f3d 0%, #142a52 55%, #0f1f3d 100%);
+    display: flex; flex-direction: column;
+    padding: 48px 64px;
+    position: relative;
+  }
+
+  /* HEADER STRIP */
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 3px solid #e8a020;
+    padding-bottom: 20px;
+  }
+  .brand { font-size: 22px; letter-spacing: 5px; color: #e8a020; font-weight: 700; text-transform: uppercase; }
+  .tag { font-size: 22px; letter-spacing: 4px; color: #aab4cc; text-transform: uppercase; font-weight: 600; }
+
+  /* TITLE */
+  .title-block { margin-top: 28px; }
+  .eyebrow { font-size: 28px; letter-spacing: 8px; color: #e8a020; font-weight: 700; text-transform: uppercase; }
+  .title { font-size: 96px; font-weight: 800; line-height: 1.0; margin-top: 8px; letter-spacing: -1px; }
+  .subtitle { font-size: 30px; color: #aab4cc; margin-top: 14px; font-weight: 500; }
+
+  /* MAIN GRID */
+  .main { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; margin-top: 30px; flex: 1; min-height: 0; }
+
+  .col { display: flex; flex-direction: column; min-height: 0; }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,160,32,0.25);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex; flex-direction: column;
+  }
+  .card + .card { margin-top: 18px; }
+  .card-title {
+    font-size: 22px; letter-spacing: 4px; color: #e8a020;
+    font-weight: 700; text-transform: uppercase;
+    border-bottom: 2px solid rgba(232,160,32,0.4);
+    padding-bottom: 10px; margin-bottom: 14px;
+  }
+
+  /* LEFT COLUMN — THE JOB */
+  .pitch { flex: 1.3; justify-content: space-between; }
+  .pitch p { font-size: 26px; line-height: 1.42; color: #f4f6fb; }
+  .pitch p + p { margin-top: 14px; }
+  .pitch .punch { color: #e8a020; font-weight: 700; }
+
+  .duties { flex: 1; }
+  .duties ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 22px; }
+  .duties li {
+    font-size: 21px; color: #f4f6fb; line-height: 1.35;
+    padding-left: 22px; position: relative;
+  }
+  .duties li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 10px; height: 10px; background: #e8a020; border-radius: 50%;
+  }
+
+  /* RIGHT COLUMN */
+  .facts { flex: 0 0 auto; }
+  .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+  .fact { display: flex; flex-direction: column; }
+  .fact-label { font-size: 14px; letter-spacing: 2.5px; color: #aab4cc; text-transform: uppercase; font-weight: 700; }
+  .fact-value { font-size: 24px; color: #fff; margin-top: 4px; font-weight: 600; line-height: 1.2; }
+
+  .need { flex: 1; }
+  .need ul { list-style: none; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+  .need li {
+    font-size: 21px; color: #f4f6fb; line-height: 1.3;
+    padding-left: 26px; position: relative;
+  }
+  .need li + li { margin-top: 10px; }
+  .need li::before {
+    content: "✓"; position: absolute; left: 0; top: 0;
+    color: #4cde88; font-weight: 800; font-size: 22px;
+  }
+
+  /* APPLY STRIP */
+  .apply {
+    margin-top: 22px;
+    background: #e8a020; color: #0f1f3d;
+    border-radius: 16px;
+    padding: 24px 36px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .apply-left { display: flex; flex-direction: column; }
+  .apply-eyebrow { font-size: 18px; letter-spacing: 5px; font-weight: 800; text-transform: uppercase; opacity: 0.85; }
+  .apply-text { font-size: 32px; font-weight: 800; margin-top: 4px; line-height: 1.15; }
+  .apply-email { font-size: 48px; font-weight: 900; letter-spacing: -0.5px; }
+
+  /* FOOTER STRIP */
+  .footer {
+    margin-top: 18px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 16px; letter-spacing: 3px; color: #aab4cc; text-transform: uppercase; font-weight: 600;
+  }
+  .footer .dot { color: #e8a020; margin: 0 14px; }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">NCR Ventures &nbsp;&middot;&nbsp; The Daily</div>
+    <div class="tag">We're Hiring</div>
+  </div>
+
+  <!-- TITLE -->
+  <div class="title-block">
+    <div class="eyebrow">Summer 2026 &nbsp;&middot;&nbsp; Home Office</div>
+    <div class="title">Summer Operations Intern</div>
+    <div class="subtitle">See and learn how a ten-restaurant company actually runs.</div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- LEFT -->
+    <div class="col">
+
+      <div class="card pitch">
+        <div class="card-title">The Job, Straight Up</div>
+        <p><span class="punch">60% runner, 40% exposure.</span> Errands, printing, filing, driving — plus a seat at the home office watching how operations, finance, HR, and the Arlington Grille opening come together.</p>
+        <p>If you want a clean, structured internship with a defined curriculum, this is not it. If you want to learn how a real multi-unit restaurant company runs, this is the seat.</p>
+      </div>
+
+      <div class="card duties">
+        <div class="card-title">What You'll Actually Do</div>
+        <ul>
+          <li>Run between Chagrin Falls and Arlington Grille in Columbus</li>
+          <li>Print, scan, file, organize — paper and digital</li>
+          <li>Set up L-10s, manager lunches, and home office meetings</li>
+          <li>Light R365 and spreadsheet data entry</li>
+          <li>Support the Arlington Grille pre-opening punch list</li>
+          <li>Help reconcile receipts, AmEx coding, and expenses</li>
+          <li>Vendor file organization and W-9 collection</li>
+          <li>Sit in on select home office meetings as a fly on the wall</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col">
+
+      <div class="card facts">
+        <div class="card-title">The Basics</div>
+        <div class="facts-grid">
+          <div class="fact">
+            <div class="fact-label">Reports To</div>
+            <div class="fact-value">Tim Davin &amp; Tony Ciuprinkas</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Based In</div>
+            <div class="fact-value">Chagrin Falls, OH</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Duration</div>
+            <div class="fact-value">May/June – August 2026</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Status</div>
+            <div class="fact-value">Part-time or full-time</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Pay</div>
+            <div class="fact-value">Hourly + IRS mileage</div>
+          </div>
+          <div class="fact">
+            <div class="fact-label">Travel</div>
+            <div class="fact-value">Columbus &amp; back same day</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card need">
+        <div class="card-title">What You Need</div>
+        <ul>
+          <li>Valid license, clean record, reliable vehicle</li>
+          <li>Comfortable on a computer — Office, Google, printers</li>
+          <li>Organized and follows through without being chased</li>
+          <li>Discreet — you'll hear things that stay in the building</li>
+          <li>College student or recent grad preferred, not required</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- APPLY -->
+  <div class="apply">
+    <div class="apply-left">
+      <div class="apply-eyebrow">How to Apply</div>
+      <div class="apply-text">Send a resume + short paragraph telling us why you want this job</div>
+    </div>
+    <div class="apply-email">tim@ncrventures.com</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>Know someone? Send them our way.</div>
+    <div>NCR Ventures <span class="dot">&middot;</span> Engaging Souls <span class="dot">&middot;</span> 1% Better Every Day</div>
+  </div>
+
+</div>
+</body>
+</html>
