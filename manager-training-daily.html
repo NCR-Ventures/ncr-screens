@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Daily — Manager Training Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #1a1a1a;
+    --charcoal-2: #2a2a2a;
+    --gold: #c9a14a;
+    --gold-bright: #e6bf6a;
+    --bone: #f4ede1;
+    --bone-2: #ebe2d2;
+    --rule: #3a3a3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; }
+  body {
+    background: var(--charcoal);
+    color: var(--bone);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+  }
+
+  /* Subtle vignette + grain feel */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0) 60%);
+    pointer-events: none;
+  }
+
+  .stage {
+    width: 1920px;
+    height: 1080px;
+    padding: 56px 80px 48px 80px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* Masthead */
+  .masthead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+    padding-bottom: 18px;
+  }
+  .masthead .left { display: flex; align-items: baseline; gap: 28px; }
+  .nameplate {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 84px;
+    color: var(--bone);
+    letter-spacing: -1px;
+    line-height: 0.95;
+  }
+  .nameplate .dot { color: var(--gold); }
+  .tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-bottom: 14px;
+  }
+  .masthead .right {
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bone-2);
+    padding-bottom: 14px;
+    line-height: 1.6;
+  }
+  .masthead .right .vol { color: var(--gold); font-weight: 700; }
+
+  /* Body grid */
+  .grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 56px;
+    padding-top: 36px;
+    min-height: 0;
+  }
+
+  /* LEFT — headline + lede */
+  .left-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 130px;
+    line-height: 0.92;
+    color: var(--bone);
+    letter-spacing: -3px;
+  }
+  .headline .accent { color: var(--gold); }
+
+  .lede {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    line-height: 1.42;
+    color: var(--bone-2);
+    margin-top: 32px;
+    max-width: 1000px;
+  }
+  .lede strong { color: var(--bone); font-weight: 700; }
+
+  .pull {
+    margin-top: 28px;
+    padding: 22px 28px;
+    border-left: 5px solid var(--gold);
+    background: rgba(201, 161, 74, 0.06);
+  }
+  .pull p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.35;
+    color: var(--bone);
+  }
+  .pull .attrib {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 12px;
+    display: block;
+  }
+
+  /* RIGHT — session card + topics */
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-height: 0;
+  }
+
+  .session-card {
+    background: var(--bone);
+    color: var(--charcoal);
+    border: 2px solid var(--gold);
+    padding: 28px 32px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  }
+  .date-block {
+    text-align: center;
+    border-right: 2px solid var(--charcoal);
+    padding-right: 28px;
+    flex-shrink: 0;
+  }
+  .date-block .dow {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .date-block .day {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 1;
+    color: var(--gold);
+    margin: 4px 0;
+  }
+  .date-block .month {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .session-meta { flex: 1; }
+  .session-meta .session-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .session-meta .title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .session-meta .when {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--charcoal-2);
+  }
+  .session-meta .when .channel {
+    color: var(--gold);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  .who {
+    background: var(--charcoal-2);
+    border: 1px solid var(--rule);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .who .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .who .body {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--bone);
+    line-height: 1.4;
+  }
+  .who .body strong { color: var(--bone); font-weight: 700; }
+
+  .topics {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .topics-header {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .topics-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 22px;
+    align-content: space-around;
+  }
+  .topic {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 4px 0;
+  }
+  .topic .num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--gold);
+    width: 30px;
+    flex-shrink: 0;
+  }
+  .topic .name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bone);
+    line-height: 1.2;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .values {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--bone-2);
+    letter-spacing: 0.5px;
+  }
+  .values .sep { color: var(--gold); margin: 0 14px; font-weight: 700; }
+  .imprint {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="left">
+      <div class="nameplate">The Daily<span class="dot">.</span></div>
+      <div class="tagline">NCR Ventures · For the Team</div>
+    </div>
+    <div class="right">
+      <div><span class="vol">VOL. I · NO. 001</span></div>
+      <div>Thursday · May 22, 2026</div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="grid">
+
+    <!-- LEFT -->
+    <section class="left-col">
+      <div>
+        <div class="eyebrow">Announcing</div>
+        <h1 class="headline">The Manager<br>Training <span class="accent">Program.</span></h1>
+
+        <p class="lede">
+          A new rhythm starts this June. <strong>Every manager</strong> in every NCR Ventures building — GMs, Managing Partners, AGMs, Chefs, Sous Chefs, FOH Managers — in the same room, on the same Teams call, learning the same things at the same time.
+        </p>
+
+        <div class="pull">
+          <p>"Know your bonus. Before the check arrives."</p>
+          <span class="attrib">Session No. 1 — June 4</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT -->
+    <section class="right-col">
+
+      <!-- Session card -->
+      <div class="session-card">
+        <div class="date-block">
+          <div class="dow">Thu</div>
+          <div class="day">4</div>
+          <div class="month">June</div>
+        </div>
+        <div class="session-meta">
+          <div class="session-eyebrow">Session No. 1</div>
+          <div class="title">How Your Bonus Works</div>
+          <div class="when">2:00 PM <span class="channel">· Microsoft Teams</span></div>
+        </div>
+      </div>
+
+      <!-- Who -->
+      <div class="who">
+        <div class="label">Who</div>
+        <div class="body"><strong>The full manager team.</strong> GMs, MPs, Chefs, AGMs, FOH Managers, Sous Chefs.</div>
+      </div>
+
+      <!-- Topics coming up -->
+      <div class="topics">
+        <div class="topics-header">What's Coming Up</div>
+        <div class="topics-grid">
+          <div class="topic"><span class="num">01</span><span class="name">How Your Bonus Works</span></div>
+          <div class="topic"><span class="num">02</span><span class="name">Reading a P&amp;L</span></div>
+          <div class="topic"><span class="num">03</span><span class="name">Hard Conversations</span></div>
+          <div class="topic"><span class="num">04</span><span class="name">The Cost of Turnover</span></div>
+          <div class="topic"><span class="num">05</span><span class="name">One on Ones</span></div>
+          <div class="topic"><span class="num">06</span><span class="name">The Manager Log</span></div>
+          <div class="topic"><span class="num">07</span><span class="name">Unreasonable Hospitality</span></div>
+          <div class="topic"><span class="num">08</span><span class="name">Keeping the Main Thing</span></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="values">
+      Engage souls<span class="sep">·</span>Be unreasonable<span class="sep">·</span>Own it<span class="sep">·</span>1% better<span class="sep">·</span>Protect the standard
+    </div>
+    <div class="imprint">The Daily · NCR Ventures</div>
+  </footer>
+
+</div>
+</body>
+</html>
