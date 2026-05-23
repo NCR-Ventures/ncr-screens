@@ -224,7 +224,7 @@
   }
   .topic .name {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--bone);
     line-height: 1.2;
@@ -234,13 +234,14 @@
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--gold);
     flex-shrink: 0;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border: 1px solid var(--gold);
     border-radius: 2px;
+    white-space: nowrap;
   }
   .topic.done .num { color: #6a6a6a; }
   .topic.done .name { color: #8a8a8a; }
@@ -254,8 +255,25 @@
     color: var(--charcoal);
     border-color: var(--gold);
   }
+  .topic.mandatory .name { color: var(--bone); }
+  .topic.mandatory .status {
+    background: #8a2a2a;
+    color: var(--bone);
+    border-color: #8a2a2a;
+  }
   .topic.guest .name { font-style: italic; }
   .topic.guest .num { color: var(--gold-bright); }
+  .topic .name .sub {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--bone-2);
+    letter-spacing: 0.3px;
+    margin-left: 8px;
+  }
+  .topic.done .name .sub { color: #6a6a6a; }
+  .topic.mandatory .name .sub { color: #d99090; font-weight: 600; }
 
   .footer {
     margin-top: 24px;
@@ -522,12 +540,12 @@
           <div class="topics-header">The Program · So Far &amp; What's Ahead</div>
           <div class="topics-list">
             <div class="topic done"><span class="num">01</span><span class="name">Reading a P&amp;L · 5-Week Series</span><span class="status">✓ Done</span></div>
-            <div class="topic next"><span class="num">02</span><span class="name">How Your Bonus Works</span><span class="status">Jun 4</span></div>
-            <div class="topic"><span class="num">03</span><span class="name">HR &amp; The Workplace</span></div>
-            <div class="topic"><span class="num">04</span><span class="name">The Daily Routine · Lights, Camera, Action</span></div>
-            <div class="topic"><span class="num">05</span><span class="name">The Line Check · And Why It Matters</span></div>
-            <div class="topic"><span class="num">06</span><span class="name">The Cost of Turnover</span></div>
-            <div class="topic guest"><span class="num">07</span><span class="name">Guest Presenters · Topics You Choose</span></div>
+            <div class="topic next"><span class="num">02</span><span class="name">How Your Bonus Works</span><span class="status">Jun 4 · 2 PM</span></div>
+            <div class="topic"><span class="num">03</span><span class="name">The Daily Routine · Lights, Camera, Action <em class="sub">+ Line Check</em></span><span class="status">Jun 23 · 10 AM</span></div>
+            <div class="topic mandatory"><span class="num">04</span><span class="name">HR &amp; The Workplace <em class="sub">· Mandatory · Annual Sign-Off</em></span><span class="status">Jul 9 · 2 PM</span></div>
+            <div class="topic"><span class="num">05</span><span class="name">Hiring Practices &amp; The Cost of Turnover</span><span class="status">TBD</span></div>
+            <div class="topic"><span class="num">06</span><span class="name">One on Ones &amp; The Difficult Conversation</span><span class="status">TBD</span></div>
+            <div class="topic guest"><span class="num">07</span><span class="name">Training the Trainers · Time with Tony</span><span class="status">TBD</span></div>
           </div>
         </div>
       </section>
