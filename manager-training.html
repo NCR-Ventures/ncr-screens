@@ -405,10 +405,10 @@
   .hero-body {
     flex: 1;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 80px;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 60px;
     align-items: center;
-    padding: 40px 0;
+    padding: 30px 0;
   }
 
   /* Big calendar block */
@@ -450,10 +450,10 @@
   .calendar .day {
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 900;
-    font-size: 380px;
+    font-size: 320px;
     line-height: 1;
     color: var(--gold);
-    margin: -20px 0 -30px 0;
+    margin: -10px 0 -20px 0;
     letter-spacing: -10px;
   }
   .calendar .year {
@@ -468,7 +468,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 32px;
+    gap: 18px;
   }
   .hero-right .pretitle {
     font-family: 'Inter', sans-serif;
@@ -482,12 +482,118 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 900;
-    font-size: 130px;
+    font-size: 96px;
     line-height: 0.9;
     color: var(--bone);
     letter-spacing: -3px;
   }
   .hero-title .accent { color: var(--gold); }
+
+  .agenda-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .block {
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
+    padding: 22px 26px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--rule);
+    border-left: 5px solid var(--gold);
+  }
+  .block-time {
+    flex-shrink: 0;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--rule);
+    padding-right: 26px;
+  }
+  .block-time .t-start {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: 48px;
+    color: var(--gold-bright);
+    line-height: 1;
+  }
+  .block-time .t-divider {
+    display: none;
+  }
+  .block-time .t-end {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bone-2);
+    margin-top: 4px;
+  }
+  .block-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .block-content .block-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .block-content .block-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.1;
+    color: var(--bone);
+    margin-bottom: 6px;
+  }
+  .block-content .block-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--bone-2);
+  }
+
+  .hero-meta-compact {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    margin-top: 4px;
+  }
+  .hero-meta-compact .m-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .hero-meta-compact .m-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .hero-meta-compact .m-val {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--bone);
+  }
+  .hero-meta-compact .m-sep {
+    color: var(--gold);
+    font-weight: 700;
+  }
 
   .hero-meta {
     display: flex;
@@ -594,7 +700,7 @@
           <div class="topics-header">The Program · So Far &amp; What's Ahead</div>
           <div class="topics-list">
             <div class="topic done"><span class="num">01</span><span class="name">Reading a P&amp;L · 5-Week Series</span><span class="status">✓ Done</span></div>
-            <div class="topic next"><span class="num">02</span><span class="name">How Your Bonus Works</span><span class="status">Jun 4 · 2 PM</span></div>
+            <div class="topic next"><span class="num">02</span><span class="name">Training Website + How Your Bonus Works</span><span class="status">Jun 4 · 2 PM</span></div>
             <div class="topic"><span class="num">03</span><span class="name">The Daily Routine · Lights, Camera, Action <em class="sub">+ Line Check</em></span><span class="status">Jun 23 · 10 AM</span></div>
             <div class="topic mandatory"><span class="num">04</span><span class="name">HR &amp; The Workplace <em class="sub">· Mandatory · Annual Sign-Off · OH + FL</em></span><span class="status">Jul 9 · 2 PM</span></div>
             <div class="topic"><span class="num">05</span><span class="name">Hiring Practices &amp; The Cost of Turnover</span><span class="status">TBD</span></div>
@@ -639,29 +745,48 @@
         </div>
 
         <div class="hero-right">
-          <div class="pretitle">Session No. 2</div>
-          <h1 class="hero-title">How Your<br>Bonus <span class="accent">Works.</span></h1>
+          <div class="pretitle">Session No. 2 · One Hour · Two Topics</div>
+          <h1 class="hero-title">Manager<br><span class="accent">Training.</span></h1>
 
-          <div class="hero-meta">
-            <div class="meta-row">
-              <div class="label">Time</div>
-              <div class="value"><strong>2:00 PM</strong></div>
+          <div class="agenda-blocks">
+            <div class="block">
+              <div class="block-time">
+                <span class="t-start">2:00</span>
+                <span class="t-divider">·</span>
+                <span class="t-end">2:30 PM</span>
+              </div>
+              <div class="block-content">
+                <div class="block-num">Topic 01</div>
+                <div class="block-title">The Manager Training Website</div>
+                <div class="block-desc">What it is. How it works. What lives there. SOPs, Tip Network, R365, tech troubleshooting — all in one place.</div>
+              </div>
             </div>
-            <div class="meta-row">
-              <div class="label">Where</div>
-              <div class="value">Microsoft Teams · Video</div>
+
+            <div class="block">
+              <div class="block-time">
+                <span class="t-start">2:30</span>
+                <span class="t-divider">·</span>
+                <span class="t-end">3:00 PM</span>
+              </div>
+              <div class="block-content">
+                <div class="block-num">Topic 02</div>
+                <div class="block-title">How Your Bonus Works</div>
+                <div class="block-desc">The six categories. The 2026 scoring. What hits your check.</div>
+              </div>
             </div>
-            <div class="meta-row">
-              <div class="label">Who</div>
-              <div class="value">The full manager team</div>
-            </div>
+          </div>
+
+          <div class="hero-meta-compact">
+            <span class="m-item"><span class="m-label">Where</span><span class="m-val">Microsoft Teams · Video</span></span>
+            <span class="m-sep">·</span>
+            <span class="m-item"><span class="m-label">Who</span><span class="m-val">All salaried managers</span></span>
           </div>
         </div>
 
       </div>
 
       <div class="hero-footer">
-        <div class="left-line">Know your bonus. <span class="accent">Before the check arrives.</span></div>
+        <div class="left-line">Know the tools. <span class="accent">Know your bonus.</span></div>
         <div class="right-line">Manager Training · NCR Ventures</div>
       </div>
 
