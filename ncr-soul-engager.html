@@ -8,166 +8,130 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; font-family: Arial, sans-serif; color: #1a1a1a; }
 .slideshow { width: 1920px; height: 1080px; position: relative; }
-.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; display: none; flex-direction: column; padding: 48px 64px; background: #fff; }
+.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; display: none; flex-direction: column; padding: 40px 64px 60px 64px; background: #fff; }
 .slide.active { display: flex; }
-.slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #1a4a8a; padding-bottom: 20px; margin-bottom: 28px; flex-shrink: 0; }
+.slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #1a4a8a; padding-bottom: 16px; margin-bottom: 24px; flex-shrink: 0; }
 .header-left { display: flex; flex-direction: column; }
 .slide-brand { font-size: 20px; color: #1a4a8a; letter-spacing: 4px; text-transform: uppercase; font-weight: bold; }
-.slide-title { font-size: 52px; font-weight: bold; color: #1a4a8a; line-height: 1.1; }
-.slide-week { font-size: 22px; color: #888; margin-top: 4px; }
+.slide-title { font-size: 48px; font-weight: bold; color: #1a4a8a; line-height: 1.1; }
+.slide-week { font-size: 22px; color: #e8a020; margin-top: 4px; font-weight: bold; }
 .slide-counter { font-size: 22px; color: #aaa; text-align: right; }
-.engager-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex: 1; }
-.engager-card { background: #f0f6ff; border-left: 6px solid #1a4a8a; border-radius: 8px; padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; }
+.engager-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 18px; flex: 1; min-height: 0; }
+.engager-card { background: #f0f6ff; border-left: 6px solid #1a4a8a; border-radius: 8px; padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
 .engager-card.gm-moment { background: #fff8ee; border-left: 6px solid #e8a020; }
-.engager-name { font-size: 42px; font-weight: bold; color: #1a4a8a; margin-bottom: 6px; }
+.engager-name { font-size: 36px; font-weight: bold; color: #1a4a8a; margin-bottom: 4px; line-height: 1.1; }
 .engager-card.gm-moment .engager-name { color: #c47a00; }
-.engager-location { font-size: 24px; color: #e8a020; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.engager-location { font-size: 20px; color: #e8a020; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
 .engager-card.gm-moment .engager-location { color: #1a4a8a; }
-.engager-quote { font-size: 28px; color: #333; line-height: 1.5; }
-.engager-emoji { font-size: 28px; margin-top: 10px; }
-.item-list { display: flex; flex-direction: column; gap: 24px; flex: 1; justify-content: center; }
-.item-card { border-radius: 10px; padding: 28px 32px; display: flex; align-items: flex-start; gap: 24px; }
+.engager-quote { font-size: 24px; color: #333; line-height: 1.4; }
+.engager-emoji { font-size: 26px; margin-top: 8px; }
+.item-list { display: flex; flex-direction: column; gap: 20px; flex: 1; justify-content: center; min-height: 0; }
+.item-card { border-radius: 10px; padding: 24px 28px; display: flex; align-items: flex-start; gap: 24px; }
 .item-card.success { background: #f0f6ff; border-left: 8px solid #1a4a8a; }
 .item-card.opportunity { background: #fff8ee; border-left: 8px solid #e8a020; }
-.item-number { font-size: 120px; font-weight: bold; color: #1a4a8a; min-width: 140px; line-height: 1; opacity: 0.9; }
+.item-number { font-size: 100px; font-weight: bold; color: #1a4a8a; min-width: 120px; line-height: 1; opacity: 0.9; }
 .item-number.opp { color: #e8a020; }
 .item-content { flex: 1; }
-.item-heading { font-size: 38px; font-weight: bold; color: #1a4a8a; margin-bottom: 14px; line-height: 1.2; }
+.item-heading { font-size: 34px; font-weight: bold; color: #1a4a8a; margin-bottom: 12px; line-height: 1.2; }
 .item-heading.opp { color: #c47a00; }
-.item-body { font-size: 30px; color: #444; line-height: 1.6; }
-.closing-card { background: #1a4a8a; border-radius: 16px; padding: 56px 72px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.closing-quote { font-size: 30px; color: #fff; line-height: 1.7; max-width: 1500px; margin-bottom: 40px; }
-.closing-tagline { font-size: 40px; font-weight: bold; color: #e8a020; letter-spacing: 2px; }
+.item-body { font-size: 26px; color: #444; line-height: 1.55; }
 .progress-bar { position: fixed; bottom: 0; left: 0; height: 6px; background: #1a4a8a; transition: width 0.1s linear; }
 </style>
 </head>
 <body>
-
-<!-- ============================================================
-NCR VENTURES SOUL ENGAGER SLIDESHOW — TEMPLATE
-Source: ReviewPush PDF (last 7 days of reviews)
-Companion file: soul-engager-RULES.md (read this for editorial logic)
-
-PLACEHOLDERS — replace each week:
-  5.17.26    e.g. 4.26
-  Mother's Day Held, Andre Owned Easton     short editorial phrase, e.g. Patios Filling, Volume Climbing
-  6     usually 5 or 6 depending on engager card volume
-
-  Engager cards (per card):
-    {{NAME}}, {{LOCATION}}, {{QUOTE}}, {{EMOJI}}
-
-  Did Right / Opportunities (per card):
-    {{TITLE}}, {{BODY}}
-
-  Closing slide:
-    Mother's Day is the test we have to pass every year. This year we passed it across the company. The wins were earned by servers who held standards on the busiest day on the calendar. The losses were small things — a slow greet, a slow course, a tired salad. Fix the small things. Hold the big ones.
-
-SLIDE COUNT — flex by week:
-  - Light week (12-15 named staff):   2 engager + 1 wins + 1 opps + 1 closing = 5 slides
-  - Standard week (16-22 named staff): 3 engager + 1 wins + 1 opps + 1 closing = 6 slides
-  - Heavy week (23+ named staff):     consider grouping per rules; max 3 engager slides
-
-CLOSER TAGLINE IS LOCKED — DO NOT MODIFY:
-  "Engage Souls. Be 1% Better. Keep it Fun. 🌷"
-============================================================ -->
-
 <div class="slideshow" id="slideshow">
 
-  <!-- ===== SLIDE 1 — SOUL ENGAGERS GROUP 1 (6 cards) ===== -->
+  <!-- SLIDE 1: Soul Engagers Group 1 -->
   <div class="slide active">
     <div class="slide-header">
       <div class="header-left">
         <span class="slide-brand">NCR Ventures</span>
         <span class="slide-title">Soul Engagers of the Week</span>
-        <span class="slide-week">Week Ending 5.17.26 — Mother's Day Held, Andre Owned Easton</span>
+        <span class="slide-week">Week Ending 5.24 — Graduation Season Has Arrived</span>
       </div>
       <div class="slide-counter">1 of 5</div>
     </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Andre</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Five separate reviews this week — "the goat," "super good energy," "would definitely be back." Andre ran the room.</div><div class="engager-emoji">🐐</div></div>
-      <div class="engager-card"><div class="engager-name">Brian</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">Goat cheese on the side, extra cherries in the old fashioned, extra chicken in the soup — and when a neighboring table left their drinks behind, he offered them to ours instead of the sink. A first-time review after years of visits.</div><div class="engager-emoji">🍒</div></div>
-      <div class="engager-card"><div class="engager-name">Solomon</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">"The nicest man I have ever met. He needs a raise." That's the whole review.</div><div class="engager-emoji">⭐</div></div>
-      <div class="engager-card"><div class="engager-name">Brooke M</div><div class="engager-location">17 River Grille</div><div class="engager-quote">Mother's Day on the lower level overlooking the falls. "Exceptional professionalism and attentiveness." The guest is already planning summer and fall.</div><div class="engager-emoji">🌊</div></div>
-      <div class="engager-card"><div class="engager-name">Andrew</div><div class="engager-location">17 River Grille</div><div class="engager-quote">Happy hour service that turned into a recommendation. "One of our favorite places in Chagrin Falls."</div><div class="engager-emoji">🥃</div></div>
-      <div class="engager-card"><div class="engager-name">Nick</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">First-time guest. "Phenomenal. Made the experience even better." A first visit converted into a return.</div><div class="engager-emoji">✨</div></div>
+      <div class="engager-card gm-moment"><div class="engager-name">Charles & Chef Joe</div><div class="engager-location">Bar Fuoco</div><div class="engager-quote">A guest came in with her mom from out of town. Surprise gelato for mom's birthday. "They mastered the art of creating an unforgettable guest experience and gained a new regular in the process."</div><div class="engager-emoji">🎂</div></div>
+      <div class="engager-card"><div class="engager-name">Andre</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Third week running. "Andre's attention to detail was top notch." "Pleasant and always smiling. Food and drinks were great." Easton has built a name guests are now driving in to find.</div><div class="engager-emoji">🐐</div></div>
+      <div class="engager-card"><div class="engager-name">Yanci</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Fifth week in a row. "Yanci took the cake. She did not miss a beat! She really elevated the experience." A guest moving out of state made one final visit just to see her.</div><div class="engager-emoji">👑</div></div>
+      <div class="engager-card"><div class="engager-name">Joel</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">A birthday celebration. "Joel took such great care of us and truly made the night special. I would absolutely come back just for his service alone."</div><div class="engager-emoji">🌟</div></div>
+      <div class="engager-card"><div class="engager-name">Juan</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">Named twice this week. "Funny, attentive, great recommendations." "Fun, energetic, and always adds a fun element to the overall experience." A regular's favorite.</div><div class="engager-emoji">🎯</div></div>
+      <div class="engager-card"><div class="engager-name">Joe</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">A party of 10. Reservation mishap. Manager and Joe stepped in, handled it "expeditiously and with extreme care." Guest gave 4 stars and said "we will definitely be back."</div><div class="engager-emoji">🛟</div></div>
     </div>
   </div>
 
-  <!-- ===== SLIDE 2 — SOUL ENGAGERS GROUP 2 (6 cards) ===== -->
+  <!-- SLIDE 2: Soul Engagers Group 2 -->
   <div class="slide">
     <div class="slide-header">
       <div class="header-left">
         <span class="slide-brand">NCR Ventures</span>
         <span class="slide-title">Soul Engagers of the Week</span>
-        <span class="slide-week">Week Ending 5.17.26 — Mother's Day Held, Andre Owned Easton</span>
+        <span class="slide-week">Week Ending 5.24 — Graduation Season Has Arrived</span>
       </div>
       <div class="slide-counter">2 of 5</div>
     </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Joe</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">Birthday luncheon for a guest and her friends. "Joe makes the experience nice." Occasion dining done right.</div><div class="engager-emoji">🎂</div></div>
-      <div class="engager-card"><div class="engager-name">Cisco & Keith</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Guest arrived early for the reservation. Keith seated right away, Cisco took it from there. "Love this place and Keith is the man."</div><div class="engager-emoji">🌴</div></div>
-      <div class="engager-card"><div class="engager-name">Sophia</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">"So attentive and polite and patient." Patient is the word that matters.</div><div class="engager-emoji">🌷</div></div>
-      <div class="engager-card"><div class="engager-name">Ala</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Lunch service. Father-daughter table. "Excellent customer service skills and thoroughly versed on Bar Italia's offering."</div><div class="engager-emoji">🍝</div></div>
-      <div class="engager-card"><div class="engager-name">Pauline</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Mother's Day. Lovely section, prompt seating, drinks landed. "Has become one of our fav spots."</div><div class="engager-emoji">🌹</div></div>
-      <div class="engager-card"><div class="engager-name">Brad — GM Moment</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">A guest left a one-line one-star saying "poor service." Brad responded by name, gave his cell, and asked her to call. That's how you own it publicly.</div><div class="engager-emoji">📞</div></div>
+      <div class="engager-card"><div class="engager-name">Christina</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">"Friendly, attentive, and made sure everything came out perfectly. Her recommendations were excellent, and she created such a welcoming atmosphere for our table."</div><div class="engager-emoji">✨</div></div>
+      <div class="engager-card"><div class="engager-name">Kim</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">"I'm leaving a review solely for our server Kim, who was so, so kind and very attentive! If you ever dine here and Kim is your server, I promise you will be well taken care of!"</div><div class="engager-emoji">💫</div></div>
+      <div class="engager-card"><div class="engager-name">Anthony</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">A first-time guest met the AGM at the table. Patio, conversation, food. "Definitely will be back!" Manager touches turn first-timers into regulars.</div><div class="engager-emoji">🤝</div></div>
+      <div class="engager-card"><div class="engager-name">Brooke</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">An 8-person board luncheon. "Patient and very professional. She never rushed us and checked on us often." That's the move for a corporate group.</div><div class="engager-emoji">🍝</div></div>
+      <div class="engager-card"><div class="engager-name">Kym, Umi & Mike</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">"Kym is an amazing manager with outstanding customer service. Umi was very friendly and helped us choose. Mike was wonderful as well — very kind and welcoming!"</div><div class="engager-emoji">🍸</div></div>
+      <div class="engager-card"><div class="engager-name">Nick</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">"Nick our waiter was spot on and attentive… great food and cold drinks too… excellent value and experience." Repeat name on the JoJo's wall.</div><div class="engager-emoji">⭐</div></div>
     </div>
   </div>
 
-  <!-- ===== SLIDE 3 — SOUL ENGAGERS GROUP 3 (6 cards — OPTIONAL) =====
-       Delete this entire slide block if the week's review volume only supports 2 engager slides.
-       GM Moment cards: add class "gm-moment" to the .engager-card div for gold styling.
-       Example: <div class="engager-card gm-moment">...
-  -->
+  <!-- SLIDE 3: Soul Engagers Group 3 -->
   <div class="slide">
     <div class="slide-header">
       <div class="header-left">
         <span class="slide-brand">NCR Ventures</span>
         <span class="slide-title">Soul Engagers of the Week</span>
-        <span class="slide-week">Week Ending 5.17.26 — Mother's Day Held, Andre Owned Easton</span>
+        <span class="slide-week">Week Ending 5.24 — Graduation Season Has Arrived</span>
       </div>
       <div class="slide-counter">3 of 5</div>
     </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Ulysses</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">Mother's Day, the busiest day of the year. "Very kind and on top of our entire order from appetizer to dessert."</div><div class="engager-emoji">🌺</div></div>
-      <div class="engager-card"><div class="engager-name">Kelly</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">Mother's Day, four-top, three Chicken Limones and a Veal Limone. "Fantastic and took great care of us. Definitely one of our favorites."</div><div class="engager-emoji">🍋</div></div>
-      <div class="engager-card"><div class="engager-name">Kayla</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Mother's Day. "Friendly, fast, and efficient. Made the experience very nice." On the biggest day of the year, fast is hospitality.</div><div class="engager-emoji">⚡</div></div>
-      <div class="engager-card"><div class="engager-name">Lola's Breakfast Team</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">First breakfast service. "Wow what an experience." "Cannot wait to go back." Two five-star reviews on the opening week.</div><div class="engager-emoji">🥐</div></div>
-      <div class="engager-card"><div class="engager-name">The Mother's Day Crew</div><div class="engager-location">Company-wide</div><div class="engager-quote">Sarasota, Winter Park, Beachwood, Easton, 17 River, Lakehouse, Lola's — every store posted five-star Mother's Day reviews. We held the standard on the toughest day on the calendar.</div><div class="engager-emoji">💐</div></div>
-      <div class="engager-card"><div class="engager-name">The Easton Hospitality Wave</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Andre, Ala, and Pauline all named in the same week. The room is finding its rhythm.</div><div class="engager-emoji">🌟</div></div>
+      <div class="engager-card"><div class="engager-name">Colleen</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">"Our server, Colleen, was excellent." Pleasant evening on the patio, meals very good, group walked away happy. Quiet competence, called out by name.</div><div class="engager-emoji">🌿</div></div>
+      <div class="engager-card"><div class="engager-name">Bryn</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">"Our server, Bryn was fantastic and the food was amazing. I highly recommend this delightful Italian restaurant." A guest's full endorsement, server-led.</div><div class="engager-emoji">🍷</div></div>
+      <div class="engager-card gm-moment"><div class="engager-name">The Breakfast Launch</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">"Lola's has just begun a new venture into breakfast. When was the last time you experienced a fine dining establishment offer breakfast? You must go. I highly, highly recommend."</div><div class="engager-emoji">☕</div></div>
+      <div class="engager-card"><div class="engager-name">The Falls View Recovery</div><div class="engager-location">17 River Grille</div><div class="engager-quote">A walk-in party of 6 told no tables — but offered the 8:30 walk-in option. They came. They got a window seat over the falls. Filet, lobster bisque, three desserts. Five stars.</div><div class="engager-emoji">🌊</div></div>
+      <div class="engager-card gm-moment"><div class="engager-name">The Personal Response</div><div class="engager-location">Bar Italia Lakewood</div><div class="engager-quote">A 1-star Atlanta visitor review. The GM responded by name, with detail, with a theory of what may have happened, with an apology. That's recovery, not damage control.</div><div class="engager-emoji">📞</div></div>
+      <div class="engager-card"><div class="engager-name">The Lola's Delight</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">"The food was a delight. The service was a delight. The ambiance was a delight." A guest having a stressful day — Lola's became "a bright break in the clouds."</div><div class="engager-emoji">🌷</div></div>
     </div>
   </div>
 
-  <!-- ===== SLIDE — 3 THINGS WE DID RIGHT ===== -->
+  <!-- SLIDE 4: 3 Things We Did Right -->
   <div class="slide">
     <div class="slide-header">
       <div class="header-left">
         <span class="slide-brand">NCR Ventures</span>
         <span class="slide-title">3 Things We Did Right</span>
-        <span class="slide-week">Week Ending 5.17.26 — Mother's Day Held, Andre Owned Easton</span>
+        <span class="slide-week">Week Ending 5.24 — Graduation Season Has Arrived</span>
       </div>
       <div class="slide-counter">4 of 5</div>
     </div>
     <div class="item-list">
-      <div class="item-card success"><div class="item-number">1</div><div class="item-content"><div class="item-heading">We Held Mother's Day</div><div class="item-body">The hardest day on the calendar. Multiple stores posted five-star reviews on the day itself. Servers named, tables turned, dishes praised, returns committed. When the volume hits and the standards hold, that's the job.</div></div></div>
-      <div class="item-card success"><div class="item-number">2</div><div class="item-content"><div class="item-heading">Servers Owned the Room</div><div class="item-body">One server pulled five separate five-star reviews in a single week. Another got a one-line review that just said "needs a raise." Another quietly handed guests a beer and wine from an abandoned table instead of pouring them out. These are the moments that build the brand.</div></div></div>
-      <div class="item-card success"><div class="item-number">3</div><div class="item-content"><div class="item-heading">GMs Owning Reviews in Public</div><div class="item-body">A one-line one-star review is the hardest kind to respond to. This week a GM responded by name, gave a direct cell number, and asked the guest to call. That's the standard. The public response is part of the recovery.</div></div></div>
+      <div class="item-card success"><div class="item-number">1</div><div class="item-content"><div class="item-heading">A Surprise Gelato Created a Regular Out of Thin Air</div><div class="item-body">A guest brought her mom in for a Saturday night dinner. The team picked up on the birthday, sent out a surprise gelato. The guest wrote: "They have truly mastered the art of creating an unforgettable guest experience and gained a new regular in the process." That gelato cost us nothing. The story it created will last a year.</div></div></div>
+      <div class="item-card success"><div class="item-number">2</div><div class="item-content"><div class="item-heading">When the Manager Owns the Mishap, the Mishap Becomes the Story</div><div class="item-body">A party of 10 walked into a reservation mix-up. Could have been a one-star. Instead, the manager handled it "expeditiously and with extreme care," the server took it from there, the food was great, and the guest left writing "we will definitely be back." Recovery isn't damage control. Recovery is a five-star review with the words "thank you" in it.</div></div></div>
+      <div class="item-card success"><div class="item-number">3</div><div class="item-content"><div class="item-heading">A Guest Drove Across State Lines to Say Goodbye to Her Server</div><div class="item-body">A guest moving out of state booked one final lunch — specifically to thank her server. "She really elevated the experience." That's the business model in one review. When a server's name shows up in a guest's farewell tour, it means we built something real. Five weeks in a row on the same name proves it wasn't an accident.</div></div></div>
     </div>
   </div>
 
-  <!-- ===== SLIDE — 3 OPPORTUNITIES TO BE BETTER ===== -->
+  <!-- SLIDE 5: 3 Opportunities -->
   <div class="slide">
     <div class="slide-header">
       <div class="header-left">
         <span class="slide-brand">NCR Ventures</span>
         <span class="slide-title">3 Opportunities to Be Better</span>
-        <span class="slide-week">Week Ending 5.17.26 — Mother's Day Held, Andre Owned Easton</span>
+        <span class="slide-week">Week Ending 5.24 — Graduation Season Has Arrived</span>
       </div>
       <div class="slide-counter">5 of 5</div>
     </div>
     <div class="item-list">
-      <div class="item-card opportunity"><div class="item-number opp">1</div><div class="item-content"><div class="item-heading opp">The First-Impression Pause</div><div class="item-body">Multiple reviews this week describe being seated, then waiting too long before anyone introduces themselves. Guests notice when tables seated after them get greeted first. The host hands off, but the server has to close the loop within 90 seconds. Every time.</div></div></div>
-      <div class="item-card opportunity"><div class="item-number opp">2</div><div class="item-content"><div class="item-heading opp">Course Pacing on Apps and Bread</div><div class="item-body">Bread arriving after entrees. Apps cleared while still half-eaten. Entrees dropping while the table is still on cocktails. Course flow is one of the few service details guests almost always remember. Slow down. Read the table. Don't let the kitchen window dictate the pace of the meal.</div></div></div>
-      <div class="item-card opportunity"><div class="item-number opp">3</div><div class="item-content"><div class="item-heading opp">Salad Composition and Pick</div><div class="item-body">Two separate reviews this week called out salads — browned lettuce, an overload of shredded cheese smothering a Caesar. Salads are the easiest dish to make right and the easiest one to phone in. Pick line standards, ingredient checks before plating, and a manager taste at the start of every shift.</div></div></div>
+      <div class="item-card opportunity"><div class="item-number opp">1</div><div class="item-content"><div class="item-heading opp">"We Were Told to Hurry Up" — Three Weeks Running</div><div class="item-body">A guest flew in from Atlanta to meet a friend's fiancée. One drink in, she was told to hurry up because a graduation party had reservations in 45 minutes. She posted the same one-star review to Google, Yelp, and TripAdvisor. No table turn is worth that. If a reservation is coming and we're behind, the move is to comp a course, not to rush the guest. Never. Tell. A. Guest. To. Hurry.</div></div></div>
+      <div class="item-card opportunity"><div class="item-number opp">2</div><div class="item-content"><div class="item-heading opp">Birthday Flags Are Slipping — Now Four Weeks Straight</div><div class="item-body">A guest noted a birthday on the reservation. Server didn't catch it. No dessert, no acknowledgment. Guest wrote: "Why ask if celebrating an occasion when making reservation to not acknowledge while there?" That question is the entire problem. Pre-shift: read every res-note out loud. Assign one person to own the occasion. Every flag gets touched. Every shift.</div></div></div>
+      <div class="item-card opportunity"><div class="item-number opp">3</div><div class="item-content"><div class="item-heading opp">"My Booth Was Promised. I Got the Bar Instead."</div><div class="item-body">A guest called ahead, requested a specific booth for a birthday, was told yes. Got sat in the bar. Too loud. Debated leaving before the server even arrived. The promise on the phone is a contract. If we can't keep it, we call the guest before they drive over — or we make the seat right when they arrive. The host stand is where five-star nights start or die.</div></div></div>
     </div>
   </div>
 
