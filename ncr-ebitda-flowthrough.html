@@ -7,29 +7,29 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f0f2f5; font-family: Arial, sans-serif; color: #1a2540; }
-body { padding: 24px 44px 18px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 22px 44px 14px; display: flex; flex-direction: column; height: 1080px; }
 
 .header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
 .brand { font-size: 18px; color: #1e4d8c; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 44px; font-weight: bold; color: #1a2540; line-height: 1.1; }
-.subtitle { font-size: 18px; color: #6b7a99; margin-top: 4px; }
-.date-badge { background: #1e4d8c; color: #fff; font-size: 20px; font-weight: bold; padding: 12px 26px; border-radius: 8px; text-align: center; line-height: 1.5; }
+.title { font-size: 42px; font-weight: bold; color: #1a2540; line-height: 1.1; }
+.subtitle { font-size: 17px; color: #6b7a99; margin-top: 4px; }
+.date-badge { background: #1e4d8c; color: #fff; font-size: 20px; font-weight: bold; padding: 10px 24px; border-radius: 8px; text-align: center; line-height: 1.5; }
 
-.divider { height: 3px; background: #1e4d8c; margin: 10px 0 12px; border-radius: 1px; flex-shrink: 0; }
+.divider { height: 3px; background: #1e4d8c; margin: 9px 0 10px; border-radius: 1px; flex-shrink: 0; }
 
-.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; flex-shrink: 0; }
-.total-card { background: #fff; border: 1px solid #d0d8e8; border-radius: 10px; padding: 12px 18px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-.total-label { font-size: 13px; color: #6b7a99; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-weight: 600; }
-.total-val { font-size: 34px; font-weight: bold; color: #1e4d8c; }
-.total-pct { font-size: 14px; color: #6b7a99; margin-top: 3px; }
+.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; flex-shrink: 0; }
+.total-card { background: #fff; border: 1px solid #d0d8e8; border-radius: 10px; padding: 10px 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.total-label { font-size: 12px; color: #6b7a99; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; font-weight: 600; }
+.total-val { font-size: 32px; font-weight: bold; color: #1e4d8c; }
+.total-pct { font-size: 13px; color: #6b7a99; margin-top: 2px; }
 
-.table-wrap { flex: 1; display: flex; flex-direction: column; margin-top: 14px; min-height: 0; }
+.table-wrap { flex: 1; display: flex; flex-direction: column; margin-top: 10px; min-height: 0; }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
 thead tr { background: #1e4d8c; }
 thead th {
-  padding: 11px 8px; text-align: center; color: #fff; font-size: 13px;
-  letter-spacing: 0.8px; text-transform: uppercase; border-bottom: 2px solid #1a3d6e;
+  padding: 10px 7px; text-align: center; color: #fff; font-size: 12px;
+  letter-spacing: 0.7px; text-transform: uppercase; border-bottom: 2px solid #1a3d6e;
   white-space: nowrap; font-weight: 700; overflow: hidden;
 }
 thead th:first-child { text-align: left; padding-left: 12px; }
@@ -39,17 +39,18 @@ tbody tr:nth-child(odd)  { background: #fff; }
 tbody tr:nth-child(even) { background: #f5f7fb; }
 
 td {
-  padding: 0 8px; text-align: center; color: #1a2540; font-size: 19px;
-  height: 68px; vertical-align: middle; white-space: nowrap;
+  padding: 0 7px; text-align: center; color: #1a2540; font-size: 18px;
+  height: 64px; vertical-align: middle; white-space: nowrap;
   overflow: hidden; text-overflow: ellipsis;
 }
-td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size: 19px; padding-left: 12px; }
+td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size: 18px; padding-left: 12px; }
 
-.ft-green  { color: #1a7a3e; font-weight: bold; }
-.ft-yellow { color: #b05e00; font-weight: bold; }
-.ft-orange { color: #c45000; font-weight: bold; }
-.ft-amber  { color: #7a4500; font-weight: bold; }
-.ft-red    { color: #b91c1c; font-weight: bold; }
+/* SOP-matched flow-through colors */
+.ft-green  { color: #1a7a3e; font-weight: bold; }   /* 40%+      full award  */
+.ft-yellow { color: #b05e00; font-weight: bold; }   /* 30–39.9%  75% award  */
+.ft-orange { color: #c45000; font-weight: bold; }   /* 20–29.9%  50% award  */
+.ft-amber  { color: #7a4500; font-weight: bold; }   /* 15–19.9%  25% award  */
+.ft-red    { color: #b91c1c; font-weight: bold; }   /* <15% or negative — forfeited */
 .ft-na     { color: #9aaabf; font-style: italic; }
 
 .pos { color: #1a7a3e; }
@@ -58,7 +59,7 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
 .ebitda-pos { color: #1a7a3e; font-weight: bold; }
 .ebitda-neg { color: #b91c1c; font-weight: bold; }
 
-.badge { display: inline-block; font-size: 12px; font-weight: bold; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+.badge { display: inline-block; font-size: 11px; font-weight: bold; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
 .badge-green  { background: #dcf5e7; color: #1a7a3e; border: 1px solid #a8dfc0; }
 .badge-yellow { background: #fff3dc; color: #b05e00; border: 1px solid #f5d08a; }
 .badge-orange { background: #ffdfc0; color: #c45000; border: 1px solid #e8a050; }
@@ -67,9 +68,9 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
 .badge-na     { background: #eef1f7; color: #6b7a99; border: 1px solid #c8d0e0; }
 
 .section-note {
-  font-size: 12px; color: #6b7a99; margin-top: 7px; text-align: center;
+  font-size: 11.5px; color: #6b7a99; margin-top: 6px; text-align: center;
   font-style: italic; flex-shrink: 0; white-space: nowrap;
-  overflow: hidden; text-overflow: ellipsis; line-height: 1.5;
+  overflow: hidden; text-overflow: ellipsis;
 }
 </style>
 </head>
@@ -81,7 +82,7 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
     <div class="title">EBITDA &amp; Flow-Through Dashboard</div>
     <div class="subtitle">YTD 2026 vs. 2025 &nbsp;·&nbsp; Same-Store EBITDA Conversion &nbsp;·&nbsp; Bonus SOP Tiers &nbsp;·&nbsp; Home Office Only</div>
   </div>
-  <div class="date-badge">YTD 2026<br>Week Ending 5/25/26<br><span style="font-size:16px;opacity:0.85;">End of Period 5</span></div>
+  <div class="date-badge">YTD 2026<br>Week Ending 5/25/26<br><span style="font-size:15px;opacity:0.85;">End of Period 5</span></div>
 </div>
 <div class="divider"></div>
 
@@ -104,7 +105,7 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
   <div class="total-card">
     <div class="total-label">Blended Flow-Through</div>
     <div class="total-val" style="color:#c45000;">16.2%</div>
-    <div class="total-pct">Target ≥ 40% &nbsp;·&nbsp; 25% Bonus Tier</div>
+    <div class="total-pct">SOP Target ≥ 40% &nbsp;·&nbsp; 25% Tier</div>
   </div>
   <div class="total-card">
     <div class="total-label">Same-Store EBITDA Δ</div>
@@ -117,16 +118,16 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
 <table>
   <thead>
     <tr>
-      <th style="width:14%;">Location</th>
-      <th style="width:10%;">2026 Sales</th>
-      <th style="width:10%;">2025 Sales</th>
-      <th style="width:9%;">Sales Δ</th>
-      <th style="width:10%;">2026 EBITDA</th>
-      <th style="width:10%;">2025 EBITDA</th>
-      <th style="width:9%;">EBITDA Δ</th>
-      <th style="width:9%;">Flow-Thru</th>
-      <th style="width:10%;">vs Budget</th>
-      <th style="width:9%;">Bonus Tier</th>
+      <th style="width:13%;">Location</th>
+      <th style="width:9%;">2026 Sales</th>
+      <th style="width:8%;">vs Budget</th>
+      <th style="width:8%;">vs 2025</th>
+      <th style="width:9%;">2026 EBITDA</th>
+      <th style="width:9%;">2025 EBITDA</th>
+      <th style="width:8%;">EBITDA Δ</th>
+      <th style="width:8%;">vs Budget</th>
+      <th style="width:8%;">Flow-Thru</th>
+      <th style="width:10%;">Bonus Tier</th>
     </tr>
   </thead>
   <tbody>
@@ -134,117 +135,117 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
     <tr>
       <td>Beachwood</td>
       <td>$4,012,140</td>
-      <td class="dim">$3,546,773</td>
+      <td class="pos">+$168,640</td>
       <td class="pos">+$465,367</td>
       <td class="ebitda-pos">$534,617</td>
       <td class="dim">$422,550</td>
       <td class="pos">+$112,067</td>
-      <td class="ft-orange">24.1%</td>
       <td class="pos">+$8,626</td>
+      <td class="ft-orange">24.1%</td>
       <td><span class="badge badge-orange">50% Award</span></td>
     </tr>
 
     <tr>
       <td>17 River Grille</td>
       <td>$2,663,699</td>
-      <td class="dim">$2,609,225</td>
+      <td class="neg">($162,101)</td>
       <td class="pos">+$54,474</td>
       <td class="ebitda-pos">$400,739</td>
       <td class="dim">$424,847</td>
       <td class="neg">-$24,108</td>
-      <td class="ft-red">-44.3%</td>
       <td class="neg">($96,497)</td>
+      <td class="ft-red">-44.3%</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>JoJo's &amp; Bar Fuoco</td>
       <td>$1,950,528</td>
-      <td class="dim">$1,903,004</td>
+      <td class="pos">+$14,298</td>
       <td class="pos">+$47,524</td>
       <td class="ebitda-pos">$142,016</td>
       <td class="dim">$169,570</td>
       <td class="neg">-$27,554</td>
-      <td class="ft-red">-58.0%</td>
       <td class="neg">($33,473)</td>
+      <td class="ft-red">-58.0%</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>The Lakehouse ★</td>
       <td>$614,025</td>
-      <td class="dim">$784,147</td>
+      <td class="neg">($262,599)</td>
       <td class="neg">-$170,122</td>
       <td class="ebitda-neg">($268,308)</td>
       <td class="dim">($229,182)</td>
       <td class="neg">-$39,126</td>
-      <td class="ft-red">Not Protected</td>
       <td class="neg">($80,845)</td>
+      <td class="ft-red">23.0%*</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>Lakewood</td>
       <td>$1,501,924</td>
-      <td class="dim">$1,491,814</td>
+      <td class="neg">($22,150)</td>
       <td class="pos">+$10,110</td>
       <td class="ebitda-pos">$196,349</td>
       <td class="dim">$214,463</td>
       <td class="neg">-$18,114</td>
-      <td class="ft-red">-179.2%</td>
       <td class="neg">($20,618)</td>
+      <td class="ft-red">-179.2%</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>Winter Park</td>
       <td>$3,588,973</td>
-      <td class="dim">$3,350,309</td>
+      <td class="pos">+$180,089</td>
       <td class="pos">+$238,664</td>
       <td class="ebitda-pos">$604,071</td>
       <td class="dim">$481,767</td>
       <td class="pos">+$122,304</td>
-      <td class="ft-green">51.2%</td>
       <td class="pos">+$104,305</td>
+      <td class="ft-green">51.2%</td>
       <td><span class="badge badge-green">Full Award ✓</span></td>
     </tr>
 
     <tr>
       <td>Sarasota</td>
       <td>$3,483,264</td>
-      <td class="dim">$3,651,809</td>
+      <td class="neg">($249,086)</td>
       <td class="neg">-$168,545</td>
       <td class="ebitda-pos">$602,745</td>
       <td class="dim">$650,819</td>
       <td class="neg">-$48,074</td>
-      <td class="ft-red">Not Protected</td>
       <td class="neg">($52,683)</td>
+      <td class="ft-red">28.5%*</td>
       <td><span class="badge badge-red">No Flow ⚠</span></td>
     </tr>
 
     <tr>
       <td>Easton ↗ 6/30/25</td>
       <td>$2,823,728</td>
+      <td class="neg">($199,272)</td>
       <td class="ft-na">No LY Comp</td>
-      <td class="ft-na">—</td>
       <td class="ebitda-pos">$279,640</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
-      <td class="ft-na">—</td>
       <td class="neg">($84,882)</td>
+      <td class="ft-na">—</td>
       <td><span class="badge badge-na">No LY Comp</span></td>
     </tr>
 
     <tr>
       <td>Lola's Bistro ↗ 9/9/25</td>
       <td>$2,081,776</td>
+      <td class="neg">($91,224)</td>
       <td class="ft-na">No LY Comp</td>
-      <td class="ft-na">—</td>
       <td class="ebitda-pos">$199,488</td>
       <td class="ft-na">—</td>
       <td class="ft-na">—</td>
-      <td class="ft-na">—</td>
       <td class="pos">+$15,784</td>
+      <td class="ft-na">—</td>
       <td><span class="badge badge-na">No LY Comp</span></td>
     </tr>
 
@@ -253,13 +254,14 @@ td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size:
 </div>
 
 <div class="section-note">
-  Bonus SOP Tiers: &nbsp;
-  <span style="color:#1a7a3e;font-weight:bold;">■ 40%+ = Full Award (100%)</span> &nbsp;·&nbsp;
-  <span style="color:#b05e00;font-weight:bold;">■ 30–39.9% = 75% Award</span> &nbsp;·&nbsp;
-  <span style="color:#c45000;font-weight:bold;">■ 20–29.9% = 50% Award</span> &nbsp;·&nbsp;
-  <span style="color:#7a4500;font-weight:bold;">■ 15–19.9% = 25% Award</span> &nbsp;·&nbsp;
-  <span style="color:#b91c1c;font-weight:bold;">■ Below 15% or Negative = Forfeited</span> &nbsp;·&nbsp;
-  ★ Lakehouse seasonal — loss deepened vs. LY; summer volume expected to correct &nbsp;·&nbsp; Home Office Only
+  SOP Tiers: &nbsp;
+  <span style="color:#1a7a3e;font-weight:bold;">■ 40%+ = Full (100%)</span> &nbsp;·&nbsp;
+  <span style="color:#b05e00;font-weight:bold;">■ 30–39.9% = 75%</span> &nbsp;·&nbsp;
+  <span style="color:#c45000;font-weight:bold;">■ 20–29.9% = 50%</span> &nbsp;·&nbsp;
+  <span style="color:#7a4500;font-weight:bold;">■ 15–19.9% = 25%</span> &nbsp;·&nbsp;
+  <span style="color:#b91c1c;font-weight:bold;">■ Below 15% or negative = Forfeited</span> &nbsp;·&nbsp;
+  * Sales behind LY — flow-through excluded from bonus per SOP; shown for reference &nbsp;·&nbsp;
+  ★ Lakehouse seasonal ramp — summer volume expected to correct &nbsp;·&nbsp; Home Office Only
 </div>
 
 </body>
