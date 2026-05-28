@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<meta http-equiv="refresh" content="900">
+<title>JoJo's Bar — SOP of the Week — French Press Service</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:1920px; height:1080px; overflow:hidden;
+    font-family:'Georgia','Times New Roman',serif;
+    background:#27262a; color:#ffffff;
+  }
+  .stage {
+    width:1920px; height:1080px; position:relative;
+    display:flex; flex-direction:column;
+    padding:44px 80px 44px;
+    background:
+      radial-gradient(ellipse at top right, rgba(74,104,129,0.30), transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(255,255,255,0.04), transparent 60%),
+      #27262a;
+  }
+
+  /* HEADER */
+  .hdr {
+    display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:1px solid rgba(255,255,255,0.25);
+    padding-bottom:24px; flex-shrink:0;
+  }
+  .eyebrow {
+    font-size:16px; letter-spacing:7px; color:#4a6881;
+    text-transform:uppercase; font-weight:600;
+    font-family:Arial, sans-serif; margin-bottom:10px;
+  }
+  .brand {
+    font-family:'Georgia','Times New Roman',serif;
+    font-size:58px; color:#ffffff; letter-spacing:2px;
+    font-weight:700; line-height:1;
+  }
+  .hdr-right { text-align:right; }
+  .sop-tag {
+    font-size:22px; color:#4a6881; letter-spacing:2px; font-style:italic;
+  }
+  .steep-pill {
+    display:inline-block; margin-top:12px;
+    border:1px solid #4a6881; border-radius:40px;
+    padding:9px 26px; font-family:Arial, sans-serif;
+    font-size:19px; letter-spacing:3px; color:#ffffff;
+    text-transform:uppercase;
+  }
+
+  /* TITLE ROW */
+  .title-row {
+    flex-shrink:0; padding:30px 0 10px;
+    display:flex; align-items:baseline; gap:34px;
+  }
+  .title {
+    font-size:78px; color:#ffffff; line-height:1.0;
+    font-weight:700; letter-spacing:-0.5px;
+  }
+  .title .accent { color:#4a6881; font-style:italic; font-weight:400; }
+  .subtitle {
+    font-family:Arial, sans-serif;
+    font-size:22px; color:#a8a8a8; letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  .accent-line {
+    width:120px; height:3px; margin:6px 0 0;
+    background:#4a6881; border-radius:1px; flex-shrink:0;
+  }
+
+  /* STEPS — five full-width rows that fill the page */
+  .steps {
+    flex:1; display:flex; flex-direction:column;
+    justify-content:space-between; padding-top:22px; min-height:0;
+  }
+  .step {
+    display:grid; grid-template-columns:130px 360px 1fr;
+    align-items:center; gap:40px;
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,0.14);
+  }
+  .step:last-child { border-bottom:0; }
+  .step-num {
+    font-size:84px; color:#4a6881; font-weight:700;
+    line-height:1; font-style:italic;
+  }
+  .step-head {
+    font-family:Arial, sans-serif;
+    font-size:34px; letter-spacing:5px; color:#ffffff;
+    text-transform:uppercase; font-weight:700;
+  }
+  .step-body {
+    font-size:34px; color:#cfccc7; line-height:1.34;
+  }
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="hdr">
+    <div class="brand-block">
+      <div class="eyebrow">SOP of the Week &middot; NCR Ventures</div>
+      <div class="brand">JoJo's Bar</div>
+    </div>
+    <div class="hdr-right">
+      <div class="sop-tag">Station Reference Card</div>
+      <div class="steep-pill">3&ndash;4 Min Steep</div>
+    </div>
+  </div>
+
+  <div class="title-row">
+    <div class="title">French Press <span class="accent">Service</span></div>
+    <div class="subtitle">Step-by-step guide<br>for a perfect pour</div>
+  </div>
+  <div class="accent-line"></div>
+
+  <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-head">Grind</div>
+        <div class="step-body">Hold the press directly below the grinder bezel so no grounds spill outside.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-head">Bloom</div>
+        <div class="step-body">Fill a quarter of the way with hot water, then stir 3 times to saturate the grounds.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-head">Fill &amp; Cap</div>
+        <div class="step-body">Pour water until just below the spout, then cap the press and let it steep.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-head">Press &amp; Serve</div>
+        <div class="step-body">After 3&ndash;4 minutes, bring the press to the table. Press with the spout facing away from the guest to prevent spills.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-head">Enjoy</div>
+        <div class="step-body">Sit back and hear the compliments &mdash; you just served a perfect French press.</div>
+      </div>
+  </div>
+
+</div>
+</body>
+</html>
