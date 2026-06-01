@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>This Week at Easton — Bar Italia ETC</title>
+<title>{location_label}</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
@@ -24,8 +24,7 @@
   .top-bar {
     display: flex; justify-content: space-between; align-items: baseline;
     border-bottom: 2px solid #e3b76c;
-    padding-bottom: 8px;
-    margin-bottom: 12px;
+    padding-bottom: 8px; margin-bottom: 12px;
   }
   .brand {
     font-family: 'Baskerville', 'Libre Baskerville', Georgia, serif;
@@ -34,392 +33,277 @@
   }
   .week {
     font-size: 16px; letter-spacing: .18em;
-    text-transform: uppercase;
-    color: #f5ecd9; font-weight: 500;
+    text-transform: uppercase; color: #f5ecd9; font-weight: 500;
   }
-
   .title {
     font-family: 'Baskerville', 'Libre Baskerville', Georgia, serif;
     font-size: 46px; font-weight: 400; line-height: 1.05;
-    margin-bottom: 6px;
-    color: #f5ecd9;
-    letter-spacing: -.01em;
+    margin-bottom: 6px; color: #f5ecd9; letter-spacing: -.01em;
   }
-  .title .accent {
-    color: #e3b76c;
-    font-style: italic;
-  }
+  .title .accent { color: #e3b76c; font-style: italic; }
   .subtitle {
-    font-size: 17px; color: #c8b89a;
-    margin-bottom: 14px;
-    max-width: 1800px;
-    line-height: 1.4;
-    font-weight: 400;
+    font-size: 17px; color: #c8b89a; margin-bottom: 14px;
+    max-width: 1800px; line-height: 1.4; font-weight: 400;
   }
-
   .today-headline {
-    background:
-      linear-gradient(135deg, rgba(233,134,56,0.18) 0%, rgba(227,183,108,0.10) 100%),
-      #1d3a25;
+    background: linear-gradient(135deg, rgba(233,134,56,0.18) 0%, rgba(227,183,108,0.10) 100%), #1d3a25;
     border: 1.5px solid #e3b76c;
-    border-radius: 4px;
-    padding: 16px 26px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 22px;
+    border-radius: 4px; padding: 16px 26px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 22px;
   }
   .today-day {
-    background: #e3b76c;
-    color: #142b1a;
-    border-radius: 2px;
-    padding: 10px 20px;
-    text-align: center;
-    flex-shrink: 0;
+    background: #e3b76c; color: #142b1a; border-radius: 2px;
+    padding: 10px 20px; text-align: center; flex-shrink: 0;
     font-family: 'Baskerville', Georgia, serif;
   }
-  .today-day .dow {
-    font-size: 14px; font-weight: 700;
-    letter-spacing: .18em; text-transform: uppercase;
-    line-height: 1;
-  }
-  .today-day .date {
-    font-size: 30px; font-weight: 700; line-height: 1;
-    margin-top: 4px;
-    font-style: italic;
-  }
+  .today-day .dow { font-size: 14px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; line-height: 1; }
+  .today-day .date { font-size: 30px; font-weight: 700; line-height: 1; margin-top: 4px; font-style: italic; }
   .today-body { flex: 1; }
-  .today-label {
-    font-size: 12px; color: #e3b76c;
-    font-weight: 700; letter-spacing: .22em;
-    text-transform: uppercase; margin-bottom: 6px;
-  }
+  .today-label { font-size: 12px; color: #e3b76c; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; margin-bottom: 6px; }
   .today-title {
     font-family: 'Baskerville', Georgia, serif;
     font-size: 26px; font-weight: 400; color: #f5ecd9;
     line-height: 1.18; margin-bottom: 5px;
   }
-  .today-text {
-    font-size: 16px; color: #d5c5a3;
-    line-height: 1.4;
-  }
+  .today-text { font-size: 16px; color: #d5c5a3; line-height: 1.4; }
   .today-text strong { color: #f5ecd9; font-weight: 600; }
   .today-text em { color: #e3b76c; font-style: italic; font-weight: 500; }
-
   .body-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    flex: 1;
-    min-height: 0;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 18px; flex: 1; min-height: 0;
   }
-  .col {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .col { display: flex; flex-direction: column; gap: 8px; }
   .col-label {
     font-family: 'Baskerville', Georgia, serif;
-    font-size: 18px;
-    font-weight: 400; font-style: italic;
+    font-size: 18px; font-weight: 400; font-style: italic;
     color: #e3b76c;
     border-bottom: 1px solid rgba(227,183,108,0.4);
-    padding-bottom: 4px;
-    margin-bottom: 2px;
-    letter-spacing: .04em;
+    padding-bottom: 4px; margin-bottom: 2px; letter-spacing: .04em;
   }
-
   .ev-row {
     background: rgba(245,236,217,0.04);
     border-left: 3px solid rgba(227,183,108,0.4);
     border-radius: 0 4px 4px 0;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex: 1;
+    padding: 10px 16px; display: flex; align-items: center;
+    gap: 16px; flex: 1;
   }
   .ev-row.today { border-left-color: #e3b76c; background: rgba(227,183,108,0.10); }
   .ev-row.featured { border-left-color: #e98638; background: rgba(233,134,56,0.10); }
   .ev-row.storm { border-left-color: #6fb3b0; background: rgba(111,179,176,0.06); }
+  .ev-row.peak { border-left-color: #c8102e; background: rgba(200,16,46,0.10); }
   .ev-date {
-    flex-shrink: 0;
-    min-width: 120px;
-    text-align: center;
+    flex-shrink: 0; min-width: 120px; text-align: center;
     font-family: 'Baskerville', Georgia, serif;
-    border-right: 1px solid rgba(227,183,108,0.3);
-    padding-right: 14px;
+    border-right: 1px solid rgba(227,183,108,0.3); padding-right: 14px;
   }
   .ev-date .dow {
     font-size: 12px; font-weight: 700; color: #e3b76c;
-    letter-spacing: .15em; text-transform: uppercase;
-    line-height: 1;
+    letter-spacing: .15em; text-transform: uppercase; line-height: 1;
   }
   .ev-date .date {
     font-size: 22px; font-weight: 400; color: #f5ecd9;
-    line-height: 1.1; margin-top: 4px;
-    font-style: italic;
+    line-height: 1.1; margin-top: 4px; font-style: italic;
   }
   .ev-body { flex: 1; }
-  .ev-name {
-    font-size: 18px;
-    font-weight: 600;
-    color: #f5ecd9;
-    line-height: 1.18;
-  }
-  .ev-note {
-    font-size: 13px;
-    color: #b8a884;
-    margin-top: 3px;
-    line-height: 1.35;
-    font-style: italic;
-  }
-
+  .ev-name { font-size: 18px; font-weight: 600; color: #f5ecd9; line-height: 1.18; }
+  .ev-note { font-size: 13px; color: #b8a884; margin-top: 3px; line-height: 1.35; font-style: italic; }
   .weather-strip {
     margin-top: 12px;
     background: rgba(245,236,217,0.04);
-    border-left: 3px solid #6fb3b0;
-    border-radius: 0 4px 4px 0;
+    border-left: 3px solid #6fb3b0; border-radius: 0 4px 4px 0;
     padding: 12px 22px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
+    display: flex; align-items: center; gap: 18px;
   }
   .weather-icon { font-size: 28px; flex-shrink: 0; }
   .weather-body { flex: 1; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
   .weather-label {
     font-family: 'Baskerville', Georgia, serif;
-    font-size: 14px; color: #6fb3b0;
-    font-weight: 400; font-style: italic;
-    letter-spacing: .08em;
-    flex-shrink: 0;
+    font-size: 14px; color: #6fb3b0; font-weight: 400; font-style: italic;
+    letter-spacing: .08em; flex-shrink: 0;
   }
-  .weather-days {
-    display: flex;
-    gap: 22px;
-    flex-wrap: wrap;
-  }
-  .weather-day {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 78px;
-  }
+  .weather-days { display: flex; gap: 22px; flex-wrap: wrap; }
+  .weather-day { display: flex; flex-direction: column; align-items: center; min-width: 78px; }
   .weather-day .wd-label { font-size: 11px; color: #b8a884; text-transform: uppercase; letter-spacing: .15em; font-weight: 600; }
   .weather-day .wd-temp {
     font-family: 'Baskerville', Georgia, serif;
     font-size: 22px; font-weight: 400; color: #f5ecd9;
-    line-height: 1.1; margin-top: 2px;
-    font-style: italic;
+    line-height: 1.1; margin-top: 2px; font-style: italic;
   }
   .weather-day .wd-cond { font-size: 11px; color: #b8a884; margin-top: 1px; font-style: italic; }
-
   .bottom-call {
-    margin-top: 12px;
-    padding: 12px 22px;
-    background:
-      linear-gradient(90deg, rgba(227,183,108,0.10) 0%, rgba(233,134,56,0.10) 100%);
-    border-left: 3px solid #e3b76c;
-    border-right: 3px solid #e3b76c;
+    margin-top: 12px; padding: 12px 22px;
+    background: linear-gradient(90deg, rgba(227,183,108,0.10) 0%, rgba(233,134,56,0.10) 100%);
+    border-left: 3px solid #e3b76c; border-right: 3px solid #e3b76c;
     border-radius: 2px;
     font-family: 'Baskerville', Georgia, serif;
     font-size: 22px; font-weight: 400; font-style: italic;
-    color: #f5ecd9;
-    text-align: center;
-    letter-spacing: .02em;
+    color: #f5ecd9; text-align: center; letter-spacing: .02em;
   }
   .bottom-call .accent { color: #e3b76c; }
   .footer {
-    margin-top: 6px;
-    font-size: 11px; color: #8a7a5c;
-    text-align: center;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+    margin-top: 6px; font-size: 11px; color: #8a7a5c;
+    text-align: center; letter-spacing: .12em; text-transform: uppercase;
   }
 </style>
 </head>
 <body>
-
 <div class="screen">
-
   <div class="top-bar">
     <div class="brand">Bar Italia · Easton Town Center</div>
-    <div class="week">Week of May 25 – 31 · 2026</div>
+    <div class="week">Week of June 1 – 7 · 2026</div>
   </div>
-
-  <div class="title">Quiet start, big finish. <span class="accent">Breakaway Ohio comes home this weekend.</span></div>
-  <div class="subtitle">Memorial Day Monday, three Clippers home games Tue–Thu, then 50,000+ EDM festival-goers descend on Crew Stadium Friday and Saturday for Breakaway&apos;s 13th anniversary homecoming. Pre-show dinner and bar windows both matter.</div>
-
-  <!-- TODAY hero -->
+  <div class="title">Quiet start, busy weekend. <span class="accent">Clippers home all six nights · Ecuador-Guatemala friendly Sunday.</span></div>
+  <div class="subtitle">Post-Breakaway recovery week, but downtown Columbus stays alive — six straight Clippers home games Tue–Sun and an international soccer friendly at ScottsMiracle-Gro Field Sunday afternoon. Wednesday is a washout.</div>
   <div class="today-headline">
     <div class="today-day">
       <div class="dow">Lunedì</div>
-      <div class="date">5/25</div>
+      <div class="date">6/1</div>
     </div>
     <div class="today-body">
-      <div class="today-label">Oggi — Memorial Day</div>
-      <div class="today-title">77° · Holiday crowd at Easton · Joe Dombrowski at Funny Bone 9:45 PM</div>
-      <div class="today-text"><strong>Last seating tonight is 8:00 PM.</strong> Mall foot traffic strong all day — locals not traveling, shopping after the ceremonies. Joe Dombrowski comedy show at the Funny Bone right next door brings late-night bar walk-ins. <em>Onore.</em></div>
+      <div class="today-label">Oggi — Monday</div>
+      <div class="today-title">77° · Dry start to the week · Mall foot traffic steady</div>
+      <div class="today-text"><strong>First Monday of June.</strong> Post-Memorial Day weeknight pattern returning to normal. Festival crowds gone, locals back to work. Dial in pacing for a quieter weeknight, then ramp Tuesday with the start of the Clippers home stand. <em>Onore.</em></div>
     </div>
   </div>
-
   <div class="body-row">
-
     <div class="col">
       <div class="col-label">La Settimana — This Week</div>
-
+      
       <div class="ev-row today">
         <div class="ev-date">
           <div class="dow">Mon</div>
-          <div class="date">5/25</div>
+          <div class="date">6/1</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Memorial Day · Last seating 8 PM · Joe Dombrowski 9:45 PM Funny Bone</div>
-          <div class="ev-note">Holiday dining crowd · post-show bar walk-ins from Funny Bone</div>
+          <div class="ev-name">77° · Quiet weeknight pattern · Last seating 8 PM</div>
+          <div class="ev-note">First Monday of June · post-festival weeknight reset · push happy hour bar covers</div>
         </div>
       </div>
-
       <div class="ev-row">
         <div class="ev-date">
           <div class="dow">Tue</div>
-          <div class="date">5/26</div>
+          <div class="date">6/2</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Clippers vs. Toledo Mud Hens · HOME · Huntington Park 6:35 PM</div>
-          <div class="ev-note">80°, dry · pre-game dinner downtown · steady weeknight pattern at Easton</div>
+          <div class="ev-name">Clippers vs. Omaha · HOME · 7:05 PM at Huntington Park</div>
+          <div class="ev-note">80° · pre-game dinner draw downtown · steady weeknight at Easton</div>
         </div>
       </div>
-
       <div class="ev-row storm">
         <div class="ev-date">
           <div class="dow">Wed</div>
-          <div class="date">5/27</div>
+          <div class="date">6/3</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Clippers vs. Toledo · HOME · 1:10 PM day game · 85% PM rain</div>
-          <div class="ev-note">Rain the entire afternoon and evening · indoor crowd shifts to Easton · expect strong mall traffic</div>
+          <div class="ev-name">WASHOUT · 85% rain all day · 75° cooler</div>
+          <div class="ev-note">Clippers Dollar Days at home 7:05 PM · Easton becomes indoor destination · cover the door</div>
         </div>
       </div>
-
       <div class="ev-row">
         <div class="ev-date">
           <div class="dow">Thu</div>
-          <div class="date">5/28</div>
+          <div class="date">6/4</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Clippers vs. Toledo · HOME · 6:35 PM · final home game of series</div>
-          <div class="ev-note">79°, dry · Breakaway crowd starts arriving in town · hotel bookings up</div>
+          <div class="ev-name">Clippers day game · 12:05 PM "Play Hooky" lunch crowd</div>
+          <div class="ev-note">79° dry · midday downtown lunch flow · evening Clippers off · normal weeknight return</div>
         </div>
       </div>
-
       <div class="ev-row featured">
         <div class="ev-date">
           <div class="dow">Fri</div>
-          <div class="date">5/29</div>
+          <div class="date">6/5</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">★ Breakaway Ohio Festival · Day 1 · Crew Stadium 3–10 PM</div>
-          <div class="ev-note">Kygo, REZZ, Crankdat headlining · 18+ EDM crowd · pre-show dinner 5–6:30 PM · post-show bar walk-ins 10:30 PM+ all going strong</div>
+          <div class="ev-name">Clippers vs. Omaha · HOME · 7:05 PM</div>
+          <div class="ev-note">77° dry perfect · pre-game dinner window 5–6:30 PM · post-game late-night 9:30 PM+</div>
         </div>
       </div>
-
       <div class="ev-row featured">
         <div class="ev-date">
           <div class="dow">Sat</div>
-          <div class="date">5/30</div>
+          <div class="date">6/6</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">★ Breakaway Ohio Festival · Day 2 · Crew Stadium 3–10 PM</div>
-          <div class="ev-note">GRiZ, Disco Lines headlining · Saturday is the bigger night · book the rooms · staff up</div>
+          <div class="ev-name">Clippers vs. Omaha · HOME · 7:05 PM · Saturday night downtown packed</div>
+          <div class="ev-note">Easton walk-ins all evening · book the rooms · post-game crowd late</div>
         </div>
       </div>
-
     </div>
-
     <div class="col">
       <div class="col-label">In Cucina &amp; Sala — Operations</div>
-
-      <div class="ev-row featured">
+      
+      <div class="ev-row peak">
         <div class="ev-date">
-          <div class="dow">Fri-Sat</div>
-          <div class="date">5/29–30</div>
+          <div class="dow">Sun</div>
+          <div class="date">6/7</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Breakaway Ohio playbook</div>
-          <div class="ev-note">Crew Stadium is 10 minutes from Easton · pre-show 4–6 PM dinner window · post-show late-night dessert &amp; cocktail surge 10:30 PM–close · 18+ younger demographic at the bar</div>
+          <div class="ev-name">★ ECUADOR vs. GUATEMALA at ScottsMiracle-Gro Field · 4:00 PM</div>
+          <div class="ev-note">International friendly downtown · Latino fanbase fills downtown all afternoon · pre-game and post-game windows both matter for Easton</div>
         </div>
       </div>
-
-      <div class="ev-row">
+      <div class="ev-row peak">
+        <div class="ev-date">
+          <div class="dow">Sun</div>
+          <div class="date">6/7</div>
+        </div>
+        <div class="ev-body">
+          <div class="ev-name">Clippers vs. Omaha · 1:05 PM · Day game</div>
+          <div class="ev-note">Sunday doubleheader downtown — Clippers afternoon then international friendly at 4 PM · downtown packed all day</div>
+        </div>
+      </div>
+      <div class="ev-row storm">
         <div class="ev-date">
           <div class="dow">Wed</div>
-          <div class="date">5/27</div>
+          <div class="date">6/3</div>
         </div>
         <div class="ev-body">
           <div class="ev-name">Rain day playbook</div>
-          <div class="ev-note">85% chance of rain all day · Easton becomes the indoor destination · expect strong walk-in lunch and dinner · cover the door</div>
+          <div class="ev-note">85% rain all day · Easton becomes indoor destination · expect strong walk-in lunch and dinner · cover the door</div>
         </div>
       </div>
-
       <div class="ev-row">
         <div class="ev-date">
           <div class="dow">All Week</div>
           <div class="date">★</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">OSU end-of-semester · graduation visitors</div>
-          <div class="ev-note">Spring semester wrapped · some families still in town for post-grad celebrations and college tours · larger party reservations</div>
+          <div class="ev-name">Funny Bone Comedy Club at Easton — weeknight + weekend shows</div>
+          <div class="ev-note">Always check the Funny Bone calendar · late-night bar walk-ins after each show</div>
         </div>
       </div>
-
       <div class="ev-row">
         <div class="ev-date">
           <div class="dow">Sun</div>
-          <div class="date">5/31</div>
+          <div class="date">6/21</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">Sunday post-Breakaway recovery + Father&apos;s Day reservations open</div>
-          <div class="ev-note">Easton mall brunch and lunch traffic · Father&apos;s Day is Sunday 6/21 · OpenTable starts filling now</div>
+          <div class="ev-name">Father&apos;s Day — 3 weeks out</div>
+          <div class="ev-note">OpenTable continues filling · larger party reservations coming in · plan staffing now</div>
         </div>
       </div>
-
       <div class="ev-row">
         <div class="ev-date">
-          <div class="dow">Mon</div>
-          <div class="date">5/25</div>
+          <div class="dow">All Week</div>
+          <div class="date">★</div>
         </div>
         <div class="ev-body">
-          <div class="ev-name">No Crew home games this week</div>
-          <div class="ev-note">Crew were at home Sunday 5/24 vs. Atlanta · away all week · next home game is Saturday 6/6 vs. Connecticut</div>
+          <div class="ev-name">OSU spring semester wrapped — graduation visitors winding down</div>
+          <div class="ev-note">Some lingering post-grad family dining · normal weeknight pace returning</div>
         </div>
       </div>
-
     </div>
-
   </div>
-
   <div class="weather-strip">
     <div class="weather-icon">☀️</div>
     <div class="weather-body">
       <div class="weather-label">Il Tempo · Columbus</div>
-      <div class="weather-days">
-        <div class="weather-day"><div class="wd-label">Mon</div><div class="wd-temp">77°</div><div class="wd-cond">partly sunny</div></div>
-        <div class="weather-day"><div class="wd-label">Tue</div><div class="wd-temp">80°</div><div class="wd-cond">dry · warm</div></div>
-        <div class="weather-day"><div class="wd-label">Wed</div><div class="wd-temp">75°</div><div class="wd-cond">85% rain · all day</div></div>
-        <div class="weather-day"><div class="wd-label">Thu</div><div class="wd-temp">79°</div><div class="wd-cond">dry · clear</div></div>
-        <div class="weather-day"><div class="wd-label">Fri</div><div class="wd-temp">77°</div><div class="wd-cond">dry · perfect</div></div>
-        <div class="weather-day"><div class="wd-label">Sat-Sun</div><div class="wd-temp">~78°</div><div class="wd-cond">trending dry</div></div>
-      </div>
+      <div class="weather-days"><div class="weather-day"><div class="wd-label">Mon</div><div class="wd-temp">77°</div><div class="wd-cond">sunny · dry</div></div><div class="weather-day"><div class="wd-label">Tue</div><div class="wd-temp">80°</div><div class="wd-cond">dry · warm</div></div><div class="weather-day"><div class="wd-label">Wed</div><div class="wd-temp">75°</div><div class="wd-cond">85% rain · all day</div></div><div class="weather-day"><div class="wd-label">Thu</div><div class="wd-temp">79°</div><div class="wd-cond">dry · clear</div></div><div class="weather-day"><div class="wd-label">Fri</div><div class="wd-temp">77°</div><div class="wd-cond">dry · perfect</div></div><div class="weather-day"><div class="wd-label">Sat-Sun</div><div class="wd-temp">~78°</div><div class="wd-cond">dry · packed</div></div></div>
     </div>
   </div>
-
-  <div class="bottom-call">
-    Memorial Day · Clippers Tue–Thu · Breakaway Ohio Fri &amp; Sat · Father&apos;s Day reservations opening. <span class="accent">Engage every soul.</span>
-  </div>
-
-  <div class="footer">Bar Italia · 4145 The Strand · Easton Town Center · Columbus, OH · NWS Wilmington · Crew Stadium · Breakaway Festival · MiLB</div>
-
+  <div class="bottom-call">Clippers home all six nights · Ecuador-Guatemala friendly Sunday · Wednesday is the washout. <span class="accent">Engage every soul.</span></div>
+  <div class="footer">Bar Italia · 4145 The Strand · Easton Town Center · Columbus, OH · NWS Wilmington · Columbus Crew · MiLB · Funny Bone</div>
 </div>
-
 </body>
 </html>
