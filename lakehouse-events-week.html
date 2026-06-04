@@ -8,7 +8,7 @@
   html, body {
     width: 1920px; height: 1080px;
     overflow: hidden;
-    background: #f7f3ea;
+    background: #ffffff;
     color: #0f1f3d;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
@@ -17,20 +17,16 @@
     display: grid;
     grid-template-columns: 200px 1fr;
     overflow: hidden;
-    background:
-      radial-gradient(circle at 10% 10%, rgba(232,160,32,0.08) 0%, transparent 35%),
-      radial-gradient(circle at 90% 90%, rgba(232,160,32,0.06) 0%, transparent 40%),
-      #f7f3ea;
+    background: #ffffff;
   }
   .logo-strip {
-    background: #f0e8d4;
+    background: #ffffff;
     border-right: 4px solid #b8800a;
     display: flex; align-items: center; justify-content: center;
     padding: 30px 0;
   }
   .logo-strip img {
     height: 100%; max-height: 1020px; width: auto;
-    filter: drop-shadow(0 0 12px rgba(15,31,61,0.20));
   }
   .content {
     padding: 24px 44px 22px 36px;
@@ -58,14 +54,13 @@
   }
   .subtitle strong { color: #c8102e; font-weight: 800; }
 
-  /* Big Saturday hero box */
   .headline {
     background: linear-gradient(135deg, #c8102e 0%, #8a0e25 100%);
     border-radius: 12px;
     padding: 16px 26px;
     margin-bottom: 14px;
     display: flex; align-items: center; gap: 22px;
-    box-shadow: 0 8px 22px rgba(200,16,46,0.30);
+    box-shadow: 0 8px 22px rgba(200,16,46,0.25);
   }
   .headline-day {
     background: #fff; color: #c8102e;
@@ -98,14 +93,15 @@
     border-radius: 10px;
     padding: 14px 18px;
     display: flex; align-items: center; gap: 18px;
+    border: 1px solid #e0d8c2;
     border-left: 6px solid #c8c0ad;
     flex: 1;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.08);
+    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
   }
-  .day-row.today { border-left-color: #2d9d5b; background: #f4fbf6; }
-  .day-row.party { border-left-color: #b8800a; background: #fcf6e8; }
-  .day-row.peak { border-left-color: #c8102e; background: #fdf2f4; }
-  .day-row.cool { border-left-color: #4a86b6; background: #f0f6fc; }
+  .day-row.today { border-left-color: #2d9d5b; }
+  .day-row.party { border-left-color: #b8800a; }
+  .day-row.peak { border-left-color: #c8102e; }
+  .day-row.cool { border-left-color: #4a86b6; }
   .day-tag {
     flex-shrink: 0; min-width: 110px;
     text-align: center;
@@ -133,15 +129,17 @@
   .comp-row {
     background: #fff; border-radius: 10px;
     padding: 12px 18px;
+    border: 1px solid #e0d8c2;
     border-left: 6px solid #c8c0ad; flex: 1;
     display: flex; align-items: center; gap: 16px;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.08);
+    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
   }
-  .comp-row.alert { border-left-color: #c8102e; background: #fdf2f4; }
-  .comp-row.warn { border-left-color: #b8800a; background: #fcf6e8; }
+  .comp-row.warn { border-left-color: #b8800a; }
+  .comp-row.alert { border-left-color: #c8102e; }
+  .comp-row.peak { border-left-color: #c8102e; }
   .comp-name {
-    flex-shrink: 0; min-width: 130px;
-    font-size: 22px; font-weight: 900; color: #0f1f3d;
+    flex-shrink: 0; min-width: 140px;
+    font-size: 21px; font-weight: 900; color: #0f1f3d;
     line-height: 1.1;
   }
   .comp-text { flex: 1; font-size: 16px; color: #2a3550; line-height: 1.32; font-weight: 500; }
@@ -154,10 +152,11 @@
   .info-box {
     background: #fff; border-radius: 10px;
     padding: 12px 18px; display: flex; gap: 14px; align-items: center;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.08);
+    border: 1px solid #e0d8c2;
+    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
   }
   .info-box.weather { border-left: 6px solid #2d9d5b; }
-  .info-box.takeaway { border-left: 6px solid #b8800a; background: #fcf6e8; }
+  .info-box.takeaway { border-left: 6px solid #b8800a; }
   .info-icon { font-size: 38px; flex-shrink: 0; line-height: 1; }
   .info-body { flex: 1; }
   .info-label { font-size: 14px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
@@ -239,31 +238,31 @@
       </div>
 
       <div class="col">
-        <div class="col-label">★ Flats Competition · ½ Mile Radius</div>
+        <div class="col-label">★ Events Affecting Sales</div>
 
         <div class="comp-row warn">
-          <div class="comp-name">Jacobs Pav.</div>
-          <div class="comp-text"><strong>MT. JOY FRI 8pm</strong> · big indie draw right in the Flats · pre-show 6–7:30pm · post-show 10:30pm walk-ins · biggest pull-in for us</div>
+          <div class="comp-name">Fri · Mt. Joy</div>
+          <div class="comp-text">Jacobs Pavilion 8pm · big indie draw RIGHT in the Flats · <strong>pre-show dinner 6–7:30pm</strong> · <strong>post-show 10:30pm bar walk-ins</strong> · biggest pull-in this weekend</div>
+        </div>
+
+        <div class="comp-row peak">
+          <div class="comp-name">Sat · Brazil v. Egypt</div>
+          <div class="comp-text">Huntington Bank Field · World Cup tune-up · <strong>downtown packed all day</strong> · stadium is walkable from the Flats · pre-game + post-game walk-ins expected</div>
+        </div>
+
+        <div class="comp-row peak">
+          <div class="comp-name">Sat · Pride in the CLE</div>
+          <div class="comp-text">Public Square 11am–6pm · march + festival · <strong>massive downtown lunch crowd</strong> · post-festival overflow into the Flats Saturday late afternoon</div>
         </div>
 
         <div class="comp-row">
-          <div class="comp-name">Lago + Punch Bowl</div>
-          <div class="comp-text"><strong>Direct dinner + brunch competitors</strong> · Lago Italian + Veranda rooftop · Punch Bowl games &amp; scratch kitchen · both likely full Friday Mt. Joy pre-show &amp; Sat-Sun brunch</div>
-        </div>
-
-        <div class="comp-row">
-          <div class="comp-name">GNJ + FWD</div>
-          <div class="comp-text"><strong>Late-night clubs</strong> · Good Night John Boy 70s disco (Schwartz/Rutter) · FWD day/night (Bobby George/Ethos) · post-Mt. Joy + post-Pride landing spots · don&apos;t pull pre-dinner</div>
-        </div>
-
-        <div class="comp-row">
-          <div class="comp-name">Shooters · West Bank</div>
-          <div class="comp-text">TurnDev / MGK · reopened March · brunch service rolling out · waterfront stage coming · <strong>no concerts this weekend</strong></div>
+          <div class="comp-name">Fri-Sun · Little Italy</div>
+          <div class="comp-text">Summer Art Walk · three-day east-side fest · <strong>pulls east-side guests AWAY from the Flats</strong> · mild headwind for weekend covers · biggest on Sunday</div>
         </div>
 
         <div class="comp-row alert">
-          <div class="comp-name">Stadiums Dark</div>
-          <div class="comp-text"><strong>Rocket Arena dark</strong> all weekend (next: 5SOS Tue 6/9) · <strong>Progressive dark</strong> (Guardians @ Texas) · only Huntington Bank Field active Sat for Brazil/Egypt</div>
+          <div class="comp-name">Stadiums Mostly Dark</div>
+          <div class="comp-text"><strong>Rocket Arena dark</strong> all weekend (next: 5SOS Tue 6/9) · <strong>Progressive Field dark</strong> (Guardians @ Texas Fri–Sun) · no random ballgame foot traffic to the Flats</div>
         </div>
 
       </div>
