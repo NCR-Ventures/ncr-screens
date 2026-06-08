@@ -27,8 +27,7 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
 .pos { color: #4cde88; }
 .neg { color: #ff5c5c; }
 
-.content { flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
-.section-head { font-size: 18px; color: #aab4cc; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; font-weight: bold; }
+.content { flex: 1; display: flex; flex-direction: column; gap: 16px; min-height: 0; }
 .grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -43,11 +42,14 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
 .loc-card.darker { background: #141e38; }
 .loc-card.fuoco { background: #2a1810; border-color: #5a3024; }
 .loc-card.record { background: linear-gradient(135deg, #0d3d28 0%, #1a4d35 100%); border: 3px solid #e8a020; box-shadow: 0 0 24px rgba(232,160,32,0.35); }
+.loc-card.record-mini { background: linear-gradient(135deg, #0d3d28 0%, #1a4d35 100%); border: 2px solid #e8a020; box-shadow: 0 0 18px rgba(232,160,32,0.3); }
 .loc-name { font-size: 20px; color: #e8a020; font-weight: bold; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 1px solid #2a4070; padding-bottom: 6px; text-align: center; }
 .loc-card.fuoco .loc-name { color: #e98638; border-bottom-color: #5a3024; }
 .loc-card.record .loc-name { color: #ffd968; border-bottom-color: rgba(232,160,32,0.5); font-size: 26px; }
+.loc-card.record-mini .loc-name { color: #ffd968; border-bottom-color: rgba(232,160,32,0.5); }
 .loc-sales { font-size: 42px; font-weight: bold; color: #fff; line-height: 1; margin: 4px 0; text-align: center; }
 .loc-card.record .loc-sales { font-size: 80px; color: #ffd968; text-shadow: 0 2px 12px rgba(255,200,80,0.3); }
+.loc-card.record-mini .loc-sales { color: #ffd968; }
 .loc-row { display: flex; justify-content: space-between; align-items: center; min-height: 30px; }
 .loc-sub { font-size: 16px; color: #aab4cc; }
 .loc-pct { font-size: 18px; font-weight: bold; padding: 4px 10px; border-radius: 4px; }
@@ -59,6 +61,7 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
 .record-banner { display: flex; gap: 12px; justify-content: center; margin: 10px 0 4px; }
 .record-badge { background: rgba(232,160,32,0.95); color: #0a2418; font-size: 16px; font-weight: bold; padding: 8px 16px; border-radius: 6px; letter-spacing: 0.5px; text-align: center; line-height: 1.25; }
 .record-badge .rec-val { font-size: 22px; display: block; }
+.mini-badge { background: rgba(232,160,32,0.95); color: #0a2418; font-size: 14px; font-weight: bold; padding: 5px 10px; border-radius: 5px; letter-spacing: 0.5px; text-align: center; display: block; margin: 4px auto 0; max-width: fit-content; }
 
 .center-block .loc-card, .south-block .loc-card { padding: 22px 26px; }
 .center-block .loc-card .loc-name, .south-block .loc-card .loc-name { font-size: 22px; }
@@ -67,7 +70,7 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
 .center-block .loc-card .loc-pct, .south-block .loc-card .loc-pct { font-size: 20px; padding: 4px 12px; }
 .center-block .loc-card.record .loc-name { font-size: 28px; }
 
-.combo-summary { background: #1a3160; border-radius: 10px; border: 1px solid #2a4070; flex-shrink: 0; margin-top: 12px; overflow: hidden; }
+.combo-summary { background: #1a3160; border-radius: 10px; border: 1px solid #2a4070; flex-shrink: 0; margin-top: 18px; overflow: hidden; }
 .combo-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 28px; }
 .combo-row + .combo-row { border-top: 1px solid #2a4070; }
 .combo-label { font-size: 16px; color: #e8a020; font-weight: bold; letter-spacing: 3px; text-transform: uppercase; min-width: 160px; line-height: 1.15; }
@@ -105,11 +108,15 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
 <div class="content">
 
   <div class="east-block">
-    <div class="section-head">East Side Ohio</div>
     <div class="grid5">
       <div class="loc-card"><div class="loc-name">Cedar Creek Grille</div><div class="loc-sales">$106,207</div><div class="loc-row"><span class="loc-sub">Budget: $100,000</span><span class="loc-pct pos-bg">+12.7% LY</span></div></div>
       <div class="loc-card"><div class="loc-name">Beachwood Bar Italia</div><div class="loc-sales">$76,110</div><div class="loc-row"><span class="loc-sub">Budget: $72,000</span><span class="loc-pct pos-bg">+9.2% LY</span></div></div>
-      <div class="loc-card"><div class="loc-name">Lola's Bistro</div><div class="loc-sales">$137,186</div><div class="loc-row"><span class="loc-sub">Budget: $125,000</span><span class="loc-pct new-bg">New 2026</span></div></div>
+      <div class="loc-card record-mini">
+        <div class="loc-name">★ Lola's Bistro ★</div>
+        <div class="loc-sales">$137,186</div>
+        <div class="mini-badge">★ BEST WEEK YET ★</div>
+        <div class="loc-row"><span class="loc-sub">Budget: $125,000</span><span class="loc-pct new-bg">New 2026</span></div>
+      </div>
       <div class="loc-card"><div class="loc-name">JoJo's Bar</div><div class="loc-sales">$112,200</div><div class="loc-row"><span class="loc-sub">Budget: $164,839</span><span></span></div></div>
       <div class="loc-card fuoco"><div class="loc-name">Bar Fuoco</div><div class="loc-sales">$33,109</div><div class="loc-row"><span class="fuoco-tag">Sub-concept of JoJo's</span><span></span></div></div>
     </div>
@@ -134,7 +141,6 @@ body { padding: 28px 56px; display: flex; flex-direction: column; height: 1080px
   </div>
 
   <div class="south-block">
-    <div class="section-head">Columbus &amp; Florida</div>
     <div class="grid3">
       <div class="loc-card darker"><div class="loc-name">Bar Italia Easton</div><div class="loc-sales">$155,608</div><div class="loc-row"><span class="loc-sub">Budget: $179,500</span><span class="loc-pct new-bg">New 2026</span></div></div>
       <div class="loc-card darker"><div class="loc-name">Bar Italia Winter Park</div><div class="loc-sales">$181,041</div><div class="loc-row"><span class="loc-sub">Budget: $148,755</span><span class="loc-pct pos-bg">+24.1% LY</span></div></div>
