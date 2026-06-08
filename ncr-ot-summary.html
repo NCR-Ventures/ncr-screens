@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1920">
+<title>NCR Ventures — Weekly Overtime Summary</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0f1f3d; font-family: Arial, sans-serif; color: #fff; }
+body { padding: 22px 56px; display: flex; flex-direction: column; height: 1080px; }
+.serif { font-family: Georgia, serif; }
+.header { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; }
+.brand { font-size: 19px; color: #e8a020; letter-spacing: 5px; text-transform: uppercase; font-weight: bold; }
+.title { font-family: Georgia, serif; font-size: 50px; font-weight: bold; color: #fff; line-height: 1.05; margin-top: 6px; }
+.subtitle { font-size: 21px; color: #8ba3c4; margin-top: 6px; }
+.date-badge { background: #e8a020; color: #0f1f3d; font-family: Georgia, serif; font-size: 25px; font-weight: bold; padding: 14px 30px; border-radius: 12px; text-align: center; line-height: 1.2; }
+.divider { height: 3px; background: #e8a020; margin: 12px 0 16px; border-radius: 2px; flex-shrink: 0; }
+.summary { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin-bottom: 18px; flex-shrink: 0; }
+.scard { background: #1a3160; border: 1px solid #2a4070; border-radius: 14px; padding: 16px 26px; }
+.scard.gold { border: 2px solid #e8a020; }
+.scard .lbl { font-size: 15px; color: #8ba3c4; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+.scard .num { font-family: Georgia, serif; font-size: 46px; font-weight: bold; color: #e8a020; line-height: 1; margin-top: 8px; }
+.scard .num.white { color: #fff; }
+.scard .sub { font-size: 15px; color: #8ba3c4; margin-top: 6px; }
+.chart-title { font-family: Georgia, serif; font-size: 22px; color: #e8a020; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; margin-bottom: 6px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0;}
+.legend { font-size: 16px; color: #8ba3c4; font-family: Arial; letter-spacing:0; text-transform:none; }
+.legend .key { display:inline-block; width:14px; height:14px; border-radius:3px; vertical-align:middle; margin:0 6px 0 18px; }
+.chart { flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
+.row { display: grid; grid-template-columns: 360px 760px 1fr; align-items: center; gap: 18px; }
+.loc { font-family: Georgia, serif; font-size: 21px; font-weight: bold; color: #fff; }
+.track { height: 30px; background: #16294d; border-radius: 6px; display: flex; overflow: hidden; }
+.seg { height: 100%; }
+.seg.boh { background: #e8a020; }
+.seg.foh { background: #4a90b8; }
+.seg.uns { background: #7a8aa0; }
+.clean-pill { color: #4cde88; font-size: 15px; font-weight: bold; padding: 5px 10px; }
+.val { font-family: Georgia, serif; font-size: 26px; font-weight: bold; color: #fff; white-space: nowrap; }
+.val .meta { display:block; font-family: Arial; font-size: 14px; font-weight: normal; color: #8ba3c4; margin-top: 2px; }
+.uns-tag, .footnote { font-family: Arial; font-size: 14px; color: #8ba3c4; font-weight: normal; }
+.footnote { margin-top: 10px; flex-shrink:0; }
+</style></head>
+<body>
+<div class="header">
+  <div>
+    <div class="brand">NCR Ventures</div>
+    <div class="title">Weekly Overtime Summary &mdash; All Locations</div>
+    <div class="subtitle">Period 6 &middot; Week 2 &middot; Week ending 06.07.26 &middot; OT premium dollars (aggregate, excludes management)</div>
+  </div>
+  <div class="date-badge">Week Ending<br>06.07.26</div>
+</div>
+<div class="divider"></div>
+<div class="summary">
+  <div class="scard gold"><div class="lbl">Company OT Premium</div><div class="num">$2,296.59</div><div class="sub">across 7 locations with OT</div></div>
+  <div class="scard"><div class="lbl">Total OT Hours</div><div class="num white">216.1</div><div class="sub">39+ staff over 40 hrs</div></div>
+  <div class="scard"><div class="lbl">Kitchen vs Front</div><div class="num white" style="font-size:34px;">BOH $1,320 <span style="color:#4a90b8;">&middot; FOH $316</span></div><div class="sub">OT is overwhelmingly kitchen-driven (JoJo's $660 unsplit)</div></div>
+  <div class="scard"><div class="lbl">Clean Weeks</div><div class="num" style="color:#4cde88;">2</div><div class="sub">Sarasota &amp; 17 River &mdash; zero OT</div></div>
+</div>
+<div class="chart-title"><span>Overtime by Location</span><span class="legend"><span class="key" style="background:#e8a020;"></span>BOH<span class="key" style="background:#4a90b8;"></span>FOH<span class="key" style="background:#7a8aa0;"></span>Unsplit</span></div>
+<div class="chart">
+<div class="row"><div class="loc">The Lakehouse</div><div class="track"><div class="seg boh" style="width:691px;"></div><div class="seg foh" style="width:69px;"></div></div><div class="val">$831.06<span class="meta">98.9 hrs &middot; 12 staff &middot; ramp / coverage</span></div></div>
+<div class="row"><div class="loc">JoJo's Bar &amp; Bar Fuoco</div><div class="track"><div class="seg uns" style="width:604px;"></div></div><div class="val">$660.42 <span class="uns-tag">unsplit*</span><span class="meta">19.4 hrs &middot; &mdash; staff &middot; narrative-reported*</span></div></div>
+<div class="row"><div class="loc">Cedar Creek Grille / Bar Italia Beachwood</div><div class="track"><div class="seg boh" style="width:333px;"></div><div class="seg foh" style="width:171px;"></div></div><div class="val">$550.67<span class="meta">72.7 hrs &middot; 14 staff &middot; training</span></div></div>
+<div class="row"><div class="loc">Bar Italia Winter Park</div><div class="track"><div class="seg boh" style="width:62px;"></div><div class="seg foh" style="width:43px;"></div></div><div class="val">$115.07<span class="meta">13.2 hrs &middot; 6 staff &middot; scheduling</span></div></div>
+<div class="row"><div class="loc">Bar Italia Easton</div><div class="track"><div class="seg boh" style="width:65px;"></div><div class="seg foh" style="width:7px;"></div></div><div class="val">$78.28<span class="meta">8.2 hrs &middot; 4 staff &middot; cook coverage</span></div></div>
+<div class="row"><div class="loc">Bar Italia Lakewood</div><div class="track"><div class="seg boh" style="width:52px;"></div><div class="seg foh" style="width:0px;"></div></div><div class="val">$57.09<span class="meta">3.3 hrs &middot; 1 staff &middot; short-staffed line</span></div></div>
+<div class="row"><div class="loc">Lola's Bistro</div><div class="track"><div class="seg boh" style="width:5px;"></div><div class="seg foh" style="width:0px;"></div></div><div class="val">$4.00<span class="meta">0.4 hrs &middot; 2 staff &middot; minimal</span></div></div>
+<div class="row"><div class="loc">Bar Italia Sarasota</div><div class="track"><span class="clean-pill">No OT &middot; clean week</span></div><div class="val">$0.00<span class="meta">0 hrs &middot; 0 staff &middot; clean week</span></div></div>
+<div class="row"><div class="loc">17 River Grille</div><div class="track"><span class="clean-pill">No OT &middot; clean week</span></div><div class="val">$0.00<span class="meta">0 hrs &middot; 0 staff &middot; clean week</span></div></div>
+
+</div>
+<div class="footnote">* JoJo's Bar &amp; Bar Fuoco OT was reported in the GM narrative (19.4 hrs / $660.42), not itemized in the OT table, so it is shown unsplit and flagged for verification. OT reflects coverage and ramp context by location, not a manager comparison.</div>
+</body></html>
