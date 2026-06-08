@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>This Weekend at The Lakehouse</title>
+<title>Next Week at The Lakehouse</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
@@ -14,10 +14,8 @@
   }
   .screen {
     width: 1920px; height: 1080px;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    overflow: hidden;
-    background: #ffffff;
+    display: grid; grid-template-columns: 200px 1fr;
+    overflow: hidden; background: #ffffff;
   }
   .logo-strip {
     background: #ffffff;
@@ -35,22 +33,18 @@
   .top-bar {
     display: flex; justify-content: space-between; align-items: baseline;
     border-bottom: 3px solid #b8800a;
-    padding-bottom: 6px;
-    margin-bottom: 8px;
+    padding-bottom: 6px; margin-bottom: 8px;
   }
   .brand { font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: #b8800a; font-weight: 800; }
   .week { font-size: 24px; color: #4a5570; font-weight: 700; }
   .title {
     font-size: 44px; font-weight: 900; line-height: 1.04;
-    margin-bottom: 4px;
-    color: #0f1f3d;
+    margin-bottom: 4px; color: #0f1f3d;
   }
   .title .accent { color: #b8800a; }
   .subtitle {
     font-size: 22px; color: #4a5570; margin-bottom: 10px;
-    max-width: 1540px;
-    line-height: 1.3;
-    font-weight: 600;
+    line-height: 1.3; font-weight: 600;
   }
   .subtitle strong { color: #c8102e; font-weight: 800; }
 
@@ -76,38 +70,33 @@
   .headline-text strong { color: #fff; font-weight: 800; }
 
   .grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
+    display: grid; grid-template-columns: 1.1fr 1fr;
     gap: 14px; flex: 1; min-height: 0;
   }
   .col { display: flex; flex-direction: column; gap: 8px; }
   .col-label {
     font-size: 17px; font-weight: 900;
     letter-spacing: .15em; text-transform: uppercase;
-    color: #fff;
-    background: #0f1f3d;
+    color: #fff; background: #0f1f3d;
     padding: 6px 14px; border-radius: 4px; align-self: flex-start;
   }
   .day-row {
-    background: #fff;
-    border-radius: 10px;
+    background: #fff; border-radius: 10px;
     padding: 10px 16px;
     display: flex; align-items: center; gap: 16px;
     border: 1px solid #e0d8c2;
     border-left: 6px solid #c8c0ad;
-    flex: 1;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
+    flex: 1; box-shadow: 0 2px 6px rgba(15,31,61,0.06);
   }
-  .day-row.today { border-left-color: #2d9d5b; }
-  .day-row.party { border-left-color: #b8800a; }
   .day-row.peak { border-left-color: #c8102e; }
+  .day-row.party { border-left-color: #b8800a; }
+  .day-row.warm { border-left-color: #e8a020; }
   .day-row.cool { border-left-color: #4a86b6; }
   .day-tag {
     flex-shrink: 0; min-width: 110px;
     text-align: center;
     background: #0f1f3d;
-    border-radius: 8px;
-    padding: 10px 6px;
+    border-radius: 8px; padding: 10px 6px;
   }
   .day-tag .dow {
     font-size: 18px; font-weight: 900; color: #e8a020;
@@ -115,16 +104,14 @@
   }
   .day-tag .date { font-size: 14px; color: #c8c0ad; margin-top: 4px; font-weight: 700; }
   .day-events {
-    flex: 1; display: flex; flex-direction: column;
-    gap: 6px;
+    flex: 1; display: flex; flex-direction: column; gap: 4px;
   }
-  .ev { display: flex; flex-direction: column; line-height: 1.2; }
+  .ev { display: flex; flex-direction: column; line-height: 1.18; }
   .ev-title {
-    font-weight: 800; color: #0f1f3d; font-size: 21px;
-    line-height: 1.18;
+    font-weight: 800; color: #0f1f3d; font-size: 20px;
   }
-  .ev-title.house { color: #b8800a; font-weight: 900; }
-  .ev-meta { color: #4a5570; font-size: 15px; margin-top: 1px; font-weight: 500; }
+  .ev-title.peak { color: #c8102e; font-weight: 900; }
+  .ev-meta { color: #4a5570; font-size: 14px; margin-top: 1px; font-weight: 500; }
 
   .comp-row {
     background: #fff; border-radius: 10px;
@@ -135,14 +122,14 @@
     box-shadow: 0 2px 6px rgba(15,31,61,0.06);
   }
   .comp-row.warn { border-left-color: #b8800a; }
-  .comp-row.alert { border-left-color: #c8102e; }
   .comp-row.peak { border-left-color: #c8102e; }
+  .comp-row.cool { border-left-color: #4a86b6; }
   .comp-name {
     flex-shrink: 0; min-width: 140px;
-    font-size: 21px; font-weight: 900; color: #0f1f3d;
+    font-size: 20px; font-weight: 900; color: #0f1f3d;
     line-height: 1.1;
   }
-  .comp-text { flex: 1; font-size: 16px; color: #2a3550; line-height: 1.32; font-weight: 500; }
+  .comp-text { flex: 1; font-size: 15px; color: #2a3550; line-height: 1.3; font-weight: 500; }
   .comp-text strong { color: #c8102e; font-weight: 800; }
 
   .bottom-row {
@@ -157,12 +144,12 @@
   }
   .info-box.weather { border-left: 6px solid #2d9d5b; }
   .info-box.takeaway { border-left: 6px solid #b8800a; }
-  .info-icon { font-size: 38px; flex-shrink: 0; line-height: 1; }
+  .info-icon { font-size: 36px; flex-shrink: 0; line-height: 1; }
   .info-body { flex: 1; }
-  .info-label { font-size: 14px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+  .info-label { font-size: 14px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px; }
   .info-label.weather { color: #2d9d5b; }
   .info-label.takeaway { color: #b8800a; }
-  .info-text { font-size: 18px; color: #0f1f3d; line-height: 1.35; font-weight: 600; }
+  .info-text { font-size: 17px; color: #0f1f3d; line-height: 1.35; font-weight: 600; }
   .info-text strong { color: #0f1f3d; font-weight: 900; }
   .info-text .warn { color: #c8102e; font-weight: 900; }
 </style>
@@ -178,60 +165,76 @@
   <div class="content">
 
     <div class="top-bar">
-      <div class="brand">This Weekend at The Lakehouse</div>
-      <div class="week">Thursday June 4 – Sunday June 7, 2026</div>
+      <div class="brand">Next Week at The Lakehouse</div>
+      <div class="week">Monday June 8 – Sunday June 14, 2026</div>
     </div>
 
-    <div class="title">Mt. Joy Friday. Brazil v. Egypt Saturday. Pride downtown. <span class="accent">Two private parties in-house.</span></div>
-    <div class="subtitle"><strong>Fri 6/5:</strong> Rehearsal Dinner · 31 ppl &nbsp;|&nbsp; <strong>Sat 6/6:</strong> Brunch Private Party · 45 ppl. Three major downtown events on top of it. Patio plays Thu, Fri, Sun — Saturday rains.</div>
+    <div class="title">Guardians home all week. <span class="accent">5SOS at Rocket Tuesday. Patio weather builds.</span></div>
+    <div class="subtitle"><strong>Yankees Mon–Wed · Tigers Fri–Sun · 5 Seconds of Summer Tue at Rocket Arena.</strong> Downtown is alive every night. Patio weather Mon–Wed, scattered storms midweek, weekend recheck Friday.</div>
 
     <div class="headline">
       <div class="headline-day">
-        <div class="dow">Sat</div>
-        <div class="date">6/6</div>
+        <div class="dow">Tue</div>
+        <div class="date">6/9</div>
       </div>
       <div class="headline-body">
-        <div class="headline-label">★ The Sprint Day</div>
-        <div class="headline-title">Brazil v. Egypt · Pride in the CLE · Brunch Party 45 · 65% Rain</div>
-        <div class="headline-text">World Cup tune-up at Huntington Bank Field · Pride parade + festival 11am–6pm at Public Square · 45-top brunch in-house · <strong>plan brunch indoor.</strong></div>
+        <div class="headline-label">★ The Big Night</div>
+        <div class="headline-title">5 Seconds of Summer at Rocket Arena 8pm · Guardians vs. Yankees 6:40pm</div>
+        <div class="headline-text">Doubleheader downtown — <strong>two major draws within walking distance.</strong> Rocket Arena crowd pre-show 6–7:30pm, post-show 10:30pm walk-ins. Yankees pre-game from 4:30pm.</div>
       </div>
     </div>
 
     <div class="grid">
 
       <div class="col">
-        <div class="col-label">★ Thursday – Sunday</div>
+        <div class="col-label">★ Monday – Sunday</div>
 
-        <div class="day-row today">
-          <div class="day-tag"><div class="dow">Thu</div><div class="date">6/4 · Today</div></div>
+        <div class="day-row warm">
+          <div class="day-tag"><div class="dow">Mon</div><div class="date">6/8</div></div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title">80° · Dry · Patio Prime</span><span class="ev-meta">Quiet weeknight downtown · prep the weekend</span></div>
-            <div class="ev"><span class="ev-title">⚾ Guardians @ Yankees · Away</span><span class="ev-meta">1:35pm day game · no Flats foot traffic</span></div>
-          </div>
-        </div>
-
-        <div class="day-row party">
-          <div class="day-tag"><div class="dow">Fri</div><div class="date">6/5</div></div>
-          <div class="day-events">
-            <div class="ev"><span class="ev-title house">★ REHEARSAL DINNER · 31 PPL · IN-HOUSE</span><span class="ev-meta">86° · patio prime if held outdoors · run the room</span></div>
-            <div class="ev"><span class="ev-title">🎶 Mt. Joy at Jacobs Pavilion · 8pm</span><span class="ev-meta">Flats neighbor · pre-show 6–7:30pm</span></div>
+            <div class="ev"><span class="ev-title">⚾ Guardians vs. Yankees · HOME · 6:40pm</span><span class="ev-meta">81° · dry · patio prime · pre-game from 4:30pm</span></div>
           </div>
         </div>
 
         <div class="day-row peak">
-          <div class="day-tag"><div class="dow">Sat</div><div class="date">6/6</div></div>
+          <div class="day-tag"><div class="dow">Tue</div><div class="date">6/9</div></div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title house">★ BRUNCH PARTY · 45 PPL · IN-HOUSE</span><span class="ev-meta">82° · 65% rain · plan indoor</span></div>
-            <div class="ev"><span class="ev-title">⚽ Brazil v. Egypt · Huntington Bank Field</span><span class="ev-meta">World Cup tune-up · downtown packed</span></div>
-            <div class="ev"><span class="ev-title">🏳️‍🌈 Pride in the CLE · Public Square 11am–6pm</span><span class="ev-meta">March + festival</span></div>
+            <div class="ev"><span class="ev-title peak">🎶 5SOS Rocket Arena 8pm · ⚾ Guardians vs. Yankees 6:40pm</span><span class="ev-meta">85° · 40% PM storms · doubleheader downtown · expect packed Flats</span></div>
+          </div>
+        </div>
+
+        <div class="day-row warm">
+          <div class="day-tag"><div class="dow">Wed</div><div class="date">6/10</div></div>
+          <div class="day-events">
+            <div class="ev"><span class="ev-title">⚾ Guardians vs. Yankees · HOME · 1:10pm day game</span><span class="ev-meta">86° · 40% storms · post-game late lunch + early dinner walk-ins</span></div>
+          </div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-tag"><div class="dow">Thu</div><div class="date">6/11</div></div>
+          <div class="day-events">
+            <div class="ev"><span class="ev-title">Quieter weeknight · No Guardians game</span><span class="ev-meta">Off day for the team · downtown calm before weekend</span></div>
+          </div>
+        </div>
+
+        <div class="day-row peak">
+          <div class="day-tag"><div class="dow">Fri</div><div class="date">6/12</div></div>
+          <div class="day-events">
+            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · 7:10pm</span><span class="ev-meta">Battle of Ohio · packed Flats Friday night</span></div>
+          </div>
+        </div>
+
+        <div class="day-row party">
+          <div class="day-tag"><div class="dow">Sat</div><div class="date">6/13</div></div>
+          <div class="day-events">
+            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · 4:10pm day game</span><span class="ev-meta">Day game · brunch into pre-game window · late dinner post-game</span></div>
           </div>
         </div>
 
         <div class="day-row cool">
-          <div class="day-tag"><div class="dow">Sun</div><div class="date">6/7</div></div>
+          <div class="day-tag"><div class="dow">Sun</div><div class="date">6/14</div></div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title">74° · Cooler · Dry · Patio Back On</span><span class="ev-meta">Comfortable brunch &amp; dinner weather</span></div>
-            <div class="ev"><span class="ev-title">🇮🇹 Little Italy Art Walk Day 3</span><span class="ev-meta">East-side draw · Larchmere Rock the Blocks too</span></div>
+            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · Sunday game</span><span class="ev-meta">Series finale · brunch + dinner walk-ins · steady Sunday pace</span></div>
           </div>
         </div>
 
@@ -240,29 +243,29 @@
       <div class="col">
         <div class="col-label">★ Events Affecting Sales</div>
 
+        <div class="comp-row peak">
+          <div class="comp-name">Tue · 5SOS</div>
+          <div class="comp-text">Rocket Arena 8pm · pop-rock world tour · <strong>Yankees game same night = downtown packed</strong> · pre-show dinner 6–7:30pm · post-show 10:30pm walk-ins</div>
+        </div>
+
+        <div class="comp-row peak">
+          <div class="comp-name">Mon-Wed · Yankees</div>
+          <div class="comp-text">Three home games vs Yankees at Progressive Field · <strong>pre-game window 4:30–6:30pm</strong> for each · post-game late-night walk-ins · biggest weeknight series of the month</div>
+        </div>
+
+        <div class="comp-row peak">
+          <div class="comp-name">Fri-Sun · Tigers</div>
+          <div class="comp-text">Battle of Ohio rivalry series · <strong>packed Flats all weekend</strong> · Sat day game means brunch through pre-game · 3 home games in 3 days</div>
+        </div>
+
         <div class="comp-row warn">
-          <div class="comp-name">Fri · Mt. Joy</div>
-          <div class="comp-text">Jacobs Pavilion 8pm · big indie draw RIGHT in the Flats · <strong>pre-show dinner 6–7:30pm</strong> · <strong>post-show 10:30pm bar walk-ins</strong> · biggest pull-in this weekend</div>
+          <div class="comp-name">Jacobs Pavilion</div>
+          <div class="comp-text">No major shows confirmed for next week · last weekend was Mt. Joy · next big show TBA · <strong>no Flats concert pull</strong></div>
         </div>
 
-        <div class="comp-row peak">
-          <div class="comp-name">Sat · Brazil v. Egypt</div>
-          <div class="comp-text">Huntington Bank Field · World Cup tune-up · <strong>downtown packed all day</strong> · stadium is walkable from the Flats · pre-game + post-game walk-ins expected</div>
-        </div>
-
-        <div class="comp-row peak">
-          <div class="comp-name">Sat · Pride in the CLE</div>
-          <div class="comp-text">Public Square 11am–6pm · march + festival · <strong>massive downtown lunch crowd</strong> · post-festival overflow into the Flats Saturday late afternoon</div>
-        </div>
-
-        <div class="comp-row">
-          <div class="comp-name">Fri-Sun · Little Italy</div>
-          <div class="comp-text">Summer Art Walk · three-day east-side fest · <strong>pulls east-side guests AWAY from the Flats</strong> · mild headwind for weekend covers · biggest on Sunday</div>
-        </div>
-
-        <div class="comp-row alert">
-          <div class="comp-name">Stadiums Mostly Dark</div>
-          <div class="comp-text"><strong>Rocket Arena dark</strong> all weekend (next: 5SOS Tue 6/9) · <strong>Progressive Field dark</strong> (Guardians @ Texas Fri–Sun) · no random ballgame foot traffic to the Flats</div>
+        <div class="comp-row cool">
+          <div class="comp-name">Flats Operators</div>
+          <div class="comp-text">Forward Hospitality (5 venues), Ethos (FWD), Alley Cat &amp; Collision Bend, Lago — all standard ops · we&apos;re the only spot for sit-down dinner pre/post Guardians games on the river</div>
         </div>
 
       </div>
@@ -274,9 +277,9 @@
       <div class="info-box weather">
         <div class="info-icon">⛅</div>
         <div class="info-body">
-          <div class="info-label weather">Weather Thu – Sun</div>
+          <div class="info-label weather">Weather Mon – Wed (Recheck Thu–Sun Fri AM)</div>
           <div class="info-text">
-            <strong>Thu 80° · Fri 86° · Sat 82° · Sun 74°</strong> — patio prime Thu &amp; Fri. <span class="warn">Sat 65% rain</span> — brunch party indoors. Sun dry &amp; cooler.
+            <strong>Mon 81° dry · Tue 85° 40% PM · Wed 86° 40%</strong> — patio prime Monday, scattered storms midweek. Thu–Sun trending warm and humid.
           </div>
         </div>
       </div>
@@ -286,7 +289,7 @@
         <div class="info-body">
           <div class="info-label takeaway">What This Means</div>
           <div class="info-text">
-            <strong>Friday:</strong> 31-top rehearsal + Mt. Joy = full house. <strong>Saturday:</strong> 45-top brunch indoor + Brazil/Egypt + Pride = sprint day.
+            <strong>Tuesday is the night</strong> · 5SOS + Yankees. Six Guardians home games in seven days. Staff up the bar for post-game walk-ins.
           </div>
         </div>
       </div>
