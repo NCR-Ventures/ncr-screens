@@ -6,31 +6,36 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f0f2f5; font-family: Arial, sans-serif; color: #1a2540; }
-body { padding: 14px 40px 10px; display: flex; flex-direction: column; height: 1080px; }
+body { padding: 12px 40px 8px; display: flex; flex-direction: column; height: 1080px; }
 
-/* HEADER */
-.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-bottom: 6px; }
-.brand { font-size: 14px; color: #1e4d8c; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
-.title { font-size: 34px; font-weight: bold; color: #1a2540; line-height: 1.05; }
-.subtitle { font-size: 13px; color: #6b7a99; margin-top: 1px; }
-.date-badge { background: #1e4d8c; color: #fff; font-size: 17px; font-weight: bold; padding: 8px 20px; border-radius: 8px; text-align: center; line-height: 1.45; }
+/* HEADER — tight */
+.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; margin-bottom: 5px; }
+.brand { font-size: 13px; color: #1e4d8c; letter-spacing: 4px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 30px; font-weight: bold; color: #1a2540; line-height: 1.0; }
+.subtitle { font-size: 12px; color: #6b7a99; margin-top: 1px; }
+.date-badge { background: #1e4d8c; color: #fff; font-size: 15px; font-weight: bold; padding: 6px 16px; border-radius: 6px; text-align: center; line-height: 1.4; }
 
-/* DIVIDER */
-.divider { height: 3px; background: #1e4d8c; margin-bottom: 6px; border-radius: 1px; flex-shrink: 0; }
+.divider { height: 3px; background: #1e4d8c; margin-bottom: 5px; border-radius: 1px; flex-shrink: 0; }
 
-/* KPI STRIP */
-.kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; flex-shrink: 0; margin-bottom: 7px; }
-.kpi { background: #fff; border: 1px solid #d0d8e8; border-radius: 8px; padding: 5px 12px; text-align: center; }
-.kpi-label { font-size: 10px; color: #6b7a99; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
-.kpi-val { font-size: 28px; font-weight: bold; color: #1e4d8c; line-height: 1.1; }
-.kpi-sub { font-size: 10px; color: #6b7a99; }
+/* CELEBRATION BANNER — single line, tight */
+.celebrate { background: linear-gradient(135deg, #1a3d6e 0%, #1e4d8c 50%, #1a3d6e 100%); border-left: 5px solid #f0c040; border-radius: 5px; padding: 5px 18px; flex-shrink: 0; margin-bottom: 5px; display: flex; align-items: center; gap: 20px; }
+.cel-gold { font-size: 20px; font-weight: bold; color: #f0c040; white-space: nowrap; }
+.cel-sep  { width: 2px; height: 24px; background: rgba(255,255,255,0.25); flex-shrink: 0; }
+.cel-grn  { font-size: 20px; font-weight: bold; color: #6dcc6d; white-space: nowrap; }
 
-/* TABLE — fills all remaining space */
+/* KPI STRIP — tight */
+.kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; flex-shrink: 0; margin-bottom: 6px; }
+.kpi { background: #fff; border: 1px solid #d0d8e8; border-radius: 6px; padding: 4px 10px; text-align: center; }
+.kpi-label { font-size: 10px; color: #6b7a99; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; }
+.kpi-val   { font-size: 26px; font-weight: bold; color: #1e4d8c; line-height: 1.05; }
+.kpi-sub   { font-size: 10px; color: #6b7a99; }
+
+/* TABLE — gets all remaining space */
 .table-wrap { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; flex: 1; }
 
 thead tr { background: #1e4d8c; }
-thead th { padding: 0 6px; height: 32px; text-align: center; color: #fff; font-size: 12.5px; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 2px solid #1a3d6e; white-space: nowrap; font-weight: 700; overflow: hidden; vertical-align: middle; }
+thead th { padding: 0 6px; height: 28px; text-align: center; color: #fff; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; border-bottom: 2px solid #1a3d6e; white-space: nowrap; font-weight: 700; overflow: hidden; vertical-align: middle; }
 thead th:first-child { text-align: left; padding-left: 14px; }
 thead th.ft-ly  { background: #1a3d6e; border-left: 2px solid #4a7abf; }
 thead th.ft-bud { background: #163260; border-left: 1px solid #4a7abf; }
@@ -38,32 +43,38 @@ thead th.ft-bud { background: #163260; border-left: 1px solid #4a7abf; }
 tbody tr { border-bottom: 1px solid #dde3ef; }
 tbody tr:nth-child(odd)  { background: #fff; }
 tbody tr:nth-child(even) { background: #f5f7fb; }
+tbody tr.star-row  { background: #fffbea !important; border-left: 5px solid #f0c040; }
+tbody tr.lola-row  { background: #f0fff0 !important; border-left: 5px solid #6dcc6d; }
 
-td { padding: 0 6px; text-align: center; font-size: 24px; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size: 23px; padding-left: 14px; }
+/* BIG FONTS — readable from 10 feet */
+td { padding: 0 7px; text-align: center; font-size: 28px; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+td:first-child { text-align: left; font-weight: bold; color: #1e4d8c; font-size: 26px; padding-left: 14px; }
 td.ft-ly-col  { background: rgba(26,61,110,0.06); border-left: 2px solid #4a7abf; }
 td.ft-bud-col { background: rgba(22,50,96,0.04); border-left: 1px solid #4a7abf; }
+tr.star-row td.ft-ly-col  { background: rgba(240,192,64,0.12); }
+tr.star-row td.ft-bud-col { background: rgba(240,192,64,0.08); }
+tr.lola-row td.ft-ly-col  { background: rgba(109,204,109,0.10); }
+tr.lola-row td.ft-bud-col { background: rgba(109,204,109,0.07); }
 
-/* SOP colors */
 .ft-green  { color: #1a7a3e; font-weight: bold; }
-.ft-yellow { color: #b05e00; font-weight: bold; }
 .ft-orange { color: #c45000; font-weight: bold; }
 .ft-red    { color: #b91c1c; font-weight: bold; }
-.ft-na     { color: #9aaabf; font-style: italic; }
-
+.ft-na     { color: #9aaabf; font-style: italic; font-size: 22px; }
 .pos { color: #1a7a3e; font-weight: 600; }
 .neg { color: #b91c1c; font-weight: 600; }
-.dim { color: #9aaabf; }
 .ep  { color: #1a7a3e; font-weight: bold; }
 .en  { color: #b91c1c; font-weight: bold; }
+.dim { color: #9aaabf; }
 
-.badge { display: inline-block; font-size: 13px; font-weight: bold; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase; }
-.bg  { background: #dcf5e7; color: #1a7a3e; border: 1px solid #a8dfc0; }
-.bo  { background: #ffdfc0; color: #c45000; border: 1px solid #e8a050; }
-.br  { background: #fee2e2; color: #b91c1c; border: 1px solid #f5a0a0; }
-.bn  { background: #eef1f7; color: #6b7a99; border: 1px solid #c8d0e0; }
+.badge { display: inline-block; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 4px; letter-spacing: 0.3px; text-transform: uppercase; }
+.bg    { background: #dcf5e7; color: #1a7a3e; border: 1px solid #a8dfc0; }
+.bo    { background: #ffdfc0; color: #c45000; border: 1px solid #e8a050; }
+.br    { background: #fee2e2; color: #b91c1c; border: 1px solid #f5a0a0; }
+.bn    { background: #eef1f7; color: #6b7a99; border: 1px solid #c8d0e0; }
+.bstar { background: #fff3c0; color: #7a5a00; border: 2px solid #f0c040; }
+.bglo  { background: #d4f5d4; color: #1a7a3e; border: 2px solid #6dcc6d; }
 
-.legend { font-size: 11px; color: #6b7a99; margin-top: 5px; text-align: center; font-style: italic; flex-shrink: 0; white-space: nowrap; }
+.legend { font-size: 11px; color: #6b7a99; margin-top: 4px; text-align: center; font-style: italic; flex-shrink: 0; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -74,16 +85,22 @@ td.ft-bud-col { background: rgba(22,50,96,0.04); border-left: 1px solid #4a7abf;
     <div class="title">EBITDA &amp; Flow-Through Dashboard</div>
     <div class="subtitle">YTD 2026  ·  FT vs LY (Bonus Calc) &amp; vs Budget  ·  Bonus SOP Tiers  ·  Home Office Only</div>
   </div>
-  <div class="date-badge">YTD 2026<br>Week Ending 6/1/26<br><span style="font-size:13px;opacity:0.85;">Period 6 · Week 1</span></div>
+  <div class="date-badge">YTD 2026<br>Week Ending 6/8/26<br><span style="font-size:12px;opacity:0.85;">Period 6 · Week 2</span></div>
 </div>
 <div class="divider"></div>
 
+<div class="celebrate">
+  <div class="cel-gold">⭐ 17 River — P6W2: 30.0% EBITDA &nbsp;·&nbsp; $65,583 &nbsp;·&nbsp; Best in company this week &nbsp;·&nbsp; Great work, Sam &amp; team</div>
+  <div class="cel-sep"></div>
+  <div class="cel-grn">🌿 Lola's Bistro — YTD: $32,146 ahead of EBITDA budget &nbsp;·&nbsp; Great work, Joseph &amp; Nick</div>
+</div>
+
 <div class="kpi-row">
-  <div class="kpi"><div class="kpi-label">YTD Gross Revenue</div><div class="kpi-val">$24.1M</div><div class="kpi-sub">Budget $24.7M · ($642K)</div></div>
-  <div class="kpi"><div class="kpi-label">P6 W1 Revenue</div><div class="kpi-val" style="color:#1a7a3e;">$1.34M</div><div class="kpi-sub">EBITDA $227K · 17.5%</div></div>
-  <div class="kpi"><div class="kpi-label">YTD EBITDA</div><div class="kpi-val" style="color:#1a7a3e;">$2.90M</div><div class="kpi-sub">12.5% · ($257K) vs Budget</div></div>
-  <div class="kpi"><div class="kpi-label">Blended FT vs LY</div><div class="kpi-val" style="color:#c45000;">15.4%</div><div class="kpi-sub">Bonus calc · Target ≥ 40%</div></div>
-  <div class="kpi"><div class="kpi-label">SS EBITDA Δ vs 2025</div><div class="kpi-val" style="color:#1a7a3e;">+$83K</div><div class="kpi-sub">7 same-store locations</div></div>
+  <div class="kpi"><div class="kpi-label">YTD Gross Revenue</div><div class="kpi-val">$25.4M</div><div class="kpi-sub">Budget $25.2M · +$190K</div></div>
+  <div class="kpi"><div class="kpi-label">P6 W2 Revenue</div><div class="kpi-val" style="color:#1a7a3e;">$1.37M</div><div class="kpi-sub">EBITDA $239K · 17.9%</div></div>
+  <div class="kpi"><div class="kpi-label">YTD EBITDA</div><div class="kpi-val" style="color:#1a7a3e;">$3.13M</div><div class="kpi-sub">12.7% · ($257K) vs Budget</div></div>
+  <div class="kpi"><div class="kpi-label">Blended FT vs LY</div><div class="kpi-val" style="color:#c45000;">17.8%</div><div class="kpi-sub">Bonus calc · Target ≥ 40%</div></div>
+  <div class="kpi"><div class="kpi-label">SS EBITDA Δ vs 2025</div><div class="kpi-val" style="color:#1a7a3e;">+$109K</div><div class="kpi-sub">7 same-store locations</div></div>
 </div>
 
 <div class="table-wrap">
@@ -97,130 +114,120 @@ td.ft-bud-col { background: rgba(22,50,96,0.04); border-left: 1px solid #4a7abf;
       <th style="width:8%;">2026 EBITDA</th>
       <th style="width:7%;">EBITDA Δ</th>
       <th style="width:7%;">vs Budget</th>
-      <th class="ft-ly"  style="width:7.5%;">FT vs LY<br><span style="font-size:10px;font-weight:400;opacity:0.85;">Bonus Calc</span></th>
-      <th class="ft-bud" style="width:7.5%;">FT vs Bud<br><span style="font-size:10px;font-weight:400;opacity:0.85;">Reference</span></th>
+      <th class="ft-ly"  style="width:7.5%;">FT vs LY<br><span style="font-size:9px;font-weight:400;opacity:0.85;">Bonus Calc</span></th>
+      <th class="ft-bud" style="width:7.5%;">FT vs Bud<br><span style="font-size:9px;font-weight:400;opacity:0.85;">Reference</span></th>
       <th style="width:9%;">Bonus Tier</th>
     </tr>
   </thead>
   <tbody>
-
     <tr>
       <td>Beachwood</td>
-      <td>$4,201,405</td>
-      <td class="pos">+$182,905</td>
-      <td class="pos">+$469,026</td>
-      <td class="ep">$557,427</td>
-      <td class="pos">+$105,470</td>
-      <td class="pos">+$7,759</td>
-      <td class="ft-ly-col ft-orange">22.5%</td>
-      <td class="ft-bud-col ft-red">4.2%</td>
+      <td>$4,383,721</td>
+      <td class="pos">+$190,221</td>
+      <td class="pos">+$487,392</td>
+      <td class="ep">$578,462</td>
+      <td class="pos">+$110,923</td>
+      <td class="pos">+$5,117</td>
+      <td class="ft-ly-col ft-orange">22.8%</td>
+      <td class="ft-bud-col ft-red">2.7%</td>
       <td><span class="badge bo">50% Award</span></td>
     </tr>
-
-    <tr>
-      <td>17 River Grille</td>
-      <td>$2,862,827</td>
-      <td class="neg">($153,173)</td>
-      <td class="pos">+$81,639</td>
-      <td class="ep">$454,593</td>
-      <td class="neg">-$9,514</td>
-      <td class="neg">($91,346)</td>
-      <td class="ft-ly-col ft-red">-11.7%</td>
-      <td class="ft-bud-col ft-red">59.6%*</td>
-      <td><span class="badge br">No Flow ⚠</span></td>
+    <tr class="star-row">
+      <td>⭐ 17 River Grille</td>
+      <td>$3,086,564</td>
+      <td class="neg">($119,636)</td>
+      <td class="pos">+$120,001</td>
+      <td class="ep">$519,176</td>
+      <td class="pos">+$7,609</td>
+      <td class="neg">($75,466)</td>
+      <td class="ft-ly-col ft-red">6.3%</td>
+      <td class="ft-bud-col ft-red">63.1%*</td>
+      <td><span class="badge bstar">P6W2: 30.0% ⭐</span></td>
     </tr>
-
     <tr>
       <td>JoJo's &amp; Bar Fuoco</td>
-      <td>$2,084,853</td>
-      <td class="neg">($10,073)</td>
-      <td class="pos">+$51,978</td>
-      <td class="ep">$158,405</td>
-      <td class="neg">-$29,227</td>
-      <td class="neg">($43,024)</td>
-      <td class="ft-ly-col ft-red">-56.2%</td>
-      <td class="ft-bud-col ft-red">427.1%*</td>
+      <td>$2,230,162</td>
+      <td class="neg">($23,460)</td>
+      <td class="pos">+$37,249</td>
+      <td class="ep">$180,085</td>
+      <td class="neg">-$33,228</td>
+      <td class="neg">($47,283)</td>
+      <td class="ft-ly-col ft-red">-89.2%</td>
+      <td class="ft-bud-col ft-red">201.5%*</td>
       <td><span class="badge br">No Flow ⚠</span></td>
     </tr>
-
     <tr>
       <td>The Lakehouse ★</td>
-      <td>$727,749</td>
-      <td class="neg">($298,107)</td>
-      <td class="neg">-$155,333</td>
-      <td class="en">($266,304)</td>
-      <td class="neg">-$40,523</td>
-      <td class="neg">($104,958)</td>
-      <td class="ft-ly-col ft-red">26.1%†</td>
-      <td class="ft-bud-col ft-red">35.2%†</td>
+      <td>$874,126</td>
+      <td class="neg">($300,961)</td>
+      <td class="neg">-$148,195</td>
+      <td class="en">($252,833)</td>
+      <td class="neg">-$43,190</td>
+      <td class="neg">($117,604)</td>
+      <td class="ft-ly-col ft-orange">29.1%†</td>
+      <td class="ft-bud-col ft-orange">39.1%†</td>
       <td><span class="badge br">No Flow ⚠</span></td>
     </tr>
-
     <tr>
       <td>Lakewood</td>
-      <td>$1,578,930</td>
-      <td class="neg">($18,890)</td>
-      <td class="pos">+$12,222</td>
-      <td class="ep">$207,496</td>
-      <td class="neg">-$18,634</td>
-      <td class="neg">($20,118)</td>
-      <td class="ft-ly-col ft-red">-152.5%</td>
-      <td class="ft-bud-col ft-red">106.5%*</td>
+      <td>$1,643,488</td>
+      <td class="neg">($28,079)</td>
+      <td class="pos">+$5,713</td>
+      <td class="ep">$213,592</td>
+      <td class="neg">-$19,854</td>
+      <td class="neg">($24,670)</td>
+      <td class="ft-ly-col ft-red">-347.5%</td>
+      <td class="ft-bud-col ft-red">87.9%*</td>
       <td><span class="badge br">No Flow ⚠</span></td>
     </tr>
-
     <tr>
       <td>Winter Park</td>
-      <td>$3,772,036</td>
-      <td class="pos">+$205,459</td>
-      <td class="pos">+$258,591</td>
-      <td class="ep">$631,087</td>
-      <td class="pos">+$127,109</td>
-      <td class="pos">+$109,760</td>
-      <td class="ft-ly-col ft-green">49.2%</td>
-      <td class="ft-bud-col ft-green">53.4%</td>
+      <td>$3,953,077</td>
+      <td class="pos">+$228,807</td>
+      <td class="pos">+$293,794</td>
+      <td class="ep">$661,816</td>
+      <td class="pos">+$141,600</td>
+      <td class="pos">+$118,927</td>
+      <td class="ft-ly-col ft-green">48.2%</td>
+      <td class="ft-bud-col ft-green">52.0%</td>
       <td><span class="badge bg">Full Award ✓</span></td>
     </tr>
-
     <tr>
       <td>Sarasota</td>
-      <td>$3,626,202</td>
-      <td class="neg">($253,998)</td>
-      <td class="neg">-$175,254</td>
-      <td class="ep">$622,752</td>
-      <td class="neg">-$51,032</td>
-      <td class="neg">($53,994)</td>
-      <td class="ft-ly-col ft-red">29.1%†</td>
-      <td class="ft-bud-col ft-red">21.3%†</td>
+      <td>$3,762,824</td>
+      <td class="neg">($265,226)</td>
+      <td class="neg">-$184,032</td>
+      <td class="ep">$639,564</td>
+      <td class="neg">-$55,112</td>
+      <td class="neg">($58,501)</td>
+      <td class="ft-ly-col ft-orange">29.9%†</td>
+      <td class="ft-bud-col ft-orange">22.1%†</td>
       <td><span class="badge br">No Flow ⚠</span></td>
     </tr>
-
     <tr>
       <td>Easton ↗ 6/30/25</td>
-      <td>$2,986,787</td>
-      <td class="neg">($212,213)</td>
+      <td>$3,142,395</td>
+      <td class="neg">($232,605)</td>
       <td class="ft-na">No LY Comp</td>
-      <td class="ep">$312,465</td>
+      <td class="ep">$337,622</td>
       <td class="ft-na">—</td>
-      <td class="neg">($83,510)</td>
+      <td class="neg">($89,806)</td>
       <td class="ft-ly-col ft-na">—</td>
-      <td class="ft-bud-col ft-orange">39.3%</td>
+      <td class="ft-bud-col ft-orange">38.6%</td>
       <td><span class="badge bn">No LY Comp</span></td>
     </tr>
-
-    <tr>
-      <td>Lola's Bistro ↗ 9/9/25</td>
-      <td>$2,214,930</td>
-      <td class="neg">($84,070)</td>
+    <tr class="lola-row">
+      <td>🌿 Lola's Bistro ↗ 9/9/25</td>
+      <td>$2,352,116</td>
+      <td class="neg">($72,884)</td>
       <td class="ft-na">No LY Comp</td>
-      <td class="ep">$227,070</td>
+      <td class="ep">$257,259</td>
       <td class="ft-na">—</td>
-      <td class="pos">+$22,661</td>
+      <td class="pos">+$32,146</td>
       <td class="ft-ly-col ft-na">—</td>
-      <td class="ft-bud-col ft-red">-27.0%*</td>
-      <td><span class="badge bn">No LY Comp</span></td>
+      <td class="ft-bud-col ft-red">-44.1%*</td>
+      <td><span class="badge bglo">+$32K vs Bud 🌿</span></td>
     </tr>
-
   </tbody>
 </table>
 </div>
@@ -232,7 +239,7 @@ td.ft-bud-col { background: rgba(22,50,96,0.04); border-left: 1px solid #4a7abf;
   <span style="color:#c45000;font-weight:bold;">■ 20–29.9% = 50%</span> &nbsp;·&nbsp;
   <span style="color:#7a4500;font-weight:bold;">■ 15–19.9% = 25%</span> &nbsp;·&nbsp;
   <span style="color:#b91c1c;font-weight:bold;">■ Below 15% or negative = Forfeited</span> &nbsp;·&nbsp;
-  † Sales behind LY — excluded from bonus per SOP &nbsp;·&nbsp; * Both deltas negative vs benchmark — read directionally &nbsp;·&nbsp; ★ Lakehouse seasonal &nbsp;·&nbsp; Home Office Only
+  † Sales behind LY — excluded from bonus per SOP &nbsp;·&nbsp; * Both deltas negative — read directionally &nbsp;·&nbsp; ★ Lakehouse seasonal &nbsp;·&nbsp; Home Office Only
 </div>
 
 </body>
