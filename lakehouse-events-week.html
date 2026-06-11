@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Next Week at The Lakehouse</title>
+<title>4-Day Weekend at The Lakehouse</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
     width: 1920px; height: 1080px;
     overflow: hidden;
     background: #ffffff;
-    color: #0f1f3d;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    color: #0e2748;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
   .screen {
     width: 1920px; height: 1080px;
@@ -19,42 +19,51 @@
   }
   .logo-strip {
     background: #ffffff;
-    border-right: 4px solid #b8800a;
+    border-right: 4px solid #3e5170;
     display: flex; align-items: center; justify-content: center;
     padding: 30px 0;
   }
-  .logo-strip img {
-    height: 100%; max-height: 1020px; width: auto;
-  }
+  .logo-strip img { height: 100%; max-height: 1020px; width: auto; }
   .content {
     padding: 16px 44px 14px 36px;
     display: flex; flex-direction: column;
   }
   .top-bar {
     display: flex; justify-content: space-between; align-items: baseline;
-    border-bottom: 3px solid #b8800a;
+    border-bottom: 3px solid #3e5170;
     padding-bottom: 6px; margin-bottom: 8px;
   }
-  .brand { font-size: 24px; letter-spacing: .14em; text-transform: uppercase; color: #b8800a; font-weight: 800; }
-  .week { font-size: 24px; color: #4a5570; font-weight: 700; }
-  .title {
-    font-size: 44px; font-weight: 900; line-height: 1.04;
-    margin-bottom: 4px; color: #0f1f3d;
+  .brand {
+    font-size: 24px; letter-spacing: .14em;
+    text-transform: uppercase; color: #0e2748;
+    font-weight: 800;
   }
-  .title .accent { color: #b8800a; }
+  .week {
+    font-size: 22px; color: #3e5170; font-weight: 700;
+    letter-spacing: .04em;
+  }
+  .title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 44px; font-weight: 700; line-height: 1.04;
+    margin-bottom: 4px; color: #0e2748; letter-spacing: -.01em;
+  }
+  .title .accent {
+    color: #3e5170; font-style: italic;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
   .subtitle {
-    font-size: 22px; color: #4a5570; margin-bottom: 10px;
-    line-height: 1.3; font-weight: 600;
+    font-size: 21px; color: #3e5170; margin-bottom: 10px;
+    line-height: 1.3; font-weight: 500;
   }
   .subtitle strong { color: #c8102e; font-weight: 800; }
 
   .headline {
     background: linear-gradient(135deg, #c8102e 0%, #8a0e25 100%);
     border-radius: 12px;
-    padding: 12px 22px;
-    margin-bottom: 10px;
+    padding: 14px 24px;
+    margin-bottom: 12px;
     display: flex; align-items: center; gap: 22px;
-    box-shadow: 0 8px 22px rgba(200,16,46,0.25);
+    box-shadow: 0 8px 22px rgba(200,16,46,0.20);
   }
   .headline-day {
     background: #fff; color: #c8102e;
@@ -65,72 +74,93 @@
   .headline-day .date { font-size: 36px; font-weight: 900; line-height: 1; margin-top: 4px; }
   .headline-body { flex: 1; }
   .headline-label { font-size: 16px; color: #ffd560; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 5px; }
-  .headline-title { font-size: 30px; font-weight: 900; color: #fff; line-height: 1.12; margin-bottom: 4px; }
-  .headline-text { font-size: 19px; color: #ffe8d0; line-height: 1.32; font-weight: 500; }
+  .headline-title {
+    font-family: Georgia, serif;
+    font-size: 28px; font-weight: 700; color: #fff;
+    line-height: 1.12; margin-bottom: 4px;
+  }
+  .headline-text { font-size: 18px; color: #ffe8d0; line-height: 1.32; font-weight: 500; }
   .headline-text strong { color: #fff; font-weight: 800; }
 
   .grid {
     display: grid; grid-template-columns: 1.1fr 1fr;
     gap: 14px; flex: 1; min-height: 0;
   }
-  .col { display: flex; flex-direction: column; gap: 8px; }
+  .col { display: flex; flex-direction: column; gap: 7px; }
   .col-label {
-    font-size: 17px; font-weight: 900;
-    letter-spacing: .15em; text-transform: uppercase;
-    color: #fff; background: #0f1f3d;
-    padding: 6px 14px; border-radius: 4px; align-self: flex-start;
+    font-family: Georgia, serif;
+    font-size: 18px; font-weight: 700; font-style: italic;
+    color: #fff;
+    background: #0e2748;
+    padding: 6px 16px; border-radius: 4px; align-self: flex-start;
+    letter-spacing: .05em;
   }
   .day-row {
     background: #fff; border-radius: 10px;
-    padding: 10px 16px;
+    padding: 8px 16px;
     display: flex; align-items: center; gap: 16px;
-    border: 1px solid #e0d8c2;
-    border-left: 6px solid #c8c0ad;
-    flex: 1; box-shadow: 0 2px 6px rgba(15,31,61,0.06);
+    border: 1px solid #d0d8e2;
+    border-left: 6px solid #b8c0d0;
+    flex: 1; box-shadow: 0 2px 6px rgba(14,39,72,0.08);
   }
   .day-row.peak { border-left-color: #c8102e; }
-  .day-row.party { border-left-color: #b8800a; }
-  .day-row.warm { border-left-color: #e8a020; }
+  .day-row.party { border-left-color: #3e5170; background: #f1f4f9; }
+  .day-row.warm { border-left-color: #4a86b6; }
   .day-row.cool { border-left-color: #4a86b6; }
+  .day-row.rain { border-left-color: #5e7ba8; background: #eef2f7; }
   .day-tag {
-    flex-shrink: 0; min-width: 110px;
+    flex-shrink: 0; min-width: 130px;
     text-align: center;
-    background: #0f1f3d;
+    background: #0e2748;
     border-radius: 8px; padding: 10px 6px;
+    color: #fff;
   }
   .day-tag .dow {
-    font-size: 18px; font-weight: 900; color: #e8a020;
-    letter-spacing: .12em; text-transform: uppercase; line-height: 1;
+    font-family: Georgia, serif;
+    font-size: 20px; font-weight: 700; color: #ffffff;
+    letter-spacing: .04em; text-transform: uppercase; line-height: 1;
+    font-style: italic;
   }
-  .day-tag .date { font-size: 14px; color: #c8c0ad; margin-top: 4px; font-weight: 700; }
+  .day-tag .date {
+    font-size: 15px; color: #b8c0d0; margin-top: 4px;
+    font-weight: 700; letter-spacing: .04em;
+  }
+  .day-tag .hours {
+    font-size: 12px; color: #8ea0c4; margin-top: 4px;
+    font-weight: 600; letter-spacing: .04em;
+    border-top: 1px solid #2a3e5e; padding-top: 4px;
+  }
   .day-events {
-    flex: 1; display: flex; flex-direction: column; gap: 4px;
+    flex: 1; display: flex; flex-direction: column; gap: 3px;
   }
-  .ev { display: flex; flex-direction: column; line-height: 1.18; }
+  .ev { display: flex; flex-direction: column; line-height: 1.2; }
   .ev-title {
-    font-weight: 800; color: #0f1f3d; font-size: 20px;
+    font-weight: 700; color: #0e2748; font-size: 19px; line-height: 1.16;
   }
+  .ev-title.house { color: #3e5170; font-weight: 900; }
   .ev-title.peak { color: #c8102e; font-weight: 900; }
-  .ev-meta { color: #4a5570; font-size: 14px; margin-top: 1px; font-weight: 500; }
+  .ev-meta { color: #4a5570; font-size: 13.5px; margin-top: 1px; font-weight: 500; }
 
   .comp-row {
     background: #fff; border-radius: 10px;
-    padding: 9px 16px;
-    border: 1px solid #e0d8c2;
-    border-left: 6px solid #c8c0ad; flex: 1;
+    padding: 10px 16px;
+    border: 1px solid #d0d8e2;
+    border-left: 6px solid #b8c0d0; flex: 1;
     display: flex; align-items: center; gap: 16px;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
+    box-shadow: 0 2px 6px rgba(14,39,72,0.08);
   }
-  .comp-row.warn { border-left-color: #b8800a; }
   .comp-row.peak { border-left-color: #c8102e; }
+  .comp-row.warn { border-left-color: #4a86b6; }
   .comp-row.cool { border-left-color: #4a86b6; }
+  .comp-row.house { border-left-color: #3e5170; background: #f1f4f9; }
   .comp-name {
-    flex-shrink: 0; min-width: 140px;
-    font-size: 20px; font-weight: 900; color: #0f1f3d;
+    flex-shrink: 0; min-width: 160px;
+    font-size: 20px; font-weight: 800; color: #0e2748;
     line-height: 1.1;
   }
-  .comp-text { flex: 1; font-size: 15px; color: #2a3550; line-height: 1.3; font-weight: 500; }
+  .comp-text { flex: 1; font-size: 15px; color: #2a3e5e; line-height: 1.3; font-weight: 500; }
   .comp-text strong { color: #c8102e; font-weight: 800; }
+  .comp-text .house-text { color: #3e5170; font-weight: 900; }
 
   .bottom-row {
     display: grid; grid-template-columns: 1.2fr 1fr;
@@ -138,20 +168,21 @@
   }
   .info-box {
     background: #fff; border-radius: 10px;
-    padding: 9px 16px; display: flex; gap: 14px; align-items: center;
-    border: 1px solid #e0d8c2;
-    box-shadow: 0 2px 6px rgba(15,31,61,0.06);
+    padding: 10px 16px; display: flex; gap: 14px; align-items: center;
+    border: 1px solid #d0d8e2;
+    box-shadow: 0 2px 6px rgba(14,39,72,0.08);
   }
   .info-box.weather { border-left: 6px solid #2d9d5b; }
-  .info-box.takeaway { border-left: 6px solid #b8800a; }
+  .info-box.takeaway { border-left: 6px solid #3e5170; background: #f1f4f9; }
   .info-icon { font-size: 36px; flex-shrink: 0; line-height: 1; }
   .info-body { flex: 1; }
   .info-label { font-size: 14px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px; }
   .info-label.weather { color: #2d9d5b; }
-  .info-label.takeaway { color: #b8800a; }
-  .info-text { font-size: 17px; color: #0f1f3d; line-height: 1.35; font-weight: 600; }
-  .info-text strong { color: #0f1f3d; font-weight: 900; }
+  .info-label.takeaway { color: #3e5170; }
+  .info-text { font-size: 17px; color: #0e2748; line-height: 1.35; font-weight: 600; }
+  .info-text strong { color: #0e2748; font-weight: 900; }
   .info-text .warn { color: #c8102e; font-weight: 900; }
+  .info-text .good { color: #2d9d5b; font-weight: 900; }
 </style>
 </head>
 <body>
@@ -165,107 +196,103 @@
   <div class="content">
 
     <div class="top-bar">
-      <div class="brand">Next Week at The Lakehouse</div>
-      <div class="week">Monday June 8 – Sunday June 14, 2026</div>
+      <div class="brand">4-Day Weekend at The Lakehouse</div>
+      <div class="week">Thursday June 11 – Sunday June 14, 2026</div>
     </div>
 
-    <div class="title">Guardians home all week. <span class="accent">5SOS at Rocket Tuesday. Patio weather builds.</span></div>
-    <div class="subtitle"><strong>Yankees Mon–Wed · Tigers Fri–Sun · 5 Seconds of Summer Tue at Rocket Arena.</strong> Downtown is alive every night. Patio weather Mon–Wed, scattered storms midweek, weekend recheck Friday.</div>
-
-    <div class="headline">
-      <div class="headline-day">
-        <div class="dow">Tue</div>
-        <div class="date">6/9</div>
-      </div>
-      <div class="headline-body">
-        <div class="headline-label">★ The Big Night</div>
-        <div class="headline-title">5 Seconds of Summer at Rocket Arena 8pm · Guardians vs. Yankees 6:40pm</div>
-        <div class="headline-text">Doubleheader downtown — <strong>two major draws within walking distance.</strong> Rocket Arena crowd pre-show 6–7:30pm, post-show 10:30pm walk-ins. Yankees pre-game from 4:30pm.</div>
-      </div>
-    </div>
+    <div class="title">Tigers home all weekend. <span class="accent">Friday is the sprint — Saturday is the patio.</span></div>
+    <div class="subtitle"><strong>Fri 6/12:</strong> Private Party 6-9 PM in the party room · Tigers 7:10 PM · we&apos;re open till 11. <strong>Sat 6/13:</strong> 84° patio prime · Tigers 4:10 day game gives us full post-game dinner. <strong>Sun:</strong> 75% rain · Tigers day game in jeopardy.</div>
 
     <div class="grid">
 
       <div class="col">
-        <div class="col-label">★ Monday – Sunday</div>
+        <div class="col-label">Thursday – Sunday</div>
 
         <div class="day-row warm">
-          <div class="day-tag"><div class="dow">Mon</div><div class="date">6/8</div></div>
-          <div class="day-events">
-            <div class="ev"><span class="ev-title">⚾ Guardians vs. Yankees · HOME · 6:40pm</span><span class="ev-meta">81° · dry · patio prime · pre-game from 4:30pm</span></div>
+          <div class="day-tag">
+            <div class="dow">Thu</div>
+            <div class="date">6/11</div>
+            <div class="hours">11 AM – 10 PM</div>
           </div>
-        </div>
-
-        <div class="day-row peak">
-          <div class="day-tag"><div class="dow">Tue</div><div class="date">6/9</div></div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title peak">🎶 5SOS Rocket Arena 8pm · ⚾ Guardians vs. Yankees 6:40pm</span><span class="ev-meta">85° · 40% PM storms · doubleheader downtown · expect packed Flats</span></div>
-          </div>
-        </div>
-
-        <div class="day-row warm">
-          <div class="day-tag"><div class="dow">Wed</div><div class="date">6/10</div></div>
-          <div class="day-events">
-            <div class="ev"><span class="ev-title">⚾ Guardians vs. Yankees · HOME · 1:10pm day game</span><span class="ev-meta">86° · 40% storms · post-game late lunch + early dinner walk-ins</span></div>
-          </div>
-        </div>
-
-        <div class="day-row">
-          <div class="day-tag"><div class="dow">Thu</div><div class="date">6/11</div></div>
-          <div class="day-events">
-            <div class="ev"><span class="ev-title">Quieter weeknight · No Guardians game</span><span class="ev-meta">Off day for the team · downtown calm before weekend</span></div>
-          </div>
-        </div>
-
-        <div class="day-row peak">
-          <div class="day-tag"><div class="dow">Fri</div><div class="date">6/12</div></div>
-          <div class="day-events">
-            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · 7:10pm</span><span class="ev-meta">Battle of Ohio · packed Flats Friday night</span></div>
+            <div class="ev"><span class="ev-title">85° · 35% PM storms · Patio with caution</span><span class="ev-meta">Watch radar 3-6 PM · move guests indoors if storms roll through</span></div>
+            <div class="ev"><span class="ev-title">⚾ Guardians OFF day · quiet weeknight</span><span class="ev-meta">No game pull downtown · prep the weekend · steady walk-in pace</span></div>
+            <div class="ev"><span class="ev-title">Bar focus · prep + reset for the weekend</span><span class="ev-meta">Stock the bar · review Friday party seating chart · last seating 9 PM</span></div>
           </div>
         </div>
 
         <div class="day-row party">
-          <div class="day-tag"><div class="dow">Sat</div><div class="date">6/13</div></div>
+          <div class="day-tag">
+            <div class="dow">Fri</div>
+            <div class="date">6/12</div>
+            <div class="hours">11 AM – 11 PM</div>
+          </div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · 4:10pm day game</span><span class="ev-meta">Day game · brunch into pre-game window · late dinner post-game</span></div>
+            <div class="ev"><span class="ev-title house">★ PRIVATE PARTY · PARTY ROOM · 6-9 PM</span><span class="ev-meta">Run the room clean · BOH plates timed · reset for post-game Tigers flow</span></div>
+            <div class="ev"><span class="ev-title">76° · 35% rain · cooler day · patio open</span><span class="ev-meta">Lighter cool-weather covers · push the bar · indoor backup ready</span></div>
+            <div class="ev"><span class="ev-title">⚾ Tigers 7:10 PM home · 🎵 BUNT at Shooters</span><span class="ev-meta">Pre-game 5-7 PM dinner window · BUNT pulls Flats nightclub crowd west to Shooters · we close at 11</span></div>
           </div>
         </div>
 
-        <div class="day-row cool">
-          <div class="day-tag"><div class="dow">Sun</div><div class="date">6/14</div></div>
+        <div class="day-row peak">
+          <div class="day-tag">
+            <div class="dow">Sat</div>
+            <div class="date">6/13</div>
+            <div class="hours">11 AM – 11 PM</div>
+          </div>
           <div class="day-events">
-            <div class="ev"><span class="ev-title">⚾ Guardians vs. Tigers · HOME · Sunday game</span><span class="ev-meta">Series finale · brunch + dinner walk-ins · steady Sunday pace</span></div>
+            <div class="ev"><span class="ev-title peak">84° · 5% rain · PATIO PRIME ALL DAY</span><span class="ev-meta">Driest day of the weekend · run every outdoor seat · push the deck</span></div>
+            <div class="ev"><span class="ev-title">🍳 Brunch 11 AM–3 PM · then day-game window</span><span class="ev-meta">Brunch rolls into pre-game dinner · capture early downtown crowd</span></div>
+            <div class="ev"><span class="ev-title">⚾ Tigers 4:10 PM DAY game · 🎵 Tchami at FWD</span><span class="ev-meta">Post-game 7-11 PM full dinner window · Tchami pre-club 7-9 PM = our window · close at 11</span></div>
+          </div>
+        </div>
+
+        <div class="day-row rain">
+          <div class="day-tag">
+            <div class="dow">Sun</div>
+            <div class="date">6/14</div>
+            <div class="hours">11 AM – 7 PM</div>
+          </div>
+          <div class="day-events">
+            <div class="ev"><span class="ev-title">74° · 75% RAIN · cooler · indoor focus</span><span class="ev-meta">Wettest day of the weekend · plan indoor seating · patio backup only</span></div>
+            <div class="ev"><span class="ev-title">🍳 Brunch 11 AM–3 PM · steady AM service</span><span class="ev-meta">Brunch will hold even in rain · push late brunch into early dinner</span></div>
+            <div class="ev"><span class="ev-title">⚾ Tigers 1:40 PM day game (rain risk) · 🤠 WTTF Line Dancing PM</span><span class="ev-meta">If rained out the day collapses · if played, post-game 4:30-7 PM walk-ins · Welcome to the Farm line dancing next door · close at 7</span></div>
           </div>
         </div>
 
       </div>
 
       <div class="col">
-        <div class="col-label">★ Events Affecting Sales</div>
+        <div class="col-label">Events Affecting Sales · 5 Mile Radius</div>
 
-        <div class="comp-row peak">
-          <div class="comp-name">Tue · 5SOS</div>
-          <div class="comp-text">Rocket Arena 8pm · pop-rock world tour · <strong>Yankees game same night = downtown packed</strong> · pre-show dinner 6–7:30pm · post-show 10:30pm walk-ins</div>
-        </div>
-
-        <div class="comp-row peak">
-          <div class="comp-name">Mon-Wed · Yankees</div>
-          <div class="comp-text">Three home games vs Yankees at Progressive Field · <strong>pre-game window 4:30–6:30pm</strong> for each · post-game late-night walk-ins · biggest weeknight series of the month</div>
+        <div class="comp-row house">
+          <div class="comp-name">Fri 6/12 · In-House</div>
+          <div class="comp-text"><span class="house-text">PRIVATE PARTY · party room · 6-9 PM</span> · run the room clean · BOH plates timed · room reset for post-game Tigers flow into close at 11</div>
         </div>
 
         <div class="comp-row peak">
           <div class="comp-name">Fri-Sun · Tigers</div>
-          <div class="comp-text">Battle of Ohio rivalry series · <strong>packed Flats all weekend</strong> · Sat day game means brunch through pre-game · 3 home games in 3 days</div>
+          <div class="comp-text"><strong>Battle of Ohio at Progressive · 3 home games</strong> · Fri 7:10 PM (pre-game 5-7 PM, post-game window thin) · <strong>Sat 4:10 PM day game = best for us</strong> (full 7-11 PM post-game dinner) · Sun 1:40 PM day game (rain risk, post-game ~4:30-7 PM)</div>
         </div>
 
         <div class="comp-row warn">
-          <div class="comp-name">Jacobs Pavilion</div>
-          <div class="comp-text">No major shows confirmed for next week · last weekend was Mt. Joy · next big show TBA · <strong>no Flats concert pull</strong></div>
+          <div class="comp-name">Fri · BUNT at Shooters</div>
+          <div class="comp-text">Melodic house/electronic at Shooters on the Water (West Bank) · <strong>first big-name booking post-renovation</strong> · pulls Flats nightclub crowd west · different demo from our dinner book · neutral for us</div>
+        </div>
+
+        <div class="comp-row warn">
+          <div class="comp-name">Sat · Tchami at FWD</div>
+          <div class="comp-text">Major French electronic DJ at FWD nightclub (East Bank, next door) · packs the venue · <strong>pre-club 7-9 PM dinner window before we close at 11</strong> · their late-night crowd is for them, not us</div>
+        </div>
+
+        <div class="comp-row warn">
+          <div class="comp-name">WTTF · Sat + Sun</div>
+          <div class="comp-text"><strong>Sat: Sing-Along Brunch</strong> at Welcome to the Farm (next door) — party-brunch crowd, different demo from our riverside brunch · <strong>Sun: Line Dancing night</strong> — country crowd arrives evening, after our 7 PM close · both Forward Hospitality events</div>
         </div>
 
         <div class="comp-row cool">
-          <div class="comp-name">Flats Operators</div>
-          <div class="comp-text">Forward Hospitality (5 venues), Ethos (FWD), Alley Cat &amp; Collision Bend, Lago — all standard ops · we&apos;re the only spot for sit-down dinner pre/post Guardians games on the river</div>
+          <div class="comp-name">Stadiums + Concerts</div>
+          <div class="comp-text"><strong>Rocket Arena · Jacobs Pavilion · Huntington Bank Field all DARK</strong> (next: Post Malone/Jelly Roll 6/25) · no downtown concert pull this weekend</div>
         </div>
 
       </div>
@@ -277,9 +304,9 @@
       <div class="info-box weather">
         <div class="info-icon">⛅</div>
         <div class="info-body">
-          <div class="info-label weather">Weather Mon – Wed (Recheck Thu–Sun Fri AM)</div>
+          <div class="info-label weather">Weather Thu – Sun</div>
           <div class="info-text">
-            <strong>Mon 81° dry · Tue 85° 40% PM · Wed 86° 40%</strong> — patio prime Monday, scattered storms midweek. Thu–Sun trending warm and humid.
+            <strong>Thu 85° 35% · Fri 76° 35% · Sat 84° 5% · Sun 74° 75%</strong> — <span class="good">Saturday is the patio day.</span> <span class="warn">Sunday rain risk threatens the Tigers day game.</span>
           </div>
         </div>
       </div>
@@ -289,7 +316,7 @@
         <div class="info-body">
           <div class="info-label takeaway">What This Means</div>
           <div class="info-text">
-            <strong>Tuesday is the night</strong> · 5SOS + Yankees. Six Guardians home games in seven days. Staff up the bar for post-game walk-ins.
+            <strong>Friday:</strong> private party + Tigers = full house, run the line tight. <strong>Saturday:</strong> patio prime + day game + Tchami pre-club = sprint day.
           </div>
         </div>
       </div>
