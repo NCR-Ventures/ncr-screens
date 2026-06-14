@@ -3,148 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1920">
-<title>NCR Soul Engagers</title>
+<title>NCR Soul Engagers — Week Ending 6.14</title>
 <style>
-:root{
-  --navy:#1F4E79; --navyLight:#2E75B6; --lightblue:#DEEAF1;
-  --yellow:#FFF2CC; --red:#C00000; --lightred:#FCEAEA;
-  --ink:#1c2b3a; --counter:#9db4cc;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; font-family: Arial, sans-serif; color: var(--ink); }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; font-family: Arial, sans-serif; color: #1a1a1a; }
 .slideshow { width: 1920px; height: 1080px; position: relative; }
-.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; display: none; flex-direction: column; padding: 44px 60px 36px; background: #fff; }
+.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; display: none; flex-direction: column; padding: 44px 60px; background: #fff; }
 .slide.active { display: flex; }
-.slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--navy); padding-bottom: 18px; margin-bottom: 24px; flex-shrink: 0; }
+.slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid #1a4a8a; padding-bottom: 18px; margin-bottom: 24px; flex-shrink: 0; }
 .header-left { display: flex; flex-direction: column; }
-.slide-brand { font-size: 22px; color: var(--navyLight); letter-spacing: 4px; text-transform: uppercase; font-weight: bold; }
-.slide-title { font-size: 54px; font-weight: bold; color: var(--navy); line-height: 1.1; }
-.slide-week { font-size: 24px; color: var(--navyLight); margin-top: 4px; font-weight: bold; }
-.slide-counter { font-size: 24px; color: var(--counter); text-align: right; }
-
-/* SERVER GRID */
-.engager-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 20px; flex: 1; min-height: 0; }
+.slide-brand { font-size: 20px; color: #1a4a8a; letter-spacing: 4px; text-transform: uppercase; font-weight: bold; }
+.slide-title { font-size: 50px; font-weight: bold; color: #1a4a8a; line-height: 1.1; }
+.slide-week { font-size: 22px; color: #888; margin-top: 4px; }
+.slide-counter { font-size: 22px; color: #aaa; text-align: right; }
+.engager-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 18px; flex: 1; min-height: 0; }
 .engager-grid > * { min-height: 0; }
-.engager-card { background: var(--lightblue); border-left: 8px solid var(--navy); border-radius: 12px; padding: 28px 32px; display: flex; flex-direction: column; justify-content: center; }
-.engager-name { font-size: 52px; font-weight: bold; color: var(--navy); margin-bottom: 8px; line-height: 1.04; }
-.engager-location { font-size: 25px; color: var(--navyLight); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
-.engager-quote { font-size: 35px; color: var(--ink); line-height: 1.34; }
-.engager-emoji { font-size: 34px; margin-top: 12px; }
-
-/* Owner-letter box on slide 3 — yellow highlight */
-.engager-card.mgr { background: var(--yellow); border-left: 8px solid var(--navy); border-top: 8px solid var(--navy); }
-.engager-card.mgr .mgr-tag { display: inline-block; align-self: flex-start; background: var(--navy); color: #fff; font-size: 18px; font-weight: bold; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 10px; }
-.engager-card.mgr .engager-name { color: var(--navy); font-size: 44px; }
-.engager-card.mgr .engager-location { color: var(--navyLight); }
-.engager-card.mgr .engager-quote { font-size: 31px; }
-
-/* MANAGER SLIDE — yellow highlight cards, 2x2 */
-.mgr-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: 1fr 1fr; gap: 26px; flex: 1; min-height: 0; }
-.mgr-grid > * { min-height: 0; }
-.mgr-card { background: var(--yellow); border-left: 10px solid var(--navy); border-top: 10px solid var(--navy); border-radius: 14px; padding: 32px 40px; display: flex; flex-direction: column; justify-content: center; }
-.mgr-card .mgr-name { font-size: 60px; font-weight: bold; color: var(--navy); line-height: 1.04; margin-bottom: 8px; }
-.mgr-card .mgr-loc { font-size: 28px; color: var(--navyLight); font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
-.mgr-card .mgr-quote { font-size: 38px; color: var(--ink); line-height: 1.34; }
-.mgr-card .mgr-emoji { font-size: 38px; margin-top: 14px; }
-
-/* RIGHT / BETTER */
-.item-list { display: flex; flex-direction: column; gap: 30px; flex: 1; min-height: 0; justify-content: space-between; }
-.item-card { border-radius: 16px; padding: 38px 44px; display: flex; align-items: center; gap: 32px; flex: 1; }
-.item-card.success { background: var(--lightblue); border-left: 12px solid var(--navy); }
-.item-card.opportunity { background: var(--lightred); border-left: 12px solid var(--red); }
-.item-number { font-size: 140px; font-weight: bold; color: var(--navy); min-width: 165px; line-height: 1; text-align: center; }
-.item-number.opp { color: var(--red); }
+.engager-card { background: #f0f6ff; border-left: 6px solid #1a4a8a; border-radius: 8px; padding: 26px 30px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.engager-card.gm-moment { background: #fff8ee; border-left: 6px solid #e8a020; }
+.engager-card.theme { background: #eef4ff; border-left: 6px solid #1a4a8a; border-style: dashed; border-width: 0 0 0 6px; }
+.engager-name { font-size: 50px; font-weight: bold; color: #1a4a8a; line-height: 1.05; flex-shrink: 0; }
+.engager-card.gm-moment .engager-name { color: #c47a00; }
+.engager-location { font-size: 26px; color: #e8a020; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-top: 4px; flex-shrink: 0; }
+.engager-card.gm-moment .engager-location { color: #1a4a8a; }
+.engager-quote { font-size: 35px; color: #333; line-height: 1.32; flex: 1; display: flex; align-items: center; padding: 12px 0; }
+.engager-emoji { font-size: 46px; flex-shrink: 0; }
+.item-list { display: flex; flex-direction: column; gap: 26px; flex: 1; min-height: 0; }
+.item-card { flex: 1; border-radius: 10px; padding: 26px 32px; display: flex; align-items: center; gap: 28px; }
+.item-card.success { background: #f0f6ff; border-left: 8px solid #1a4a8a; }
+.item-card.opportunity { background: #fff8ee; border-left: 8px solid #e8a020; }
+.item-number { font-size: 110px; font-weight: bold; color: #1a4a8a; min-width: 130px; line-height: 1; opacity: 0.9; text-align: center; }
+.item-number.opp { color: #e8a020; }
 .item-content { flex: 1; }
-.item-heading { font-size: 50px; font-weight: bold; color: var(--navy); margin-bottom: 14px; line-height: 1.12; }
-.item-body { font-size: 37px; color: var(--ink); line-height: 1.36; }
-
-.closer-footer { flex-shrink: 0; text-align: center; font-size: 32px; font-weight: bold; color: var(--navy); letter-spacing: 1px; margin-top: 20px; }
-.progress-bar { position: fixed; bottom: 0; left: 0; height: 6px; background: var(--navy); transition: width 0.1s linear; }
+.item-heading { font-size: 42px; font-weight: bold; color: #1a4a8a; margin-bottom: 12px; line-height: 1.15; }
+.item-heading.opp { color: #c47a00; }
+.item-body { font-size: 32px; color: #444; line-height: 1.45; }
+.closing-card { background: #1a4a8a; border-radius: 16px; padding: 48px 72px; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.closing-quote { font-size: 36px; color: #fff; line-height: 1.5; max-width: 1480px; margin-bottom: 40px; }
+.closing-tagline { font-size: 48px; font-weight: bold; color: #e8a020; letter-spacing: 2px; }
+.progress-bar { position: fixed; bottom: 0; left: 0; height: 6px; background: #1a4a8a; transition: width 0.1s linear; }
 </style>
 </head>
 <body>
-
 <div class="slideshow" id="slideshow">
 
-  <!-- SLIDE 1 — SERVERS G1 -->
+  <!-- ===== SLIDE 1 — SOUL ENGAGERS GROUP 1 ===== -->
   <div class="slide active">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">Soul Engagers of the Week</span><span class="slide-week">Week Ending 6.7 — The Bench Runs Deep</span></div><div class="slide-counter">1 of 6</div></div>
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="slide-brand">NCR Ventures</span>
+        <span class="slide-title">Soul Engagers of the Week</span>
+        <span class="slide-week">Week Ending 6.14 — Patios Full, Servers on a First-Name Basis</span>
+      </div>
+      <div class="slide-counter">1 of 5</div>
+    </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Colin</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">An amazing job, start to finish. Food, room, and service all landed.</div><div class="engager-emoji">🌟</div></div>
-      <div class="engager-card"><div class="engager-name">Andre</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Two families, two raves. Knew the menu and earned a standing request.</div><div class="engager-emoji">👏</div></div>
-      <div class="engager-card"><div class="engager-name">Nakyya</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">A gem of a server. Just when you think JoJo's can't get better.</div><div class="engager-emoji">💎</div></div>
-      <div class="engager-card"><div class="engager-name">Mike C.</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">Made the night perfect. Service was even better than the food.</div><div class="engager-emoji">⭐</div></div>
-      <div class="engager-card"><div class="engager-name">Haley</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">Always amazing service. A family dinner turned into a wonderful night.</div><div class="engager-emoji">🍷</div></div>
-      <div class="engager-card"><div class="engager-name">Hannah</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">A repeat guest noticed the jump in service. She called Hannah a gem.</div><div class="engager-emoji">🙌</div></div>
+      <div class="engager-card"><div class="engager-name">Avi</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">"One of the best servers we've ever had." Guests now ask for his section by name.</div><div class="engager-emoji">🌟</div></div>
+      <div class="engager-card"><div class="engager-name">Christian</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">Took a party of 14 and made every guest feel handled. Kindness and hustle.</div><div class="engager-emoji">🙌</div></div>
+      <div class="engager-card"><div class="engager-name">CJ</div><div class="engager-location">Bar Italia Beachwood</div><div class="engager-quote">A regular's go-to for business lunches. His recommendations always land.</div><div class="engager-emoji">🎯</div></div>
+      <div class="engager-card"><div class="engager-name">Sana &amp; Joe</div><div class="engager-location">Bar Italia Beachwood</div><div class="engager-quote">Waitress was amazing; the manager was right there, engaging the table.</div><div class="engager-emoji">🤝</div></div>
+      <div class="engager-card"><div class="engager-name">Coco</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">Made room for the dog on the patio and refilled drinks before anyone asked.</div><div class="engager-emoji">🐾</div></div>
+      <div class="engager-card"><div class="engager-name">Sofia</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Spotted a gift at the table, asked the question, and surprised them with dessert.</div><div class="engager-emoji">🎁</div></div>
     </div>
   </div>
 
-  <!-- SLIDE 2 — SERVERS G2 -->
+  <!-- ===== SLIDE 2 — SOUL ENGAGERS GROUP 2 ===== -->
   <div class="slide">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">Soul Engagers of the Week</span><span class="slide-week">Week Ending 6.7 — The Bench Runs Deep</span></div><div class="slide-counter">2 of 6</div></div>
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="slide-brand">NCR Ventures</span>
+        <span class="slide-title">Soul Engagers of the Week</span>
+        <span class="slide-week">Week Ending 6.14 — Patios Full, Servers on a First-Name Basis</span>
+      </div>
+      <div class="slide-counter">2 of 5</div>
+    </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Maddie</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Impeccable as always. Regulars come back for her by name.</div><div class="engager-emoji">💫</div></div>
-      <div class="engager-card"><div class="engager-name">Chloe</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">An amazing server who made a dinner for two well worth it.</div><div class="engager-emoji">✨</div></div>
-      <div class="engager-card"><div class="engager-name">Yadi</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">Locked in on every detail and knew the menu cold.</div><div class="engager-emoji">📋</div></div>
-      <div class="engager-card"><div class="engager-name">Josh</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">New on the floor and already absolutely amazing. A natural.</div><div class="engager-emoji">🌱</div></div>
-      <div class="engager-card"><div class="engager-name">Sara</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">First table off training, and the guests asked to come back for her.</div><div class="engager-emoji">🌟</div></div>
-      <div class="engager-card"><div class="engager-name">Bree</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">A birthday brunch on the water, made amazing by her.</div><div class="engager-emoji">🎂</div></div>
+      <div class="engager-card"><div class="engager-name">Brianna</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">Worth every minute of a 45-minute wait. Friendly and attentive, start to finish.</div><div class="engager-emoji">⭐</div></div>
+      <div class="engager-card"><div class="engager-name">Chris</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">Guests walked in near close and still got a warm welcome. Never felt rushed.</div><div class="engager-emoji">😊</div></div>
+      <div class="engager-card"><div class="engager-name">Josh</div><div class="engager-location">Bar Italia Easton</div><div class="engager-quote">So attentive he earned every dollar of the tip — and the guest said so.</div><div class="engager-emoji">💪</div></div>
+      <div class="engager-card"><div class="engager-name">Brodie</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">A birthday lunch made better. Service called out as exceptional.</div><div class="engager-emoji">🎉</div></div>
+      <div class="engager-card"><div class="engager-name">Charla</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">Polite, efficient, and part of a great night at the bar.</div><div class="engager-emoji">🍸</div></div>
+      <div class="engager-card"><div class="engager-name">Sean</div><div class="engager-location">Bar Italia Sarasota</div><div class="engager-quote">Quick service and real attention to detail. Guest came back to say thanks.</div><div class="engager-emoji">👏</div></div>
     </div>
   </div>
 
-  <!-- SLIDE 3 — SERVERS G3 + OWNER LETTER BOX -->
+  <!-- ===== SLIDE 3 — SOUL ENGAGERS GROUP 3 + GM MOMENT + THEME ===== -->
   <div class="slide">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">Soul Engagers of the Week</span><span class="slide-week">Week Ending 6.7 — The Bench Runs Deep</span></div><div class="slide-counter">3 of 6</div></div>
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="slide-brand">NCR Ventures</span>
+        <span class="slide-title">Soul Engagers of the Week</span>
+        <span class="slide-week">Week Ending 6.14 — Patios Full, Servers on a First-Name Basis</span>
+      </div>
+      <div class="slide-counter">3 of 5</div>
+    </div>
     <div class="engager-grid">
-      <div class="engager-card"><div class="engager-name">Molly</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">On a rough night, she was the reason the table left happy. A pro.</div><div class="engager-emoji">💪</div></div>
-      <div class="engager-card"><div class="engager-name">Marley</div><div class="engager-location">Lola's Bistro</div><div class="engager-quote">Lovely from start to finish, even in a packed room.</div><div class="engager-emoji">🌷</div></div>
-      <div class="engager-card"><div class="engager-name">Sana</div><div class="engager-location">Bar Italia Beachwood</div><div class="engager-quote">Named again this week. Top-notch with a wonderful personality.</div><div class="engager-emoji">😊</div></div>
-      <div class="engager-card"><div class="engager-name">Joe</div><div class="engager-location">Bar Italia Beachwood</div><div class="engager-quote">A regular called the crew top-notch. Made a favorite feel like home.</div><div class="engager-emoji">🤝</div></div>
-      <div class="engager-card"><div class="engager-name">Omar</div><div class="engager-location">The Lakehouse</div><div class="engager-quote">A guest said it plain: ask for Omar. He makes the experience.</div><div class="engager-emoji">🙌</div></div>
-      <div class="engager-card mgr"><span class="mgr-tag">Straight to the Owner</span><div class="engager-name">Mark &amp; Chef Landon</div><div class="engager-location">JoJo's Bar</div><div class="engager-quote">A birthday guest wrote the owner directly. Mark, Chef Landon, and the team made the night unforgettable.</div><div class="engager-emoji">🎉</div></div>
+      <div class="engager-card"><div class="engager-name">Taylor</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">"What I REALLY loved: our server." The food landed too.</div><div class="engager-emoji">🍝</div></div>
+      <div class="engager-card"><div class="engager-name">Jonathan</div><div class="engager-location">Bar Italia Beachwood</div><div class="engager-quote">Excellent service, start to finish. Made the meal feel easy.</div><div class="engager-emoji">✨</div></div>
+      <div class="engager-card"><div class="engager-name">Anthnette</div><div class="engager-location">17 River Grille</div><div class="engager-quote">A clean shout-out says it all: "Our service was great."</div><div class="engager-emoji">👋</div></div>
+      <div class="engager-card"><div class="engager-name">Chris</div><div class="engager-location">Cedar Creek Grille</div><div class="engager-quote">Fantastic on the terrace. The guest said he made the visit.</div><div class="engager-emoji">☀️</div></div>
+      <div class="engager-card gm-moment"><div class="engager-name">GM Moment</div><div class="engager-location">Bar Italia Winter Park</div><div class="engager-quote">An order ran late. The manager stepped in, made it right fast, and won a guest who's bringing her whole staff back.</div><div class="engager-emoji">🛟</div></div>
+      <div class="engager-card theme"><div class="engager-name">The Birthday Crew</div><div class="engager-location">Across the Company</div><div class="engager-quote">Surprise desserts kept showing up this week. Our people caught the celebrations and made them count.</div><div class="engager-emoji">🎂</div></div>
     </div>
   </div>
 
-  <!-- SLIDE 4 — MANAGERS IN THE THICK OF IT -->
+  <!-- ===== SLIDE 4 — 3 THINGS WE DID RIGHT ===== -->
   <div class="slide">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">Managers in the Thick of It</span><span class="slide-week">Week Ending 6.7 — On the Floor, On the Expo, Delighting Guests</span></div><div class="slide-counter">4 of 6</div></div>
-    <div class="mgr-grid">
-      <div class="mgr-card"><div class="mgr-name">Anthony</div><div class="mgr-loc">Bar Italia Winter Park · AGM</div><div class="mgr-quote">Greets the regulars like family every time he's on the floor. A reason guests keep coming back.</div><div class="mgr-emoji">🤝</div></div>
-      <div class="mgr-card"><div class="mgr-name">Joey</div><div class="mgr-loc">Bar Italia Beachwood · Manager</div><div class="mgr-quote">In the mix with the crew. A regular named him top-notch, personality and all.</div><div class="mgr-emoji">🙌</div></div>
-      <div class="mgr-card"><div class="mgr-name">Dan</div><div class="mgr-loc">Cedar Creek Grille · MP</div><div class="mgr-quote">Turned an old critic into a believer. Reached out, won him back, and the bar's humming.</div><div class="mgr-emoji">💪</div></div>
-      <div class="mgr-card"><div class="mgr-name">On the Floor</div><div class="mgr-loc">17 River Grille</div><div class="mgr-quote">A plate came back wrong. The manager owned it on the spot, made it right, and the guest is already booking the next visit.</div><div class="mgr-emoji">🍽️</div></div>
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="slide-brand">NCR Ventures</span>
+        <span class="slide-title">3 Things We Did Right</span>
+        <span class="slide-week">Week Ending 6.14 — Patios Full, Servers on a First-Name Basis</span>
+      </div>
+      <div class="slide-counter">4 of 5</div>
     </div>
-  </div>
-
-  <!-- SLIDE 5 — 3 THINGS WE DID RIGHT -->
-  <div class="slide">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">3 Things We Did Right</span><span class="slide-week">Week Ending 6.7 — The Bench Runs Deep</span></div><div class="slide-counter">5 of 6</div></div>
     <div class="item-list">
-      <div class="item-card success"><div class="item-number">1</div><div class="item-content"><div class="item-heading">Our Newest Servers Are Already Winning</div><div class="item-body">Guests singled out servers on their first tables off training and still called the night perfect. The bench is deep and the training is sticking.</div></div></div>
-      <div class="item-card success"><div class="item-number">2</div><div class="item-content"><div class="item-heading">Servers Carried the Tough Tables</div><div class="item-body">Even on the busy nights, guests kept naming the person who took care of them as the reason they would come back. That is hospitality holding the line.</div></div></div>
-      <div class="item-card success"><div class="item-number">3</div><div class="item-content"><div class="item-heading">Managers Were Hands-On</div><div class="item-body">On the floor, on the expo, and owning the recovery when something slipped. A birthday night even earned a letter straight to the owner.</div></div></div>
+      <div class="item-card success"><div class="item-number">1</div><div class="item-content"><div class="item-heading">Guests Named Us</div><div class="item-body">Server after server got called out by name this week. Earning a name in a review is the highest bar in hospitality, and we cleared it again and again.</div></div></div>
+      <div class="item-card success"><div class="item-number">2</div><div class="item-content"><div class="item-heading">We Caught the Celebrations</div><div class="item-body">Birthdays didn't slip past. Staff noticed the gift on the table, asked the question, and turned a normal meal into a memory with a surprise dessert.</div></div></div>
+      <div class="item-card success"><div class="item-number">3</div><div class="item-content"><div class="item-heading">The Save Beat the Miss</div><div class="item-body">When an order ran late, a manager stepped in and made it right. The recovery turned a complaint into a guest who's bringing her whole team back.</div></div></div>
     </div>
   </div>
 
-  <!-- SLIDE 6 — 3 OPPORTUNITIES TO BE BETTER -->
+  <!-- ===== SLIDE 5 — 3 OPPORTUNITIES TO BE BETTER ===== -->
   <div class="slide">
-    <div class="slide-header"><div class="header-left"><span class="slide-brand">NCR Ventures</span><span class="slide-title">3 Opportunities to Be Better</span><span class="slide-week">Week Ending 6.7 — The Bench Runs Deep</span></div><div class="slide-counter">6 of 6</div></div>
-    <div class="item-list">
-      <div class="item-card opportunity"><div class="item-number opp">1</div><div class="item-content"><div class="item-heading">Temp the Proteins at the Pass</div><div class="item-body">A chop went out raw near the bone. The same story shows up most weeks. One temp check at the line protects the guest and the whole table.</div></div></div>
-      <div class="item-card opportunity"><div class="item-number opp">2</div><div class="item-content"><div class="item-heading">Own the Corner Table</div><div class="item-body">The last seat and the end of the patio waited too long and felt forgotten. Assign it, check it, give it the center-of-the-room treatment.</div></div></div>
-      <div class="item-card opportunity"><div class="item-number opp">3</div><div class="item-content"><div class="item-heading">Ease Up on the Butter and Oil</div><div class="item-body">Rich is good, greasy is not. A few guests felt heavy, oily plates. Same recipes, lighter finish. Drain it and plate it clean.</div></div></div>
+    <div class="slide-header">
+      <div class="header-left">
+        <span class="slide-brand">NCR Ventures</span>
+        <span class="slide-title">3 Opportunities to Be Better</span>
+        <span class="slide-week">Week Ending 6.14 — Patios Full, Servers on a First-Name Basis</span>
+      </div>
+      <div class="slide-counter">5 of 5</div>
     </div>
-    <div class="closer-footer">Engage Souls. Be 1% Better. Keep it Fun. 🌷</div>
+    <div class="item-list">
+      <div class="item-card opportunity"><div class="item-number opp">1</div><div class="item-content"><div class="item-heading opp">Fresh Bread, Every Basket</div><div class="item-body">Bread is the first bite of the meal and the easiest to get right. A couple of tables met stale or hard bread. Check the basket before it leaves the kitchen.</div></div></div>
+      <div class="item-card opportunity"><div class="item-number opp">2</div><div class="item-content"><div class="item-heading opp">Temp and Taste at the Pass</div><div class="item-body">Proteins were the soft spot again — a soggy pizza, a dry main, a flat steak. The fix is at the line: check temp, check seasoning, and don't send a plate you wouldn't eat.</div></div></div>
+      <div class="item-card opportunity"><div class="item-number opp">3</div><div class="item-content"><div class="item-heading opp">Clear on the Guest's Cue</div><div class="item-body">A plate got cleared with food still on it, and a dessert got pushed after a guest said no. Read the table. Ask before you reach. The guest sets the pace.</div></div></div>
+    </div>
   </div>
 
 </div>
 <div class="progress-bar" id="progress"></div>
 <script>
   var slides = document.querySelectorAll('.slide');
-  var current = 0, duration = 13000, interval = 100, elapsed = 0;
+  var current = 0;
+  var duration = 15000;
+  var interval = 100;
+  var elapsed = 0;
   var progress = document.getElementById('progress');
-  function showSlide(index){ slides[current].classList.remove('active'); current=(index+slides.length)%slides.length; slides[current].classList.add('active'); elapsed=0; progress.style.width='0%'; }
-  setInterval(function(){ elapsed+=interval; progress.style.width=((elapsed/duration)*100)+'%'; if(elapsed>=duration){ showSlide(current+1);} }, interval);
+  function showSlide(index) {
+    slides[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    elapsed = 0;
+    progress.style.width = '0%';
+  }
+  setInterval(function() {
+    elapsed += interval;
+    progress.style.width = ((elapsed / duration) * 100) + '%';
+    if (elapsed >= duration) { showSlide(current + 1); }
+  }, interval);
 </script>
 </body>
 </html>
