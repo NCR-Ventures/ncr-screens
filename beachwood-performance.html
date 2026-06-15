@@ -77,22 +77,27 @@ body { padding: 24px 50px; display: flex; flex-direction: column; height: 1080px
 .concept-meta { font-size: 14px; color: #aab4cc; margin-top: 8px; }
 .concept-meta strong { color: #fff; }
 
-/* compact overrides — P6W2 fit pass */
-body { padding: 12px 44px; }
-.divider { margin: 6px 0 8px; }
-.top-row { margin-bottom: 10px; }
-.card { padding: 14px 24px; }
-.cogs-table td { padding: 6px 14px; }
-.cogs-table th { padding: 9px 14px; }
-.section-head { margin: 4px 0 6px; }
-.middle-row { margin-top: 8px; gap: 16px; }
-.labor-table td { padding: 9px 12px; }
-.labor-table th { padding: 8px 8px; }
-.ot-card { padding: 12px 18px; margin-top: 8px; }
-.ot-grid { margin-top: 6px; gap: 12px; }
-.ot-stat { padding: 9px 6px; }
-.ot-split { margin-top: 8px; }
-.ot-dept { padding: 10px 16px; }
+body { padding: 12px 44px !important; }
+.divider { margin: 6px 0 8px !important; }
+.top-row { margin-bottom: 10px !important; }
+.card { padding: 13px 24px !important; }
+.gross-big { font-family: Georgia,serif; font-size: 50px; font-weight: bold; color: #e8a020; line-height: 1; }
+.gross-sub { font-size: 17px; color: #aab4cc; margin-top: 8px; }
+.combined-line { font-size: 14px; color: #8a96b0; margin-top: 8px; font-style: italic; }
+.cogs-table td { padding: 6px 14px !important; }
+.cogs-table th { padding: 9px 14px !important; }
+.caveat { color: #e0b052; font-weight: bold; }
+.lbw-note { background: rgba(224,176,82,0.12); border-left: 5px solid #e0b052; border-radius: 8px; padding: 8px 16px; margin: 8px 0 4px; font-size: 15px; color: #e7ddc6; line-height: 1.3; }
+.lbw-note strong { color: #e0b052; }
+.section-head { margin: 4px 0 6px !important; }
+.middle-row { margin-top: 8px !important; gap: 16px !important; }
+.labor-table td { padding: 8px 12px !important; }
+.labor-table th { padding: 8px 8px !important; }
+.ot-card { padding: 11px 18px !important; margin-top: 8px !important; }
+.ot-grid { margin-top: 6px !important; gap: 12px !important; }
+.ot-stat { padding: 8px 6px !important; }
+.ot-split { margin-top: 8px !important; }
+.ot-dept { padding: 9px 16px !important; }
 </style>
 </head>
 <body>
@@ -107,38 +112,28 @@ Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
   <div>
     <div class="brand">NCR Ventures · Beachwood (CCG + Bar Italia)</div>
     <div class="title">Weekly COGS &amp; Labor Snapshot</div>
-    <div class="subtitle">Period 6 · Week 2 · Submitted by Dan, Joe, Marissa, Will, Joe S.</div>
+    <div class="subtitle">Period 6 · Week 3 · Submitted by Dan, Joe, Turi, Will</div>
   </div>
-  <div class="date-badge">Week Ending<br>06.07.26</div>
+  <div class="date-badge">Week Ending<br>06.14.26</div>
 </div>
 <div class="divider"></div>
 
 <div class="top-row">
   <div class="card gold">
-    <div class="card-label">Sales by Concept</div>
-    <div class="split-sales">
-      <div class="split-half">
-        <div class="split-concept">Cedar Creek Grille</div>
-        <div class="split-amount">$105,478</div>
-        <div class="split-vs">+$5,478 vs budget · +$11,211 vs LY</div>
-      </div>
-      <div class="split-half bi">
-        <div class="split-concept">Bar Italia Beachwood</div>
-        <div class="split-amount">$76,110</div>
-        <div class="split-vs">+$4,110 vs budget · +$6,428 vs LY</div>
-      </div>
-    </div>
-    <div class="combined-line">Combined gross <strong>$181,588</strong> · +$9,588 vs budget · +$17,639 vs LY</div>
+    <div class="card-label">Gross Sales · Combined</div>
+    <div class="gross-big">$185,377</div>
+    <div class="gross-sub">Food $148,732 · Liquor $19,203 · Wine $14,881 · Beer $2,561</div>
+    <div class="combined-line">CCG / Bar Italia split not provided in this week's submission</div>
   </div>
   <div class="card">
     <div class="card-label">Total COGS</div>
-    <div class="card-mid">$52,148 <span class="pos" style="font-size:30px;">28.6%</span></div>
-    <div class="card-sub">Food 29.9% · LBW 23.0%</div>
+    <div class="card-mid">$50,664 <span class="pos" style="font-size:30px;">27.3%</span></div>
+    <div class="card-sub">Food 29.7% · LBW 17.7%</div>
   </div>
   <div class="card">
     <div class="card-label">Total Labor</div>
-    <div class="card-mid">$38,879 <span style="color:#fff;font-size:30px;">21.3%</span></div>
-    <div class="card-sub">Blended SPLH $61.96</div>
+    <div class="card-mid">$39,630 <span style="color:#fff;font-size:30px;">21.4%</span></div>
+    <div class="card-sub">Blended SPLH $63.36</div>
   </div>
 </div>
 
@@ -155,13 +150,13 @@ Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
     </tr>
   </thead>
   <tbody>
-    <tr><td>Food</td><td>$147,868</td><td>$44,219</td><td>29.9%</td><td>30.0%</td><td class="pos">-0.1%</td></tr>
-    <tr><td>Liquor</td><td>$17,822</td><td>$3,593</td><td>20.2%</td><td>21.0%</td><td class="pos">-0.8%</td></tr>
-    <tr><td>Beer</td><td>$2,182</td><td>$592</td><td>27.1%</td><td>31.0%</td><td class="pos">-3.9%</td></tr>
-    <tr><td>Wine</td><td>$14,444</td><td>$3,744</td><td>25.9%</td><td>24.5%</td><td class="neg">+1.4%</td></tr>
+    <tr><td>Food</td><td>$148,732</td><td>$44,190</td><td>29.7%</td><td>30.0%</td><td class="pos">-0.3%</td></tr>
+    <tr><td>Liquor</td><td>$19,203</td><td>$2,521</td><td>13.1%</td><td>21.0%</td><td class="caveat">‡ -7.9%</td></tr>
+    <tr><td>Beer</td><td>$2,561</td><td>$657</td><td>25.7%</td><td>31.0%</td><td class="pos">-5.3%</td></tr>
+    <tr><td>Wine</td><td>$14,881</td><td>$3,295</td><td>22.1%</td><td>24.5%</td><td class="pos">-2.4%</td></tr>
   </tbody>
 </table>
-
+<div class="lbw-note"><strong>‡ Liquor 13.1% is artificially low this week.</strong> ~$1,100 of beverage-system product (garnish, mixers, bleu cheese, juices) was reallocated in R365 and not yet counted, plummeting reported liquor. LBW is not a clean read &mdash; expected to normalize over the coming weeks.</div>
 <div class="middle-row">
 
   <div class="col">
@@ -181,26 +176,26 @@ Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
         <tr>
           <td>FOH (excl. mgr)</td>
           <td>1,611</td>
-          <td>$12,850</td>
-          <td class="neg">7.05%</td>
+          <td>$12,515</td>
+          <td class="neg">6.75%</td>
           <td>6.2%</td>
           <td><span class="status-over">OVER</span></td>
         </tr>
         <tr>
           <td>BOH (excl. mgr)</td>
-          <td>1,332</td>
-          <td>$26,030</td>
-          <td class="neg">14.28%</td>
+          <td>1,315</td>
+          <td>$27,116</td>
+          <td class="neg">14.63%</td>
           <td>13.6%</td>
           <td><span class="status-over">OVER</span></td>
         </tr>
         <tr>
           <td>Blended</td>
-          <td>2,943</td>
-          <td>$38,879</td>
-          <td>21.3%</td>
+          <td>2,926</td>
+          <td>$39,630</td>
+          <td>21.4%</td>
           <td>SPLH ≥ $65</td>
-          <td><span class="status-over">SPLH $61.96</span></td>
+          <td><span class="status-over">SPLH $63.36</span></td>
         </tr>
       </tbody>
     </table>
@@ -208,20 +203,20 @@ Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
     <div class="ot-card">
       <div class="card-label">Overtime — Aggregate</div>
       <div class="ot-grid">
-        <div class="ot-stat"><div class="ot-val">14</div><div class="ot-lbl">Staff w/ OT</div></div>
-        <div class="ot-stat"><div class="ot-val">72.70</div><div class="ot-lbl">Total OT Hrs</div></div>
-        <div class="ot-stat"><div class="ot-val">$550.65</div><div class="ot-lbl">OT Premium</div></div>
+        <div class="ot-stat"><div class="ot-val">12</div><div class="ot-lbl">Staff w/ OT</div></div>
+        <div class="ot-stat"><div class="ot-val">58.86</div><div class="ot-lbl">Total OT Hrs</div></div>
+        <div class="ot-stat"><div class="ot-val">$609.29</div><div class="ot-lbl">OT Premium</div></div>
       </div>
       <div class="ot-split">
         <div class="ot-dept">
           <div class="ot-dept-name">BOH</div>
-          <div class="ot-dept-val">38.75 hrs · $363.94</div>
-          <div class="ot-dept-sub">Training ramp · 8 staff</div>
+          <div class="ot-dept-val">50.68 hrs · $474.32</div>
+          <div class="ot-dept-sub">Coverage — 5 cooks off for a family function</div>
         </div>
         <div class="ot-dept">
           <div class="ot-dept-name">FOH</div>
-          <div class="ot-dept-val">33.95 hrs · $186.73</div>
-          <div class="ot-dept-sub">Coverage week · 6 staff</div>
+          <div class="ot-dept-val">8.18 hrs · $134.97</div>
+          <div class="ot-dept-sub">Down sharply · schedules tightening</div>
         </div>
       </div>
     </div>
@@ -234,15 +229,15 @@ Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
       <div class="dual-review-grid">
         <div class="concept-block">
           <div class="concept-name">Cedar Creek Grille</div>
-          <div class="concept-rating" style="color:#4cde88;">4.64★</div>
-          <div class="concept-meta"><strong>25</strong> reviews · <strong>17</strong> 5★ · <strong>1</strong> sub-4★</div>
-          <div class="concept-meta">Last week: 4.62★ · 21 reviews</div>
+          <div class="concept-rating" style="color:#4cde88;">4.71★</div>
+          <div class="concept-meta"><strong>24</strong> reviews · <strong>16</strong> 5★ · <strong>2</strong> sub-4★</div>
+          <div class="concept-meta">Last week: 4.64★ · 25 reviews</div>
         </div>
         <div class="concept-block bi">
           <div class="concept-name">Bar Italia Beachwood</div>
-          <div class="concept-rating" style="color:#4cde88;">4.43★</div>
-          <div class="concept-meta"><strong>14</strong> reviews · <strong>9</strong> 5★ · <strong>1</strong> sub-4★</div>
-          <div class="concept-meta">Last week: 4.57★ · 21 reviews</div>
+          <div class="concept-rating" style="color:#4cde88;">4.61★</div>
+          <div class="concept-meta"><strong>28</strong> reviews · <strong>20</strong> 5★ · <strong>3</strong> sub-4★</div>
+          <div class="concept-meta">Last week: 4.43★ · 14 reviews</div>
         </div>
       </div>
     </div>
