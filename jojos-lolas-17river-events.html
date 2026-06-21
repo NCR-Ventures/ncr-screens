@@ -1,92 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Next Week in Chagrin Falls</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #ffffff; color: #0f1f3d; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
-  .screen { width: 1920px; height: 1080px; padding: 16px 44px 14px 44px; display: flex; flex-direction: column; overflow: hidden; }
-  .top-bar { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 3px solid #b8800a; padding-bottom: 6px; margin-bottom: 8px; }
-  .brand { font-size: 22px; letter-spacing: .12em; text-transform: uppercase; color: #b8800a; font-weight: 800; }
-  .week { font-size: 22px; color: #4a5570; font-weight: 700; }
-  .title { font-size: 42px; font-weight: 900; line-height: 1.04; margin-bottom: 4px; color: #0f1f3d; }
-  .title .accent { color: #b8800a; }
-  .subtitle { font-size: 20px; color: #4a5570; margin-bottom: 10px; line-height: 1.3; font-weight: 600; }
-  .subtitle strong { color: #c8102e; font-weight: 800; }
-  .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; flex: 1; min-height: 0; }
-  .col { display: flex; flex-direction: column; gap: 7px; }
-  .col-label { font-size: 17px; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; color: #fff; background: #0f1f3d; padding: 6px 14px; border-radius: 4px; align-self: flex-start; }
-  .day-row { background: #fff; border-radius: 10px; padding: 8px 16px; display: flex; align-items: center; gap: 16px; border: 1px solid #e0d8c2; border-left: 6px solid #c8c0ad; flex: 1; box-shadow: 0 2px 6px rgba(15,31,61,0.06); }
-  .day-row.peak { border-left-color: #c8102e; }
-  .day-row.house { border-left-color: #b8800a; background: #fcf6e8; }
-  .day-row.warm { border-left-color: #e8a020; }
-  .day-row.rain { border-left-color: #5e7ba8; background: #f3f6fb; }
-  .day-tag { flex-shrink: 0; min-width: 120px; text-align: center; background: #0f1f3d; border-radius: 8px; padding: 10px 6px; }
-  .day-tag .dow { font-size: 19px; font-weight: 900; color: #e8a020; letter-spacing: .12em; text-transform: uppercase; line-height: 1; }
-  .day-tag .date { font-size: 14px; color: #c8c0ad; margin-top: 4px; font-weight: 700; }
-  .day-events { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-  .ev { display: flex; flex-direction: column; line-height: 1.16; }
-  .ev-title { font-weight: 800; color: #0f1f3d; font-size: 19px; }
-  .ev-title.peak { color: #c8102e; font-weight: 900; }
-  .ev-title.house { color: #b8800a; font-weight: 900; }
-  .ev-meta { color: #4a5570; font-size: 13.5px; margin-top: 1px; font-weight: 500; }
-  .comp-row { background: #fff; border-radius: 10px; padding: 9px 16px; border: 1px solid #e0d8c2; border-left: 6px solid #c8c0ad; flex: 1; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 6px rgba(15,31,61,0.06); }
-  .comp-row.warn { border-left-color: #b8800a; }
-  .comp-row.peak { border-left-color: #c8102e; }
-  .comp-row.good { border-left-color: #2d9d5b; }
-  .comp-row.house { border-left-color: #b8800a; background: #fcf6e8; }
-  .comp-name { flex-shrink: 0; min-width: 150px; font-size: 19px; font-weight: 900; color: #0f1f3d; line-height: 1.1; }
-  .comp-text { flex: 1; font-size: 14.5px; color: #2a3550; line-height: 1.3; font-weight: 500; }
-  .comp-text strong { color: #c8102e; font-weight: 800; }
-  .comp-text .house-text { color: #b8800a; font-weight: 900; }
-  .bottom-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-top: 10px; }
-  .info-box { background: #fff; border-radius: 10px; padding: 9px 16px; display: flex; gap: 14px; align-items: center; border: 1px solid #e0d8c2; box-shadow: 0 2px 6px rgba(15,31,61,0.06); }
-  .info-box.weather { border-left: 6px solid #2d9d5b; }
-  .info-box.takeaway { border-left: 6px solid #b8800a; }
-  .info-icon { font-size: 36px; flex-shrink: 0; line-height: 1; }
-  .info-body { flex: 1; }
-  .info-label { font-size: 14px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 3px; }
-  .info-label.weather { color: #2d9d5b; }
-  .info-label.takeaway { color: #b8800a; }
-  .info-text { font-size: 16px; color: #0f1f3d; line-height: 1.35; font-weight: 600; }
-  .info-text strong { color: #0f1f3d; font-weight: 900; }
-  .info-text .warn { color: #c8102e; font-weight: 900; }
-  .info-text .good { color: #2d9d5b; font-weight: 900; }
-</style>
-</head>
-<body>
-<div class="screen">
-  <div class="top-bar">
-    <div class="brand">Next Week · JoJo&apos;s · Bar Fuoco · Lola&apos;s · 17 River</div>
-    <div class="week">Monday June 15 – Sunday June 21, 2026</div>
-  </div>
-  <div class="title">Father&apos;s Day Sunday. <span class="accent">Quiet village week builds to the big day.</span></div>
-  <div class="subtitle"><strong>Sun 6/21 is Father&apos;s Day</strong> — biggest day of the week at all four houses, push the book now. Light event calendar otherwise — Thursday Triangle Park concert, Sunday Farmers Market. No street closures this week. Clean patio weather Tue-Thu.</div>
-  <div class="grid">
-    <div class="col">
-      <div class="col-label">★ Monday – Sunday</div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Mon</div><div class="date">6/15</div></div><div class="day-events"><div class="ev"><span class="ev-title">67° · cool · 10% rain · quiet Monday</span><span class="ev-meta">Coolest day of the week · slow village pace · prep for Father&apos;s Day week</span></div></div></div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Tue</div><div class="date">6/16</div></div><div class="day-events"><div class="ev"><span class="ev-title">75° · 10% rain · patio returns</span><span class="ev-meta">Warm clean day · patio prime · steady walk-in dinner pace</span></div></div></div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Wed</div><div class="date">6/17</div></div><div class="day-events"><div class="ev"><span class="ev-title">73° · 15% rain · pleasant midweek</span><span class="ev-meta">Patio open · push midweek bar · light village calendar</span></div></div></div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Thu</div><div class="date">6/18</div></div><div class="day-events"><div class="ev"><span class="ev-title">78° · Triangle Park concert 7 PM</span><span class="ev-meta">Simple Summer Nights free concert at Main &amp; Franklin · brings evening foot traffic to the village · pre-concert dinner window</span></div></div></div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Fri</div><div class="date">6/19</div></div><div class="day-events"><div class="ev"><span class="ev-title">Juneteenth · weekend foot traffic builds</span><span class="ev-meta">Federal holiday · some daytime crowd in the village · strong Friday dinner book · confirm Father&apos;s Day reservations</span></div></div></div>
-      <div class="day-row warm"><div class="day-tag"><div class="dow">Sat</div><div class="date">6/20</div></div><div class="day-events"><div class="ev"><span class="ev-title">Father&apos;s Day eve · big dinner night</span><span class="ev-meta">Strongest patio Saturday of the run · families in town for the weekend · push reservations · all four houses busy</span></div></div></div>
-      <div class="day-row peak"><div class="day-tag"><div class="dow">Sun</div><div class="date">6/21</div></div><div class="day-events"><div class="ev"><span class="ev-title peak">★ FATHER&apos;S DAY · biggest day of the week</span><span class="ev-meta">Brunch + dinner at all four houses · Farmers Market 10A-1P brings 1,000+ to the village · all hands · push the patio</span></div></div></div>
-    </div>
-    <div class="col">
-      <div class="col-label">★ Events Affecting Sales</div>
-      <div class="comp-row peak"><div class="comp-name">Sun 6/21 · Father&apos;s Day</div><div class="comp-text"><span class="house-text">Biggest day of the week at JoJo&apos;s, Bar Fuoco, Lola&apos;s + 17 River</span> · brunch + dinner · push every reservation now · fathers want the patio · prep all four kitchens for volume · all hands</div></div>
-      <div class="comp-row good"><div class="comp-name">Sun · Farmers Market</div><div class="comp-text">North Union Farmers Market · 10 AM – 1 PM · N. Main &amp; N. Franklin · <strong>1,000+ through the village Father&apos;s Day morning</strong> · strong brunch driver into the afternoon · captures families already downtown</div></div>
-      <div class="comp-row warn"><div class="comp-name">Thu 6/18 · Concert</div><div class="comp-text">Simple Summer Nights free concert at Triangle Park (Main &amp; Franklin) · 7 PM · Chamber-run, Gertsburg-sponsored · brings evening foot traffic · pre-concert dinner + during-concert bar window</div></div>
-      <div class="comp-row warn"><div class="comp-name">Fri 6/19 · Juneteenth</div><div class="comp-text">Federal holiday · lighter business lunch but stronger leisure/family daytime in the village · good Friday dinner setup heading into the weekend</div></div>
-      <div class="comp-row good"><div class="comp-name">No Street Closures</div><div class="comp-text">Clean week — <strong>no resurfacing, no West Street Fest, no road closures</strong> · full village access + parking all week · first fully normal operating week since late May</div></div>
-    </div>
-  </div>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Next Week · JoJo's · Bar Fuoco · Lola's · 17 River</title><style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1920px; height:1080px; overflow:hidden; background:#fff; color:#0f1f3d; font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
+  .screen { width:1920px; height:1080px; display:grid; grid-template-columns:1fr; overflow:hidden; background:#fff; }
+  .logo-strip { background:#fff; border-right:4px solid #b8800a; display:flex; align-items:center; justify-content:center; padding:30px 0; }
+  .logo-strip img { height:100%; max-height:1020px; width:auto; }
+  .content { padding:16px 44px 14px 44px; display:flex; flex-direction:column; }
+  .top-bar { display:flex; justify-content:space-between; align-items:baseline; border-bottom:3px solid #b8800a; padding-bottom:6px; margin-bottom:8px; }
+  .brand { font-size:23px; letter-spacing:.12em; text-transform:uppercase; color:#0f1f3d; font-weight:800; }
+  .week { font-size:22px; color:#b8800a; font-weight:700; letter-spacing:.04em; }
+  .title { font-family:-apple-system, sans-serif; font-size:43px; font-weight:900; line-height:1.04; margin-bottom:4px; color:#0f1f3d; }
+  .title .accent { color:#b8800a;  }
+  .subtitle { font-size:20px; color:#b8800a; margin-bottom:10px; line-height:1.3; font-weight:600; }
+  .subtitle strong { color:#c8102e; font-weight:800; }
+  .grid { display:grid; grid-template-columns:1.1fr 1fr; gap:14px; flex:1; min-height:0; }
+  .col { display:flex; flex-direction:column; gap:7px; }
+  .col-label { font-family:-apple-system, sans-serif; font-size:17px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:#fff; background:#0f1f3d; padding:6px 16px; border-radius:4px; align-self:flex-start; }
+  .day-row { background:#fff; border-radius:10px; padding:8px 16px; display:flex; align-items:center; gap:16px; border:1px solid #d8dde6; border-left:6px solid #b8c0d0; flex:1; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
+  .day-row.peak { border-left-color:#c8102e; }
+  .day-row.party { border-left-color:#b8800a; background:#f1f4f9; }
+  .day-row.warm { border-left-color:#4a86b6; }
+  .day-row.rain { border-left-color:#5e7ba8; background:#eef2f7; }
+  .day-tag { flex-shrink:0; min-width:120px; text-align:center; background:#0f1f3d; border-radius:8px; padding:9px 6px; color:#fff; }
+  .day-tag .dow { font-family:-apple-system, sans-serif; font-size:19px; font-weight:900; color:#e8a020; letter-spacing:.12em; text-transform:uppercase; line-height:1;  }
+  .day-tag .date { font-size:14px; color:#b8c0d0; margin-top:3px; font-weight:700; }
+  .day-tag .hours { font-size:11.5px; color:#8ea0c4; margin-top:4px; font-weight:600; border-top:1px solid #2a3e5e; padding-top:3px; }
+  .day-events { flex:1; display:flex; flex-direction:column; gap:3px; }
+  .ev { display:flex; flex-direction:column; line-height:1.16; }
+  .ev-title { font-weight:800; color:#0f1f3d; font-size:19px; }
+  .ev-title.peak { color:#c8102e; font-weight:900; }
+  .ev-title.party { color:#b8800a; font-weight:900; }
+  .ev-meta { color:#4a5570; font-size:13.5px; margin-top:1px; font-weight:500; }
+  .comp-row { background:#fff; border-radius:10px; padding:9px 16px; border:1px solid #d8dde6; border-left:6px solid #b8c0d0; flex:1; display:flex; align-items:center; gap:16px; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
+  .comp-row.peak { border-left-color:#c8102e; }
+  .comp-row.warn { border-left-color:#b8800a; }
+  .comp-row.good { border-left-color:#2d9d5b; }
+  .comp-row.party { border-left-color:#b8800a; background:#f1f4f9; }
+  .comp-name { flex-shrink:0; min-width:150px; font-size:19px; font-weight:900; color:#0f1f3d; line-height:1.1; }
+  .comp-text { flex:1; font-size:14.5px; color:#2a3e5e; line-height:1.3; font-weight:500; }
+  .comp-text strong { color:#c8102e; font-weight:800; }
+  .comp-text .pt { color:#b8800a; font-weight:900; }
+  .bottom-row { display:grid; grid-template-columns:1.2fr 1fr; gap:12px; margin-top:10px; }
+  .info-box { background:#fff; border-radius:10px; padding:9px 16px; display:flex; gap:14px; align-items:center; border:1px solid #d8dde6; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
+  .info-box.weather { border-left:6px solid #2d9d5b; }
+  .info-box.takeaway { border-left:6px solid #b8800a; background:#f1f4f9; }
+  .info-icon { font-size:36px; flex-shrink:0; line-height:1; }
+  .info-body { flex:1; }
+  .info-label { font-size:14px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; margin-bottom:3px; }
+  .info-label.weather { color:#2d9d5b; }
+  .info-label.takeaway { color:#b8800a; }
+  .info-text { font-size:16px; color:#0f1f3d; line-height:1.35; font-weight:600; }
+  .info-text strong { color:#0f1f3d; font-weight:900; }
+  .info-text .warn { color:#c8102e; font-weight:900; }
+  .info-text .good { color:#2d9d5b; font-weight:900; }
+</style></head><body><div class="screen"><div class="content">
+  <div class="top-bar"><div class="brand">Next Week · JoJo's · Bar Fuoco · Lola's · 17 River</div><div class="week">Monday June 22 – Sunday June 28, 2026</div></div>
+  <div class="title">Quiet village week. <span class="accent">Thursday concert · clean weekend · patio weather returns.</span></div>
+  <div class="subtitle">Calm week in the village after Father&apos;s Day. Monday is a washout, then clean patio weather Tue-Wed. Thursday Triangle Park concert, Sunday Farmers Market. No street closures. Light calendar — a chance to reset before the July 4 build.</div>
+  <div class="grid"><div class="col"><div class="col-label">★ Monday – Sunday</div><div class="day-row rain"><div class="day-tag"><div class="dow">Mon</div><div class="date">6/22</div></div><div class="day-events"><div class="ev"><span class="ev-title rain">66° · 75% RAIN · quiet wet Monday</span><span class="ev-meta">Wettest day of the week · indoor focus · slow village pace · prep the week</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Tue</div><div class="date">6/23</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">73° · 5% rain · patio returns</span><span class="ev-meta">Clean warm day · patio prime · steady walk-in dinner pace</span></div><div class="ev"><span class="ev-title" style="color:#b8800a;">📋 MANAGER TRAINING · Teams · 10 AM</span><span class="ev-meta">Online manager training — all managers join the Teams call at 10 AM</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Wed</div><div class="date">6/24</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">77° · 25% rain · pleasant midweek</span><span class="ev-meta">Patio open · push midweek bar · light village calendar</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Thu</div><div class="date">6/25</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">77° · 65% PM storms · Triangle Park concert 7 PM</span><span class="ev-meta">Simple Summer Nights free concert at Main &amp; Franklin · evening foot traffic · watch radar for the patio</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Fri</div><div class="date">6/26</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Warm Friday · weekend foot traffic</span><span class="ev-meta">Clean Friday · weekend dinner book · patio season pace</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Sat</div><div class="date">6/27</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Patio Saturday · village busy</span><span class="ev-meta">Strong patio Saturday · weekend shopping + dining crowd · push reservations</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Sun</div><div class="date">6/28</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Farmers Market 10A-1P · Sunday brunch</span><span class="ev-meta">North Union Market at Triangle Park · 1,000+ to the village · brunch driver into afternoon</span></div></div></div></div>
+  <div class="col"><div class="col-label">★ Events Affecting Sales</div><div class="comp-row warn"><div class="comp-name">Thu 6/25 · Concert</div><div class="comp-text">Simple Summer Nights free concert at Triangle Park (Main &amp; Franklin) · 7 PM · Chamber-run, Gertsburg-sponsored · brings evening foot traffic · pre-concert dinner + during-concert bar window · 65% storm risk may move it</div></div><div class="comp-row good"><div class="comp-name">Sun · Farmers Market</div><div class="comp-text">North Union Farmers Market · 10 AM – 1 PM · N. Main &amp; N. Franklin · 1,000+ through the village Sunday morning · strong brunch driver into the afternoon</div></div><div class="comp-row good"><div class="comp-name">No Street Closures</div><div class="comp-text">Clean week — <strong>no resurfacing, no West Street Fest, no road closures</strong> · full village access + parking all week · steady operating rhythm</div></div><div class="comp-row warn"><div class="comp-name">Mon 6/22 · Washout</div><div class="comp-text">75% rain Monday · indoor focus across all four houses · slow start · the only rough weather day of the week</div></div><div class="comp-row warn"><div class="comp-name">Looking Ahead · July 4</div><div class="comp-text">July 4 Community Celebration at Triangle Park next Saturday · start prepping the holiday weekend now · build reservations</div></div></div></div>
   <div class="bottom-row">
-    <div class="info-box weather"><div class="info-icon">⛅</div><div class="info-body"><div class="info-label weather">Weather Mon – Thu (Recheck Fri–Sun Thursday AM)</div><div class="info-text"><strong>Mon 67° · Tue 75° · Wed 73° · Thu 78°</strong> — all dry, 10-15% rain · patio prime Tue-Thu. <span class="warn">Fri-Sun + Father&apos;s Day beyond forecast — recheck Thursday.</span></div></div></div>
-    <div class="info-box takeaway"><div class="info-icon">🎯</div><div class="info-body"><div class="info-label takeaway">What This Means</div><div class="info-text"><strong>Father&apos;s Day is the week.</strong> Push the book at all four houses. Clean operating week — no closures. Thursday concert + Sunday market bring village foot traffic.</div></div></div>
+    <div class="info-box weather"><div class="info-icon">⛅</div><div class="info-body"><div class="info-label weather">Weather Mon – Thu (Recheck Fri–Sun Thursday AM)</div><div class="info-text"><strong>Mon 66° 75% · Tue 73° 5% · Wed 77° 25% · Thu 77° 65%</strong> — Monday washout, clean patio Tue-Wed, Thursday storm risk. <span class="warn">Fri-Sun beyond forecast — recheck Thursday.</span></div></div></div>
+    <div class="info-box takeaway"><div class="info-icon">🎯</div><div class="info-body"><div class="info-label takeaway">What This Means</div><div class="info-text"><strong>Quiet reset week.</strong> Clean operating week, no closures. Monday is wet; patio returns Tuesday. Thursday concert + Sunday market bring foot traffic. Start the July 4 build.</div></div></div>
   </div>
-</div>
-</body>
-</html>
+</div></div></body></html>
