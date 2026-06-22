@@ -55,12 +55,12 @@ body { padding: 16px 56px; display: flex; flex-direction: column; height: 1080px
 .ot-dept-name { font-size: 14px; color: #74e29a; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
 .ot-dept-sub { font-size: 14px; color: #b6c6ad; margin-top: 4px; }
 
-.review-card { background: #173420; border: 1px solid rgba(227,183,108,0.28); border-radius: 14px; padding: 16px 22px; flex: 1; }
-.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 10px; }
-.review-stat { text-align: center; padding: 14px 8px; background: #1b3a25; border-radius: 10px; }
-.review-val { font-family: Georgia, serif; font-size: 38px; font-weight: bold; color: #74e29a; line-height: 1; }
-.review-lbl { font-size: 13px; color: #b6c6ad; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; font-weight: bold; }
-.info-line { margin-top: 12px; font-size: 16px; color: #b6c6ad; padding: 12px 16px; background: #1b3a25; border-radius: 10px; border-left: 4px solid #e3b76c; }
+.review-card { background: #173420; border: 1px solid rgba(227,183,108,0.28); border-radius: 14px; padding: 18px 26px; flex: 1; display: flex; flex-direction: column; }
+.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-top: 16px; flex: 1; }
+.review-stat { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 18px 8px; background: #1b3a25; border-radius: 12px; }
+.review-val { font-family: Georgia, serif; font-size: 64px; font-weight: bold; color: #74e29a; line-height: 1; }
+.review-lbl { font-size: 15px; color: #b6c6ad; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 11px; font-weight: bold; }
+.info-line { margin-top: 12px; font-size: 18px; color: #e6dcc8; padding: 14px 18px; background: #1b3a25; border-radius: 10px; border-left: 5px solid #74e29a; }
 </style></head>
 <body>
 <!-- STAFF-FACING — Bar Italia brand. Numbers only, aggregate OT, no names. -->
@@ -92,7 +92,7 @@ body { padding: 16px 56px; display: flex; flex-direction: column; height: 1080px
   </div>
 </div>
 
-<div class="section-head">Section 1 — Sales &amp; Cost of Goods</div>
+<div class="section-head">Sales &amp; Cost of Goods</div>
 <table class="cogs-table"><thead><tr>
   <th>Category</th><th>Sales</th><th>COGS $</th><th>COGS %</th><th>Budget %</th><th>Variance</th>
 </tr></thead><tbody>
@@ -104,7 +104,7 @@ body { padding: 16px 56px; display: flex; flex-direction: column; height: 1080px
 
 <div class="middle-row">
   <div class="col">
-    <div class="section-head">Section 2 — Labor &amp; Blended SPLH</div>
+    <div class="section-head">Labor</div>
     <table class="labor-table"><thead><tr>
       <th>Department</th><th>Hours</th><th>Labor $</th><th>Labor %</th><th>Target</th><th>Status</th>
     </tr></thead><tbody>
@@ -123,7 +123,7 @@ body { padding: 16px 56px; display: flex; flex-direction: column; height: 1080px
       </div>
     </div>
   <div class="col">
-    <div class="section-head">Section 6 — Guest Reviews</div>
+    <div class="section-head">Reviews</div>
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">

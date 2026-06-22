@@ -50,12 +50,12 @@ body { padding: 16px 54px; display: flex; flex-direction: column; height: 1080px
 .ot-dept { background: rgba(68,62,57,0.7); padding: 14px 18px; border-radius: 10px; border-left: 4px solid #e98638; }
 .ot-dept-name { font-size: 14px; color: #e98638; letter-spacing: 1.5px; text-transform: uppercase; font-weight: bold; }
 .ot-dept-sub { font-size: 14px; color: #c4bcb7; margin-top: 4px; }
-.review-card { background: rgba(80,72,63,0.7); border: 1px solid rgba(233,134,56,0.28); border-radius: 14px; padding: 16px 22px; flex: 1; }
-.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-top: 10px; }
-.review-stat { text-align: center; padding: 14px 8px; background: rgba(68,62,57,0.7); border-radius: 10px; }
-.review-val { font-family: Georgia,serif; font-size: 38px; font-weight: bold; color: #8fc96a; line-height: 1; }
-.review-lbl { font-size: 13px; color: #c4bcb7; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; font-weight: bold; }
-.info-line { margin-top: 12px; font-size: 16px; color: #c4bcb7; padding: 12px 16px; background: rgba(68,62,57,0.7); border-radius: 10px; border-left: 4px solid #e98638; }
+.review-card { background: rgba(80,72,63,0.7); border: 1px solid rgba(233,134,56,0.28); border-radius: 14px; padding: 18px 26px; flex: 1; display: flex; flex-direction: column; }
+.review-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; margin-top: 16px; flex: 1; }
+.review-stat { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 18px 8px; background: rgba(68,62,57,0.7); border-radius: 12px; }
+.review-val { font-family: Georgia,serif; font-size: 64px; font-weight: bold; color: #8fc96a; line-height: 1; }
+.review-lbl { font-size: 15px; color: #c4bcb7; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 11px; font-weight: bold; }
+.info-line { margin-top: 14px; font-size: 18px; color: #d8cfc7; padding: 14px 18px; background: rgba(68,62,57,0.7); border-radius: 10px; border-left: 5px solid #e98638; }
 </style></head>
 <body>
 <!-- STAFF-FACING - Bar Fuoco brand. JoJo's Bar + Bar Fuoco combined POS. Numbers only, aggregate OT, no names. -->
@@ -86,7 +86,7 @@ body { padding: 16px 54px; display: flex; flex-direction: column; height: 1080px
     <div class="card-sub">Blended SPLH $72.38</div>
   </div>
 </div>
-<div class="section-head">Section 1 — Sales &amp; Cost of Goods</div>
+<div class="section-head">Sales &amp; Cost of Goods</div>
 <table class="cogs-table"><thead><tr>
   <th>Category</th><th>Sales</th><th>COGS $</th><th>COGS %</th><th>Budget %</th><th>Variance</th>
 </tr></thead><tbody>
@@ -97,7 +97,7 @@ body { padding: 16px 54px; display: flex; flex-direction: column; height: 1080px
 </tbody></table>
 <div class="middle-row">
   <div class="col">
-    <div class="section-head">Section 2 — Labor &amp; Blended SPLH</div>
+    <div class="section-head">Labor</div>
     <table class="labor-table"><thead><tr>
       <th>Department</th><th>Hours</th><th>Labor $</th><th>Labor %</th><th>Target</th><th>Status</th>
     </tr></thead><tbody>
@@ -125,7 +125,7 @@ body { padding: 16px 54px; display: flex; flex-direction: column; height: 1080px
     </div>
   </div>
   <div class="col">
-    <div class="section-head">Section 6 — Guest Reviews</div>
+    <div class="section-head">Reviews</div>
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">
