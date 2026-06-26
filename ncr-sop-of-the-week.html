@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1920">
 <meta http-equiv="refresh" content="900">
-<title>Bar Italia — SOP of the Week — The Standard Pour</title>
+<title>SOP — The Standard Pour</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body {
     width:1920px; height:1080px; overflow:hidden;
-    font-family: Baskerville, 'GFS Baskerville', 'Times New Roman', serif;
-    background:#0a1a10;
+    font-family: Georgia, 'Times New Roman', serif;
+    background:#1a1410;
   }
   .stage {
     position:relative;
@@ -20,16 +20,16 @@
     background-position: 32% center;
     background-repeat: no-repeat;
   }
-  /* Brand-tinted gradient overlay on the right for text legibility */
+  /* Warm charcoal gradient overlay on the right */
   .stage::before {
     content:'';
     position:absolute; inset:0;
     background: linear-gradient(to right,
       transparent 0%,
       transparent 35%,
-      rgba(10,26,16,0.55) 48%,
-      rgba(10,26,16,0.92) 60%,
-      rgba(10,26,16,0.97) 100%);
+      rgba(20,16,12,0.55) 48%,
+      rgba(20,16,12,0.93) 60%,
+      rgba(20,16,12,0.98) 100%);
     pointer-events:none;
     z-index:1;
   }
@@ -40,74 +40,75 @@
     display:grid;
     grid-template-columns: 52% 48%;
   }
-  .left { }    /* left side intentionally empty - photo shows through */
+  .left { }
   .right {
-    padding:46px 64px 40px;
+    padding:50px 64px 44px;
     display:flex; flex-direction:column;
-    color:#f4ede0;
+    color:#f5ede0;
     min-height:0;
   }
 
-  /* HEADER */
+  /* HEADER — neutral, no brand */
   .hdr {
     display:flex; justify-content:space-between; align-items:flex-end;
-    border-bottom:1px solid rgba(227,183,108,0.45);
+    border-bottom:1px solid rgba(218,176,107,0.5);
     padding-bottom:14px; flex-shrink:0;
   }
   .eyebrow {
     font-family: Arial, sans-serif;
-    font-size:13px; letter-spacing:6px; color:#e3b76c;
-    text-transform:uppercase; font-weight:700; margin-bottom:4px;
+    font-size:13px; letter-spacing:6px; color:#dab06b;
+    text-transform:uppercase; font-weight:700; margin-bottom:6px;
   }
-  .brand {
-    font-family: Baskerville, 'GFS Baskerville', serif;
-    font-size:46px; color:#f4ede0; letter-spacing:0.5px;
-    font-weight:400; line-height:1; font-style:italic;
+  .h-title {
+    font-family: Georgia, serif;
+    font-size:36px; color:#f5ede0; letter-spacing:0.3px;
+    font-weight:400; line-height:1.05;
+    font-style:italic;
   }
   .hdr-right { text-align:right; }
   .sop-tag {
     font-family: Arial, sans-serif;
-    font-size:12px; color:#bd9a5c; letter-spacing:4px;
+    font-size:12px; color:#b8946c; letter-spacing:4px;
     text-transform:uppercase; margin-bottom:6px;
   }
   .sop-pill {
     display:inline-block;
-    background:transparent; color:#e3b76c;
-    border:1px solid #e3b76c;
+    background:transparent; color:#dab06b;
+    border:1px solid #dab06b;
     border-radius:40px; padding:5px 18px;
     font-family: Arial, sans-serif;
     font-size:14px; letter-spacing:3px;
     text-transform:uppercase; font-weight:700;
   }
 
-  /* HERO BLOCK */
+  /* HERO */
   .hero {
     flex-shrink:0;
-    padding:30px 0 20px;
-    border-bottom:1px solid rgba(227,183,108,0.25);
+    padding:30px 0 22px;
+    border-bottom:1px solid rgba(218,176,107,0.28);
   }
   .hero-eyebrow {
     font-family: Arial, sans-serif;
-    font-size:14px; letter-spacing:5px; color:#bd9a5c;
+    font-size:14px; letter-spacing:5px; color:#b8946c;
     text-transform:uppercase; font-weight:700; margin-bottom:8px;
   }
   .hero-number {
-    font-family: Baskerville, 'GFS Baskerville', serif;
-    font-size:180px; line-height:0.88;
-    color:#f4ede0; font-weight:400;
+    font-family: Georgia, serif;
+    font-size:190px; line-height:0.88;
+    color:#f5ede0; font-weight:400;
     letter-spacing:-3px;
   }
   .hero-number .unit {
-    color:#e3b76c; font-style:italic; font-size:140px;
+    color:#dab06b; font-style:italic; font-size:140px;
   }
   .hero-line {
-    font-family: Baskerville, serif;
-    font-size:26px; color:#f4ede0;
+    font-family: Georgia, serif;
+    font-size:26px; color:#f5ede0;
     font-style:italic; line-height:1.3;
     margin-top:14px;
   }
 
-  /* MATH BLOCK */
+  /* MATH */
   .math {
     flex:1; display:flex; flex-direction:column;
     justify-content:center;
@@ -115,8 +116,8 @@
     min-height:0;
   }
   .math-q {
-    font-family: Baskerville, serif;
-    font-size:32px; color:#e3b76c;
+    font-family: Georgia, serif;
+    font-size:32px; color:#dab06b;
     font-style:italic; line-height:1.2;
     margin-bottom:18px;
   }
@@ -127,52 +128,50 @@
   .math-row {
     display:flex; justify-content:space-between; align-items:baseline;
     font-family: Arial, sans-serif;
-    font-size:20px; color:#d4c7a4;
-    border-bottom:1px dotted rgba(227,183,108,0.25);
+    font-size:20px; color:#c9b691;
+    border-bottom:1px dotted rgba(218,176,107,0.25);
     padding:5px 0;
   }
-  .math-row .lbl {
-    letter-spacing:0.5px;
-  }
+  .math-row .lbl { letter-spacing:0.5px; }
   .math-row .val {
-    font-weight:700; color:#f4ede0; font-size:22px;
+    font-weight:700; color:#f5ede0; font-size:22px;
     letter-spacing:0.5px;
   }
   .math-row.total {
     border-bottom:none;
-    border-top:2px solid #e3b76c;
+    border-top:2px solid #dab06b;
     padding-top:10px;
     margin-top:4px;
   }
   .math-row.total .lbl {
-    color:#e3b76c; font-weight:700; font-size:22px;
+    color:#dab06b; font-weight:700; font-size:22px;
   }
   .math-row.total .val {
-    color:#e3b76c; font-size:32px;
+    color:#dab06b; font-size:32px;
   }
 
   /* PUNCHLINE */
   .punch {
-    background: rgba(227,183,108,0.12);
-    border-left:5px solid #e3b76c;
+    background: rgba(218,176,107,0.12);
+    border-left:5px solid #dab06b;
     padding:16px 22px;
     border-radius:4px;
   }
   .punch-num {
-    font-family: Baskerville, serif;
-    font-size:72px; color:#e3b76c;
+    font-family: Georgia, serif;
+    font-size:78px; color:#dab06b;
     font-weight:400; line-height:1; font-style:italic;
     letter-spacing:-1px;
   }
   .punch-lbl {
     font-family: Arial, sans-serif;
-    font-size:18px; color:#f4ede0;
+    font-size:18px; color:#f5ede0;
     letter-spacing:3px; text-transform:uppercase;
     font-weight:700; margin-top:4px;
   }
   .punch-sub {
-    font-family: Baskerville, serif;
-    font-size:22px; color:#d4c7a4;
+    font-family: Georgia, serif;
+    font-size:22px; color:#c9b691;
     font-style:italic; line-height:1.3;
     margin-top:8px;
   }
@@ -181,18 +180,18 @@
   .foot {
     flex-shrink:0; margin-top:14px;
     padding-top:14px;
-    border-top:1px solid rgba(227,183,108,0.35);
+    border-top:1px solid rgba(218,176,107,0.4);
     display:flex; justify-content:space-between; align-items:center;
     font-family: Arial, sans-serif;
   }
   .foot-text {
-    font-size:14px; color:#d4c7a4; letter-spacing:1px;
-    font-style:italic; font-family: Baskerville, serif;
-    font-size:18px;
+    font-family: Georgia, serif;
+    font-size:18px; color:#f5ede0;
+    font-style:italic;
   }
-  .foot-text b { color:#e3b76c; font-style:normal; font-weight:700; }
+  .foot-text b { color:#dab06b; font-style:normal; font-weight:700; }
   .foot-meta {
-    font-size:11px; letter-spacing:3px; color:#bd9a5c;
+    font-size:11px; letter-spacing:3px; color:#b8946c;
     text-transform:uppercase; font-weight:700;
     text-align:right;
   }
@@ -206,8 +205,8 @@
 
       <div class="hdr">
         <div>
-          <div class="eyebrow">SOP of the Week &middot; NCR Ventures</div>
-          <div class="brand">Bar Italia</div>
+          <div class="eyebrow">SOP of the Week</div>
+          <div class="h-title">Pour Standard</div>
         </div>
         <div class="hdr-right">
           <div class="sop-tag">Beverage Standard</div>
