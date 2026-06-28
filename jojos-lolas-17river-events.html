@@ -1,65 +1,68 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Next Week · JoJo's · Bar Fuoco · Lola's · 17 River</title><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>JoJo's · Bar Fuoco · Lola's · 17 River</title><style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html,body { width:1920px; height:1080px; overflow:hidden; background:#fff; color:#0f1f3d; font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
-  .screen { width:1920px; height:1080px; display:grid; grid-template-columns:1fr; overflow:hidden; background:#fff; }
-  .logo-strip { background:#fff; border-right:4px solid #b8800a; display:flex; align-items:center; justify-content:center; padding:30px 0; }
-  .logo-strip img { height:100%; max-height:1020px; width:auto; }
-  .content { padding:16px 44px 14px 44px; display:flex; flex-direction:column; }
-  .top-bar { display:flex; justify-content:space-between; align-items:baseline; border-bottom:3px solid #b8800a; padding-bottom:6px; margin-bottom:8px; }
-  .brand { font-size:23px; letter-spacing:.12em; text-transform:uppercase; color:#0f1f3d; font-weight:800; }
-  .week { font-size:22px; color:#b8800a; font-weight:700; letter-spacing:.04em; }
-  .title { font-family:-apple-system, sans-serif; font-size:43px; font-weight:900; line-height:1.04; margin-bottom:4px; color:#0f1f3d; }
-  .title .accent { color:#b8800a;  }
-  .subtitle { font-size:20px; color:#b8800a; margin-bottom:10px; line-height:1.3; font-weight:600; }
-  .subtitle strong { color:#c8102e; font-weight:800; }
-  .grid { display:grid; grid-template-columns:1.1fr 1fr; gap:14px; flex:1; min-height:0; }
+  html,body { width:1920px; height:1080px; overflow:hidden; background:#0a1733; color:#fff; font-family:'Montserrat',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
+  .screen { width:1920px; height:1080px; padding:18px 48px 16px 48px; display:flex; flex-direction:column; overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(10,23,51,0.0) 0%, rgba(10,23,51,0.0) 100%),
+      repeating-linear-gradient(90deg, transparent 0 6px, rgba(255,255,255,0.012) 6px 12px),
+      radial-gradient(circle at 8% 10%, rgba(178,34,52,0.16) 0%, transparent 34%),
+      radial-gradient(circle at 92% 90%, rgba(60,90,170,0.18) 0%, transparent 38%),
+      #0a1733;
+  }
+  .top-bar { display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid #c8102e; padding-bottom:7px; margin-bottom:8px; position:relative; }
+  .top-bar:after { content:''; position:absolute; left:0; right:0; bottom:-6px; height:3px; background:#fff; }
+  .brand { font-size:22px; letter-spacing:.12em; text-transform:uppercase; color:#fff; font-weight:800; display:flex; align-items:center; gap:14px; }
+  .stars { color:#e8a020; letter-spacing:.1em; }
+  .week { font-size:21px; color:#9db4e8; font-weight:700; letter-spacing:.04em; }
+  .americatag { display:inline-block; background:linear-gradient(135deg,#c8102e 0%,#8b0000 100%); color:#fff; font-weight:900; font-size:15px; letter-spacing:.14em; padding:4px 14px; border-radius:3px; border:1px solid #e8a020; text-transform:uppercase; }
+  .title { font-family:'Georgia',serif; font-size:46px; font-weight:800; line-height:1.02; margin-bottom:4px; color:#fff; letter-spacing:-.01em; }
+  .title .accent { color:#e8a020; font-style:italic; }
+  .title .red { color:#ff5d6c; }
+  .subtitle { font-size:19px; color:#b8c8ea; margin-bottom:10px; line-height:1.3; font-weight:500; }
+  .subtitle strong { color:#ff5d6c; font-weight:800; }
+  .subtitle .gold { color:#e8a020; font-weight:800; }
+  .grid { display:grid; grid-template-columns:1.06fr 1fr; gap:15px; flex:1; min-height:0; }
   .col { display:flex; flex-direction:column; gap:7px; }
-  .col-label { font-family:-apple-system, sans-serif; font-size:17px; font-weight:900; letter-spacing:.15em; text-transform:uppercase; color:#fff; background:#0f1f3d; padding:6px 16px; border-radius:4px; align-self:flex-start; }
-  .day-row { background:#fff; border-radius:10px; padding:8px 16px; display:flex; align-items:center; gap:16px; border:1px solid #d8dde6; border-left:6px solid #b8c0d0; flex:1; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
-  .day-row.peak { border-left-color:#c8102e; }
-  .day-row.party { border-left-color:#b8800a; background:#f1f4f9; }
-  .day-row.warm { border-left-color:#4a86b6; }
-  .day-row.rain { border-left-color:#5e7ba8; background:#eef2f7; }
-  .day-tag { flex-shrink:0; min-width:120px; text-align:center; background:#0f1f3d; border-radius:8px; padding:9px 6px; color:#fff; }
-  .day-tag .dow { font-family:-apple-system, sans-serif; font-size:19px; font-weight:900; color:#e8a020; letter-spacing:.12em; text-transform:uppercase; line-height:1;  }
-  .day-tag .date { font-size:14px; color:#b8c0d0; margin-top:3px; font-weight:700; }
-  .day-tag .hours { font-size:11.5px; color:#8ea0c4; margin-top:4px; font-weight:600; border-top:1px solid #2a3e5e; padding-top:3px; }
-  .day-events { flex:1; display:flex; flex-direction:column; gap:3px; }
+  .col-label { font-family:'Georgia',serif; font-size:18px; font-weight:700; font-style:italic; color:#0a1733; background:#e8a020; padding:6px 16px; border-radius:3px; align-self:flex-start; letter-spacing:.04em; }
+  .day-row { background:rgba(255,255,255,0.05); border-radius:8px; padding:8px 16px; display:flex; align-items:center; gap:16px; border:1px solid rgba(255,255,255,0.12); border-left:6px solid #5a6a9a; flex:1; }
+  .day-row.peak { border-left-color:#c8102e; background:rgba(200,16,46,0.14); }
+  .day-row.fire { border-left-color:#e8a020; background:rgba(232,160,32,0.12); }
+  .day-row.warm { border-left-color:#3c6ad0; }
+  .day-row.hot { border-left-color:#ff7a45; }
+  .day-tag { flex-shrink:0; min-width:118px; text-align:center; background:linear-gradient(135deg,#16284f 0%,#0a1733 100%); border:1px solid rgba(232,160,32,0.4); border-radius:7px; padding:9px 6px; }
+  .day-tag .dow { font-family:'Georgia',serif; font-size:19px; font-weight:700; color:#e8a020; letter-spacing:.06em; text-transform:uppercase; line-height:1; }
+  .day-tag .date { font-size:14px; color:#9db4e8; margin-top:3px; font-weight:700; }
+  .day-events { flex:1; display:flex; flex-direction:column; gap:2px; }
   .ev { display:flex; flex-direction:column; line-height:1.16; }
-  .ev-title { font-weight:800; color:#0f1f3d; font-size:19px; }
-  .ev-title.peak { color:#c8102e; font-weight:900; }
-  .ev-title.party { color:#b8800a; font-weight:900; }
-  .ev-meta { color:#4a5570; font-size:13.5px; margin-top:1px; font-weight:500; }
-  .comp-row { background:#fff; border-radius:10px; padding:9px 16px; border:1px solid #d8dde6; border-left:6px solid #b8c0d0; flex:1; display:flex; align-items:center; gap:16px; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
-  .comp-row.peak { border-left-color:#c8102e; }
-  .comp-row.warn { border-left-color:#b8800a; }
-  .comp-row.good { border-left-color:#2d9d5b; }
-  .comp-row.party { border-left-color:#b8800a; background:#f1f4f9; }
-  .comp-name { flex-shrink:0; min-width:150px; font-size:19px; font-weight:900; color:#0f1f3d; line-height:1.1; }
-  .comp-text { flex:1; font-size:14.5px; color:#2a3e5e; line-height:1.3; font-weight:500; }
-  .comp-text strong { color:#c8102e; font-weight:800; }
-  .comp-text .pt { color:#b8800a; font-weight:900; }
-  .bottom-row { display:grid; grid-template-columns:1.2fr 1fr; gap:12px; margin-top:10px; }
-  .info-box { background:#fff; border-radius:10px; padding:9px 16px; display:flex; gap:14px; align-items:center; border:1px solid #d8dde6; box-shadow:0 2px 6px rgba(14,39,72,0.07); }
-  .info-box.weather { border-left:6px solid #2d9d5b; }
-  .info-box.takeaway { border-left:6px solid #b8800a; background:#f1f4f9; }
-  .info-icon { font-size:36px; flex-shrink:0; line-height:1; }
+  .ev-title { font-weight:700; color:#fff; font-size:21px; }
+  .ev-title.peak { color:#ff5d6c; font-weight:900; }
+  .ev-title.fire { color:#ffc861; font-weight:900; }
+  .ev-meta { color:#9db4e8; font-size:14.5px; margin-top:1px; font-weight:500; }
+  .comp-row { background:rgba(255,255,255,0.05); border-radius:8px; padding:9px 16px; border:1px solid rgba(255,255,255,0.12); border-left:6px solid #5a6a9a; flex:1; display:flex; align-items:center; gap:16px; }
+  .comp-row.peak { border-left-color:#c8102e; background:rgba(200,16,46,0.14); }
+  .comp-row.fire { border-left-color:#e8a020; background:rgba(232,160,32,0.10); }
+  .comp-row.warn { border-left-color:#3c6ad0; }
+  .comp-name { flex-shrink:0; min-width:165px; font-size:22px; font-weight:900; color:#fff; line-height:1.12; }
+  .comp-text { flex:1; font-size:17.5px; color:#c4d2ee; line-height:1.36; font-weight:500; }
+  .comp-text strong { color:#ff5d6c; font-weight:800; }
+  .comp-text .gold { color:#ffc861; font-weight:800; }
+  .bottom-row { display:block; margin-top:10px; }
+  .info-box { background:rgba(255,255,255,0.05); border-radius:8px; padding:10px 18px; display:flex; gap:16px; align-items:center; border:1px solid rgba(255,255,255,0.12); border-left:6px solid #e8a020; width:100%; }
+  .info-icon { font-size:34px; flex-shrink:0; line-height:1; }
   .info-body { flex:1; }
-  .info-label { font-size:14px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; margin-bottom:3px; }
-  .info-label.weather { color:#2d9d5b; }
-  .info-label.takeaway { color:#b8800a; }
-  .info-text { font-size:16px; color:#0f1f3d; line-height:1.35; font-weight:600; }
-  .info-text strong { color:#0f1f3d; font-weight:900; }
-  .info-text .warn { color:#c8102e; font-weight:900; }
-  .info-text .good { color:#2d9d5b; font-weight:900; }
-</style></head><body><div class="screen"><div class="content">
-  <div class="top-bar"><div class="brand">Next Week · JoJo's · Bar Fuoco · Lola's · 17 River</div><div class="week">Monday June 22 – Sunday June 28, 2026</div></div>
-  <div class="title">Quiet village week. <span class="accent">Thursday concert · clean weekend · patio weather returns.</span></div>
-  <div class="subtitle">Calm week in the village after Father&apos;s Day. Monday is a washout, then clean patio weather Tue-Wed. Thursday Triangle Park concert, Sunday Farmers Market. No street closures. Light calendar — a chance to reset before the July 4 build.</div>
-  <div class="grid"><div class="col"><div class="col-label">★ Monday – Sunday</div><div class="day-row rain"><div class="day-tag"><div class="dow">Mon</div><div class="date">6/22</div></div><div class="day-events"><div class="ev"><span class="ev-title rain">66° · 75% RAIN · quiet wet Monday</span><span class="ev-meta">Wettest day of the week · indoor focus · slow village pace · prep the week</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Tue</div><div class="date">6/23</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">73° · 5% rain · patio returns</span><span class="ev-meta">Clean warm day · patio prime · steady walk-in dinner pace</span></div><div class="ev"><span class="ev-title" style="color:#b8800a;">📋 MANAGER TRAINING · Teams · 10 AM</span><span class="ev-meta">Online manager training — all managers join the Teams call at 10 AM</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Wed</div><div class="date">6/24</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">77° · 25% rain · pleasant midweek</span><span class="ev-meta">Patio open · push midweek bar · light village calendar</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Thu</div><div class="date">6/25</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">77° · 65% PM storms · Triangle Park concert 7 PM</span><span class="ev-meta">Simple Summer Nights free concert at Main &amp; Franklin · evening foot traffic · watch radar for the patio</span></div></div></div><div class="day-row house"><div class="day-tag"><div class="dow">Fri</div><div class="date">6/26</div></div><div class="day-events"><div class="ev"><span class="ev-title house">★ 17 RIVER · PRIVATE EVENT · 100 PEOPLE</span><span class="ev-meta">Big Friday night private event — staff the room + the floor · BOH preps for 100 · regular capacity reduced</span></div><div class="ev"><span class="ev-title warm">Warm Friday · weekend foot traffic</span><span class="ev-meta">Clean Friday · the other three houses run normal weekend dinner</span></div></div></div><div class="day-row house"><div class="day-tag"><div class="dow">Sat</div><div class="date">6/27</div></div><div class="day-events"><div class="ev"><span class="ev-title house">★ 17 RIVER · PRIVATE BRUNCH 29 + PRIVATE DINNER 45</span><span class="ev-meta">Two private events same day — brunch turns to dinner · tight room turnover · staff both shifts full</span></div><div class="ev"><span class="ev-title warm">Patio Saturday · village busy</span><span class="ev-meta">Strong patio Saturday · weekend shopping + dining crowd at the other houses</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Sun</div><div class="date">6/28</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Farmers Market 10A-1P · Sunday brunch</span><span class="ev-meta">North Union Market at Triangle Park · 1,000+ to the village · brunch driver into afternoon</span></div></div></div></div>
-  <div class="col"><div class="col-label">★ Events Affecting Sales</div><div class="comp-row warn"><div class="comp-name">17 River · 3 Privates</div><div class="comp-text"><span class="pt">Fri: 100-person private event</span> · Sat: private brunch (29) + private dinner (45) · three private events in two days · staff every shift full · 17 River regular dining capacity reduced Fri-Sat — communicate to walk-ins</div></div><div class="comp-row warn"><div class="comp-name">Thu 6/25 · Concert</div><div class="comp-text">Simple Summer Nights free concert at Triangle Park (Main &amp; Franklin) · 7 PM · Chamber-run, Gertsburg-sponsored · brings evening foot traffic · pre-concert dinner + during-concert bar window · 65% storm risk may move it</div></div><div class="comp-row good"><div class="comp-name">Sun · Farmers Market</div><div class="comp-text">North Union Farmers Market · 10 AM – 1 PM · N. Main &amp; N. Franklin · 1,000+ through the village Sunday morning · strong brunch driver into the afternoon</div></div><div class="comp-row good"><div class="comp-name">No Street Closures</div><div class="comp-text">Clean week — <strong>no resurfacing, no West Street Fest, no road closures</strong> · full village access + parking all week · steady operating rhythm</div></div><div class="comp-row warn"><div class="comp-name">Mon 6/22 · Washout</div><div class="comp-text">75% rain Monday · indoor focus across all four houses · slow start · the only rough weather day of the week</div></div><div class="comp-row warn"><div class="comp-name">Looking Ahead · July 4</div><div class="comp-text">July 4 Community Celebration at Triangle Park next Saturday · start prepping the holiday weekend now · build reservations</div></div></div></div>
-  <div class="bottom-row">
-    <div class="info-box weather"><div class="info-icon">⛅</div><div class="info-body"><div class="info-label weather">Weather Mon – Thu (Recheck Fri–Sun Thursday AM)</div><div class="info-text"><strong>Mon 66° 75% · Tue 73° 5% · Wed 77° 25% · Thu 77° 65%</strong> — Monday washout, clean patio Tue-Wed, Thursday storm risk. <span class="warn">Fri-Sun beyond forecast — recheck Thursday.</span></div></div></div>
-    <div class="info-box takeaway"><div class="info-icon">🎯</div><div class="info-body"><div class="info-label takeaway">What This Means</div><div class="info-text"><strong>Quiet reset week.</strong> Clean operating week, no closures. Monday is wet; patio returns Tuesday. Thursday concert + Sunday market bring foot traffic. Start the July 4 build.</div></div></div>
+  .info-label { font-size:14px; font-weight:900; letter-spacing:.16em; text-transform:uppercase; margin-bottom:4px; color:#e8a020; }
+  .weather-strip-row { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:nowrap; }
+  .wf { font-size:21px; color:#fff; font-weight:700; white-space:nowrap; flex:1; text-align:center; }
+  .wf b { color:#9db4e8; font-weight:900; letter-spacing:.05em; margin-right:6px; }
+  .wf.dim { color:#7d8db5; font-weight:600; }
+  .wf.dim b { color:#7d8db5; }
+</style></head><body><div class="screen">
+  <div class="top-bar"><div class="brand"><span class="stars">★★★</span> JoJo's · Bar Fuoco · Lola's · 17 River <span class="americatag">America 250</span></div><div class="week">Monday June 29 – Sunday July 5, 2026</div></div>
+  <div class="title">America turns 250. <span class="accent">The village throws its biggest party Saturday.</span></div>
+  <div class="subtitle"><strong>Sat July 4 — Chagrin Falls July 4th Community Celebration at Triangle Park</strong> — pet parade, bike parade, ceremony, Fab Fourth car show, the whole village downtown all morning. <span class="gold">Four houses in the heart of it.</span> Hot, sunny holiday week. Push the book at all four.</div>
+  <div class="grid">
+    <div class="col"><div class="col-label">★ Monday – Sunday</div><div class="day-row warm"><div class="day-tag"><div class="dow">Mon</div><div class="date">6/29</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">89° · hot · sunny · quiet Monday</span><span class="ev-meta">Heat returns to the village · patio + AC · build the July 4 weekend book</span></div></div></div><div class="day-row hot"><div class="day-tag"><div class="dow">Tue</div><div class="date">6/30</div></div><div class="day-events"><div class="ev"><span class="ev-title hot">94° · scorching · patio heat watch</span><span class="ev-meta">Hottest stretch · shade + water on the patio · steady walk-in dinner</span></div></div></div><div class="day-row hot"><div class="day-tag"><div class="dow">Wed</div><div class="date">7/1</div></div><div class="day-events"><div class="ev"><span class="ev-title hot">94° · hot · sunny midweek</span><span class="ev-meta">Patio heat management · push the bar · light midweek village calendar</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Thu</div><div class="date">7/2</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">95° · holiday weekend kicks off</span><span class="ev-meta">Families arriving in the village · build Fri-Sun books · staff up for the 4th</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Fri</div><div class="date">7/3</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Holiday Friday · weekend crowd builds</span><span class="ev-meta">Strong Friday dinner · the village fills ahead of the 4th · push reservations</span></div></div></div><div class="day-row peak"><div class="day-tag"><div class="dow">Sat</div><div class="date">7/4</div></div><div class="day-events"><div class="ev"><span class="ev-title peak">🎆 JULY 4 · TRIANGLE PARK CELEBRATION · all morning</span><span class="ev-meta">Pet + bike parade, ceremony, car show · village packed downtown · all four houses busy · biggest village day of the summer</span></div></div></div><div class="day-row warm"><div class="day-tag"><div class="dow">Sun</div><div class="date">7/5</div></div><div class="day-events"><div class="ev"><span class="ev-title warm">Holiday Sunday · Farmers Market 10A-1P</span><span class="ev-meta">Market + holiday-weekend brunch crowd · families still in town · steady close to the weekend</span></div></div></div></div>
+    <div class="col"><div class="col-label">★ Events Affecting Sales</div><div class="comp-row peak"><div class="comp-name">Sat 7/4 · Triangle Park</div><div class="comp-text"><strong>Chagrin Falls July 4th Community Celebration</strong> at Triangle Park (5 N. Franklin) · <span class="gold">pet parade 9 AM, bike parade, ceremony 10 AM, Fab Fourth car show</span> · the whole village downtown all morning · all four houses in the heart of it · brunch + lunch surge</div></div><div class="comp-row warn"><div class="comp-name">All Week · The Heat</div><div class="comp-text"><strong>90s all week, mid-90s Tue-Thu</strong> — hottest stretch of the summer · aggressive patio shade + water at all four houses · push the AC dining rooms · between-course cool-downs</div></div><div class="comp-row warn"><div class="comp-name">Holiday Weekend Build</div><div class="comp-text">Families in the village Thu-Sun for the 4th · strong dinner books Fri-Sat · <span class="gold">push reservations now at all four houses</span> · staff up for the holiday surge</div></div><div class="comp-row warn"><div class="comp-name">Sun 7/5 · Farmers Market</div><div class="comp-text">North Union Farmers Market 10 AM-1 PM at Triangle Park · 1,000+ through the village · holiday-weekend brunch driver · families still in town</div></div><div class="comp-row warn"><div class="comp-name">No Local Fireworks</div><div class="comp-text">No fireworks in the village itself (nearest Kenston 7/5, Bainbridge) · the 4th here is the daytime parade + ceremony · evening is a strong patio dinner night, not a fireworks crowd</div></div></div>
   </div>
-</div></div></body></html>
+  <div class="bottom-row"><div class="info-box"><div class="info-icon">🎆</div><div class="info-body"><div class="info-label">7-Day Forecast · Chagrin Falls</div><div class="weather-strip-row"><span class="wf"><b>MON</b> 89° · hot</span><span class="wf"><b>TUE</b> 94° · scorch</span><span class="wf"><b>WED</b> 94° · hot</span><span class="wf"><b>THU</b> 95° · hot</span><span class="wf"><b>FRI</b> recheck</span><span class="wf"><b>SAT</b> recheck</span><span class="wf"><b>SUN</b> recheck</span></div></div></div></div>
+</div></body></html>
