@@ -2,166 +2,141 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>FOH Supervisors — August Pickup Shifts</title>
+<title>The Lakehouse — August Manager Coverage</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{width:1920px;height:1080px;overflow:hidden;}
   body{
     background:
-      radial-gradient(ellipse at 18% 12%, rgba(232,160,32,.20) 0%, rgba(232,160,32,0) 55%),
-      radial-gradient(ellipse at 88% 88%, rgba(232,160,32,.13) 0%, rgba(232,160,32,0) 55%),
+      radial-gradient(ellipse at 15% 10%, rgba(232,160,32,.20) 0%, rgba(232,160,32,0) 55%),
+      radial-gradient(ellipse at 90% 92%, rgba(232,160,32,.12) 0%, rgba(232,160,32,0) 55%),
       linear-gradient(160deg,#12294b 0%,#0d1f3a 55%,#0a1830 100%);
-    color:#f5ede0;
-    font-family:'Montserrat',sans-serif;
-    display:flex;flex-direction:column;
-    padding:34px 60px 22px 60px;
+    color:#f5ede0;font-family:'Montserrat',sans-serif;
+    display:flex;flex-direction:column;padding:30px 56px 20px 56px;
   }
 
-  /* ---------- HEADER ---------- */
-  .eyebrow{
-    display:flex;align-items:center;justify-content:space-between;
-    letter-spacing:.30em;font-size:22px;font-weight:700;color:#e8a020;
-    text-transform:uppercase;
-  }
-  .eyebrow .right{color:#9fb3cd;letter-spacing:.18em;}
-  .rule{height:3px;background:linear-gradient(90deg,#e8a020 0%,#e8a020 34%,rgba(232,160,32,.15) 100%);margin:12px 0 0 0;}
+  .eyebrow{display:flex;align-items:center;justify-content:space-between;
+    letter-spacing:.28em;font-size:21px;font-weight:700;color:#e8a020;text-transform:uppercase;}
+  .eyebrow .right{color:#9fb3cd;letter-spacing:.16em;}
+  .rule{height:3px;background:linear-gradient(90deg,#e8a020 0%,#e8a020 32%,rgba(232,160,32,.15) 100%);margin-top:10px;}
 
-  /* ---------- HERO ---------- */
-  .hero{margin-top:16px;display:flex;align-items:flex-end;gap:34px;}
-  .hero h1{
-    font-family:'Montserrat',sans-serif;font-weight:900;
-    font-size:104px;line-height:.94;letter-spacing:-.02em;
-    color:#ffffff;text-transform:uppercase;
-  }
-  .hero h1 em{
-    font-style:normal;color:#e8a020;
-    display:block;
-  }
-  .badge{
-    flex:0 0 auto;margin-bottom:10px;
-    border:3px solid #e8a020;border-radius:10px;
-    padding:14px 22px;text-align:center;background:rgba(232,160,32,.10);
-  }
-  .badge .b1{font-size:56px;font-weight:900;color:#e8a020;line-height:1;}
-  .badge .b2{font-size:19px;font-weight:700;letter-spacing:.20em;color:#f5ede0;margin-top:6px;}
+  .hero{margin-top:14px;display:flex;align-items:flex-end;gap:30px;}
+  .hero h1{font-weight:900;font-size:90px;line-height:1.0;letter-spacing:-.02em;color:#fff;text-transform:uppercase;}
+  .hero h1 em{font-style:normal;color:#e8a020;display:block;}
+  .badge{flex:0 0 auto;margin-bottom:8px;border:3px solid #e8a020;border-radius:10px;
+    padding:12px 24px;text-align:center;background:rgba(232,160,32,.10);}
+  .badge .b1{font-size:40px;font-weight:900;color:#e8a020;line-height:1.12;}
+  .badge .b2{font-size:17px;font-weight:700;letter-spacing:.16em;color:#f5ede0;margin-top:4px;}
 
-  .subhead{
-    margin-top:14px;
-    font-family:'Libre Baskerville',serif;font-style:italic;
-    font-size:34px;line-height:1.26;color:#dfe8f2;max-width:1780px;
-  }
-  .subhead b{font-style:normal;font-weight:700;color:#ffffff;}
+  .subhead{margin-top:12px;font-family:'Libre Baskerville',serif;font-style:italic;
+    font-size:30px;line-height:1.26;color:#dfe8f2;}
+  .subhead b{font-style:normal;font-weight:700;color:#fff;}
 
-  /* ---------- CARDS ---------- */
-  .cards{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px;min-height:0;}
-  .card{
-    background:rgba(255,255,255,.055);
-    border:2px solid rgba(232,160,32,.42);
-    border-top:7px solid #e8a020;
-    border-radius:10px;
-    padding:18px 24px 16px 24px;
-    display:flex;flex-direction:column;min-height:0;
-  }
-  .card .num{
-    font-size:34px;font-weight:900;color:#e8a020;line-height:1;letter-spacing:.02em;
-  }
-  .card h2{
-    font-size:31px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-    color:#ffffff;margin-top:8px;line-height:1.1;
-  }
-  .card p{
-    margin-top:11px;font-size:26px;line-height:1.34;color:#dfe8f2;font-weight:400;
-  }
-  .card p b{color:#ffd88a;font-weight:700;}
-  .card ul{margin-top:12px;list-style:none;}
-  .card li b{color:#ffd88a;font-weight:700;}
-  .card li{
-    font-size:25px;line-height:1.30;color:#dfe8f2;padding-left:26px;position:relative;margin-bottom:8px;
-  }
-  .card li:before{content:"›";position:absolute;left:0;color:#e8a020;font-weight:900;font-size:28px;line-height:1.2;}
-  .card .kicker{
-    margin-top:auto;padding-top:12px;border-top:1px solid rgba(232,160,32,.30);
-    font-size:20px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:#e8a020;
-  }
+  .main{flex:1;display:grid;grid-template-columns:1.42fr 1fr;gap:24px;margin-top:18px;min-height:0;}
 
-  /* ---------- CTA BAR ---------- */
-  .cta{
-    margin-top:20px;background:#e8a020;color:#0d1f3a;border-radius:10px;
-    padding:18px 34px;display:flex;align-items:center;justify-content:space-between;gap:28px;
-  }
-  .cta .big{font-size:40px;font-weight:900;letter-spacing:.02em;text-transform:uppercase;line-height:1.05;}
-  .cta .small{font-size:25px;font-weight:700;text-align:right;line-height:1.24;}
+  .panel{background:rgba(255,255,255,.055);border:2px solid rgba(232,160,32,.42);
+    border-top:7px solid #e8a020;border-radius:10px;padding:16px 22px 14px 22px;
+    display:flex;flex-direction:column;min-height:0;}
+  .panel h2{font-size:29px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;line-height:1.1;}
+  .panel .sub{font-size:19px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9fb3cd;margin-top:4px;}
 
-  /* ---------- FOOTER ---------- */
-  .footer{margin-top:16px;display:flex;justify-content:center;align-items:center;}
-  .footer img{height:62px;opacity:.92;}
+  .grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+    gap:11px;margin-top:12px;min-height:0;}
+  .day{border:2px solid rgba(232,160,32,.32);border-radius:8px;background:rgba(255,255,255,.05);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;}
+  .day.hot{background:rgba(232,160,32,.17);border-color:#e8a020;}
+  .day .dw{font-size:18px;font-weight:800;letter-spacing:.12em;color:#9fb3cd;text-transform:uppercase;}
+  .day.hot .dw{color:#ffd88a;}
+  .day .dd{font-size:40px;font-weight:900;line-height:1;color:#fff;margin-top:2px;}
+  .day .need{font-size:18px;font-weight:800;color:#e8a020;margin-top:5px;letter-spacing:.04em;}
+  .day .shifts{font-size:15px;font-weight:600;color:#c9d6e5;margin-top:2px;letter-spacing:.05em;text-transform:uppercase;}
+
+  .right{display:flex;flex-direction:column;gap:24px;min-height:0;}
+  .right .panel{flex:1;}
+  .right ul{margin-top:10px;list-style:none;}
+  .right li{font-size:24px;line-height:1.28;color:#dfe8f2;padding-left:25px;position:relative;margin-bottom:8px;}
+  .right li:before{content:"\203A";position:absolute;left:0;color:#e8a020;font-weight:900;font-size:27px;line-height:1.1;}
+  .right li b{color:#ffd88a;font-weight:700;}
+  .kicker{margin-top:auto;padding-top:10px;border-top:1px solid rgba(232,160,32,.30);
+    font-size:19px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#e8a020;}
+
+  .cta{margin-top:18px;background:#e8a020;color:#0d1f3a;border-radius:10px;
+    padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:26px;}
+  .cta .big{font-size:34px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;line-height:1.06;}
+  .cta .small{font-size:22px;font-weight:700;text-align:right;line-height:1.24;}
+
+  .footer{margin-top:12px;display:flex;justify-content:center;align-items:center;}
+  .footer img{height:54px;opacity:.92;}
 </style>
 </head>
 <body>
 
   <div class="eyebrow">
-    <span>FOH Supervisors &nbsp;•&nbsp; All Locations</span>
-    <span class="right">August 2026 Coverage Push</span>
+    <span>Managers &amp; FOH Supervisors &nbsp;&bull;&nbsp; All Locations</span>
+    <span class="right">The Lakehouse &nbsp;&bull;&nbsp; August 2026</span>
   </div>
   <div class="rule"></div>
 
   <div class="hero">
-    <h1>Want Extra Hours?<em>August Needs You.</em></h1>
+    <h1>Want Extra Hours?<em>The Lakehouse Needs You.</em></h1>
     <div class="badge">
-      <div class="b1">31</div>
-      <div class="b2">DAYS TO WIN</div>
+      <div class="b1">AUG<br>14&ndash;23</div>
+      <div class="b2">COVERAGE WINDOW</div>
     </div>
   </div>
 
   <div class="subhead">
-    August is the toughest coverage month of the year — vacations, school starts, patios still packed.
-    <b>We need supervisors who will step up, travel a few miles, and cover a shift.</b>
+    Peak summer on the river, and the Flats management team is stretched thin for ten straight days.
+    <b>Pick up a shift on your day off and we will pay you extra to do it.</b>
   </div>
 
-  <div class="cards">
+  <div class="main">
 
-    <div class="card">
-      <div class="num">01</div>
-      <h2>What's In It For You</h2>
-      <ul>
-        <li>Premium pay available on approved pickup shifts</li>
-        <li>Hours on your terms — pick the days that work</li>
-        <li>Work a new building, learn a new concept</li>
-        <li>Face time with a different leadership team</li>
-      </ul>
-      <div class="kicker">Show up. Get paid. Get noticed.</div>
+    <div class="panel">
+      <h2>Shifts We Need Covered</h2>
+      <div class="sub">Gold = two managers needed</div>
+      <div class="grid">
+        <div class="day hot"><div class="dw">Fri</div><div class="dd">14</div><div class="need">2 MANAGERS</div><div class="shifts">Open / Mid / Close</div></div>
+        <div class="day hot"><div class="dw">Sat</div><div class="dd">15</div><div class="need">2 MANAGERS</div><div class="shifts">Open / Mid / Close</div></div>
+        <div class="day hot"><div class="dw">Sun</div><div class="dd">16</div><div class="need">2 MANAGERS</div><div class="shifts">Open / Mid / Close</div></div>
+        <div class="day"><div class="dw">Tue</div><div class="dd">18</div><div class="need">1 MANAGER</div><div class="shifts">Open or Close</div></div>
+        <div class="day"><div class="dw">Wed</div><div class="dd">19</div><div class="need">1 MANAGER</div><div class="shifts">Open or Close</div></div>
+        <div class="day"><div class="dw">Thu</div><div class="dd">20</div><div class="need">1 MANAGER</div><div class="shifts">Open or Close</div></div>
+        <div class="day"><div class="dw">Fri</div><div class="dd">21</div><div class="need">1 MANAGER</div><div class="shifts">Open or Close</div></div>
+        <div class="day"><div class="dw">Sat</div><div class="dd">22</div><div class="need">1 MANAGER</div><div class="shifts">Open / Mid / Close</div></div>
+        <div class="day"><div class="dw">Sun</div><div class="dd">23</div><div class="need">1 MANAGER</div><div class="shifts">Open / Mid / Close</div></div>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="num">02</div>
-      <h2>Where We Need Help</h2>
-      <ul>
-        <li>Chagrin Falls — JoJo's, Bar Fuoco, 17 River, Lola's</li>
-        <li>Beachwood — Cedar Creek &amp; Bar Italia</li>
-        <li>The Lakehouse — Flats, full summer season</li>
-        <li>Lakewood — Bar Italia</li>
-      </ul>
-      <div class="kicker">Weekends move the needle most</div>
-    </div>
+    <div class="right">
 
-    <div class="card">
-      <div class="num">03</div>
-      <h2>How To Get In</h2>
-      <ul>
-        <li>Tell your GM the days you're open</li>
-        <li>They match you to a building that needs it</li>
-        <li>Rate and shift confirmed before you're scheduled</li>
-        <li><b>Get your name in by Friday — first in, first picked</b></li>
-      </ul>
-      <div class="kicker">One conversation. That's it.</div>
-    </div>
+      <div class="panel">
+        <h2>What's In It For You</h2>
+        <ul>
+          <li><b>Extra pay for every shift you pick up on your day off</b></li>
+          <li>Work the busiest patio in the Flats at full summer volume</li>
+          <li>Days and shifts are flexible &mdash; tell us what works</li>
+        </ul>
+        <div class="kicker">Show up. Get paid. Get noticed.</div>
+      </div>
 
+      <div class="panel">
+        <h2>How To Get In</h2>
+        <ul>
+          <li>Tell your GM which days you're open</li>
+          <li>Your GM confirms the shift and the rate</li>
+          <li><b>Get your name in by Friday, August 7</b></li>
+        </ul>
+        <div class="kicker">One conversation. That's it.</div>
+      </div>
+
+    </div>
   </div>
 
   <div class="cta">
     <div class="big">Unreasonable Hospitality doesn't take August off.</div>
-    <div class="small">See your GM this week.<br>Every shift covered is a guest taken care of.</div>
+    <div class="small">Every shift covered is a guest taken care of.<br>See your GM this week.</div>
   </div>
 
   <div class="footer">
