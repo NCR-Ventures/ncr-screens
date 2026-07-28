@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>The Lakehouse — Learn From This</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #ffffff; color: #0e2748;
+  font-family: Arial, Helvetica, sans-serif; }
+body { position: relative; }
+
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; padding: 26px 50px 26px;
+  display: none; flex-direction: column; background: #ffffff; }
+.slide.active { display: flex; }
+
+.header { display: flex; justify-content: space-between; align-items: flex-end; flex-shrink: 0; }
+.brand { font-size: 20px; color: #3e5170; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
+.title { font-family: Georgia, 'Times New Roman', serif; font-size: 60px; font-weight: bold;
+  color: #0e2748; line-height: 1.02; margin-top: 4px; }
+.subtitle { font-size: 22px; color: #3e5170; margin-top: 6px; }
+.badge { background: #0e2748; color: #ffffff; font-size: 22px; font-weight: bold; padding: 12px 26px;
+  border-radius: 6px; text-align: center; line-height: 1.3; letter-spacing: 1px; }
+.badge.slate { background: #3e5170; }
+.rule { height: 3px; background: #0e2748; margin: 14px 0 16px; flex-shrink: 0; }
+
+/* ---------- SLIDE 1 — the review ---------- */
+.review-body { flex: 1; min-height: 0; column-count: 3; column-gap: 40px; column-rule: 1px solid #d8dde6;
+  font-family: Georgia, 'Times New Roman', serif; font-size: 26px; line-height: 1.34; color: #1c2b45; }
+.review-body p { margin-bottom: 14px; }
+.review-body .lead::first-letter { font-size: 62px; font-weight: bold; float: left; line-height: 0.86;
+  padding: 6px 10px 0 0; color: #3e5170; }
+.review-body em { background: #eef1f6; font-style: normal; box-shadow: inset 0 -2px 0 #3e5170; padding: 0 2px; }
+.s1-foot { flex-shrink: 0; margin-top: 16px; background: #0e2748; color: #ffffff; border-radius: 8px;
+  padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.s1-foot-lbl { font-size: 15px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold;
+  color: #a9b6cb; flex-shrink: 0; }
+.s1-foot-text { font-family: Georgia, serif; font-size: 27px; font-weight: bold; line-height: 1.15; }
+
+/* ---------- SLIDE 2 — the lesson ---------- */
+.main { display: grid; grid-template-columns: 1.06fr 1fr; gap: 26px; flex: 1; min-height: 0; }
+.col { display: flex; flex-direction: column; min-height: 0; }
+.section-head { font-size: 21px; letter-spacing: 4px; text-transform: uppercase; font-weight: bold;
+  margin-bottom: 10px; flex-shrink: 0; }
+.head-red { color: #9b2c2c; }
+.head-navy { color: #0e2748; }
+
+.list { display: flex; flex-direction: column; flex: 1; min-height: 0; gap: 10px; }
+.item { border: 1px solid #d8dde6; border-left: 6px solid #9b2c2c; border-radius: 8px; background: #f6f7fa;
+  padding: 10px 18px; flex: 1; display: flex; align-items: center; gap: 16px; }
+.item.good { border-left-color: #2e6049; background: #f4f8f6; }
+.num { font-family: Georgia, serif; font-size: 36px; font-weight: bold; color: #9b2c2c; width: 38px;
+  flex-shrink: 0; text-align: center; line-height: 1; }
+.tick { font-size: 30px; color: #2e6049; width: 38px; flex-shrink: 0; text-align: center; line-height: 1; }
+.i-head { font-family: Georgia, serif; font-size: 27px; font-weight: bold; color: #0e2748; line-height: 1.08; }
+.i-head.good { color: #2e6049; }
+.i-text { font-size: 20px; color: #3e5170; line-height: 1.26; margin-top: 3px; }
+
+.cost { border: 2px solid #0e2748; border-radius: 8px; padding: 12px 20px; flex-shrink: 0; margin-bottom: 14px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 7px 22px; }
+.cost-line { font-size: 21px; color: #1c2b45; line-height: 1.2; }
+.cost-line b { color: #9b2c2c; }
+
+.s2-foot { flex-shrink: 0; margin-top: 16px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 26px; }
+.def { border: 1px solid #d8dde6; border-left: 6px solid #3e5170; border-radius: 8px; padding: 12px 24px;
+  display: flex; flex-direction: column; justify-content: center; background: #f6f7fa; }
+.def-text { font-family: Georgia, serif; font-size: 25px; font-style: italic; color: #0e2748; line-height: 1.2; }
+.def-lbl { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold;
+  color: #3e5170; margin-top: 6px; }
+.takeaway { background: #0e2748; color: #ffffff; border-radius: 8px; padding: 12px 26px;
+  display: flex; flex-direction: column; justify-content: center; }
+.takeaway-lbl { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; color: #a9b6cb; }
+.takeaway-text { font-family: Georgia, serif; font-size: 26px; font-weight: bold; line-height: 1.15; margin-top: 4px; }
+
+/* ---------- progress ---------- */
+.progress { position: absolute; bottom: 0; left: 0; height: 6px; background: #0e2748; width: 0; z-index: 50; }
+</style>
+</head>
+<body>
+
+<!-- STAFF-FACING ONLY. No staff names. Guest name withheld. -->
+
+<!-- =============== SLIDE 1 — THE REVIEW =============== -->
+<div class="slide active" id="s1">
+  <div class="header">
+    <div>
+      <div class="brand">The Lakehouse &middot; Cleveland Flats</div>
+      <div class="title">In Her Own Words</div>
+      <div class="subtitle">Google review posted July 27, 2026 &middot; Party of eight &middot; Saturday night, post-theater &middot; One check, auto gratuity</div>
+    </div>
+    <div class="badge">Read It<br>All The Way Through</div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="review-body">
+    <p class="lead">I visited Lindey's Lake House on Saturday after seeing The Lion King, and unfortunately, my experience was extremely disappointing. Our party of eight was seated, and we were advised upfront that we would have one check with an automatic gratuity included. Half of our party was seated initially, and the rest arrived about 15 minutes later. Our server was pleasant and seemed friendly, but there were several issues throughout the evening that made the experience frustrating.</p>
+    <p>From the beginning, there were problems with orders being received correctly and in a timely manner. I ordered a jalape&ntilde;o margarita, but when it finally arrived, it came out as a pitcher rather than a single drink. I had to wait a significant amount of time for the correct drink replacement while dinner continued. Food also came out with large gaps between guests receiving their meals, which was frustrating, although everyone at the table remained patient, understanding, and respectful. There were also smaller things that added up, such as ordering biscuits and never receiving them until I had to ask about them toward the very end of the meal.</p>
+    <p>The biggest frustration came when trying to close out the bill. Since it was one check, we needed some time to sort out the payment between the group, and I completely understood that our server was giving us that time. However, even after we had figured everything out, I waited a significant amount of time to be cashed out. I asked another staff member if they could assist since my server was unavailable, but I was told they could not, so I sat back down and continued waiting. While I was sitting there waiting, another host approached the table to seat new guests and asked me to get up, which was extremely frustrating considering I was still waiting to finish paying. The entire situation made me feel overlooked and unsure of what was happening. When the payment was eventually processed, there was also confusion that resulted in my card being charged again, and I now have to wait for the money to be returned. This could have been avoided with clearer communication during the payment process.</p>
+    <p>A manager/supervisor did come over earlier when we were experiencing issues with the food, and the assistant manager who helped later with the payment issue was kind and seemed to genuinely care. However, overall, the experience felt disorganized and as though there wasn't much urgency or empathy shown toward our table.</p>
+    <p>I have worked in restaurants, so I understand that busy nights happen and mistakes occur. <em>What makes a difference is how those situations are handled.</em> When guests are patient and understanding despite inconveniences, it goes a long way to have someone acknowledge the issues, show empathy, and make them feel heard rather than making them feel like a burden. Unfortunately, after this experience, I don't feel inclined to return.</p>
+    <p>I don't believe our server was intentionally providing poor service, and I recognize she may have had a lot going on, but the overall lack of communication, follow-through, and guest care made what should have been a nice evening out a very frustrating one.</p>
+  </div>
+
+  <div class="s1-foot">
+    <div class="s1-foot-lbl">Why This Is On The Wall</div>
+    <div class="s1-foot-text">She stayed patient all night. We still lost her. Next slide is how we keep it from happening again.</div>
+  </div>
+</div>
+
+<!-- =============== SLIDE 2 — THE LESSON =============== -->
+<div class="slide" id="s2">
+  <div class="header">
+    <div>
+      <div class="brand">The Lakehouse &middot; Cleveland Flats</div>
+      <div class="title">Learn From This</div>
+      <div class="subtitle">Six breakdowns, six standards &middot; Saturday, July 25 &middot; Party of eight</div>
+    </div>
+    <div class="badge slate">Every Shift<br>Every Table</div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="main">
+
+    <div class="col">
+      <div class="section-head head-red">Where We Lost Them</div>
+      <div class="list">
+        <div class="item">
+          <div class="num">1</div>
+          <div>
+            <div class="i-head">Split arrival, no reset</div>
+            <div class="i-text">Half the party sat, the rest walked in 15 minutes later. Nobody re-took control of the table's pace.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num">2</div>
+          <div>
+            <div class="i-head">A single cocktail came out as a pitcher</div>
+            <div class="i-text">One jalape&ntilde;o margarita, rung and built wrong. She then waited a long time for the right drink while dinner ran on without her.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num">3</div>
+          <div>
+            <div class="i-head">Food landed in waves</div>
+            <div class="i-text">Large gaps between guests getting their plates. Half the table watched the other half eat.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num">4</div>
+          <div>
+            <div class="i-head">Biscuits never came</div>
+            <div class="i-text">Ordered early, never fired, never followed up. She had to ask for them at the end of the meal.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num">5</div>
+          <div>
+            <div class="i-head">&ldquo;That's not my table&rdquo;</div>
+            <div class="i-text">The party was ready to pay and waited well past it. A second staff member was asked for help and said no.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num">6</div>
+          <div>
+            <div class="i-head">Asked to stand up &mdash; while still paying</div>
+            <div class="i-text">A host approached to seat new guests and asked her to move. The card was then run twice, and the refund is still pending.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="section-head head-navy">What It Cost Us</div>
+      <div class="cost">
+        <div class="cost-line"><b>Eight covers</b> that will not come back</div>
+        <div class="cost-line"><b>A public review</b> indexed on Google</div>
+        <div class="cost-line"><b>A double charge</b> and a pending refund</div>
+        <div class="cost-line"><b>A patient table</b> made to feel like a burden</div>
+      </div>
+
+      <div class="section-head head-navy">What Good Looks Like</div>
+      <div class="list">
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">Big tables get a manager, early</div>
+            <div class="i-text">Parties of six or more get a manager touch at drink drop and entr&eacute;e drop &mdash; not after it breaks.</div>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">Read the drink order back</div>
+            <div class="i-text">Single or pitcher, rocks or up, spicy or not. Ten seconds at the table beats fifteen minutes of recovery.</div>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">The table eats together</div>
+            <div class="i-text">If a plate is going to lag, tell the table before the first one lands. No surprises.</div>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">Anyone can run a check</div>
+            <div class="i-text">If a guest is holding a card, take it. &ldquo;Not my section&rdquo; is not an answer here.</div>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">Never move a seated guest</div>
+            <div class="i-text">Hosts clear every turn with the server or a manager before approaching the table.</div>
+          </div>
+        </div>
+        <div class="item good">
+          <div class="tick">&#10003;</div>
+          <div>
+            <div class="i-head good">Own it out loud</div>
+            <div class="i-text">Acknowledge the miss, apologize once, fix it, and come back. Silence reads as indifference.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="s2-foot">
+    <div class="def">
+      <div class="def-text">Hospitality: the friendly and generous reception and entertainment of guests.</div>
+      <div class="def-lbl">That is the whole job &mdash; especially on the nights that go sideways</div>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-lbl">The Main Thing</div>
+      <div class="takeaway-text">The mistakes didn't lose this table. The lack of urgency did.</div>
+    </div>
+  </div>
+</div>
+
+<div class="progress" id="bar"></div>
+
+<script>
+(function () {
+  var slides = [
+    { el: document.getElementById('s1'), ms: 30000 },
+    { el: document.getElementById('s2'), ms: 20000 }
+  ];
+  var bar = document.getElementById('bar');
+  var i = 0, start = 0, dur = slides[0].ms;
+
+  function show(n) {
+    slides.forEach(function (s, k) { s.el.classList.toggle('active', k === n); });
+    dur = slides[n].ms;
+    start = performance.now();
+  }
+  function tick(now) {
+    var pct = Math.min((now - start) / dur, 1);
+    bar.style.width = (pct * 1920) + 'px';
+    if (pct >= 1) { i = (i + 1) % slides.length; show(i); }
+    requestAnimationFrame(tick);
+  }
+  show(0);
+  requestAnimationFrame(tick);
+})();
+</script>
+
+</body>
+</html>
