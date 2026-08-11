@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>NCR EBITDA Dashboard — P7W2 + YTD Flow-Through</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f7f5f0; font-family: Arial, sans-serif; color: #2b2b28; }
+
+.slide { display: none; width: 1920px; height: 1080px; padding: 26px 48px 20px; flex-direction: column; }
+.slide.active { display: flex; }
+
+.header { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.brand { font-size: 22px; color: #63655f; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
+.title { font-size: 42px; font-weight: bold; color: #2b2b28; line-height: 1.05; margin-top: 2px; }
+.subtitle { font-size: 17px; color: #6c6d67; margin-top: 4px; }
+.date-badge { background: #c9962f; color: #2b2b28; font-size: 20px; font-weight: bold; padding: 10px 26px; border-radius: 10px; text-align: center; line-height: 1.3; }
+
+.divider { height: 4px; background: #c9962f; margin: 12px 0; border-radius: 2px; flex-shrink: 0; }
+
+.footer-row { flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
+.slide-counter { font-size: 15px; color: #8a8b83; letter-spacing: 1px; max-width: 1550px; }
+.progress-wrap { width: 300px; height: 5px; background: #e5e2d8; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+.progress-bar { height: 100%; width: 0%; background: #c9962f; }
+.progress-bar.animate { animation: fillbar 20s linear forwards; }
+@keyframes fillbar { from { width: 0%; } to { width: 100%; } }
+
+.g { color: #1f8a4c; }
+.r { color: #c0392b; }
+.n { color: #63655f; }
+.y { color: #b8860b; }
+
+/* ---- Slide 1: weekly table ---- */
+.total-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; flex-shrink: 0; margin-bottom: 16px; }
+.total-card { background: #ffffff; border: 2px solid #c9962f; border-radius: 12px; padding: 14px 20px; text-align: center; }
+.total-label { font-size: 18px; color: #63655f; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-weight: bold; }
+.total-val { font-size: 48px; font-weight: bold; color: #b8860b; }
+.total-pct { font-size: 18px; color: #63655f; margin-top: 6px; }
+.total-pct .g { font-weight: bold; }
+.total-pct .r { font-weight: bold; }
+
+.wk-table-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.wk-table { width: 100%; border-collapse: collapse; table-layout: fixed; flex: 1; }
+.wk-table thead tr { background: #63655f; }
+.wk-table thead th { padding: 12px 8px; text-align: center; color: #f7f5f0; font-size: 19px; letter-spacing: 1px; text-transform: uppercase; font-weight: bold; }
+.wk-table thead th:first-child { text-align: left; padding-left: 16px; }
+.wk-table tbody tr { border-bottom: 1px solid #e5e2d8; }
+.wk-table tbody tr:nth-child(even) { background: #f2efe6; }
+.wk-table tbody tr.total-tr { background: #f5e9d0; border-top: 2px solid #c9962f; }
+.wk-table td { padding: 0 8px; text-align: center; color: #2b2b28; font-size: 28px; vertical-align: middle; }
+.wk-table td:first-child { text-align: left; font-weight: bold; color: #8a611f; padding-left: 16px; }
+.wk-table tr.total-tr td:first-child { color: #8a611f; }
+.wk-table tr.total-tr td { font-weight: bold; font-size: 30px; }
+.wk-table td.g { color: #1f8a4c; }
+.wk-table td.r { color: #c0392b; }
+.wk-table td.n { color: #63655f; }
+.ebitda-val { color: #1f8a4c; font-weight: bold; }
+
+/* ---- Slides 2-4: YTD boxes ---- */
+.ticker { flex-shrink: 0; background: #ffffff; border: 2px solid #c9962f; border-radius: 10px; padding: 12px 24px; font-size: 21px; margin-bottom: 18px; text-align: center; line-height: 1.5; color: #2b2b28; }
+.ticker b { color: #8a611f; }
+
+.boxes { flex: 1; display: flex; gap: 26px; min-height: 0; }
+.box { flex: 1; background: #ffffff; border: 2px solid #e5e2d8; border-radius: 16px; padding: 22px 24px; display: flex; flex-direction: column; text-align: center; }
+.box .store-name { font-size: 38px; font-weight: bold; color: #8a611f; margin-bottom: 6px; }
+.box .ytd-line { font-size: 26px; color: #63655f; }
+.box .ytd-line b { color: #2b2b28; font-size: 34px; }
+.box .ytd-sub { font-size: 20px; color: #8a8b83; margin-bottom: 14px; margin-top: 4px; }
+.box .ytd-sub .g { color: #1f8a4c; font-weight: bold; }
+.box .ytd-sub .r { color: #c0392b; font-weight: bold; }
+.box .ytd-sub .n { color: #8a8b83; }
+
+.ebitda-block { background: #f7f5f0; border: 1px solid #e5e2d8; border-radius: 12px; padding: 20px 16px; margin-bottom: 22px; text-align: center; }
+.ebitda-block .eb-label { font-size: 20px; color: #63655f; text-transform: uppercase; letter-spacing: 1px; }
+.ebitda-block .eb-val { font-size: 72px; font-weight: bold; color: #1f8a4c; line-height: 1.1; display: block; }
+.ebitda-block .eb-pct { font-size: 30px; color: #63655f; margin-top: 4px; font-weight: bold; display: block; }
+
+.comparison-grid { display: flex; gap: 14px; margin-bottom: 14px; flex: 1; min-height: 0; }
+.comp-panel { flex: 1; background: #f7f5f0; border: 1px solid #e5e2d8; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; }
+.comp-panel.ly .comp-header { color: #8a611f; }
+.comp-panel.bud .comp-header { color: #b3591f; }
+.comp-header { font-size: 20px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; text-align: center; border-bottom: 1px solid #e5e2d8; padding-bottom: 8px; }
+.comp-row { display: flex; justify-content: space-between; font-size: 24px; gap: 8px; align-items: center; }
+.comp-row .comp-label { color: #8a8b83; flex-shrink: 0; }
+.comp-row .comp-val { font-weight: bold; text-align: right; font-size: 28px; }
+.comp-row .comp-val.g { color: #1f8a4c; }
+.comp-row .comp-val.r { color: #c0392b; }
+.comp-row .comp-val.y { color: #b8860b; }
+.comp-row .comp-val.n { color: #63655f; }
+.comp-pill-wrap { text-align: center; }
+.comp-nocomp { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 22px; font-weight: bold; color: #8a8b83; line-height: 1.6; }
+.comp-nocomp span { font-size: 17px; font-weight: normal; color: #a3a49b; }
+
+.status-pill { display: inline-block; padding: 8px 20px; border-radius: 24px; font-size: 20px; font-weight: bold; letter-spacing: 0.5px; }
+.status-pill.green { background: #e6f5eb; color: #1f8a4c; border: 1px solid #1f8a4c; }
+.status-pill.yellow { background: #faf1dc; color: #b8860b; border: 1px solid #b8860b; }
+.status-pill.red { background: #fbe9e7; color: #c0392b; border: 1px solid #c0392b; }
+
+.insight { flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; background: #faf3e3; border-radius: 10px; padding: 14px 20px; border-left: 5px solid #c9962f; }
+.insight .take-label { font-size: 17px; color: #8a611f; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 6px; }
+.insight .take-text { font-size: 24px; line-height: 1.35; color: #2b2b28; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 0: Weekly all-locations table -->
+<div class="slide active" id="slide-0">
+  <div class="header">
+    <div>
+      <div class="brand">NCR Ventures</div>
+      <div class="title">Weekly EBITDA Dashboard</div>
+      <div class="subtitle">Sales · Food Cost · Bar Cost · Labor · EBITDA — vs. Period 8 Budget</div>
+    </div>
+    <div class="date-badge">PERIOD 8 · WEEK 2<br>Week Ending 8/10/26</div>
+  </div>
+  <div class="divider"></div>
+  <div class="total-row">
+    <div class="total-card">
+      <div class="total-label">Gross Sales</div>
+      <div class="total-val">$1,399,536</div>
+      <div class="total-pct">Net $1,359,885 · 31,130 covers</div>
+    </div>
+    <div class="total-card">
+      <div class="total-label">Food Cost</div>
+      <div class="total-val">27.8%</div>
+      <div class="total-pct">Budget 29.1% · <span class="g">-1.3 pts</span></div>
+    </div>
+    <div class="total-card">
+      <div class="total-label">Bar Cost</div>
+      <div class="total-val">21.2%</div>
+      <div class="total-pct">Budget 21.2% · <span class="n">even</span></div>
+    </div>
+    <div class="total-card">
+      <div class="total-label">Total Labor</div>
+      <div class="total-val">31.6%</div>
+      <div class="total-pct">FOH 6.1% · BOH 12.2%</div>
+    </div>
+    <div class="total-card">
+      <div class="total-label">EBITDA</div>
+      <div class="total-val" style="color:#1f8a4c;">$261,752</div>
+      <div class="total-pct">19.2% · Budget ~16.7% · <span class="g">+2.5 pts*</span></div>
+    </div>
+  </div>
+  <div class="wk-table-wrap">
+    <table class="wk-table">
+      <thead>
+        <tr>
+          <th style="width:17%;">Location</th>
+          <th style="width:11%;">Sales</th>
+          <th style="width:9%;">Food</th>
+          <th style="width:9%;">Bar</th>
+          <th style="width:9%;">FOH</th>
+          <th style="width:9%;">BOH</th>
+          <th style="width:12%;">EBITDA $</th>
+          <th style="width:9%;">EBITDA %</th>
+          <th style="width:11%;">vs Budget</th>
+        </tr>
+      </thead>
+      <tbody>
+    <tr>
+      <td>Beachwood</td>
+      <td>$185,579</td>
+      <td class="r">30.8%</td>
+      <td class="g">22.4%</td>
+      <td class="g">6.0%</td>
+      <td class="r">14.0%</td>
+      <td class="ebitda-val">$22,047</td>
+      <td class="ebitda-val">12.3%</td>
+      <td class="g">+0.2 pts</td>
+    </tr>
+    <tr>
+      <td>17 River Grille</td>
+      <td>$217,534</td>
+      <td class="g">26.0%</td>
+      <td class="r">21.7%</td>
+      <td class="n">4.6%</td>
+      <td class="g">8.7%</td>
+      <td class="ebitda-val">$63,706</td>
+      <td class="ebitda-val">30.0%</td>
+      <td class="g">+3.9 pts</td>
+    </tr>
+    <tr>
+      <td>JoJo's &amp; Bar Fuoco</td>
+      <td>$151,395</td>
+      <td class="g">30.9%</td>
+      <td class="n">22.3%</td>
+      <td class="n">6.3%</td>
+      <td class="g">12.1%</td>
+      <td class="ebitda-val">$24,880</td>
+      <td class="ebitda-val">17.0%</td>
+      <td class="r">-0.7 pts</td>
+    </tr>
+    <tr>
+      <td>The Lakehouse</td>
+      <td>$151,734</td>
+      <td class="g">28.4%</td>
+      <td class="g">18.2%</td>
+      <td class="g">6.3%</td>
+      <td class="r">14.4%</td>
+      <td class="ebitda-val">$29,159</td>
+      <td class="ebitda-val">19.4%</td>
+      <td class="g">+2.1 pts</td>
+    </tr>
+    <tr>
+      <td>Lakewood</td>
+      <td>$75,808</td>
+      <td class="g">25.4%</td>
+      <td class="g">20.9%</td>
+      <td class="r">5.5%</td>
+      <td class="g">13.1%</td>
+      <td class="ebitda-val">$11,686</td>
+      <td class="ebitda-val">16.0%</td>
+      <td class="g">+1.7 pts</td>
+    </tr>
+    <tr>
+      <td>Winter Park</td>
+      <td>$172,254</td>
+      <td class="g">24.0%</td>
+      <td class="r">21.2%</td>
+      <td class="g">8.1%</td>
+      <td class="g">13.0%</td>
+      <td class="ebitda-val">$27,352</td>
+      <td class="ebitda-val">16.3%</td>
+      <td class="g">+1.7 pts</td>
+    </tr>
+    <tr>
+      <td>Sarasota</td>
+      <td>$140,468</td>
+      <td class="g">26.1%</td>
+      <td class="g">19.9%</td>
+      <td class="g">7.3%</td>
+      <td class="g">12.0%</td>
+      <td class="ebitda-val">$21,014</td>
+      <td class="ebitda-val">15.5%</td>
+      <td class="g">+3.2 pts</td>
+    </tr>
+    <tr>
+      <td>Easton</td>
+      <td>$163,302</td>
+      <td class="g">25.4%</td>
+      <td class="g">20.5%</td>
+      <td class="g">5.4%</td>
+      <td class="g">12.6%</td>
+      <td class="ebitda-val">$27,170</td>
+      <td class="ebitda-val">17.3%</td>
+      <td class="n">0.0 pts</td>
+    </tr>
+    <tr>
+      <td>Lola's Bistro</td>
+      <td>$141,462</td>
+      <td class="n">32.9%</td>
+      <td class="r">23.6%</td>
+      <td class="g">5.6%</td>
+      <td class="g">9.5%</td>
+      <td class="ebitda-val">$34,738</td>
+      <td class="ebitda-val">25.1%</td>
+      <td class="g">+11.3 pts</td>
+    </tr>
+    <tr class="total-tr">
+      <td>TOTAL — NCR Ventures</td>
+      <td>$1,399,536</td>
+      <td class="g">27.8%</td>
+      <td class="n">21.2%</td>
+      <td class="g">6.1%</td>
+      <td class="g">12.2%</td>
+      <td class="ebitda-val">$261,752</td>
+      <td class="ebitda-val">19.2%</td>
+      <td class="g">+2.5 pts*</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="footer-row">
+    <div class="slide-counter">SLIDE 1 OF 4 &nbsp;|&nbsp; *Total EBITDA budget ($233,319 / 16.7%) is modeled from each store's Period 8 budgeted EBITDA % applied to this week's actual sales.</div>
+    <div class="progress-wrap"><div class="progress-bar"></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 1: YTD boxes 1-3 -->
+<div class="slide" id="slide-1">
+  <div class="header">
+    <div>
+      <div class="brand">NCR Ventures</div>
+      <div class="title">YTD Flow-Through by Location</div>
+      <div class="subtitle">YTD Sales · YTD EBITDA · Flow-Through vs. LY and vs. Budget</div>
+    </div>
+    <div class="date-badge">YTD THRU P8W2<br>Week Ending 8/10/26</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ticker">
+    <b>Company YTD:</b> Sales $37,379,764 · EBITDA $5,075,784 (14.0%) &nbsp;|&nbsp;
+    <b>vs LY</b> (7 same-store): +$597,764 sales → +$312,174 EBITDA → <b class="g">52.2% Flow-Through</b> &nbsp;|&nbsp;
+    <b>vs Budget</b> (9 stores): <span class="r">($1,021,584)</span> sales, <span class="r">($314,560)</span> EBITDA → <b class="g">30.8% Protected</b> (EBITDA loss is under 50% of the sales miss)
+  </div>
+  <div class="boxes">
+    <div class="box">
+      <div class="store-name">Beachwood</div>
+      <div class="ytd-line">YTD Sales <b>$6,019,343</b></div>
+      <div class="ytd-sub">vs LY <span class="g">+$638,123</span> &nbsp;·&nbsp; vs Budget <span class="g">+$273,843</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$755,193</div>
+        <div class="eb-pct">13.0%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val g">+$194,933</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val y">30.5%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill yellow">Near Target</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$2,077</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val r">-0.8%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill red">Forfeited</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Vs LY steady at 30.5%. Vs Budget still technically Forfeited, but the gap is down to $2,077 — three straight weeks of narrowing, effectively at budget now.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">17 River Grille</div>
+      <div class="ytd-line">YTD Sales <b>$4,929,608</b></div>
+      <div class="ytd-sub">vs LY <span class="g">+$266,059</span> &nbsp;·&nbsp; vs Budget <span class="r">-$8,192</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$1,011,498</div>
+        <div class="eb-pct">21.1%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val g">+$88,755</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val y">33.4%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill yellow">Near Target</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$5,872</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val r">71.7%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill red">Not Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Vs LY climbing (33.4%, nearly Strong). The vs-Budget ratio looks bad (71.7%) but the dollars are tiny — $8,192 sales, $5,872 EBITDA — essentially at budget.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">JoJo's &amp; Bar Fuoco</div>
+      <div class="ytd-line">YTD Sales <b>$3,549,220</b></div>
+      <div class="ytd-sub">vs LY <span class="r">-$116,522</span> &nbsp;·&nbsp; vs Budget <span class="r">-$189,519</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$378,336</div>
+        <div class="eb-pct">11.0%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$29,788</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">25.6%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$92,863</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">49.0%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Crossed under the 50% line vs Budget for the first time this period — 49.0%, from 67.0% four weeks ago. Steady improvement every single week.</div></div>
+    </div>
+  </div>
+  <div class="footer-row">
+    <div class="slide-counter">LOCATIONS 1–3 OF 9 &nbsp;|&nbsp; SLIDE 2 OF 4</div>
+    <div class="progress-wrap"><div class="progress-bar"></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 2: YTD boxes 4-6 -->
+<div class="slide" id="slide-2">
+  <div class="header">
+    <div>
+      <div class="brand">NCR Ventures</div>
+      <div class="title">YTD Flow-Through by Location</div>
+      <div class="subtitle">YTD Sales · YTD EBITDA · Flow-Through vs. LY and vs. Budget</div>
+    </div>
+    <div class="date-badge">YTD THRU P8W2<br>Week Ending 8/10/26</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ticker">
+    <b>Company YTD:</b> Sales $37,379,764 · EBITDA $5,075,784 (14.0%) &nbsp;|&nbsp;
+    <b>vs LY</b> (7 same-store): +$597,764 sales → +$312,174 EBITDA → <b class="g">52.2% Flow-Through</b> &nbsp;|&nbsp;
+    <b>vs Budget</b> (9 stores): <span class="r">($1,021,584)</span> sales, <span class="r">($314,560)</span> EBITDA → <b class="g">30.8% Protected</b> (EBITDA loss is under 50% of the sales miss)
+  </div>
+  <div class="boxes">
+    <div class="box">
+      <div class="store-name">The Lakehouse</div>
+      <div class="ytd-line">YTD Sales <b>$2,156,131</b></div>
+      <div class="ytd-sub">vs LY <span class="r">-$229,717</span> &nbsp;·&nbsp; vs Budget <span class="r">-$443,155</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val" style="color:#c0392b;">-$88,135</div>
+        <div class="eb-pct">-4.2%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$70,965</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">30.9%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$198,679</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">44.8%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Protected on both, and the YTD EBITDA loss keeps shrinking — down to $88,135 from $137,209 two weeks ago. Peak season is doing its job.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">Lakewood</div>
+      <div class="ytd-line">YTD Sales <b>$2,272,724</b></div>
+      <div class="ytd-sub">vs LY <span class="r">-$11,215</span> &nbsp;·&nbsp; vs Budget <span class="r">-$65,644</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$294,046</div>
+        <div class="eb-pct">13.4%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$13,790</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val r">123.0%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill red">Not Protected</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$34,080</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val r">51.9%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill red">Not Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Still the flag, but genuinely improving — vs LY down to 123.0% (was 195.7%) and vs Budget at 51.9%, just barely over the line. Two good weeks in a row.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">Winter Park</div>
+      <div class="ytd-line">YTD Sales <b>$5,439,677</b></div>
+      <div class="ytd-sub">vs LY <span class="g">+$389,195</span> &nbsp;·&nbsp; vs Budget <span class="g">+$308,922</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$877,326</div>
+        <div class="eb-pct">16.7%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val g">+$187,868</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">48.3%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Strong</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val g">+$146,962</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">47.6%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Strong</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Strong on both, again — 48.3% vs LY, 47.6% vs Budget. The most reliable performer in the company all period.</div></div>
+    </div>
+  </div>
+  <div class="footer-row">
+    <div class="slide-counter">LOCATIONS 4–6 OF 9 &nbsp;|&nbsp; SLIDE 3 OF 4</div>
+    <div class="progress-wrap"><div class="progress-bar"></div></div>
+  </div>
+</div>
+
+<!-- SLIDE 3: YTD boxes 7-9 -->
+<div class="slide" id="slide-3">
+  <div class="header">
+    <div>
+      <div class="brand">NCR Ventures</div>
+      <div class="title">YTD Flow-Through by Location</div>
+      <div class="subtitle">YTD Sales · YTD EBITDA · Flow-Through vs. LY and vs. Budget</div>
+    </div>
+    <div class="date-badge">YTD THRU P8W2<br>Week Ending 8/10/26</div>
+  </div>
+  <div class="divider"></div>
+  <div class="ticker">
+    <b>Company YTD:</b> Sales $37,379,764 · EBITDA $5,075,784 (14.0%) &nbsp;|&nbsp;
+    <b>vs LY</b> (7 same-store): +$597,764 sales → +$312,174 EBITDA → <b class="g">52.2% Flow-Through</b> &nbsp;|&nbsp;
+    <b>vs Budget</b> (9 stores): <span class="r">($1,021,584)</span> sales, <span class="r">($314,560)</span> EBITDA → <b class="g">30.8% Protected</b> (EBITDA loss is under 50% of the sales miss)
+  </div>
+  <div class="boxes">
+    <div class="box">
+      <div class="store-name">Sarasota</div>
+      <div class="ytd-line">YTD Sales <b>$4,907,732</b></div>
+      <div class="ytd-sub">vs LY <span class="r">-$338,159</span> &nbsp;·&nbsp; vs Budget <span class="r">-$429,668</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$763,250</div>
+        <div class="eb-pct">16.1%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$44,839</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">13.3%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$114,211</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">26.6%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Protecting margin on both tests yet again — 13.3% vs LY is the best protection ratio in the company. Sales decline is real, but the P&L is flexing with it.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">Easton</div>
+      <div class="ytd-line">YTD Sales <b>$4,542,504</b></div>
+      <div class="ytd-sub">vs LY <span class="n">n/a</span> &nbsp;·&nbsp; vs Budget <span class="r">-$482,996</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$543,707</div>
+        <div class="eb-pct">12.4%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-nocomp">No LY Comp<br><span>(opened mid-2025)</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val r">-$166,637</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">34.5%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Protected</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">No meaningful LY comp (opened 6/30/25 — last year's YTD covers only ~6 weeks). Vs Budget still Protected at 34.5%.</div></div>
+    </div>
+    <div class="box">
+      <div class="store-name">Lola's Bistro</div>
+      <div class="ytd-line">YTD Sales <b>$3,562,825</b></div>
+      <div class="ytd-sub">vs LY <span class="n">n/a</span> &nbsp;·&nbsp; vs Budget <span class="g">+$14,825</span></div>
+      <div class="ebitda-block">
+        <div class="eb-label">YTD EBITDA</div>
+        <div class="eb-val">$540,563</div>
+        <div class="eb-pct">15.5%</div>
+      </div>
+      <div class="comparison-grid">
+      <div class="comp-panel ly">
+        <div class="comp-header">VS LY</div>
+        <div class="comp-nocomp">No LY Comp<br><span>(opened mid-2025)</span></div>
+      </div>
+      <div class="comp-panel bud">
+        <div class="comp-header">VS BUDGET</div>
+        <div class="comp-row"><span class="comp-label">EBITDA &Delta;</span><span class="comp-val g">+$152,897</span></div>
+        <div class="comp-row"><span class="comp-label">Flow-Thru</span><span class="comp-val g">1031.3%</span></div>
+        <div class="comp-pill-wrap"><span class="status-pill green">Strong</span></div>
+      </div>
+      </div>
+      <div class="insight"><div class="take-label">Take</div><div class="take-text">Flipped to a sales beat this week (+$14,825, was a miss) with EBITDA $152,897 over budget — now clean green on the standard flow-through test. Best budget story in the company.</div></div>
+    </div>
+  </div>
+  <div class="footer-row">
+    <div class="slide-counter">LOCATIONS 7–9 OF 9 &nbsp;|&nbsp; SLIDE 4 OF 4 &nbsp;|&nbsp; On sales declines: target is EBITDA loss ≤50% of the sales loss (Protected/green) vs &gt;50% (Not Protected/red). Easton and Lola's Bistro have no LY comp (opened mid-2025).</div>
+    <div class="progress-wrap"><div class="progress-bar"></div></div>
+  </div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const bars = document.querySelectorAll('.progress-bar');
+let current = 0;
+const DURATION = 20000;
+
+function showSlide(i) {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  bars.forEach(b => { b.classList.remove('animate'); b.style.width = '0%'; });
+  void bars[i].offsetWidth;
+  bars[i].classList.add('animate');
+}
+
+function next() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+showSlide(current);
+setInterval(next, DURATION);
+
+document.body.addEventListener('click', () => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+});
+</script>
+
+</body>
+</html>
