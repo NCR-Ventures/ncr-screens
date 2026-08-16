@@ -252,7 +252,7 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
 <script>
 const slides = document.querySelectorAll('.slide');
 const progress = document.getElementById('progress');
-const DUR = 15000;
+const DUR = 13333; // 80s total loop / 6 slides
 let cur = 0, start = Date.now();
 function show(i) { slides.forEach((s,idx)=>s.classList.toggle('active', idx===i)); }
 function tick() {
