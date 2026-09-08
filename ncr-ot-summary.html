@@ -2,7 +2,7 @@
 <html><head><meta charset="UTF-8">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f7f5f0; font-family: Arial, sans-serif; color: #2b2b28; }
+html, body { width: 1920px; height: 1080px; max-height: 1080px; overflow: hidden; background: #f7f5f0; font-family: Arial, sans-serif; color: #2b2b28; }
 body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; height: 1080px; }
 .header { display: flex; justify-content: space-between; align-items: flex-start; flex-shrink: 0; }
 .brand { font-size: 22px; color: #c9962f; letter-spacing: 5px; font-weight: bold; text-transform: uppercase; }
@@ -10,7 +10,7 @@ body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; heigh
 .subtitle { font-size: 18px; color: #63655f; margin-top: 3px; }
 .date-badge { background: #c9962f; color: #fff; font-size: 24px; font-weight: bold; padding: 12px 28px; border-radius: 10px; text-align: center; line-height: 1.3; }
 .divider { height: 4px; background: #c9962f; margin: 5px 0 6px; border-radius: 2px; flex-shrink: 0; }
-.summary-bar { display: flex; gap: 14px; flex-shrink: 0; margin-bottom: 6px; }
+.summary-bar { display: flex; gap: 14px; flex-shrink: 0; margin-bottom: 6px; align-items: flex-start; }
 .sum-card { flex: 1; background: #fff; border: 1px solid #e5e2d8; border-radius: 10px; padding: 5px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
 .sum-lbl { font-size: 13px; color: #63655f; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; margin-bottom: 4px; }
 .sum-num { font-size: 36px; font-weight: bold; color: #c9962f; line-height: 1; }
@@ -19,22 +19,22 @@ body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; heigh
 .sum-card.dark .sum-lbl { color: #a0998c; }
 .sum-card.dark .sum-num { color: #fff; font-size: 30px; }
 .sum-card.dark .sum-sub { color: #a0998c; }
-.trend-card { flex: 1.1; background: #fff; border: 1px solid #e5e2d8; border-radius: 10px; padding: 12px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-.trend-lbl { font-size: 12px; color: #8a611f; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 8px; }
-.trend-bars { display: flex; align-items: flex-end; gap: 10px; height: 80px; }
+.trend-card { flex: 1.1; background: #fff; border: 1px solid #e5e2d8; border-radius: 10px; padding: 10px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.trend-lbl { font-size: 12px; color: #8a611f; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 4px; }
+.trend-bars { display: flex; align-items: flex-end; gap: 8px; height: 60px; }
 .trend-col { display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .trend-val { font-size: 11px; color: #2b2b28; font-weight: bold; }
 .trend-bar { width: 52px; background: #e5e0d5; border-radius: 3px 3px 0 0; }
 .trend-week { font-size: 11px; color: #63655f; font-weight: bold; }
 .chart-section { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-shrink: 0; }
+.chart-header { margin-bottom: 4px !important; display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; flex-shrink: 0; }
 .chart-title { font-size: 14px; color: #8a611f; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
 .legend { display: flex; gap: 18px; font-size: 13px; color: #63655f; font-weight: bold; }
 .legend span { display: flex; align-items: center; gap: 5px; }
 .leg-boh { width: 14px; height: 14px; background: #c9962f; border-radius: 2px; }
 .leg-foh { width: 14px; height: 14px; background: #6db0d4; border-radius: 2px; }
 .chart { display: flex; flex-direction: column; gap: 4px; flex: 1; min-height: 0; }
-.row { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #e5e2d8; border-radius: 8px; padding: 5px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); flex: 1; }
+.row { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #e5e2d8; border-radius: 8px; padding: 6px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); flex: 1; min-height: 0; }
 .loc { font-size: 22px; font-weight: bold; color: #2b2b28; width: 360px; flex-shrink: 0; }
 .track { flex: 1; height: 26px; background: #f0ede6; border-radius: 4px; display: flex; overflow: hidden; }
 .seg.boh { background: #c9962f; height: 100%; }
@@ -42,7 +42,7 @@ body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; heigh
 .val { font-size: 18px; font-weight: bold; color: #2b2b28; width: 440px; text-align: right; flex-shrink: 0; }
 .meta { font-size: 13px; color: #63655f; font-weight: normal; margin-left: 10px; }
 .clean-pill { background: #e6f5eb; color: #1f8a4c; border: 1px solid #b8dbc2; border-radius: 4px; padding: 2px 10px; font-size: 14px; font-weight: bold; }
-.footnote { font-size: 11px; color: #a09990; margin-top: 6px; flex-shrink: 0; line-height: 1.4; }
+.footnote { font-size: 10px; color: #a09990; margin-top: 2px; flex-shrink: 0; line-height: 1.4; }
 </style></head><body>
 <div class="header">
   <div>
@@ -53,7 +53,7 @@ body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; heigh
   <div class="date-badge">Week Ending<br>09.06.26</div>
 </div>
 <div class="divider"></div>
-<div class="summary-bar">
+<div class="summary-bar" style="align-items:flex-start; flex-wrap:nowrap;">
   <div class="sum-card">
     <div class="sum-lbl">Company OT Premium</div>
     <div class="sum-num">$1,058.53</div>
@@ -73,101 +73,49 @@ body { padding: 12px 56px 8px 56px; display: flex; flex-direction: column; heigh
     <div class="trend-lbl">6-Week OT Trend &mdash; P8W2 &rarr; P9W2</div>
     <div class="trend-bars">
       <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$2,074</div>
-        <div class="trend-bar" style="height:70px; background:#e5e0d5;"></div>
-        <div class="trend-week" style="color:#63655f;">P8W2</div>
+        <div class="trend-val" style="font-size:12px;color:#aab4cc;">$2,074</div>
+        <div class="trend-bar" style="height:45px; background:#aab4cc;"></div>
+        <div class="trend-week" style="color:#aab4cc;">P8W2</div>
       </div>
       <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$1,225</div>
-        <div class="trend-bar" style="height:41px; background:#b8dbc2;"></div>
-        <div class="trend-week" style="color:#63655f;">P8W3</div>
+        <div class="trend-val" style="font-size:12px;color:#4cde88;">$1,225</div>
+        <div class="trend-bar" style="height:26px; background:#4cde88;"></div>
+        <div class="trend-week" style="color:#4cde88;">P8W3</div>
       </div>
       <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$1,225</div>
-        <div class="trend-bar" style="height:41px; background:#b8dbc2;"></div>
-        <div class="trend-week" style="color:#63655f;">P8W4</div>
+        <div class="trend-val" style="font-size:12px;color:#4cde88;">$1,225</div>
+        <div class="trend-bar" style="height:26px; background:#4cde88;"></div>
+        <div class="trend-week" style="color:#4cde88;">P8W4</div>
       </div>
       <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$1,846</div>
-        <div class="trend-bar" style="height:62px; background:#e5e0d5;"></div>
-        <div class="trend-week" style="color:#63655f;">P9W1</div>
+        <div class="trend-val" style="font-size:12px;color:#aab4cc;">$1,846</div>
+        <div class="trend-bar" style="height:40px; background:#aab4cc;"></div>
+        <div class="trend-week" style="color:#aab4cc;">P9W1</div>
       </div>
       <div class="trend-col">
-        <div class="trend-val" style="color:#c9962f;">$1,059</div>
-        <div class="trend-bar" style="height:36px; background:#b8dbc2;"></div>
-        <div class="trend-week" style="color:#c9962f;">P9W2 &#9679;</div>
+        <div class="trend-val" style="font-size:12px;color:#e8a020;">$1,059</div>
+        <div class="trend-bar" style="height:23px; background:#e8a020;"></div>
+        <div class="trend-week" style="color:#e8a020;">P9W2 &#9679;</div>
       </div>
     </div>
-      <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$2,074</div>
-        <div class="trend-bar" style="height:86px; background:#e5e0d5;"></div>
+        <div class="trend-bar" style="height:45px; background:#e5e0d5;"></div>
         <div class="trend-week" style="color:#63655f;">P8W2</div>
       </div>
-      <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$1,225</div>
-        <div class="trend-bar" style="height:51px; background:#b8dbc2;"></div>
-        <div class="trend-week" style="color:#63655f;">P8W3</div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-val" style="color:#2b2b28;">$1,225</div>
-        <div class="trend-bar" style="height:51px; background:#b8dbc2;"></div>
-        <div class="trend-week" style="color:#63655f;">P8W4</div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-val" style="color:#fff;">$1,846</div>
-        <div class="trend-bar" style="height:70px; background:#c9962f;"></div>
-        <div class="trend-week" style="color:#c9962f;">P9W1 &#9679;</div>
-      </div>
-    </div>
-  </div>
 </div>
 <div class="chart-section">
   <div class="chart-header">
-    <div class="chart-title">Overtime by Location &mdash; Week 1</div>
+    <div class="chart-title">Overtime by Location &mdash; Week 2</div>
     <div class="legend"><span><span class="leg-boh"></span> BOH</span><span><span class="leg-foh"></span> FOH</span></div>
   </div>
   <div class="chart">
-
-<div class="row">
-  <div class="loc">Beachwood</div>
-  <div class="track"><div class="seg boh" style="width:614px;"></div><div class="seg foh" style="width:73px;"></div></div>
-  <div class="val">$481.87<span class="meta">61.9 hrs &middot; 17 staff &mdash; training surge + BOH coverage &nbsp;<span style="color:#1f8a4c;font-size:14px;">&#8595; vs $495 P9W1</span></span></div>
+<div class="row"><div class="loc">Cedar Creek Grille / Bar Italia Beachwood</div><div class="track"><div class="seg boh" style="width:607px;"></div><div class="seg foh" style="width:73px;"></div></div><div class="val">$481.87<span class="meta">61.9 hrs &middot; 17 staff &mdash; BOH training surge + FOH schedule &nbsp;<span style="color:#4cde88;font-size:15px;">&#8595; vs $495 P9W1</span></span></div></div>
+<div class="row"><div class="loc">JoJo&rsquo;s Bar &amp; Bar Fuoco</div><div class="track"><div class="seg boh" style="width:328px;"></div></div><div class="val">$232.35<span class="meta">24.6 hrs &middot; 5 BOH &mdash; Fuoco coverage (Derrick excl.) &nbsp;<span style="color:#aab4cc;font-size:15px;">flat vs P9W1</span></span></div></div>
+<div class="row"><div class="loc">The Lakehouse</div><div class="track"><div class="seg boh" style="width:298px;"></div></div><div class="val">$211.06<span class="meta">20.8 hrs &middot; 4 BOH &mdash; end-of-season coverage &nbsp;<span style="color:#4cde88;font-size:15px;">&#8595; vs $226 P9W1</span></span></div></div>
+<div class="row"><div class="loc">Bar Italia Lakewood</div><div class="track"><div class="seg boh" style="width:113px;"></div></div><div class="val">$80.33<span class="meta">8.3 hrs &middot; 4 BOH &mdash; prep &amp; dish (Brandon excl.) &nbsp;<span style="color:#4cde88;font-size:15px;">&#8595; vs $207 P9W1</span></span></div></div>
+<div class="row"><div class="loc">Lola&rsquo;s Bistro</div><div class="track"><div class="seg boh" style="width:20px;"></div><div class="seg foh" style="width:33px;"></div></div><div class="val">$37.16<span class="meta">7.1 hrs &middot; 5 staff &mdash; host covg + Labor Day BOH &nbsp;<span style="color:#aab4cc;font-size:15px;">flat vs P9W1</span></span></div></div>
+<div class="row"><div class="loc">Bar Italia Easton</div><div class="track"><div class="seg boh" style="width:15px;"></div></div><div class="val">$10.70<span class="meta">1.1 hrs &middot; 1 BOH cook &mdash; Dennis/Emeril covered (Braden out) &nbsp;<span style="color:#4cde88;font-size:15px;">&#8595; vs $278 P9W1</span></span></div></div>
+<div class="row"><div class="loc">Bar Italia Winter Park</div><div class="track"><div class="seg boh" style="width:7px;"></div></div><div class="val">$5.06<span class="meta">0.5 hrs &middot; 1 BOH cook &mdash; near-zero &nbsp;<span style="color:#4cde88;font-size:15px;">&#8595; vs $92 P9W1</span></span></div></div>
+<div class="row"><div class="loc">Bar Italia Sarasota &middot; 17 River Grille</div><div class="track"><span class="clean-pill">No OT &middot; clean weeks</span></div><div class="val">$0.00<span class="meta">0 hrs &middot; 0 staff</span></div></div>
 </div>
-<div class="row">
-  <div class="loc">JoJo&rsquo;s Bar &amp; Bar Fuoco</div>
-  <div class="track"><div class="seg boh" style="width:328px;"></div></div>
-  <div class="val">$232.35<span class="meta">24.6 hrs &middot; 5 BOH &mdash; Fuoco coverage (Derrick excl.) &nbsp;<span style="color:#63655f;font-size:14px;">flat vs P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">The Lakehouse</div>
-  <div class="track"><div class="seg boh" style="width:298px;"></div></div>
-  <div class="val">$211.06<span class="meta">20.8 hrs &middot; 4 BOH &mdash; end-of-season &nbsp;<span style="color:#1f8a4c;font-size:14px;">&#8595; vs $226 P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">Bar Italia Lakewood</div>
-  <div class="track"><div class="seg boh" style="width:113px;"></div></div>
-  <div class="val">$80.33<span class="meta">8.3 hrs &middot; 4 BOH &mdash; prep &amp; dish (Brandon excl.) &nbsp;<span style="color:#1f8a4c;font-size:14px;">&#8595; vs $207 P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">Lola&rsquo;s Bistro</div>
-  <div class="track"><div class="seg boh" style="width:20px;"></div><div class="seg foh" style="width:33px;"></div></div>
-  <div class="val">$37.16<span class="meta">7.1 hrs &middot; 5 staff &mdash; host covg + Labor Day BOH &nbsp;<span style="color:#63655f;font-size:14px;">flat vs P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">Bar Italia Easton</div>
-  <div class="track"><div class="seg boh" style="width:15px;"></div></div>
-  <div class="val">$10.70<span class="meta">1.1 hrs &middot; 1 BOH cook &mdash; Braden out; Dennis/Emeril covered &nbsp;<span style="color:#1f8a4c;font-size:14px;">&#8595; vs $278 P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">Bar Italia Winter Park</div>
-  <div class="track"><div class="seg boh" style="width:7px;"></div></div>
-  <div class="val">$5.06<span class="meta">0.5 hrs &middot; 1 BOH cook &mdash; near-zero &nbsp;<span style="color:#1f8a4c;font-size:14px;">&#8595; vs $92 P9W1</span></span></div>
-</div>
-<div class="row">
-  <div class="loc">17 River Grille &middot; Bar Italia Sarasota</div>
-  <div class="track"><span class="clean-pill">No OT &middot; clean weeks</span></div>
-  <div class="val">$0.00<span class="meta">0 hrs &middot; 0 staff</span></div>
-</div>
-</div>
-<div class="footnote">OT premium = the half-time differential (Rate &times; 0.5 &times; OT hours). Supervisors excluded per policy. &para; Lakewood recomputed to 0.5&times; differential (submitted at full 1.5&times; rate &mdash; recurring). Derrick Johnson (JoJo's) excluded per standing rule &mdash; listed as cook on sheet, confirmed MNGR. Trend: P8W2 ($2,074) &rarr; P8W3 ($1,225) &rarr; P8W4 ($1,225) &rarr; P9W1 ($1,846) &rarr; P9W2 ($1,059). P9W2 drop driven by end of Fuoco outdoor season + ETC coverage normalized. Beachwood remains elevated from training surge. 17 River and Sarasota clean consecutive weeks.</div>
+<div class="footnote">OT premium = the half-time differential (Rate &times; 0.5 &times; OT hours). Supervisors excluded per policy. &para; Lakewood recomputed to 0.5&times; differential (submitted at full 1.5&times; rate &mdash; recurring). Derrick Johnson (JoJo's) excluded per standing rule &mdash; listed as cook on sheet, confirmed MNGR. Trend: P8W2 ($2,074) &rarr; P8W3 ($1,225) &rarr; P8W4 ($1,225) &rarr; P9W1 ($1,846) &rarr; P9W2 ($1,059). P9W2 drop: end of Fuoco outdoor season + ETC/WP coverage normalized. Beachwood elevated from training surge. 17 River and Sarasota clean consecutive weeks.</div>
 </body></html>
