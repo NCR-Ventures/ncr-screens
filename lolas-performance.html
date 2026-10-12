@@ -66,145 +66,106 @@ body { padding: 10px 48px 8px; display: flex; flex-direction: column; height: 10
 .review-lbl { font-size: 13px; color: #aab4cc; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 6px; font-weight: bold; }
 .last-week-line { margin-top: 14px; font-size: 16px; color: #aab4cc; padding: 12px 16px; background: #1a3160; border-radius: 10px; border-left: 4px solid #e8a020; }
 </style>
+<style>
+body { padding: 14px 44px 14px; }
+.top-row .card { display:flex; flex-direction:column; justify-content:space-around; }
+.top-row .card-mid { font-size:56px; }
+.top-row .card-mid span { font-size:38px !important; }
+.card-big { font-size:64px; }
+.card-sub { font-size:21px; }
+.cogs-table td { font-size:30px; padding:8px 14px; }
+.cogs-table th { font-size:19px; }
+.labor-table th { font-size:16px; }
+.labor-table td { font-size:24px; padding:9px 10px; } .labor-table td:first-child { font-size:21px; }
+.status-ok, .status-over { font-size:18px; padding:7px 14px; }
+.ot-card { padding:8px 18px 12px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr; column-gap:14px; min-height:0; }
+.ot-card .card-label { grid-column:1 / -1; }
+.ot-grid { min-height:0; }
+.cogs-table td.pos, .labor-table td.pos { color:#4cde88; } .cogs-table td.neg, .labor-table td.neg { color:#ff5c5c; } .ot-stat { display:flex; flex-direction:column; justify-content:center; padding:6px 8px; }
+.ot-val { font-size:44px; } .ot-lbl { font-size:16px; }
+.ot-split { grid-template-columns:1fr; grid-template-rows:1fr 1fr; margin-top:10px; gap:8px; min-height:0; } .ot-dept { display:flex; flex-direction:row; align-items:center; gap:14px; padding:4px 16px; }
+.ot-dept-name { font-size:17px; } .ot-dept-val { font-size:24px; margin-top:0; } .ot-dept-name { font-size:20px; }
+.review-card { display:flex; flex-direction:column; }
+.review-row { flex:1; } .review-stat { display:flex; flex-direction:column; justify-content:center; }
+.review-val { font-size:64px; } .review-lbl { font-size:17px; }
+.last-week-line { font-size:24px; }
+</style>
 </head>
 <body>
-
-<!-- ============================================================
-STAFF-FACING SNAPSHOT — NO NARRATIVE, NO ACTION ITEMS, NO NAMES
-Display only on Fire TVs at the location.
-Per board-RULES.md: numbers only, aggregate OT, no review text or staff names.
-============================================================ -->
-
+<!-- STAFF-FACING SNAPSHOT — NO NARRATIVE, NO ACTION ITEMS, NO NAMES. Numbers only per board-RULES.md. -->
 <div class="header">
   <div>
     <div class="brand">NCR Ventures · Lola's Bistro</div>
     <div class="title">Weekly COGS &amp; Labor Snapshot</div>
-    <div class="subtitle">Period 10 · Week 1 · Submitted by Joe, Nick, Austin</div>
+    <div class="subtitle">Period 10 · Week 2 · Submitted by Joe, Nick, Austin</div>
   </div>
-  <div class="date-badge">Week Ending<br>10.04.26</div>
+  <div class="date-badge">Week Ending<br>10.11.26</div>
 </div>
 <div class="divider"></div>
-
 <div class="top-row">
   <div class="card gold">
     <div class="card-label">Gross Sales</div>
-    <div class="card-big">$126,746</div>
-    <div class="card-sub">Food $88,579 · Liquor $17,249 · Wine $16,728 · Beer $1,382</div>
+    <div class="card-big">$129,313</div>
+    <div class="card-sub">Food $91,447 · Liquor $17,608 · Wine $18,460 · Beer $1,799</div>
   </div>
   <div class="card">
     <div class="card-label">Total COGS</div>
-    <div class="card-mid">$37,449  29.5%</span></div>
-    <div class="card-sub">Food cost 31.4% · LBW 22.2%</div>
+    <div class="card-mid">$37,824 <span style="font-size:38px;">29.3%</span></div>
+    <div class="card-sub">Food cost 31.8% · LBW 23.0%</div>
   </div>
   <div class="card">
     <div class="card-label">Total Labor</div>
-    <div class="card-mid">$20,203 <span style="color:#fff;font-size:30px;">17.2%</span></div>
-    <div class="card-sub">Blended SPLH $71.84</div>
+    <div class="card-mid">$21,401 <span style="font-size:38px;">16.5%</span></div>
+    <div class="card-sub">Blended SPLH $74.62</div>
   </div>
 </div>
-
 <div class="section-head">Section 1 — Sales &amp; Cost of Goods</div>
 <table class="cogs-table">
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Sales</th>
-      <th>COGS $</th>
-      <th>COGS %</th>
-      <th>Budget %</th>
-      <th>Variance</th>
-    </tr>
-  </thead>
+  <thead><tr><th>Category</th><th>Sales</th><th>COGS $</th><th>COGS %</th><th>Budget %</th><th>Variance</th></tr></thead>
   <tbody>
-    <tr><td>Food</td><td>$88,579</td><td>$28,940</td><td>32.7%</td><td>33.0%</td><td class="pos">−0.3 pts</td></tr>
-    <tr><td>Liquor</td><td>$17,249</td><td>$3,362</td><td>19.5%</td><td>20.0%</td><td class="pos">−0.5 pts</td></tr>
-    <tr><td>Beer</td><td>$1,382</td><td>$355</td><td>25.7%</td><td>24.0%</td><td class="neg">+1.7 pts</td></tr>
-    <tr><td>Wine</td><td>$16,728</td><td>$4,660</td><td>27.9%</td><td>26.5%</td><td class="neg">+1.4 pts (cocktail specials planned)</td></tr>
+    <tr><td>Food</td><td>$91,447</td><td>$29,124</td><td>31.8%</td><td>33.0%</td><td class="pos">−1.2 pts</td></tr>
+    <tr><td>Liquor</td><td>$17,608</td><td>$3,692</td><td>21.0%</td><td>20.0%</td><td class="neg">+1.0 pts</td></tr>
+    <tr><td>Beer</td><td>$1,799</td><td>$392</td><td>21.8%</td><td>24.0%</td><td class="pos">−2.2 pts</td></tr>
+    <tr><td>Wine</td><td>$18,460</td><td>$4,616</td><td>25.0%</td><td>26.5%</td><td class="pos">−1.5 pts</td></tr>
   </tbody>
 </table>
-
 <div class="middle-row">
-
   <div class="col">
     <div class="section-head">Section 2 — Labor &amp; Blended SPLH</div>
     <table class="labor-table">
-      <thead>
-        <tr>
-          <th>Department</th>
-          <th>Hours</th>
-          <th>Labor $</th>
-          <th>Labor %</th>
-          <th>Target</th>
-          <th>Status</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Department</th><th>Hours</th><th>Labor $</th><th>Labor %</th><th>Target</th><th>Status</th></tr></thead>
       <tbody>
-        <tr>
-          <td>FOH (excl. mgr)</td>
-          <td>1,064</td>
-          <td>$7,908</td>
-          <td class="neg">6.4%</td>
-          <td>6.1%</td>
-          <td><span class="status-over">OVER</span></td>
-        </tr>
-        <tr>
-          <td>BOH (excl. mgr)</td>
-          <td>661</td>
-          <td>$13,471</td>
-          <td class="pos">11.9%</td>
-          <td>13.5%</td>
-          <td><span class="status-ok">ON TARGET</span></td>
-        </tr>
-        <tr>
-          <td>Blended</td>
-          <td>1,725</td>
-          <td>$21,379</td>
-          <td>18.2%</td>
-          <td>SPLH ≥ $65</td>
-          <td><span class="status-ok">SPLH $71.84</span></td>
-        </tr>
+        <tr><td>FOH (excl. mgr)</td><td>1,052</td><td>$7,600</td><td class="pos">5.9%</td><td>6.3%</td><td><span class="status-ok">ON TARGET</span></td></tr>
+        <tr><td>BOH (excl. mgr)</td><td>681</td><td>$13,800</td><td class="pos">10.7%</td><td>13.5%</td><td><span class="status-ok">ON TARGET</span></td></tr>
+        <tr><td>Blended</td><td>1,733</td><td>$21,401</td><td>16.5%</td><td>SPLH ≥ $65</td><td><span class="status-ok">SPLH $74.62</span></td></tr>
       </tbody>
     </table>
-
-    <div class="ot-card" style="max-height:140px;overflow:hidden;">
+    <div class="ot-card">
       <div class="card-label">Overtime — Aggregate</div>
       <div class="ot-grid">
-        <div class="ot-stat"><div class="ot-val">4</div><div class="ot-lbl">Staff w/ OT</div></div>
-        <div class="ot-stat"><div class="ot-val">5.45</div><div class="ot-lbl">Total OT Hrs</div></div>
-        <div class="ot-stat"><div class="ot-val">$28.46</div><div class="ot-lbl">OT Premium</div></div>
+        <div class="ot-stat"><div class="ot-val">2</div><div class="ot-lbl">Staff w/ OT</div></div>
+        <div class="ot-stat"><div class="ot-val">6.46</div><div class="ot-lbl">Total OT Hrs</div></div>
+        <div class="ot-stat"><div class="ot-val">$23.87</div><div class="ot-lbl">OT Premium</div></div>
       </div>
       <div class="ot-split">
-        <div class="ot-dept">
-          <div class="ot-dept-name">BOH</div>
-          <div class="ot-dept-val">0 hrs · $0.00</div>
-          <div class="ot-dept-sub">0 hrs — clean week</div>
-        </div>
-        <div class="ot-dept">
-          <div class="ot-dept-name">FOH</div>
-          <div class="ot-dept-val">5.45 hrs · $36.94</div>
-          <div class="ot-dept-sub">3 staff — Beatriz (BOH dish shortage) + Saghafi/Gallagher (FOH call-off coverage + training $345)</div>
-        </div>
+        <div class="ot-dept"><div class="ot-dept-name">BOH</div><div class="ot-dept-val">0.74 hrs · $8.14 · 1 staff</div></div>
+        <div class="ot-dept"><div class="ot-dept-name">FOH</div><div class="ot-dept-val">5.72 hrs · $15.73 · 1 staff</div></div>
       </div>
     </div>
   </div>
-
   <div class="col">
     <div class="section-head">Section 6 — Guest Reviews</div>
     <div class="review-card">
       <div class="card-label">Week-over-Week Review Performance</div>
       <div class="review-row">
-        <div class="review-stat"><div class="review-val">4.60★★</div><div class="review-lbl">Avg Rating</div></div>
+        <div class="review-stat"><div class="review-val">4.5★</div><div class="review-lbl">Avg Rating</div></div>
         <div class="review-stat"><div class="review-val">23</div><div class="review-lbl">Total Reviews</div></div>
-        <div class="review-stat"><div class="review-val">21</div><div class="review-lbl">5★ Reviews</div></div>
-        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">1</div><div class="review-lbl">3★ or Below</div></div>
+        <div class="review-stat"><div class="review-val">18</div><div class="review-lbl">5★ Reviews</div></div>
+        <div class="review-stat"><div class="review-val" style="color:#ff5c5c;">3</div><div class="review-lbl">3★ or Below</div></div>
       </div>
-      <div class="last-week-line">
-        <strong style="color:#fff;">Last Week:</strong> 4.70★★ · 19 reviews · 15 five-star
-      </div>
+      <div class="last-week-line"><strong style="color:#fff;">Last Week:</strong> 4.6★ · 20 reviews · 15 five-star · 3 at 3★ or below</div>
     </div>
   </div>
-
 </div>
-
 </body>
 </html>
