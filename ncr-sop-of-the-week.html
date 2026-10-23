@@ -3,10 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1920">
-<title>NCR SOP of the Week — SOP-040 Allergen Awareness</title>
+<title>NCR SOP of the Week — SOP-044 Pre-Shift and Weekly Meeting Cadence</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #14100c; font-family: Georgia, 'Times New Roman', serif; color: #f4ede1; }
+.slide { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+.slide.active { opacity: 1; }
 .screen { width: 1920px; height: 1080px; display: flex; padding: 44px 56px 30px; gap: 48px; }
 
 .left { width: 700px; display: flex; flex-direction: column; min-height: 0; }
@@ -19,12 +21,12 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #14100
 .principle-label { font-family: Arial, sans-serif; font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #dab06b; font-weight: bold; }
 .principle-body { font-family: Georgia, serif; font-size: 25px; color: #f4ede1; margin-top: 8px; line-height: 1.38; }
 
-.big9 { flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 24px; }
-.big9-head { font-family: Arial, sans-serif; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; color: #dab06b; font-weight: bold; margin-bottom: 12px; }
-.big9-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 10px; }
-.chip { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(218,176,107,0.35); border-radius: 6px; padding: 8px; }
-.chip-name { font-family: Georgia, serif; font-size: 32px; font-weight: bold; color: #f4ede1; }
-.chip-where { font-family: Arial, sans-serif; font-size: 18px; color: #a89e8c; margin-top: 5px; line-height: 1.25; }
+.nn { flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 24px; }
+.nn-head { font-family: Arial, sans-serif; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; color: #dab06b; font-weight: bold; margin-bottom: 12px; }
+.nn-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr; gap: 10px; }
+.chip { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(218,176,107,0.35); border-radius: 6px; padding: 8px 12px; }
+.chip-name { font-family: Georgia, serif; font-size: 30px; font-weight: bold; color: #f4ede1; line-height: 1.1; }
+.chip-where { font-family: Arial, sans-serif; font-size: 18px; color: #a89e8c; margin-top: 6px; line-height: 1.25; }
 
 .footer { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(218,176,107,0.3); padding-top: 14px; }
 .footer-left, .footer-right { font-family: Arial, sans-serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #8a7f6c; }
@@ -34,69 +36,192 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #14100
 .steps-sub { font-family: Georgia, serif; font-size: 22px; color: #c9b48f; font-style: italic; margin-top: 6px; margin-bottom: 18px; }
 .steps { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
 .step { flex: 1; min-height: 0; display: flex; align-items: center; gap: 22px; background: rgba(218,176,107,0.07); border-left: 5px solid #dab06b; padding: 12px 24px; }
-.num { font-family: Arial, sans-serif; font-size: 40px; font-weight: bold; color: #14100c; background: #dab06b; width: 66px; height: 66px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.num { font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; color: #14100c; background: #dab06b; width: 150px; height: 58px; border-radius: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 1px; }
 .step-text { display: flex; flex-direction: column; justify-content: center; }
-.step-title { font-family: Georgia, serif; font-size: 33px; font-weight: bold; color: #f4ede1; line-height: 1.1; }
-.step-body { font-family: Arial, sans-serif; font-size: 22px; color: #d9cdb8; line-height: 1.35; margin-top: 5px; }
+.step-title { font-family: Georgia, serif; font-size: 32px; font-weight: bold; color: #f4ede1; line-height: 1.1; }
+.step-body { font-family: Arial, sans-serif; font-size: 21px; color: #d9cdb8; line-height: 1.35; margin-top: 5px; }
 
 .alert { margin-top: 18px; background: #b3232a; border-left: 8px solid #f4ede1; padding: 18px 26px; display: flex; align-items: center; gap: 26px; }
 .alert-big { font-family: Arial, sans-serif; font-size: 34px; font-weight: bold; color: #ffffff; letter-spacing: 1px; white-space: nowrap; }
 .alert-body { font-family: Arial, sans-serif; font-size: 21px; color: #fbe9e7; line-height: 1.35; }
+
+/* ---------- slide 2: meetings ---------- */
+.s2 { width: 1920px; height: 1080px; display: flex; flex-direction: column; padding: 44px 56px 30px; }
+.s2-top { display: flex; justify-content: space-between; align-items: flex-end; }
+.s2-title { font-family: Georgia, serif; font-size: 58px; font-weight: bold; line-height: 1.02; margin-top: 8px; }
+.s2-sub { font-family: Georgia, serif; font-size: 24px; color: #c9b48f; font-style: italic; margin-top: 8px; }
+.s2-flow { text-align: right; font-family: Arial, sans-serif; font-size: 19px; color: #a89e8c; line-height: 1.5; max-width: 620px; }
+.s2-flow b { color: #dab06b; }
+.s2 .rule { margin: 18px 0 16px; }
+
+.mtg { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
+.mhead, .mrow { display: grid; grid-template-columns: 290px 250px 120px 380px 250px 1fr; gap: 18px; align-items: center; }
+.mhead { font-family: Arial, sans-serif; font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: #dab06b; font-weight: bold; padding: 0 24px; }
+.mrow { flex: 1; min-height: 0; background: rgba(218,176,107,0.07); border-left: 5px solid #dab06b; padding: 6px 24px; }
+.m-name { font-family: Georgia, serif; font-size: 30px; font-weight: bold; color: #f4ede1; line-height: 1.08; }
+.m-name small { display: block; font-family: Arial, sans-serif; font-size: 17px; font-weight: normal; color: #a89e8c; margin-top: 5px; }
+.m-when { font-family: Arial, sans-serif; font-size: 21px; font-weight: bold; color: #f4ede1; line-height: 1.3; }
+.m-len { font-family: Arial, sans-serif; font-size: 21px; color: #dab06b; font-weight: bold; }
+.m-who, .m-led, .m-out { font-family: Arial, sans-serif; font-size: 19px; color: #d9cdb8; line-height: 1.32; }
+.m-led { color: #f4ede1; }
+
+.s2-bottom { margin-top: 16px; display: flex; gap: 24px; }
+.s2-bottom .alert { margin-top: 0; flex: 1; }
+.s2-bottom .principle { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.s2-bottom .principle-body { font-size: 20px; }
+.s2-bottom .alert-body { font-size: 19px; }
+.s2-bottom .alert-big { font-size: 28px; }
 </style>
 </head>
 <body>
+
+<!-- ================= SLIDE 1 — THE PRE-SHIFT ================= -->
+<div class="slide active" id="slide1">
 <div class="screen">
 
   <div class="left">
-    <div class="eyebrow">SOP-040</div>
-    <div class="title">Allergen Awareness</div>
-    <div class="subtitle">A guest with a food allergy is trusting a stranger with their airway.</div>
+    <div class="eyebrow">SOP-044 &nbsp;·&nbsp; Effective 11.1.26</div>
+    <div class="title">The Pre-Shift</div>
+    <div class="subtitle">The single highest-leverage fifteen minutes a manager gets all day.</div>
     <div class="rule"></div>
 
     <div class="principle">
       <div class="principle-label">Governing Principle</div>
-      <div class="principle-body">Nobody guesses. Not the server, not the bartender, not the sous chef on a Saturday night. "I think that's fine" is not an answer anyone at NCR Ventures is authorized to give.</div>
+      <div class="principle-body">Two pre-shifts a day, minimum. Ten to fifteen minutes. Standing up. Phones away. Teach one thing, taste one thing, and close on the one thing. It is not an announcement. It is a rehearsal. Don't skip it. Don't wing it. Lead it.</div>
     </div>
 
-    <div class="big9">
-      <div class="big9-head">The Big 9 — Know Them Cold</div>
-      <div class="big9-grid">
-        <div class="chip"><div class="chip-name">Milk</div><div class="chip-where">butter, parm, risotto, gelato</div></div>
-        <div class="chip"><div class="chip-name">Eggs</div><div class="chip-where">fresh pasta, Caesar, aioli</div></div>
-        <div class="chip"><div class="chip-name">Fish</div><div class="chip-where">anchovy, Worcestershire</div></div>
-        <div class="chip"><div class="chip-name">Crustacean</div><div class="chip-where">shrimp, crab, lobster, stock</div></div>
-        <div class="chip"><div class="chip-name">Tree Nuts</div><div class="chip-where">pesto, pistachio, orgeat</div></div>
-        <div class="chip"><div class="chip-name">Peanuts</div><div class="chip-where">check every fryer oil label</div></div>
-        <div class="chip"><div class="chip-name">Wheat</div><div class="chip-where">pasta, dough, roux, pasta water</div></div>
-        <div class="chip"><div class="chip-name">Soy</div><div class="chip-where">fryer oil blends, soy sauce</div></div>
-        <div class="chip"><div class="chip-name">Sesame</div><div class="chip-where">buns, breads, tahini</div></div>
+    <div class="nn">
+      <div class="nn-head">The Non-Negotiables</div>
+      <div class="nn-grid">
+        <div class="chip"><div class="chip-name">Two a Day</div><div class="chip-where">before lunch, before dinner — brunch gets its own</div></div>
+        <div class="chip"><div class="chip-name">10–15 Minutes</div><div class="chip-where">not five, not thirty</div></div>
+        <div class="chip"><div class="chip-name">Manager Leads It</div><div class="chip-where">salaried only — Chef presents the food, every time</div></div>
+        <div class="chip"><div class="chip-name">Everyone Stands</div><div class="chip-where">no chairs, no leaning on the bar</div></div>
+        <div class="chip"><div class="chip-name">Phones Away</div><div class="chip-where">including the manager's</div></div>
+        <div class="chip"><div class="chip-name">Starts On Time</div><div class="chip-where">late to pre-shift is late to the shift</div></div>
+        <div class="chip"><div class="chip-name">No Table Without One</div><div class="chip-where">miss it, get the 60-second catch-up, initialed</div></div>
+        <div class="chip"><div class="chip-name">Written Down First</div><div class="chip-where">sheet prepared before, posted at the server station</div></div>
       </div>
     </div>
 
     <div class="footer">
       <div class="footer-left">NCR Ventures</div>
-      <div class="footer-right">SOP of the Week</div>
+      <div class="footer-right">SOP of the Week &nbsp;·&nbsp; 1 of 2</div>
     </div>
   </div>
 
   <div class="right">
-    <div class="steps-head">When a Guest Declares an Allergy</div>
-    <div class="steps-sub">Six steps, every time, regardless of how minor the guest makes it sound.</div>
+    <div class="steps-head">The Run of Show — Fifteen Minutes, Six Blocks</div>
+    <div class="steps-sub">Same six blocks, same order, every building, every service. Content changes daily. Structure never does.</div>
     <div class="steps">
-      <div class="step"><div class="num">1</div><div class="step-text"><div class="step-title">Stop and get a chef</div><div class="step-body">The server does not recommend, reassure, or rule anything out. The chef comes to the table.</div></div></div>
-      <div class="step"><div class="num">2</div><div class="step-text"><div class="step-title">Chef confirms the details at the table</div><div class="step-body">The specific allergen, and whether it is an allergy, an intolerance, or a preference. "Shellfish" is not specific enough.</div></div></div>
-      <div class="step"><div class="num">3</div><div class="step-text"><div class="step-title">Chef checks the recipe and the label</div><div class="step-body">Built from the allergen matrix and the physical label in hand — not from memory. Labels change without notice.</div></div></div>
-      <div class="step"><div class="num">4</div><div class="step-text"><div class="step-title">Flag the ticket</div><div class="step-body">Allergen entered in the POS so it prints on every copy. Verbal-only to the line is a violation.</div></div></div>
-      <div class="step"><div class="num">5</div><div class="step-text"><div class="step-title">Build it with the allergy kit</div><div class="step-body">Clean hands, fresh gloves, sealed kit, fresh product from a sealed container. Never on line equipment.</div></div></div>
-      <div class="step"><div class="num">6</div><div class="step-text"><div class="step-title">Chef delivers it</div><div class="step-body">Directly to the guest, stated out loud as the allergy plate. Never a runner, never the general run.</div></div></div>
+      <div class="step"><div class="num">0:00–1:00</div><div class="step-text"><div class="step-title">Line-Up</div><div class="step-body">Stand in a line, full uniform, phones away. Walk the line: appearance, pen, wine key, crumber, lighter, and attitude. Eye contact with every person.</div></div></div>
+      <div class="step"><div class="num">1:00–4:00</div><div class="step-text"><div class="step-title">The Board</div><div class="step-body">Sections, covers, pacing, large parties, events. VIPs and regulars by name. Allergies on the book. 86s, low counts, push items. Features with the price.</div></div></div>
+      <div class="step"><div class="num">4:00–8:00</div><div class="step-text"><div class="step-title">Teach One Thing</div><div class="step-body">Chef presents the feature: ingredients, how it is cooked, why it is great, what to drink with it. Taste it. Two people repeat it back as if to a guest.</div></div></div>
+      <div class="step"><div class="num">8:00–11:00</div><div class="step-text"><div class="step-title">The Hospitality Moment</div><div class="step-body">One real guest review read aloud, good or bad. The focus for the week. A Soul Engager shout-out. The challenge: create one magic moment tonight.</div></div></div>
+      <div class="step"><div class="num">11:00–13:00</div><div class="step-text"><div class="step-title">Numbers and the Game</div><div class="step-body">Yesterday's sales against the same day last year. Where the building is for the week. The contest for the shift, with a prize worth winning.</div></div></div>
+      <div class="step"><div class="num">13:00–15:00</div><div class="step-text"><div class="step-title">Open the Floor and Close</div><div class="step-body">Sixty seconds for questions. Then ask three people: "What is the one thing tonight?" Same answer from all three means it worked. Break to stations.</div></div></div>
     </div>
 
     <div class="alert">
-      <div class="alert-big">REACTION? CALL 911 FIRST.</div>
-      <div class="alert-body">Every time. Do not wait to see if it gets worse. Keep the plate, the ticket, and the packaging. Do not clear the table.</div>
+      <div class="alert-big">THE ONE THING.</div>
+      <div class="alert-body">Every pre-shift ends with one thing. Not four. One. Sell the branzino. Greet every table in thirty seconds. If a server can't say it in one sentence at the close, the manager runs the close again. Never ends on a negative.</div>
     </div>
   </div>
 
 </div>
+</div>
+
+<!-- ================= SLIDE 2 — MEETINGS AND CALLS ================= -->
+<div class="slide" id="slide2">
+<div class="s2">
+
+  <div class="s2-top">
+    <div>
+      <div class="eyebrow">SOP-044 &nbsp;·&nbsp; The Weekly Rhythm</div>
+      <div class="s2-title">Every Meeting and Call in the Building</div>
+      <div class="s2-sub">Five meetings. Five owners. One flow. The output of each one is the input to the next.</div>
+    </div>
+    <div class="s2-flow"><b>How it flows:</b> Monday Focus Call → GM Call and Chef Call → Store L-10 → Pre-Shift → The Guest.<br>If it doesn't reach the server standing at table 12, the meeting that produced it did not happen.</div>
+  </div>
+  <div class="rule"></div>
+
+  <div class="mtg">
+    <div class="mhead"><div>Meeting</div><div>When</div><div>Length</div><div>Who Attends</div><div>Led By</div><div>Required Output</div></div>
+
+    <div class="mrow">
+      <div class="m-name">Pre-Shift<small>In the building, every service</small></div>
+      <div class="m-when">Twice daily — before lunch and before dinner</div>
+      <div class="m-len">10–15 min</div>
+      <div class="m-who">All FOH on shift. Executive Chef or Sous Chef presents the food.</div>
+      <div class="m-led">Salaried manager on duty</div>
+      <div class="m-out">Team briefed, feature taught, the one thing locked. Entered in the R365 manager log the same shift.</div>
+    </div>
+
+    <div class="mrow">
+      <div class="m-name">Store L-10 Manager Meeting<small>In the building, weekly</small></div>
+      <div class="m-when">Weekly — same day, same time, same place</div>
+      <div class="m-len">60–90 min<br><span style="font-size:16px;color:#a89e8c;font-weight:normal">90 hard stop</span></div>
+      <div class="m-who">All salaried managers: MP / GM, AGM, FOH Managers, Executive Chef, Sous Chefs. Off means call in or Zoom.</div>
+      <div class="m-led">Managing Partner / GM facilitates — the team runs it</div>
+      <div class="m-out">Flash Report reviewed, Rocks reported, issues solved, to-dos owned and dated. Sent to the DOO same day.</div>
+    </div>
+
+    <div class="mrow">
+      <div class="m-name">Monday Focus Call<small>Conference call, company-wide</small></div>
+      <div class="m-when">Monday 8:30 AM</div>
+      <div class="m-len">30–60 min</div>
+      <div class="m-who">All Managing Partners / GMs and all Executive Chefs</div>
+      <div class="m-led">Home Office facilitator designated by the DOO</div>
+      <div class="m-out">Three opportunities from last week's reviews; one focus for the week — on every pre-shift sheet by Monday dinner.</div>
+    </div>
+
+    <div class="mrow">
+      <div class="m-name">GM Call<small>Conference call</small></div>
+      <div class="m-when">Every other Wednesday</div>
+      <div class="m-len">30–60 min</div>
+      <div class="m-who">All Managing Partners / GMs. The DOO attends and listens.</div>
+      <div class="m-led">A GM, on rotation — builds the agenda, runs the clock, sends the notes</div>
+      <div class="m-out">COGS, EBITDA and flow-through, housekeeping notes, one best practice. Notes to all GMs and the DOO same day.</div>
+    </div>
+
+    <div class="mrow">
+      <div class="m-name">Chef Call<small>Conference call, by brand</small></div>
+      <div class="m-when">Every other week, or as needed</div>
+      <div class="m-len">30–60 min</div>
+      <div class="m-who">Executive Chefs grouped by brand: Bar Italia, the Grilles, and JoJo's / Lakehouse / Lola's</div>
+      <div class="m-led">Corporate Chef or DOO (BOH)</div>
+      <div class="m-out">Food cost, recipe adherence, rollout items, kitchen people, and line notes for the Store L-10 and the BOH line-up.</div>
+    </div>
+  </div>
+
+  <div class="s2-bottom">
+    <div class="alert">
+      <div class="alert-big">OFF IS NOT ABSENT.</div>
+      <div class="alert-body">A salaried manager who is off on meeting day is still in the meeting — call in or Zoom. The Store L-10 does not move around a day off. The only pass is approved PTO, and the GM reads that manager's to-dos to the room anyway.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-label">BOH Line-Up</div>
+      <div class="principle-body">The Executive Chef or Sous Chef runs a five-minute line-up with the kitchen before each service: features, counts, prep status, 86 risks, allergen notes, and the one thing for the line. Logged in the same manager log entry.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">NCR Ventures</div>
+    <div class="footer-right">SOP of the Week &nbsp;·&nbsp; 2 of 2</div>
+  </div>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide'), i = 0;
+  setInterval(function(){
+    slides[i].classList.remove('active');
+    i = (i + 1) % slides.length;
+    slides[i].classList.add('active');
+  }, 25000);
+})();
+</script>
 </body>
 </html>
