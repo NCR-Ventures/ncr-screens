@@ -319,18 +319,18 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .stat .k{font-family:var(--body);font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:12px;font-weight:600}
 .half .stat .k{font-size:12px;letter-spacing:2px;margin-top:8px}
 /* pace */
-.pace{display:flex;flex-direction:column}
-.bars{flex:1;display:flex;align-items:flex-end;gap:22px;padding-top:56px;min-height:0}
-.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.pace{display:flex;flex-direction:column;min-width:0}
+.bars{flex:1;display:flex;align-items:flex-end;gap:14px;padding-top:56px;min-height:0}
+.bar{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
 .bar .fill{width:100%;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:6px 6px 2px 2px;min-height:8px}
 .bar .cv{font-family:var(--num);font-weight:700;font-size:52px;color:var(--ink);margin-bottom:10px;line-height:1;text-align:center}
 .bar .cv small{font-family:var(--body);font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;font-weight:600;margin-top:6px}
 .bar .hr{font-family:var(--body);font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-top:14px;font-weight:600;white-space:nowrap}
-.bar .rs{font-size:14px;color:var(--dim);letter-spacing:1px;margin-top:5px}
+.bar .rs{font-size:14px;color:var(--dim);letter-spacing:1px;margin-top:5px;white-space:nowrap}
 /* the book list */
 .book{display:flex;flex-direction:column}
 .rows{flex:1;display:flex;flex-direction:column;gap:10px;margin-top:18px;min-height:0;overflow:hidden}
-.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 auto;max-height:78px;min-height:46px}
+.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 auto;max-height:112px;min-height:46px;overflow:hidden}
 .more{flex:0 0 auto}
 .row.flag{border-left-color:var(--accent2)}
 .half .row{grid-template-columns:110px 1fr;padding:10px 14px}
@@ -406,10 +406,30 @@ def priority(r):
         return (5, 0)
     return (9, 0)
 
+MAX_CHIPS_FULL, MAX_CHIPS_HALF = 3, 2
+
+def _chip_rank(kind, text):
+    t = text.lower()
+    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t):
+        return 0
+    if kind in ("req", "note"):
+        return 1
+    if kind == "tag" and ("birthday" in t or "anniversary" in t or "celebr" in t or "occasion" in t):
+        return 2
+    return 3
+
+def chips_for(r, half=False):
+    """the chips a row actually shows: most important first, capped so a row never runs past three lines"""
+    why = sorted(why_for(r), key=lambda kv: _chip_rank(*kv))
+    return why[: (MAX_CHIPS_HALF if half else MAX_CHIPS_FULL)]
+
 def _row_cost(r, half=False):
-    # estimated rendered height: base row + a second line when a request/visit-note chip is present
+    # estimated rendered height: base row, + a line for a request/visit-note chip, + a line when two or more tag chips wrap
     base = 60 if half else 66
-    extra = 34 if (r["requests"] or r["visit_notes"]) else 0
+    shown = chips_for(r, half)
+    extra = 34 if any(k in ("req", "note") for k, _ in shown) else 0
+    if sum(1 for k, _ in shown if k == "tag") >= 2:
+        extra += 34
     return base + extra
 
 def fit_limit(res, budget, half=False):
@@ -437,7 +457,7 @@ def book_rows(res, limit, half=False):
         why = why_for(r)
         chips = "".join(
             f'<span class="{chip_class(k, v) if k not in ("req", "note") else "chip req"}">{html.escape(v[: (48 if half else 60)])}</span>'
-            for k, v in why)
+            for k, v in chips_for(r, half))
         tbl = f'<span class="m">tbl {html.escape(r["table"])}</span>' if r["table"] else ""
         out.append(
             f'<div class="row{" flag" if (why or r["party"] >= BIG_PARTY) else ""}"><div class="t">{html.escape(r["time"].replace("AM", " am").replace("PM", " pm"))}</div>'
@@ -479,7 +499,7 @@ def render_full(d, t, received, single=False):
       <div class="upd">OpenTable · updated {updated_label(received)}</div>
     </div>
   </div>
-  <div class="body" style="display:grid;grid-template-columns:560px 1fr 700px;gap:56px;height:{body_h}px;padding:34px 64px 30px">
+  <div class="body" style="display:grid;grid-template-columns:560px minmax(0,1fr) 700px;gap:56px;height:{body_h}px;padding:34px 64px 30px">
     <div class="hero" style="display:flex;flex-direction:column;justify-content:space-between;min-height:0">
       <div><div class="num">{d['covers']}</div><div class="cap">covers reserved</div></div>
       <div class="stats">
