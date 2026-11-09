@@ -49,18 +49,18 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .stat .k{font-family:var(--body);font-size:17px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:12px;font-weight:600}
 .half .stat .k{font-size:12px;letter-spacing:2px;margin-top:8px}
 /* pace */
-.pace{display:flex;flex-direction:column}
-.bars{flex:1;display:flex;align-items:flex-end;gap:22px;padding-top:56px;min-height:0}
-.bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.pace{display:flex;flex-direction:column;min-width:0}
+.bars{flex:1;display:flex;align-items:flex-end;gap:14px;padding-top:56px;min-height:0}
+.bar{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
 .bar .fill{width:100%;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:6px 6px 2px 2px;min-height:8px}
 .bar .cv{font-family:var(--num);font-weight:700;font-size:52px;color:var(--ink);margin-bottom:10px;line-height:1;text-align:center}
 .bar .cv small{font-family:var(--body);font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;font-weight:600;margin-top:6px}
 .bar .hr{font-family:var(--body);font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);margin-top:14px;font-weight:600;white-space:nowrap}
-.bar .rs{font-size:14px;color:var(--dim);letter-spacing:1px;margin-top:5px}
+.bar .rs{font-size:14px;color:var(--dim);letter-spacing:1px;margin-top:5px;white-space:nowrap}
 /* the book list */
 .book{display:flex;flex-direction:column}
 .rows{flex:1;display:flex;flex-direction:column;gap:10px;margin-top:18px;min-height:0;overflow:hidden}
-.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 auto;max-height:78px;min-height:46px}
+.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 auto;max-height:112px;min-height:46px;overflow:hidden}
 .more{flex:0 0 auto}
 .row.flag{border-left-color:var(--accent2)}
 .half .row{grid-template-columns:110px 1fr;padding:10px 14px}
@@ -106,7 +106,7 @@ body.stale .wait{display:flex}
       <div class="upd">OpenTable · updated 2:01 pm</div>
     </div>
   </div>
-  <div class="body" style="display:grid;grid-template-columns:560px 1fr 700px;gap:56px;height:872px;padding:34px 64px 30px">
+  <div class="body" style="display:grid;grid-template-columns:560px minmax(0,1fr) 700px;gap:56px;height:872px;padding:34px 64px 30px">
     <div class="hero" style="display:flex;flex-direction:column;justify-content:space-between;min-height:0">
       <div><div class="num">72</div><div class="cap">covers reserved</div></div>
       <div class="stats">
