@@ -13,7 +13,7 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
 | etc-resos.html | etc | `Bar Italia` + (`Easton` or `Columbus`) | full |
 | winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
-| lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full |
+| lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full. **Lunch only Fri–Sun** — on Mon–Thu ignore any Lakewood lunch digest at the 10:15 run; the slide shows "Dinner only today · reso's post at 2:15 pm" until the dinner build. |
 
 Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates). Its digest arrives every day; on non-split dates ignore it silently — it is not an unmatched store and gets no slide of its own.
 Unknown restaurant name in a digest → don't guess; skip it and name it in the report.

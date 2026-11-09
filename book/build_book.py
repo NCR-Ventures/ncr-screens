@@ -234,7 +234,7 @@ STORES = {
     "sarasota":   dict(theme="bi-sarasota"),
     "etc":        dict(theme="bi-etc"),
     "winterpark": dict(theme="bi-winterpark"),
-    "lakewood":   dict(theme="bi-lakewood"),
+    "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6]),  # Python weekday: Fri, Sat, Sun only
 }
 
 # ----------------------------------------------------------------- render
@@ -460,7 +460,7 @@ def render_half(d, t, received, side, placeholder=None):
   <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only</span></div>
 </div>"""
 
-def page(title, t, inner, data_date, gfonts):
+def page(title, t, inner, data_date, gfonts, lunch_days=None):
     gf = [g for g in gfonts if g]
     fonts = "&family=".join(sorted(set(gf)))
     fontlink = f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family={fonts}&display=swap" rel="stylesheet">' if fonts else ""
@@ -470,17 +470,24 @@ def page(title, t, inner, data_date, gfonts):
 {fontlink}
 <style>:root{{{css_vars(t)}}}{BASE_CSS}</style></head>
 <body><div class="stage">{inner}
-<div class="wait"><div><div class="w1">Today's reso's post at 10:15 am</div><div class="w2">{html.escape(t['name'])} · The Daily</div></div></div>
+<div class="wait"><div><div class="w1" id="waitmsg">Today's reso's post at 10:15 am</div><div class="w2">{html.escape(t['name'])} · The Daily</div></div></div>
 </div>
 <script>
 (function(){{
   var dataDate = "{data_date}";
+  var lunchDays = {json.dumps([(d + 1) % 7 for d in lunch_days]) if lunch_days else "null"};  // JS getDay(): 0=Sun
   function check(){{
     var now = new Date();
     var p = new Intl.DateTimeFormat('en-CA',{{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false}}).formatToParts(now);
     var o={{}}; p.forEach(function(x){{o[x.type]=x.value}});
     var today=o.year+'-'+o.month+'-'+o.day; var hr=parseInt(o.hour,10);
     var stale = dataDate && (today>dataDate) && hr>=0 && hr<10;  // next morning, before the 10:15 push
+    var msg = "Today's reso's post at 10:15 am";
+    if (lunchDays) {{
+      var dow = new Date(today + "T12:00:00").getDay();
+      if (lunchDays.indexOf(dow) < 0 && hr < 14 && (today>dataDate || dataDate === "")) {{ stale = true; msg = "Dinner only today · reso's post at 2:15 pm"; }}
+    }}
+    document.getElementById('waitmsg').textContent = msg;
     document.body.classList.toggle('stale', !!stale);
   }}
   check(); setInterval(check, 60000);
@@ -519,7 +526,7 @@ def main():
         inner = render_full(d, t, a.received)
         gf = [t["gfont"]]
         title = f"{t['name']} — {shift_label(d)}"
-    out = page(title, t, inner, d.get("date", ""), gf)
+    out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"))
     open(a.out, "w", encoding="utf-8").write(out)
     print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)}")
 
