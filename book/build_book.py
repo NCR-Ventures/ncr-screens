@@ -200,12 +200,13 @@ THEMES = {
     ),
     "fuoco": dict(
         name="Après Fuoco", footer="Après Fuoco · Dinner Reso's",
-        bg="#faf6ef", ink="#443E39", muted="#6b625c", dim="rgba(68,62,57,0.55)",
-        accent="#c98638", accent2="#d56b27", panel="rgba(201,134,56,0.13)", line="rgba(68,62,57,0.18)",
+        bg="#faf6ef", ink="#3a2a2a", muted="#7a5a5a", dim="rgba(58,42,42,0.55)",
+        accent="#a02828", accent2="#a02828", panel="rgba(160,40,40,0.10)", line="rgba(160,40,40,0.25)",
         head_font="'Caveat', cursive", num_font="'Lora', Georgia, serif", body_font="'Jost', Arial, sans-serif",
         gfont="Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600",
-        logo=os.path.join(HERE, "assets", "fuoco-wordmark.png"), logo_h=120, mark=None,
-        hot="#d56b27", warm="#c98638", light=True, head_upper=False, head_italic=False,
+        logo=os.path.join(HERE, "assets", "apres-wordmark-red.png"), logo_h=120, logo_h_half=104,
+        mark=os.path.join(HERE, "assets", "apres-badge.png"),
+        hot="#a02828", warm="#c98638", light=True, head_upper=False, head_italic=False,
     ),
 }
 
@@ -334,6 +335,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .more{font-family:var(--num);font-style:italic;font-size:21px;color:var(--muted);padding:8px 18px}
 .empty{font-family:var(--num);font-style:italic;font-size:30px;color:var(--muted);line-height:1.4;margin-top:30px}
 .mark{position:absolute;right:40px;bottom:70px;width:440px;opacity:.06;pointer-events:none;z-index:0}
+.half .mark.half-mark{right:30px;bottom:60px;width:420px;opacity:.05}
 .wait{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:var(--bg);text-align:center;z-index:9}
 .wait .w1{font-family:var(--num);font-size:84px;color:var(--ink);line-height:1.1}
 .wait .w2{font-family:var(--body);font-size:22px;letter-spacing:5px;text-transform:uppercase;color:var(--accent2);margin-top:24px}
@@ -446,6 +448,7 @@ def render_half(d, t, received, side, placeholder=None):
         inner = f'<div class="book" style="margin-top:30px;min-height:0;flex:1"><div class="lbl">The reso&#39;s <span>by seating time</span></div><div class="rows{' roomy' if len(d['reservations']) <= 4 else ''}">{book_rows(d["reservations"], 6, half=True)}</div></div>'
     return f"""
 <div class="pane half {side}" style="{css_vars(t)}">
+  {f'<img class="mark half-mark" src="{b64(t["mark"])}" alt="">' if t.get("mark") else ""}
   <div class="hdr">
     {logo_block(t, half=True)}
     <div class="shiftlab">

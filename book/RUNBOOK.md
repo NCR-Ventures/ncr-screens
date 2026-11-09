@@ -48,6 +48,6 @@ Unknown restaurant name in a digest → don't guess; skip it and name it in the 
 
 ## Rules
 - Names on the board are first name + last initial. Never phone numbers, never spend.
-- Style guides win: Lola's blue/oat milk on black beauty, JoJo's navy/PMS 540, Bar Fuoco light cream with #c98638.
+- Style guides win: Lola's blue/oat milk on black beauty, JoJo's navy/PMS 540, CCG digital blue #074b64, Bar Italia green/gold, Après Fuoco cream #faf6ef with Après red #a02828 (logos from Tim 11.9.26: apres-wordmark-red / -white, apres-badge in book/assets).
 - Google Fonts are blocked in the build container; the TV loads them. Fallback metrics are wider, so a fit here is a fit there.
 - Never rename or re-route the live files. Tim repoints ScreenCloud.
