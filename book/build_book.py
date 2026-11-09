@@ -255,7 +255,7 @@ STORES = {
     "sarasota":   dict(theme="bi-sarasota"),
     "etc":        dict(theme="bi-etc"),
     "winterpark": dict(theme="bi-winterpark"),
-    "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6]),
+    "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6], dinner_post="3:15 pm"),  # dinner digest lands ~3:10, built by the 3:15 run
     "17river":    dict(theme="17river"),
     "lakehouse":  dict(theme="lakehouse", single_shift=True, post_times={"weekday": "11:15 am", "weekend": "10:15 am"}),  # Python weekday: Fri, Sat, Sun only
 }
@@ -547,7 +547,7 @@ def render_half(d, t, received, side, placeholder=None):
   <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only</span></div>
 </div>"""
 
-def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None):
+def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None, dinner_post="2:15 pm"):
     gf = [g for g in gfonts if g]
     fonts = "&family=".join(sorted(set(gf)))
     fontlink = f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family={fonts}&display=swap" rel="stylesheet">' if fonts else ""
@@ -564,6 +564,7 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None):
   var dataDate = "{data_date}";
   var lunchDays = {json.dumps([(d + 1) % 7 for d in lunch_days]) if lunch_days else "null"};  // JS getDay(): 0=Sun
   var postTimes = {json.dumps(post_times) if post_times else "null"};
+  var dinnerPost = {json.dumps(dinner_post)}; var dinnerHr = parseInt(dinnerPost, 10) + (dinnerPost.indexOf("pm") > -1 && parseInt(dinnerPost, 10) !== 12 ? 12 : 0);
   function check(){{
     var now = new Date();
     var p = new Intl.DateTimeFormat('en-CA',{{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false}}).formatToParts(now);
@@ -579,7 +580,7 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None):
     }}
     if (lunchDays) {{
       var dow = new Date(today + "T12:00:00").getDay();
-      if (lunchDays.indexOf(dow) < 0 && hr < 14 && (today>dataDate || dataDate === "")) {{ stale = true; msg = "Dinner only today · reso's post at 2:15 pm"; }}
+      if (lunchDays.indexOf(dow) < 0 && hr < dinnerHr && (today>dataDate || dataDate === "")) {{ stale = true; msg = "Dinner only today · reso's post at " + dinnerPost; }}
     }}
     document.getElementById('waitmsg').textContent = msg;
     document.body.classList.toggle('stale', !!stale);
@@ -620,7 +621,7 @@ def main():
         inner = render_full(d, t, a.received, single=cfg.get("single_shift", False))
         gf = [t["gfont"]]
         title = f"{t['name']} — {shift_label(d, cfg.get('single_shift', False))}"
-    out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"), cfg.get("post_times"))
+    out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"), cfg.get("post_times"), cfg.get("dinner_post", "2:15 pm"))
     open(a.out, "w", encoding="utf-8").write(out)
     print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)}")
 
