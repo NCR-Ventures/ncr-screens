@@ -1,7 +1,22 @@
 # Reso's slides — run book (10:15 am and 2:15 pm ET, daily)
 
-What: turn the OpenTable "Pre-shift Digest" emails into `lolas-resos.html` and `jojos-resos.html`
-and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at those two files.
+What: turn the OpenTable "Pre-shift Digest" emails into one `<store>-resos.html` per screen
+and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the files.
+
+## Screens and digest matching (subject line → store)
+
+| Output file | `--store` | Digest subject contains | Layout |
+|---|---|---|---|
+| lolas-resos.html | lolas | `Lola's Bistro` | full |
+| jojos-resos.html | jojos | `JoJo's Bar` (+ `Bar Fuoco` as `--email2` on Après dates) | full; split with Après Fuoco on 11/25, 11/27, 11/28, 12/4, 12/5, 12/11, 12/12, 12/18, 12/19 |
+| beachwood-resos.html | beachwood | left `Cedar Creek`, right (`--email2`) `Bar Italia` + `Beachwood` | always split CCG / Bar Italia Beachwood |
+| sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
+| etc-resos.html | etc | `Bar Italia` + (`Easton` or `Columbus`) | full |
+| winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
+| lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full |
+
+Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates).
+Unknown restaurant name in a digest → don't guess; skip it and name it in the report.
 
 ## Steps
 

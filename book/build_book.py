@@ -188,6 +188,16 @@ THEMES = {
         logo=os.path.join(HERE, "assets", "jojos-script.png"), logo_h=122, mark=None,
         hot="#e8c889", warm="#aab9d6", light=False, head_upper=False, head_italic=True,
     ),
+    "ccg": dict(
+        name="Cedar Creek Grille", footer="Cedar Creek Grille · Today's Reso's",
+        bg="#074b64", ink="#ffffff", muted="rgba(255,255,255,0.8)", dim="rgba(255,255,255,0.5)",
+        accent="#475b6d", accent2="#bcd3e0", panel="rgba(71,91,109,0.55)", line="rgba(255,255,255,0.2)",
+        head_font="'Libre Baskerville', 'Baskerville', Georgia, serif", num_font="'Libre Baskerville', Georgia, serif",
+        body_font="'Montserrat', Arial, sans-serif",
+        gfont="Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700",
+        logo=os.path.join(HERE, "assets", "ccg-monogram.png"), logo_h=104, logo_h_half=96, mark=None,
+        hot="#e8c889", warm="#bcd3e0", light=False, head_upper=False, head_italic=False,
+    ),
     "fuoco": dict(
         name="Après Fuoco", footer="Après Fuoco · Dinner Reso's",
         bg="#faf6ef", ink="#443E39", muted="#6b625c", dim="rgba(68,62,57,0.55)",
@@ -197,6 +207,34 @@ THEMES = {
         logo=os.path.join(HERE, "assets", "fuoco-wordmark.png"), logo_h=120, mark=None,
         hot="#d56b27", warm="#c98638", light=True, head_upper=False, head_italic=False,
     ),
+}
+
+def bar_italia(location, slug):
+    return dict(
+        name=f"Bar Italia {location}", sub=location, footer=f"Bar Italia · {location} · Today's Reso's",
+        bg="#142b1a", ink="#f4ede0", muted="#a8946a", dim="rgba(244,237,224,0.5)",
+        accent="#e3b76c", accent2="#e3b76c", panel="rgba(227,183,108,0.12)", line="rgba(244,237,224,0.18)",
+        head_font="Georgia, 'Times New Roman', serif", num_font="Georgia, 'Times New Roman', serif",
+        body_font="Arial, Helvetica, sans-serif", gfont="",
+        logo=os.path.join(HERE, "assets", "bar-italia-logo.png"), logo_h=84, logo_h_half=52, mark=None,
+        hot="#e98638", warm="#e3b76c", light=False, head_upper=False, head_italic=False,
+    )
+
+for _loc, _slug in [("Beachwood", "bi-beachwood"), ("Lakewood Ranch", "bi-sarasota"), ("Easton", "bi-etc"),
+                    ("Winter Park", "bi-winterpark"), ("Lakewood", "bi-lakewood")]:
+    THEMES[_slug] = bar_italia(_loc, _slug)
+
+# store -> how the screen is built
+STORES = {
+    "lolas":      dict(theme="lolas"),
+    "jojos":      dict(theme="jojos", split_on=APRES_DATES, right="fuoco",
+                       right_missing="Après Fuoco reso&#39;s<br>not connected to OpenTable yet"),
+    "beachwood":  dict(theme="ccg", split_always=True, right="bi-beachwood",
+                       right_missing="Bar Italia Beachwood digest<br>not received today"),
+    "sarasota":   dict(theme="bi-sarasota"),
+    "etc":        dict(theme="bi-etc"),
+    "winterpark": dict(theme="bi-winterpark"),
+    "lakewood":   dict(theme="bi-lakewood"),
 }
 
 # ----------------------------------------------------------------- render
@@ -221,6 +259,8 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .full .hdr{height:160px;padding:30px 64px 26px}
 .half .hdr{height:150px;padding:28px 44px 22px}
 .logo{display:block;object-fit:contain}
+.logowrap .sub{font-family:var(--body);font-size:19px;letter-spacing:6px;text-transform:uppercase;color:var(--accent2);margin-top:14px;font-weight:600}
+.half .logowrap .sub{font-size:16px;letter-spacing:5px;margin-top:10px}
 .shiftlab{text-align:right}
 .shiftlab .big{font-family:var(--head);color:var(--ink);line-height:1}
 .full .shiftlab .big{font-size:64px}
@@ -239,7 +279,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 /* hero */
 .hero .num{font-family:var(--num);font-weight:700;line-height:.84;color:var(--ink);letter-spacing:-8px}
 .full .hero .num{font-size:360px}
-.half .hero .num{font-size:230px;letter-spacing:-5px}
+.half .hero .num{font-size:200px;letter-spacing:-5px}
 .hero .cap{font-family:var(--head);color:var(--accent2);margin-top:22px}
 .full .hero .cap{font-size:40px}
 .half .hero .cap{font-size:28px}
@@ -265,7 +305,8 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 /* the book list */
 .book{display:flex;flex-direction:column}
 .rows{flex:1;display:flex;flex-direction:column;gap:10px;margin-top:18px;min-height:0;overflow:hidden}
-.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 0;max-height:78px;min-height:52px}
+.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 0;max-height:78px;min-height:46px}
+.more{flex:0 0 auto}
 .row.flag{border-left-color:var(--accent2)}
 .half .row{grid-template-columns:110px 1fr;padding:10px 14px}
 .row .t{font-family:var(--num);font-weight:700;font-size:30px;line-height:1;color:var(--ink);letter-spacing:-1px}
@@ -318,7 +359,13 @@ def _tkey(tm):
 
 def book_rows(res, limit, half=False):
     res = sorted(res, key=lambda r: _tkey(r["time"]))
-    shown = res[:limit]
+    if len(res) > limit:
+        # keep every flagged reservation first, then fill from the top of the book, then re-sort by time
+        flagged_rows = [r for r in res if why_for(r)][:limit]
+        fill = [r for r in res if r not in flagged_rows][: max(0, limit - len(flagged_rows))]
+        shown = sorted(flagged_rows + fill, key=lambda r: _tkey(r["time"]))
+    else:
+        shown = res
     out = []
     for r in shown:
         why = why_for(r)
@@ -330,11 +377,17 @@ def book_rows(res, limit, half=False):
             f'<div class="row{" flag" if why else ""}"><div class="t">{html.escape(r["time"].replace("AM", " am").replace("PM", " pm"))}</div>'
             f'<div class="who">{html.escape(short_name(r["name"]))}<span class="m{' big' if r["party"] >= 6 else ''}">party of {r["party"]}</span>{tbl}{chips}</div></div>')
     if len(res) > limit:
-        rest = res[limit:]
-        out.append(f'<div class="more">+{len(rest)} more from {html.escape(rest[0]["time"].replace("AM", " am").replace("PM", " pm"))}</div>')
+        rest = [r for r in res if r not in shown]
+        out.append(f'<div class="more">+{len(rest)} more on the book · flagged tables shown first</div>')
     if not out:
         out.append('<div class="empty">No reso&#39;s yet.<br>Walk-ins are the book tonight.</div>')
     return "".join(out)
+
+def logo_block(t, half=False):
+    sub = f'<div class="sub">{html.escape(t["sub"])}</div>' if t.get("sub") else ""
+    h = t.get("logo_h_half", t["logo_h"]) if half else t["logo_h"]
+    return (f'<div class="logowrap"><img class="logo" style="height:{h}px" src="{b64(t["logo"])}" '
+            f'alt="{html.escape(t["name"])}">{sub}</div>')
 
 def render_full(d, t, received):
     body_h = 1080 - 160 - 48
@@ -353,7 +406,7 @@ def render_full(d, t, received):
 <div class="pane full">
   {mark}
   <div class="hdr">
-    <img class="logo" style="height:{t['logo_h']}px" src="{b64(t['logo'])}" alt="{html.escape(t['name'])}">
+    {logo_block(t)}
     <div class="shiftlab">
       <div class="big">{shift_label(d)}</div>
       <div class="date">{pretty_date(d['date'])}</div>
@@ -394,7 +447,7 @@ def render_half(d, t, received, side, placeholder=None):
     return f"""
 <div class="pane half {side}" style="{css_vars(t)}">
   <div class="hdr">
-    <img class="logo" style="height:{t['logo_h']}px" src="{b64(t['logo'])}" alt="{html.escape(t['name'])}">
+    {logo_block(t, half=True)}
     <div class="shiftlab">
       <div class="big">{shift_label(d) if d else "Dinner Reso's"}</div>
       <div class="date">{pretty_date(d['date']) if d else ''}</div>
@@ -408,12 +461,13 @@ def render_half(d, t, received, side, placeholder=None):
 </div>"""
 
 def page(title, t, inner, data_date, gfonts):
-    fonts = "&family=".join(sorted(set(gfonts)))
+    gf = [g for g in gfonts if g]
+    fonts = "&family=".join(sorted(set(gf)))
+    fontlink = f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family={fonts}&display=swap" rel="stylesheet">' if fonts else ""
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=1920">
 <title>{html.escape(title)}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family={fonts}&display=swap" rel="stylesheet">
+{fontlink}
 <style>:root{{{css_vars(t)}}}{BASE_CSS}</style></head>
 <body><div class="stage">{inner}
 <div class="wait"><div><div class="w1">Today's reso's post at 10:15 am</div><div class="w2">{html.escape(t['name'])} · The Daily</div></div></div>
@@ -435,36 +489,39 @@ def page(title, t, inner, data_date, gfonts):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--store", required=True, choices=list(THEMES))
-    ap.add_argument("--email", required=True)
-    ap.add_argument("--fuoco-email")
+    ap.add_argument("--store", required=True, choices=list(STORES))
+    ap.add_argument("--email", required=True, help="digest HTML for the store (left half on a split)")
+    ap.add_argument("--email2", "--fuoco-email", dest="email2", help="digest HTML for the right half of a split")
     ap.add_argument("--received", default="")
-    ap.add_argument("--fuoco-received", default="")
+    ap.add_argument("--received2", "--fuoco-received", dest="received2", default="")
     ap.add_argument("--out", required=True)
     ap.add_argument("--force-split", action="store_true")
     ap.add_argument("--dump-json", action="store_true")
     a = ap.parse_args()
+    cfg = STORES[a.store]
+    t = THEMES[cfg["theme"]]
     raw = open(a.email, encoding="utf-8", errors="replace").read()
     d = parse_digest(raw)
     if a.dump_json:
         print(json.dumps(d, indent=1))
-    t = THEMES[a.store]
-    split = a.store == "jojos" and (a.force_split or d.get("date") in APRES_DATES)
+    split = cfg.get("split_always") or a.force_split or (cfg.get("split_on") and d.get("date") in cfg["split_on"])
     if split:
-        tf = THEMES["fuoco"]
-        fd = None
-        if a.fuoco_email:
-            fd = parse_digest(open(a.fuoco_email, encoding="utf-8", errors="replace").read())
-        right = render_half(fd, tf, a.fuoco_received or a.received, "right",
-                            placeholder=None if fd else "Après Fuoco reso&#39;s<br>not connected to OpenTable yet")
+        t2 = THEMES[cfg["right"]]
+        d2 = None
+        if a.email2:
+            d2 = parse_digest(open(a.email2, encoding="utf-8", errors="replace").read())
+        right = render_half(d2, t2, a.received2 or a.received, "right",
+                            placeholder=None if d2 else cfg["right_missing"])
         inner = render_half(d, t, a.received, "left") + right
-        gf = [t["gfont"], tf["gfont"]]
+        gf = [t["gfont"], t2["gfont"]]
+        title = f"{t['name']} + {t2['name']} — {shift_label(d)}"
     else:
         inner = render_full(d, t, a.received)
         gf = [t["gfont"]]
-    out = page(f"{t['name']} — {shift_label(d)}", t, inner, d.get("date", ""), gf)
+        title = f"{t['name']} — {shift_label(d)}"
+    out = page(title, t, inner, d.get("date", ""), gf)
     open(a.out, "w", encoding="utf-8").write(out)
-    print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={split}")
+    print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)}")
 
 if __name__ == "__main__":
     main()
