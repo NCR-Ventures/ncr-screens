@@ -1,4 +1,6 @@
-# Reso's slides — run book (10:15 am and 2:15 pm ET, daily)
+# Reso's slides — run book (10:15 am, 11:15 am, and 2:15 pm ET, daily)
+
+The 11:15 run exists for the Lakehouse Mon–Thu digest. At 11:15, build only stores whose newest digest arrived after 10:15 (normally just Lakehouse); if nothing new, push nothing and report nothing.
 
 What: turn the OpenTable "Pre-shift Digest" emails into one `<store>-resos.html` per screen
 and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the files.
@@ -13,6 +15,7 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
 | etc-resos.html | etc | `Bar Italia` + (`Easton` or `Columbus`) | full |
 | winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
+| lakehouse-resos.html | lakehouse | `Lakehouse` | full, header "Today's Reso's" — **one shift a day**; digest arrives ~11:00 am Mon–Thu (built by the 11:15 run) and ~10:00 am Fri–Sun (10:15 run). The 2:15 run never rebuilds it. |
 | lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full. **Lunch only Fri–Sun** — on Mon–Thu ignore any Lakewood lunch digest at the 10:15 run; the slide shows "Dinner only today · reso's post at 2:15 pm" until the dinner build. |
 
 Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates). Its digest arrives every day; on non-split dates ignore it silently — it is not an unmatched store and gets no slide of its own.

@@ -188,6 +188,16 @@ THEMES = {
         logo=os.path.join(HERE, "assets", "jojos-script.png"), logo_h=122, mark=None,
         hot="#e8c889", warm="#aab9d6", light=False, head_upper=False, head_italic=True,
     ),
+    "lakehouse": dict(
+        name="The Lakehouse", footer="The Lakehouse · Today's Reso's",
+        bg="#0e2748", ink="#ffffff", muted="rgba(255,255,255,0.8)", dim="rgba(255,255,255,0.5)",
+        accent="#3e5170", accent2="#b9c6dc", panel="rgba(62,81,112,0.5)", line="rgba(255,255,255,0.18)",
+        head_font="'Montserrat', Arial, sans-serif", num_font="'Karma', Georgia, serif",
+        body_font="'Noto Serif', Georgia, serif",
+        gfont="Montserrat:wght@500;600;700&family=Karma:wght@400;600;700&family=Noto+Serif:ital,wght@0,400;0,600;1,400",
+        logo=os.path.join(HERE, "assets", "lakehouse-wordmark.png"), logo_h=116, logo_h_half=100, mark=None,
+        hot="#e8c889", warm="#b9c6dc", light=False, head_upper=True, head_italic=False,
+    ),
     "ccg": dict(
         name="Cedar Creek Grille", footer="Cedar Creek Grille · Today's Reso's",
         bg="#074b64", ink="#ffffff", muted="rgba(255,255,255,0.8)", dim="rgba(255,255,255,0.5)",
@@ -235,12 +245,15 @@ STORES = {
     "sarasota":   dict(theme="bi-sarasota"),
     "etc":        dict(theme="bi-etc"),
     "winterpark": dict(theme="bi-winterpark"),
-    "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6]),  # Python weekday: Fri, Sat, Sun only
+    "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6]),
+    "lakehouse":  dict(theme="lakehouse", single_shift=True, post_times={"weekday": "11:15 am", "weekend": "10:15 am"}),  # Python weekday: Fri, Sat, Sun only
 }
 
 # ----------------------------------------------------------------- render
 
-def shift_label(d):
+def shift_label(d, single=False):
+    if single:
+        return "Today's Reso's"
     return "Lunch Reso's" if d.get("shift") == "lunch" else "Dinner Reso's"
 
 def css_vars(t):
@@ -391,7 +404,7 @@ def logo_block(t, half=False):
     return (f'<div class="logowrap"><img class="logo" style="height:{h}px" src="{b64(t["logo"])}" '
             f'alt="{html.escape(t["name"])}">{sub}</div>')
 
-def render_full(d, t, received):
+def render_full(d, t, received, single=False):
     body_h = 1080 - 160 - 48
     slots = d["slots"]
     mx = max([s["covers"] for s in slots] + [1])
@@ -410,7 +423,7 @@ def render_full(d, t, received):
   <div class="hdr">
     {logo_block(t)}
     <div class="shiftlab">
-      <div class="big">{shift_label(d)}</div>
+      <div class="big">{shift_label(d, single)}</div>
       <div class="date">{pretty_date(d['date'])}</div>
       <div class="upd">OpenTable · updated {updated_label(received)}</div>
     </div>
@@ -463,7 +476,7 @@ def render_half(d, t, received, side, placeholder=None):
   <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only</span></div>
 </div>"""
 
-def page(title, t, inner, data_date, gfonts, lunch_days=None):
+def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None):
     gf = [g for g in gfonts if g]
     fonts = "&family=".join(sorted(set(gf)))
     fontlink = f'<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family={fonts}&display=swap" rel="stylesheet">' if fonts else ""
@@ -479,6 +492,7 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None):
 (function(){{
   var dataDate = "{data_date}";
   var lunchDays = {json.dumps([(d + 1) % 7 for d in lunch_days]) if lunch_days else "null"};  // JS getDay(): 0=Sun
+  var postTimes = {json.dumps(post_times) if post_times else "null"};
   function check(){{
     var now = new Date();
     var p = new Intl.DateTimeFormat('en-CA',{{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hour12:false}}).formatToParts(now);
@@ -486,6 +500,12 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None):
     var today=o.year+'-'+o.month+'-'+o.day; var hr=parseInt(o.hour,10);
     var stale = dataDate && (today>dataDate) && hr>=0 && hr<10;  // next morning, before the 10:15 push
     var msg = "Today's reso's post at 10:15 am";
+    if (postTimes) {{
+      var dw = new Date(today + "T12:00:00").getDay(); var wk = (dw === 0 || dw === 5 || dw === 6);
+      var pt = wk ? postTimes.weekend : postTimes.weekday; msg = "Today's reso's post at " + pt;
+      var ph = parseInt(pt, 10) + (pt.indexOf("pm") > -1 && parseInt(pt, 10) !== 12 ? 12 : 0);
+      stale = dataDate && (today>dataDate) && hr < ph;
+    }}
     if (lunchDays) {{
       var dow = new Date(today + "T12:00:00").getDay();
       if (lunchDays.indexOf(dow) < 0 && hr < 14 && (today>dataDate || dataDate === "")) {{ stale = true; msg = "Dinner only today · reso's post at 2:15 pm"; }}
@@ -526,10 +546,10 @@ def main():
         gf = [t["gfont"], t2["gfont"]]
         title = f"{t['name']} + {t2['name']} — {shift_label(d)}"
     else:
-        inner = render_full(d, t, a.received)
+        inner = render_full(d, t, a.received, single=cfg.get("single_shift", False))
         gf = [t["gfont"]]
-        title = f"{t['name']} — {shift_label(d)}"
-    out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"))
+        title = f"{t['name']} — {shift_label(d, cfg.get('single_shift', False))}"
+    out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"), cfg.get("post_times"))
     open(a.out, "w", encoding="utf-8").write(out)
     print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)}")
 
