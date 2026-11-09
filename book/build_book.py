@@ -156,7 +156,7 @@ def flagged(res, limit):
 
 def chip_class(kind, text):
     t = text.lower()
-    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t):
+    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t):
         return "chip hot"
     if kind == "tag" and ("birthday" in t or "anniversary" in t or "celebr" in t):
         return "chip warm"
@@ -260,6 +260,118 @@ STORES = {
     "lakehouse":  dict(theme="lakehouse", single_shift=True, post_times={"weekday": "11:15 am", "weekend": "10:15 am"}),  # Python weekday: Fri, Sat, Sun only
 }
 
+# ----------------------------------------------------------------- Tripleseat (private events)
+
+# Tripleseat "Daily Digest" (noreply@tripleseat.com, ~6:05 am ET): "Today's Events" table with
+# Event · Time · Location · Status · Rooms · Guests. Abby or a manager often holds the table in
+# OpenTable as a party of 1, so the book under-counts; Tripleseat has the real head count.
+
+TS_LOCATION = {
+    "lolas":         lambda L: "lola" in L,
+    "jojos":         lambda L: "jojo" in L,
+    "fuoco":         lambda L: "fuoco" in L or "apr" in L,
+    "ccg":           lambda L: "cedar creek" in L,
+    "bi-beachwood":  lambda L: "bar italia" in L and "beachwood" in L,
+    "bi-sarasota":   lambda L: "bar italia" in L and ("sarasota" in L or "lakewood ranch" in L),
+    "bi-etc":        lambda L: "bar italia" in L and ("easton" in L or "columbus" in L),
+    "bi-winterpark": lambda L: "bar italia" in L and "winter park" in L,
+    "bi-lakewood":   lambda L: "bar italia" in L and "lakewood" in L and "lakewood ranch" not in L,
+    "17river":       lambda L: "17 river" in L,
+    "lakehouse":     lambda L: "lakehouse" in L,
+}
+
+def parse_tripleseat(raw):
+    """events from the Daily Digest's Today's Events table"""
+    out = []
+    m = re.search(r"Today(?:&#39;|')s Events</h2>\s*<table.*?</table>", raw, re.S)
+    if not m:
+        return out
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", m.group(0), re.S)
+    cur = None
+    for row in rows:
+        cells = [_txt(c) for c in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+        if not cells:
+            continue
+        if len(cells) >= 6:
+            cur = {"name": cells[0], "time": cells[1], "location": cells[2], "status": cells[3], "rooms": cells[4],
+                   "guests": int(re.sub(r"\D", "", cells[5]) or 0)}
+            out.append(cur)
+        elif len(cells) == 1 and cur is not None and cells[0].lower().startswith("location:"):
+            for part in cells[0].split("·"):
+                k, _, v = part.partition(":")
+                k = k.strip().lower(); v = v.strip()
+                if k == "location" and v: cur["location"] = v
+                elif k == "status" and v: cur["status"] = v
+                elif k == "rooms" and v: cur["rooms"] = v
+    for e in out:
+        mm = re.match(r"(\d{1,2}:\d{2}\s*[AP]M)", e["time"], re.I)
+        e["start"] = mm.group(1).upper().replace(" ", "") if mm else ""
+        e["guest_name"] = re.split(r"[*(\-–—/|]", e["name"])[0].strip()
+    return out
+
+def _in_shift(d, start):
+    if not start:
+        return True
+    mins = _tkey(start)
+    title = (d.get("title") or "").lower()
+    if "lunch" in title or "brunch" in title:
+        return mins < 15 * 60 + 30
+    if "dinner" in title:
+        return mins >= 14 * 60
+    return True
+
+def merge_events(d, events, theme_key):
+    """fold Tripleseat events for this screen into the OpenTable book. Returns a list of plain-text notes."""
+    notes = []
+    want = TS_LOCATION.get(theme_key)
+    if not d or not want:
+        return notes
+    d["ts_added"] = 0
+    d["ts_events"] = 0
+    for e in events:
+        if not want(e["location"].lower()) or not _in_shift(d, e["start"]):
+            continue
+        if e["status"].lower() not in ("definite", "closed"):
+            notes.append(f"{theme_key}: Tripleseat {e['status']} event not shown — {e['guest_name']} {e['start']} {e['guests']} guests ({e['rooms']})")
+            continue
+        last = (e["guest_name"].split() or [""])[-1].lower()
+        first = (e["guest_name"].split() or [""])[0].lower()
+        hit = None
+        for r in d["reservations"]:
+            parts = r["name"].lower().split()
+            if parts and last and (parts[-1] == last or (parts[0] == first and len(parts) == 1)):
+                hit = r; break
+        if hit is None and e["start"]:
+            # placeholder hold: a 1- or 2-top within 30 minutes with no other match
+            near = [r for r in d["reservations"] if r["party"] <= 2 and abs(_tkey(r["time"]) - _tkey(e["start"])) <= 30]
+            if len(near) == 1:
+                hit = near[0]
+                notes.append(f"{theme_key}: matched {e['guest_name']} ({e['guests']}) to placeholder {hit['name']} {hit['time']} party of {hit['party']} by time only")
+        tag = f"Event · {e['rooms']}" if e["rooms"] else "Private event"
+        d["ts_events"] += 1
+        if hit is not None:
+            if e["guests"] > hit["party"]:
+                d["ts_added"] += e["guests"] - hit["party"]
+                notes.append(f"{theme_key}: {hit['name']} {hit['time']} party of {hit['party']} → {e['guests']} per Tripleseat ({e['rooms'] or 'event'})")
+                hit["party"] = e["guests"]
+            if tag not in hit["tags"]:
+                hit["tags"].insert(0, tag)
+        else:
+            d["reservations"].append({"name": e["guest_name"], "time": e["start"] or "", "party": e["guests"], "table": "",
+                                      "tags": [tag], "requests": "", "visit_notes": "", "most_ordered": "", "details": "", "slot": ""})
+            d["ts_added"] += e["guests"]
+            notes.append(f"{theme_key}: added Tripleseat-only event {e['guest_name']} {e['start']} {e['guests']} guests ({e['rooms'] or 'event'})")
+            for slot in d["slots"]:
+                lo = _tkey(slot["range"].split(" - ")[0]); hi = _tkey(slot["range"].split(" - ")[-1])
+                if e["start"] and lo <= _tkey(e["start"]) < hi:
+                    slot["covers"] += e["guests"]; slot["reservations"] += 1
+    if d["ts_added"]:
+        d["covers"] += d["ts_added"]
+    if d["ts_events"]:
+        d["reservation_count"] = len(d["reservations"])
+        d["parties5"] = sum(1 for r in d["reservations"] if r["party"] >= 5)
+    return notes
+
 # ----------------------------------------------------------------- render
 
 def shift_label(d, single=False):
@@ -306,6 +418,8 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .full .hero .num{font-size:360px}
 .half .hero .num{font-size:200px;letter-spacing:-5px}
 .hero .cap{font-family:var(--head);color:var(--accent2);margin-top:22px}
+.hero .tsnote{font-family:var(--body);font-size:17px;color:var(--dim);margin-top:10px;letter-spacing:.5px}
+.half .hero .tsnote{font-size:14px;margin-top:6px}
 .full .hero .cap{font-size:40px}
 .half .hero .cap{font-size:28px}
 .stats{display:grid;gap:16px}
@@ -394,7 +508,7 @@ def priority(r):
     5 any other tag (Date Night, Employee, Business Meal, ...)
     9 nothing notable"""
     tags = [t.lower() for t in r["tags"]]
-    if any("alert" in t or "vip" in t or "special" in t for t in tags):
+    if any("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t for t in tags):
         return (1, 0)
     if r["party"] >= BIG_PARTY:
         return (2, -r["party"])
@@ -410,7 +524,7 @@ MAX_CHIPS_FULL, MAX_CHIPS_HALF = 3, 2
 
 def _chip_rank(kind, text):
     t = text.lower()
-    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t):
+    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t):
         return 0
     if kind in ("req", "note"):
         return 1
@@ -475,6 +589,12 @@ def logo_block(t, half=False):
     return (f'<div class="logowrap"><img class="logo" style="height:{h}px" src="{b64(t["logo"])}" '
             f'alt="{html.escape(t["name"])}">{sub}</div>')
 
+def ts_note(d):
+    if not d or not d.get("ts_added"):
+        return ""
+    n = d.get("ts_events", 0)
+    return f'<div class="tsnote">incl. {d["ts_added"]} from {n} private event{"s" if n != 1 else ""} · Tripleseat</div>'
+
 def render_full(d, t, received, single=False):
     body_h = 1080 - 160 - 48
     slots = d["slots"]
@@ -501,7 +621,7 @@ def render_full(d, t, received, single=False):
   </div>
   <div class="body" style="display:grid;grid-template-columns:560px minmax(0,1fr) 700px;gap:56px;height:{body_h}px;padding:34px 64px 30px">
     <div class="hero" style="display:flex;flex-direction:column;justify-content:space-between;min-height:0">
-      <div><div class="num">{d['covers']}</div><div class="cap">covers reserved</div></div>
+      <div><div class="num">{d['covers']}</div><div class="cap">covers reserved</div>{ts_note(d)}</div>
       <div class="stats">
         <div class="stat"><div class="v">{d['reservation_count']}</div><div class="k">Reservations</div></div>
         <div class="stat"><div class="v">{d['parties5']}</div><div class="k">Parties of 5+</div></div>
@@ -522,7 +642,7 @@ def render_half(d, t, received, side, placeholder=None):
         inner = f'<div class="empty" style="margin-top:140px;text-align:center">{placeholder}</div>'
     else:
         hero = f"""
-      <div class="hero"><div class="num">{d['covers']}</div><div class="cap">covers reserved</div></div>
+      <div class="hero"><div class="num">{d['covers']}</div><div class="cap">covers reserved</div>{ts_note(d)}</div>
       <div class="stats" style="margin-top:28px">
         <div class="stat"><div class="v">{d['reservation_count']}</div><div class="k">Resos</div></div>
         <div class="stat"><div class="v">{d['parties5']}</div><div class="k">5+ tops</div></div>
@@ -599,6 +719,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--force-split", action="store_true")
     ap.add_argument("--dump-json", action="store_true")
+    ap.add_argument("--events", help="Tripleseat Daily Digest HTML (today's). Events for this screen are folded into the book.")
     a = ap.parse_args()
     cfg = STORES[a.store]
     t = THEMES[cfg["theme"]]
@@ -607,11 +728,14 @@ def main():
     if a.dump_json:
         print(json.dumps(d, indent=1))
     split = cfg.get("split_always") or a.force_split or (cfg.get("split_on") and d.get("date") in cfg["split_on"])
+    events = parse_tripleseat(open(a.events, encoding="utf-8", errors="replace").read()) if a.events else []
+    ts_notes = merge_events(d, events, cfg["theme"])
     if split:
         t2 = THEMES[cfg["right"]]
         d2 = None
         if a.email2:
             d2 = parse_digest(open(a.email2, encoding="utf-8", errors="replace").read())
+            ts_notes += merge_events(d2, events, cfg["right"])
         right = render_half(d2, t2, a.received2 or a.received, "right",
                             placeholder=None if d2 else cfg["right_missing"])
         inner = render_half(d, t, a.received, "left") + right
@@ -623,7 +747,9 @@ def main():
         title = f"{t['name']} — {shift_label(d, cfg.get('single_shift', False))}"
     out = page(title, t, inner, d.get("date", ""), gf, cfg.get("lunch_days"), cfg.get("post_times"), cfg.get("dinner_post", "2:15 pm"))
     open(a.out, "w", encoding="utf-8").write(out)
-    print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)}")
+    print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)} tripleseat_added={d.get('ts_added', 0)}")
+    for n in ts_notes:
+        print("  tripleseat:", n)
 
 if __name__ == "__main__":
     main()

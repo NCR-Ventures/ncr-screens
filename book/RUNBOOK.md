@@ -24,6 +24,15 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates). Its digest arrives every day; on non-split dates ignore it silently — it is not an unmatched store and gets no slide of its own.
 Unknown restaurant name in a digest → don't guess; skip it and name it in the report.
 
+## Tripleseat (private events) — every run
+
+Abby or a manager often holds a private party in OpenTable as a party of 1, so the book under-counts. Tripleseat's "Daily Digest" (from noreply@tripleseat.com, ~6:05 am ET, subject "Daily Digest") has the truth in its "Today's Events" table: Event · Time · Location · Status · Rooms · Guests. Every run: search the mailbox for today's Daily Digest, save its body to the scratchpad as `tripleseat.html`, and pass `--events <scratch>/tripleseat.html` on every build. The script (`parse_tripleseat` / `merge_events`) does the rest per screen:
+- matches a Definite event to an OpenTable reservation by guest last name, or to a lone 1–2 top within 30 minutes of the event start (placeholder hold); raises the party to the Tripleseat guest count, adds an "Event · <room>" chip, and ranks it with manager alerts;
+- an event with no OpenTable reservation at all is added to the book as its own row and hour slot;
+- the hero covers number grows by the difference and shows "incl. N from X private events · Tripleseat" under it;
+- Tentative / Prospect events are not shown; the script prints them so the report can mention them.
+The build line prints `tripleseat_added=N` and one note per adjustment. The sanity check is therefore: slide covers = digest "Total covers" + tripleseat_added. No Daily Digest today, or no events → build without `--events` (or with it; nothing changes). (Tim 11.9.26.)
+
 ## Steps
 
 1. Load Outlook tools: `ToolSearch select:mcp__Microsoft_365__outlook_email_search,mcp__Microsoft_365__read_resource`.
@@ -39,8 +48,8 @@ Unknown restaurant name in a digest → don't guess; skip it and name it in the 
    `git clone --depth 1 https://github.com/NCR-Ventures/ncr-screens /home/claude/ncr-screens`.
 5. Build:
    ```
-   python3 book/build_book.py --store lolas --email <scratch>/lolas.html --received <iso> --out lolas-resos.html
-   python3 book/build_book.py --store jojos --email <scratch>/jojos.html --received <iso> --out jojos-resos.html \
+   python3 book/build_book.py --store lolas --email <scratch>/lolas.html --received <iso> --events <scratch>/tripleseat.html --out lolas-resos.html
+   python3 book/build_book.py --store jojos --email <scratch>/jojos.html --received <iso> --events <scratch>/tripleseat.html --out jojos-resos.html \
        [--fuoco-email <scratch>/fuoco.html --fuoco-received <iso>]   # on Après Fuoco dates, if a Fuoco digest exists
    ```
    The script decides the JoJo's/Après split from the date (APRES_DATES in build_book.py).
