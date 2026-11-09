@@ -198,6 +198,16 @@ THEMES = {
         logo=os.path.join(HERE, "assets", "lakehouse-wordmark.png"), logo_h=116, logo_h_half=100, mark=None,
         hot="#e8c889", warm="#b9c6dc", light=False, head_upper=True, head_italic=False,
     ),
+    "17river": dict(
+        name="17 River Grille", footer="17 River Grille · Today's Reso's",
+        bg="#63655f", ink="#ffffff", muted="rgba(255,255,255,0.82)", dim="rgba(255,255,255,0.55)",
+        accent="#c9962f", accent2="#e6c46a", panel="rgba(0,0,0,0.18)", line="rgba(255,255,255,0.22)",
+        head_font="'Libre Baskerville', 'Baskerville', Georgia, serif", num_font="'Libre Baskerville', Georgia, serif",
+        body_font="'Montserrat', Arial, sans-serif",
+        gfont="Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700",
+        logo=os.path.join(HERE, "assets", "17river-logo.png"), logo_h=100, logo_h_half=84, mark=None,
+        hot="#c9962f", warm="#e6c46a", light=False, head_upper=False, head_italic=False,
+    ),
     "ccg": dict(
         name="Cedar Creek Grille", footer="Cedar Creek Grille · Today's Reso's",
         bg="#074b64", ink="#ffffff", muted="rgba(255,255,255,0.8)", dim="rgba(255,255,255,0.5)",
@@ -246,6 +256,7 @@ STORES = {
     "etc":        dict(theme="bi-etc"),
     "winterpark": dict(theme="bi-winterpark"),
     "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6]),
+    "17river":    dict(theme="17river"),
     "lakehouse":  dict(theme="lakehouse", single_shift=True, post_times={"weekday": "11:15 am", "weekend": "10:15 am"}),  # Python weekday: Fri, Sat, Sun only
 }
 
@@ -334,7 +345,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .chip.hot{background:var(--hot);border-color:var(--hot);color:var(--bg)}
 .chip.warm{background:var(--warm);border-color:var(--warm);color:var(--bg)}
 .chip.size{border-color:var(--ink);color:var(--ink)}
-.chip.req{text-transform:none;letter-spacing:0;font-size:15px;border-style:dashed;font-weight:500;white-space:normal}
+.chip.req{text-transform:none;letter-spacing:0;font-size:15px;border-style:dashed;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .roomy .row{max-height:150px;padding:18px 24px;grid-template-columns:180px 1fr}
 .roomy .row .t{font-size:42px}
 .roomy .row .who{font-size:32px;gap:10px 18px}

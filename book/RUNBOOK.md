@@ -10,6 +10,7 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | Output file | `--store` | Digest subject contains | Layout |
 |---|---|---|---|
 | lolas-resos.html | lolas | `Lola's Bistro` | full |
+| 17river-resos.html | 17river | `17 River` | full |
 | jojos-resos.html | jojos | `JoJo's Bar` (+ `Bar Fuoco` as `--email2` on Après dates) | full; split with Après Fuoco on 11/25, 11/27, 11/28, 12/4, 12/5, 12/11, 12/12, 12/18, 12/19 |
 | beachwood-resos.html | beachwood | left `Cedar Creek`, right (`--email2`) `Bar Italia` + `Beachwood` | always split CCG / Bar Italia Beachwood |
 | sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
