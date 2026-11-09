@@ -51,6 +51,7 @@ Unknown restaurant name in a digest → don't guess; skip it and name it in the 
 9. Report in one or two lines: store, shift, covers, reso count, anything flagged (alerts, big parties), pushed yes/no.
 
 ## Rules
+- **Notable tables on a crowded book.** A full slide lists 11 reso's, a split half lists 6. When the book is bigger than that, `book_rows` ranks by `priority()` in build_book.py and shows the top of the list, then re-sorts by seating time: (1) manager alerts — Special relationship / VIP / alert tags; (2) parties of 6+ (`BIG_PARTY`), bigger first; (3) birthday / anniversary / celebration; (4) guest requests and visit notes; (5) any other tag (Date Night, Employee, Business Meal). Untagged deuces and 4-tops never make the list on a busy night — the "+N more on the book" line and the pace bars carry them. Within a tier, earlier seating wins. Set 11.9.26.
 - Names on the board are first name + last initial. Never phone numbers, never spend.
 - Style guides win: Lola's blue/oat milk on black beauty, JoJo's navy/PMS 540, CCG digital blue #074b64, Bar Italia green/gold, Après Fuoco cream #faf6ef with Après red #a02828 (logos from Tim 11.9.26: apres-wordmark-red / -white, apres-badge in book/assets).
 - Google Fonts are blocked in the build container; the TV loads them. Fallback metrics are wider, so a fit here is a fit there.

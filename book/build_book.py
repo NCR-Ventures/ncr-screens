@@ -383,6 +383,29 @@ def _tkey(tm):
     h, mi, ap = int(m.group(1)) % 12, int(m.group(2)), m.group(3)
     return (h + (12 if ap == "PM" else 0)) * 60 + mi
 
+BIG_PARTY = 6  # a table of this size or larger is a "notable" reservation on its own
+
+def priority(r):
+    """Rank for a crowded book (lower = more important). Time order breaks ties.
+    1 manager alert / VIP / special relationship
+    2 party of BIG_PARTY+ (bigger parties first)
+    3 birthday / anniversary / celebration
+    4 guest request or visit note
+    5 any other tag (Date Night, Employee, Business Meal, ...)
+    9 nothing notable"""
+    tags = [t.lower() for t in r["tags"]]
+    if any("alert" in t or "vip" in t or "special" in t for t in tags):
+        return (1, 0)
+    if r["party"] >= BIG_PARTY:
+        return (2, -r["party"])
+    if any("birthday" in t or "anniversary" in t or "celebr" in t or "occasion" in t for t in tags):
+        return (3, 0)
+    if r["requests"] or r["visit_notes"]:
+        return (4, 0)
+    if tags:
+        return (5, 0)
+    return (9, 0)
+
 def _row_cost(r, half=False):
     # estimated rendered height: base row + a second line when a request/visit-note chip is present
     base = 60 if half else 66
@@ -390,12 +413,10 @@ def _row_cost(r, half=False):
     return base + extra
 
 def fit_limit(res, budget, half=False):
-    """how many rows fit in `budget` px, flagged rows reserved first"""
-    res = sorted(res, key=lambda r: _tkey(r["time"]))
-    flagged_rows = [r for r in res if why_for(r)]
-    rest = [r for r in res if not why_for(r)]
+    """how many rows fit in `budget` px, walking the book in the same priority order book_rows shows it"""
+    ranked = sorted(res, key=lambda r: (priority(r), _tkey(r["time"])))
     chosen, used = [], 0
-    for r in flagged_rows + rest:
+    for r in ranked:
         c = _row_cost(r, half)
         if used + c > budget:
             break
@@ -405,10 +426,10 @@ def fit_limit(res, budget, half=False):
 def book_rows(res, limit, half=False):
     res = sorted(res, key=lambda r: _tkey(r["time"]))
     if len(res) > limit:
-        # keep every flagged reservation first, then fill from the top of the book, then re-sort by time
-        flagged_rows = [r for r in res if why_for(r)][:limit]
-        fill = [r for r in res if r not in flagged_rows][: max(0, limit - len(flagged_rows))]
-        shown = sorted(flagged_rows + fill, key=lambda r: _tkey(r["time"]))
+        # crowded book: rank by priority() (alerts, big parties, celebrations, requests, other tags),
+        # time order within a tier, take the top `limit`, then re-sort by seating time for display
+        ranked = sorted(res, key=lambda r: (priority(r), _tkey(r["time"])))
+        shown = sorted(ranked[:limit], key=lambda r: _tkey(r["time"]))
     else:
         shown = res
     out = []
@@ -419,11 +440,11 @@ def book_rows(res, limit, half=False):
             for k, v in why)
         tbl = f'<span class="m">tbl {html.escape(r["table"])}</span>' if r["table"] else ""
         out.append(
-            f'<div class="row{" flag" if why else ""}"><div class="t">{html.escape(r["time"].replace("AM", " am").replace("PM", " pm"))}</div>'
+            f'<div class="row{" flag" if (why or r["party"] >= BIG_PARTY) else ""}"><div class="t">{html.escape(r["time"].replace("AM", " am").replace("PM", " pm"))}</div>'
             f'<div class="who">{html.escape(short_name(r["name"]))}<span class="m{' big' if r["party"] >= 6 else ''}">party of {r["party"]}</span>{tbl}{chips}</div></div>')
     if len(res) > limit:
         rest = [r for r in res if r not in shown]
-        out.append(f'<div class="more">+{len(rest)} more on the book · flagged tables shown first</div>')
+        out.append(f'<div class="more">+{len(rest)} more on the book · notable tables shown first</div>')
     if not out:
         out.append('<div class="empty">No reso&#39;s yet.<br>Walk-ins are the book tonight.</div>')
     return "".join(out)
