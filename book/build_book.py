@@ -330,7 +330,7 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 /* the book list */
 .book{display:flex;flex-direction:column}
 .rows{flex:1;display:flex;flex-direction:column;gap:10px;margin-top:18px;min-height:0;overflow:hidden}
-.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 0;max-height:78px;min-height:46px}
+.row{display:grid;grid-template-columns:126px 1fr;gap:16px;align-items:center;background:var(--panel);border-radius:4px;padding:11px 18px;border-left:4px solid transparent;flex:1 1 auto;max-height:78px;min-height:46px}
 .more{flex:0 0 auto}
 .row.flag{border-left-color:var(--accent2)}
 .half .row{grid-template-columns:110px 1fr;padding:10px 14px}
@@ -383,6 +383,25 @@ def _tkey(tm):
     h, mi, ap = int(m.group(1)) % 12, int(m.group(2)), m.group(3)
     return (h + (12 if ap == "PM" else 0)) * 60 + mi
 
+def _row_cost(r, half=False):
+    # estimated rendered height: base row + a second line when a request/visit-note chip is present
+    base = 60 if half else 66
+    extra = 34 if (r["requests"] or r["visit_notes"]) else 0
+    return base + extra
+
+def fit_limit(res, budget, half=False):
+    """how many rows fit in `budget` px, flagged rows reserved first"""
+    res = sorted(res, key=lambda r: _tkey(r["time"]))
+    flagged_rows = [r for r in res if why_for(r)]
+    rest = [r for r in res if not why_for(r)]
+    chosen, used = [], 0
+    for r in flagged_rows + rest:
+        c = _row_cost(r, half)
+        if used + c > budget:
+            break
+        chosen.append(r); used += c
+    return max(1, len(chosen)) if res else 0
+
 def book_rows(res, limit, half=False):
     res = sorted(res, key=lambda r: _tkey(r["time"]))
     if len(res) > limit:
@@ -426,7 +445,7 @@ def render_full(d, t, received, single=False):
         f'<div class="rs">{s["reservations"]} reso{"s" if s["reservations"] != 1 else ""}</div></div>'
         for s in slots) or '<div class="empty">No reso&#39;s yet.</div>'
     # how many rows fit: ~58px plain, chips push to ~64; budget 760px
-    rows = book_rows(d["reservations"], 11)
+    rows = book_rows(d["reservations"], fit_limit(d["reservations"], 720))
     mark = f'<img class="mark" src="{b64(t["mark"])}" alt="">' if t.get("mark") else ""
     return f"""
 <div class="pane full">
@@ -469,7 +488,7 @@ def render_half(d, t, received, side, placeholder=None):
         <div class="stat"><div class="v">{d['celebrations']}</div><div class="k">Celebr.</div></div>
         <div class="stat"><div class="v">{d['vip']}</div><div class="k">Alerts</div></div>
       </div>"""
-        inner = f'<div class="book" style="margin-top:30px;min-height:0;flex:1"><div class="lbl">The reso&#39;s <span>by seating time</span></div><div class="rows{' roomy' if len(d['reservations']) <= 4 else ''}">{book_rows(d["reservations"], 6, half=True)}</div></div>'
+        inner = f'<div class="book" style="margin-top:30px;min-height:0;flex:1"><div class="lbl">The reso&#39;s <span>by seating time</span></div><div class="rows{' roomy' if len(d['reservations']) <= 4 else ''}">{book_rows(d["reservations"], fit_limit(d["reservations"], 400, half=True), half=True)}</div></div>'
     return f"""
 <div class="pane half {side}" style="{css_vars(t)}">
   {f'<img class="mark half-mark" src="{b64(t["mark"])}" alt="">' if t.get("mark") else ""}
