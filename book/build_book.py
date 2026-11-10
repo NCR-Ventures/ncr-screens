@@ -250,8 +250,8 @@ STORES = {
     "lolas":      dict(theme="lolas"),
     "jojos":      dict(theme="jojos", split_on=APRES_DATES, right="fuoco",
                        right_missing="Après Fuoco reso&#39;s<br>not connected to OpenTable yet"),
-    "beachwood":  dict(theme="ccg", split_always=True, right="bi-beachwood",
-                       right_missing="Bar Italia Beachwood digest<br>not received today"),
+    "beachwood":  dict(theme="ccg"),            # Cedar Creek Grille screen (was a CCG + Bar Italia split until 11.10.26)
+    "bibeachwood": dict(theme="bi-beachwood"),  # Bar Italia Beachwood has its own screen as of 11.10.26
     "sarasota":   dict(theme="bi-sarasota"),
     "etc":        dict(theme="bi-etc"),
     "winterpark": dict(theme="bi-winterpark"),
@@ -334,8 +334,9 @@ def merge_events(d, events, theme_key):
         if e["status"].lower() not in ("definite", "closed"):
             notes.append(f"{theme_key}: Tripleseat {e['status']} event not shown — {e['guest_name']} {e['start']} {e['guests']} guests ({e['rooms']})")
             continue
-        last = (e["guest_name"].split() or [""])[-1].lower()
-        first = (e["guest_name"].split() or [""])[0].lower()
+        gparts = [p for p in e["guest_name"].replace(".", "").split() if p.lower() not in ("jr", "sr", "ii", "iii", "iv")] or [""]
+        last = gparts[-1].lower()
+        first = gparts[0].lower()
         hit = None
         for r in d["reservations"]:
             parts = r["name"].lower().split()

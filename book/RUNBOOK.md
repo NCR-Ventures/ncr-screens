@@ -14,7 +14,8 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | lolas-resos.html | lolas | `Lola's Bistro` | full |
 | 17river-resos.html | 17river | `17 River` | full. Dinner digest ~3:10 pm → built by the 3:15 run, never 2:15. Lunch digest builds at 10:15. |
 | jojos-resos.html | jojos | `JoJo's Bar` (+ `Bar Fuoco` as `--email2` on Après dates) | full; split with Après Fuoco on 11/25, 11/27, 11/28, 12/4, 12/5, 12/11, 12/12, 12/18, 12/19 |
-| beachwood-resos.html | beachwood | left `Cedar Creek`, right (`--email2`) `Bar Italia` + `Beachwood` | always split CCG / Bar Italia Beachwood |
+| beachwood-resos.html | beachwood | `Cedar Creek` | full (CCG only — the CCG + Bar Italia split was retired 11.10.26) |
+| bibeachwood-resos.html | bibeachwood | `Bar Italia` + `Beachwood` | full, own screen as of 11.10.26 |
 | sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
 | etc-resos.html | etc | `Bar Italia` + (`Easton` or `Columbus`) | full |
 | winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
