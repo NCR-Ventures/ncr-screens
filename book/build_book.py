@@ -751,6 +751,18 @@ def main():
     print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)} tripleseat_added={d.get('ts_added', 0)}")
     for n in ts_notes:
         print("  tripleseat:", n)
+    # Safety net (11.10.26): an older run book may still hand the Bar Italia Beachwood digest to
+    # --store beachwood as --email2. Build it as its own screen instead of dropping it.
+    if a.store == "beachwood" and a.email2 and not split:
+        out2 = os.path.join(os.path.dirname(a.out), "bibeachwood-resos.html")
+        d2 = parse_digest(open(a.email2, encoding="utf-8", errors="replace").read())
+        n2 = merge_events(d2, events, "bi-beachwood")
+        t2 = THEMES["bi-beachwood"]
+        inner2 = render_full(d2, t2, a.received2 or a.received, single=False)
+        open(out2, "w", encoding="utf-8").write(page(f"{t2['name']} — {shift_label(d2)}", t2, inner2, d2.get("date", ""), [t2["gfont"]], None, None, "2:15 pm"))
+        print(f"wrote {out2}: {d2['restaurant']} {d2['date']} {d2['shift']} covers={d2['covers']} res={d2['reservation_count']} slots={len(d2['slots'])} flagged={sum(1 for r in d2['reservations'] if why_for(r))} split=False tripleseat_added={d2.get('ts_added', 0)}  (--email2 on beachwood → separate Bar Italia Beachwood screen)")
+        for n in n2:
+            print("  tripleseat:", n)
 
 if __name__ == "__main__":
     main()
