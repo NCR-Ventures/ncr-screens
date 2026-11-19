@@ -7,8 +7,10 @@ usage:
   build_book.py --store lolas --email digest.html --received 2026-11-09T15:03:44Z --out lolas-book.html
   build_book.py --store jojos --email jojos.html --fuoco-email fuoco.html --received ... --out jojos-book.html
 
---store      lolas | jojos | fuoco
+--store      lolas | jojos | beachwood | bibeachwood | sarasota | etc | winterpark | lakewood | 17river | lakehouse | arlington
 --email      saved HTML body of the OpenTable Pre-shift Digest
+--csv        OpenTable "Reservations" CSV export instead of --email (no digest arrived / store has none yet);
+             --shift and --date default from the file name (e.g. M-THDinner_Reservations_1528360_11-19-2026.csv)
 --fuoco-email  (jojos only) Après Fuoco / Bar Fuoco digest for split-screen dates
 --received   ISO time the email arrived (UTC ok) -> "updated h:mm am"
 --force-split  render the JoJo's/Après split regardless of date (for testing)
@@ -108,6 +110,91 @@ def parse_digest(raw):
     d["first_timers"] = sum(1 for r in d["reservations"] if r["details"] and "visits last year" not in r["details"].lower() and "last visit" not in r["details"].lower())
     return d
 
+# ----------------------------------------------------------------- CSV (OpenTable "Reservations" export)
+# Fallback when no Pre-shift Digest arrives (or a store has none yet): Tim exports the shift's
+# reservations from OpenTable. Columns: TIME, PARTY SIZE, GUEST, PHONE, TABLE, NOTES AND TAGS,
+# PAYMENT STATUS, TABLE STATUS, MADE. Phone is never read. "NOTES AND TAGS" packs several
+# "HEADER: text" fields into one cell; the headers below are split out and routed like the digest's.
+
+CSV_TAG_HEADERS = ("SPECIAL EVENTS", "SPECIAL RELATIONSHIP", "OTHER", "FOOD & DRINK PREFERENCES",
+                   "DIETARY RESTRICTIONS", "TAGS", "GUEST TAGS", "RESERVATION TAGS")
+CSV_REQ_HEADERS = ("SEATING PREFERENCES", "GENERAL NOTES", "GUEST REQUESTS", "SPECIAL REQUESTS", "RESERVATION NOTES")
+CSV_NOTE_HEADERS = ("VISIT NOTES",)
+_CSV_HDR_RE = re.compile(r"(?:(?<=^)|(?<=\s))((?:[A-Z&/'][A-Z&/']*\s?)+?):\s", re.M)
+
+def _split_notes(cell):
+    """'VISIT NOTES: x SEATING PREFERENCES: Highchair ' -> [('VISIT NOTES','x'), ('SEATING PREFERENCES','Highchair')]"""
+    cell = (cell or "").strip()
+    if not cell:
+        return []
+    hits = list(_CSV_HDR_RE.finditer(cell + " "))
+    if not hits:
+        return [("GENERAL NOTES", cell)]
+    out = []
+    for i, h in enumerate(hits):
+        end = hits[i + 1].start() if i + 1 < len(hits) else len(cell)
+        out.append((h.group(1).strip().upper(), cell[h.end():end].strip(" .\t\n")))
+    return [(k, v) for k, v in out if v]
+
+def parse_csv(path, restaurant, date_iso="", shift=""):
+    import csv
+    name = os.path.basename(path)
+    if not date_iso:
+        m = re.search(r"(\d{1,2})-(\d{1,2})-(\d{4})", name)
+        date_iso = f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}" if m else dt.datetime.now(ET).date().isoformat()
+    rows = []
+    with open(path, newline="", encoding="utf-8-sig", errors="replace") as f:
+        rd = csv.DictReader(f)
+        for row in rd:
+            g = {(k or "").strip().upper(): (v or "").strip() for k, v in row.items()}
+            status = g.get("TABLE STATUS", "").lower()
+            if "cancel" in status or "no-show" in status or "no show" in status:
+                continue
+            tm = g.get("TIME", "").upper().replace(" ", "")
+            if not re.match(r"\d{1,2}:\d{2}[AP]M", tm):
+                continue
+            r = {"name": g.get("GUEST", ""), "time": tm, "party": int(re.sub(r"\D", "", g.get("PARTY SIZE", "0")) or 0),
+                 "table": g.get("TABLE", ""), "tags": [], "requests": "", "visit_notes": "", "most_ordered": "", "details": "", "slot": "",
+                 "special": False}
+            for k, v in _split_notes(g.get("NOTES AND TAGS", "")):
+                if k in CSV_TAG_HEADERS:
+                    r["tags"] += [x.strip() for x in re.split(r",|;", v) if x.strip()]
+                    if k == "SPECIAL RELATIONSHIP":
+                        r["special"] = True
+                elif k in CSV_REQ_HEADERS:
+                    r["requests"] = (r["requests"] + " · " + v).strip(" ·")
+                elif k in CSV_NOTE_HEADERS:
+                    r["visit_notes"] = (r["visit_notes"] + " · " + v).strip(" ·")
+                else:
+                    r["requests"] = (r["requests"] + " · " + v).strip(" ·")
+            rows.append(r)
+    rows.sort(key=lambda r: _tkey(r["time"]))
+    if not shift:
+        low = name.lower()
+        shift = "lunch" if ("lunch" in low or "brunch" in low) else "dinner" if "dinner" in low else \
+                ("lunch" if rows and _tkey(rows[0]["time"]) < 15 * 60 else "dinner")
+    d = {"metrics": {}, "notes": [], "slots": [], "reservations": rows, "date": date_iso, "shift": shift,
+         "title": f"{shift.capitalize()} Pre-shift Digest", "restaurant": restaurant, "date_text": pretty_date(date_iso)}
+    by_hour = {}
+    for r in rows:
+        h = _tkey(r["time"]) // 60
+        s = by_hour.setdefault(h, {"range": f"{_hlabel(h)} - {_hlabel(h + 1)}", "summary": "", "reservations": 0, "covers": 0, "items": []})
+        s["reservations"] += 1; s["covers"] += r["party"]; s["items"].append(r); r["slot"] = s["range"]
+    for h in sorted(by_hour):
+        s = by_hour[h]; s["summary"] = f"{s['reservations']} Reservations • {s['covers']} covers"; d["slots"].append(s)
+    d["covers"] = sum(r["party"] for r in rows)
+    d["reservation_count"] = len(rows)
+    d["parties5"] = sum(1 for r in rows if r["party"] >= 5)
+    d["vip"] = sum(1 for r in rows if r["special"] or any("alert" in t.lower() or "vip" in t.lower() for t in r["tags"]))
+    d["celebrations"] = sum(1 for r in rows if any(t.lower() in ("birthday", "anniversary", "celebration", "special occasion") for t in r["tags"]))
+    d["first_timers"] = 0
+    d["metrics"] = {"total covers": d["covers"], "total reservations": d["reservation_count"], "parties of 5+": d["parties5"], "special relationships": d["vip"]}
+    return d
+
+def _hlabel(h):
+    ap = "AM" if h < 12 or h >= 24 else "PM"
+    return f"{(h % 12) or 12}:00 {ap}"
+
 # ----------------------------------------------------------------- helpers
 
 def short_name(n):
@@ -156,7 +243,7 @@ def flagged(res, limit):
 
 def chip_class(kind, text):
     t = text.lower()
-    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t):
+    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t or "allerg" in t or "owner" in t):
         return "chip hot"
     if kind == "tag" and ("birthday" in t or "anniversary" in t or "celebr" in t):
         return "chip warm"
@@ -218,6 +305,17 @@ THEMES = {
         logo=os.path.join(HERE, "assets", "ccg-monogram.png"), logo_h=104, logo_h_half=96, mark=None,
         hot="#e8c889", warm="#bcd3e0", light=False, head_upper=False, head_italic=False,
     ),
+    "arlington": dict(  # Arlington Grille (added 11.19.26) — cream / forest green / gold, Montserrat, bear watermark
+        name="Arlington Grille", footer="Arlington Grille · Today's Reso's",
+        bg="#faf6ee", ink="#154d25", muted="#603931", dim="rgba(21,77,37,0.55)",
+        accent="#154d25", accent2="#9c7a24", panel="rgba(21,77,37,0.08)", line="rgba(21,77,37,0.22)",
+        head_font="'Montserrat', Arial, sans-serif", num_font="'Montserrat', Arial, sans-serif",
+        body_font="'Montserrat', Arial, sans-serif",
+        gfont="Montserrat:wght@500;600;700;800",
+        logo=os.path.join(HERE, "assets", "arlington-wordmark.png"), logo_h=104, logo_h_half=88,
+        mark=os.path.join(HERE, "assets", "arlington-bear.png"),
+        hot="#154d25", warm="#d7b772", light=True, head_upper=False, head_italic=False,
+    ),
     "fuoco": dict(
         name="Après Fuoco", footer="Après Fuoco · Dinner Reso's",
         bg="#faf6ef", ink="#3a2a2a", muted="#7a5a5a", dim="rgba(58,42,42,0.55)",
@@ -258,6 +356,7 @@ STORES = {
     "lakewood":   dict(theme="bi-lakewood", lunch_days=[4, 5, 6], dinner_post="3:15 pm"),  # dinner digest lands ~3:10, built by the 3:15 run
     "17river":    dict(theme="17river"),
     "lakehouse":  dict(theme="lakehouse", single_shift=True, post_times={"weekday": "11:15 am", "weekend": "10:15 am"}),  # Python weekday: Fri, Sat, Sun only
+    "arlington":  dict(theme="arlington"),      # Arlington Grille — lunch + dinner, 7 days (added 11.19.26)
 }
 
 # ----------------------------------------------------------------- Tripleseat (private events)
@@ -278,6 +377,7 @@ TS_LOCATION = {
     "bi-lakewood":   lambda L: "bar italia" in L and "lakewood" in L and "lakewood ranch" not in L,
     "17river":       lambda L: "17 river" in L,
     "lakehouse":     lambda L: "lakehouse" in L,
+    "arlington":     lambda L: "arlington" in L,
 }
 
 def parse_tripleseat(raw):
@@ -509,7 +609,7 @@ def priority(r):
     5 any other tag (Date Night, Employee, Business Meal, ...)
     9 nothing notable"""
     tags = [t.lower() for t in r["tags"]]
-    if any("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t for t in tags):
+    if any("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t or "allerg" in t or "owner" in t for t in tags):
         return (1, 0)
     if r["party"] >= BIG_PARTY:
         return (2, -r["party"])
@@ -525,7 +625,7 @@ MAX_CHIPS_FULL, MAX_CHIPS_HALF = 3, 2
 
 def _chip_rank(kind, text):
     t = text.lower()
-    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t):
+    if kind == "tag" and ("alert" in t or "vip" in t or "special" in t or t.startswith("event") or "private event" in t or "allerg" in t or "owner" in t):
         return 0
     if kind in ("req", "note"):
         return 1
@@ -713,7 +813,10 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None, d
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--store", required=True, choices=list(STORES))
-    ap.add_argument("--email", required=True, help="digest HTML for the store (left half on a split)")
+    ap.add_argument("--email", help="digest HTML for the store (left half on a split)")
+    ap.add_argument("--csv", help="OpenTable Reservations CSV export for the store (used when no digest arrived)")
+    ap.add_argument("--shift", choices=["lunch", "dinner"], help="(--csv) shift; default from the file name, else from the first seating time")
+    ap.add_argument("--date", help="(--csv) YYYY-MM-DD; default from the file name, else today ET")
     ap.add_argument("--email2", "--fuoco-email", dest="email2", help="digest HTML for the right half of a split")
     ap.add_argument("--received", default="")
     ap.add_argument("--received2", "--fuoco-received", dest="received2", default="")
@@ -722,10 +825,14 @@ def main():
     ap.add_argument("--dump-json", action="store_true")
     ap.add_argument("--events", help="Tripleseat Daily Digest HTML (today's). Events for this screen are folded into the book.")
     a = ap.parse_args()
+    if not a.email and not a.csv:
+        ap.error("--email or --csv is required")
     cfg = STORES[a.store]
     t = THEMES[cfg["theme"]]
-    raw = open(a.email, encoding="utf-8", errors="replace").read()
-    d = parse_digest(raw)
+    if a.csv:
+        d = parse_csv(a.csv, t["name"], a.date or "", a.shift or "")
+    else:
+        d = parse_digest(open(a.email, encoding="utf-8", errors="replace").read())
     if a.dump_json:
         print(json.dumps(d, indent=1))
     split = cfg.get("split_always") or a.force_split or (cfg.get("split_on") and d.get("date") in cfg["split_on"])
