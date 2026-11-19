@@ -21,9 +21,14 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
 | lakehouse-resos.html | lakehouse | `Lakehouse` | full, header "Today's Reso's" — **one shift a day**; digest arrives ~11:00 am Mon–Thu (built by the 11:15 run) and ~10:00 am Fri–Sun (10:15 run). The 2:15 run never rebuilds it. |
 | lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full. **Lunch only Fri–Sun** — on Mon–Thu ignore any Lakewood lunch digest at the 10:15 run; the slide shows "Dinner only today" until the dinner build. Dinner digest ~3:10 pm → built by the 3:15 run, never 2:15. |
+| arlington-resos.html | arlington | `Arlington` | full. Lunch + dinner, 7 days (added 11.19.26): lunch digest builds at 10:15, dinner at 2:15. Until OpenTable's digest is switched on for Arlington, Tim sends the shift's reservations CSV and it builds with `--csv` (below). |
 
 Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates). Its digest arrives every day; on non-split dates ignore it silently — it is not an unmatched store and gets no slide of its own.
 Unknown restaurant name in a digest → don't guess; skip it and name it in the report.
+
+## CSV fallback (no digest)
+
+When a store has no Pre-shift Digest (OpenTable failed to send one, or the store's digest isn't set up yet — Arlington at opening), Tim exports the shift's reservations from OpenTable (Reservations → export; file like `M-THDinner_Reservations_1528360_11-19-2026.csv`, columns TIME · PARTY SIZE · GUEST · PHONE · TABLE · NOTES AND TAGS · PAYMENT STATUS · TABLE STATUS · MADE). Save it to the scratchpad (never the repo — phone numbers) and build with `--csv <file>` instead of `--email`; `--shift` and `--date` default from the file name. Cancelled / no-show rows are dropped. "NOTES AND TAGS" is split on its headers: SPECIAL EVENTS, SPECIAL RELATIONSHIP, OTHER, FOOD & DRINK PREFERENCES → tags (a SPECIAL RELATIONSHIP counts as a manager alert, same as the digest's "Special relationships"); SEATING PREFERENCES, GENERAL NOTES, GUEST REQUESTS → request chip; VISIT NOTES → visit-note chip. Sanity check: slide covers = sum of PARTY SIZE, reservations = row count. `--events` works the same with `--csv`. (Added 11.19.26.)
 
 ## Tripleseat (private events) — every run
 
@@ -63,8 +68,8 @@ The build line prints `tripleseat_added=N` and one note per adjustment. The sani
 9. Report in one or two lines: store, shift, covers, reso count, anything flagged (alerts, big parties), pushed yes/no.
 
 ## Rules
-- **Notable tables on a crowded book.** A full slide lists 11 reso's, a split half lists 6. When the book is bigger than that, `book_rows` ranks by `priority()` in build_book.py and shows the top of the list, then re-sorts by seating time: (1) manager alerts — Special relationship / VIP / alert tags; (2) parties of 6+ (`BIG_PARTY`), bigger first; (3) birthday / anniversary / celebration; (4) guest requests and visit notes; (5) any other tag (Date Night, Employee, Business Meal). Untagged deuces and 4-tops never make the list on a busy night — the "+N more on the book" line and the pace bars carry them. Within a tier, earlier seating wins. Set 11.9.26.
+- **Notable tables on a crowded book.** A full slide lists 11 reso's, a split half lists 6. When the book is bigger than that, `book_rows` ranks by `priority()` in build_book.py and shows the top of the list, then re-sorts by seating time: (1) manager alerts — Special relationship / VIP / alert / Friend of Owner / allergy tags; (2) parties of 6+ (`BIG_PARTY`), bigger first; (3) birthday / anniversary / celebration; (4) guest requests and visit notes; (5) any other tag (Date Night, Employee, Business Meal). Untagged deuces and 4-tops never make the list on a busy night — the "+N more on the book" line and the pace bars carry them. Within a tier, earlier seating wins. Set 11.9.26.
 - Names on the board are first name + last initial. Never phone numbers, never spend.
-- Style guides win: Lola's blue/oat milk on black beauty, JoJo's navy/PMS 540, CCG digital blue #074b64, Bar Italia green/gold, Après Fuoco cream #faf6ef with Après red #a02828 (logos from Tim 11.9.26: apres-wordmark-red / -white, apres-badge in book/assets).
+- Style guides win: Arlington Grille cream #faf6ee / forest green #154d25 / gold #d7b772, Montserrat, bear watermark (arlington-wordmark, arlington-bear in book/assets); Lola's blue/oat milk on black beauty, JoJo's navy/PMS 540, CCG digital blue #074b64, Bar Italia green/gold, Après Fuoco cream #faf6ef with Après red #a02828 (logos from Tim 11.9.26: apres-wordmark-red / -white, apres-badge in book/assets).
 - Google Fonts are blocked in the build container; the TV loads them. Fallback metrics are wider, so a fit here is a fit there.
 - Never rename or re-route the live files. Tim repoints ScreenCloud.
