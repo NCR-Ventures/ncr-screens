@@ -31,7 +31,7 @@ body{position:relative;height:1080px}
 @keyframes blink{0%,40%{opacity:1}55%,85%{opacity:.25}100%{opacity:1}}
 .col{position:absolute;left:700px;right:60px;top:112px;bottom:14px;display:flex;flex-direction:column;gap:14px;z-index:3}
 .eyebrow{font-size:30px;font-weight:800;letter-spacing:7px;color:#E3B76C;text-transform:uppercase;white-space:nowrap}
-.title{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:96px;white-space:nowrap;line-height:1;color:#FAF6EE;text-shadow:0 4px 18px rgba(0,0,0,.5)}
+.title{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;font-size:92px;white-space:nowrap;line-height:1;color:#FAF6EE;text-shadow:0 4px 18px rgba(0,0,0,.5)}
 .tag{font-size:46px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FAF6EE;white-space:nowrap}
 .title span{color:#E3B76C}
 .ribbon{text-align:center;background:linear-gradient(#efc87e,#d7a950);border-radius:18px;padding:8px 34px;color:#0f1f3d;display:flex;flex-direction:column;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,.45);border:3px solid #fff3d4}
@@ -84,6 +84,11 @@ body{position:relative;height:1080px}
 <script>
 (function(){var P=[["Santa's coming!!!!",68],["Smiling is my favorite!",50],["Santa?! I know him!",60],["It's a beaut, Clark!",60]],i=0,b=document.querySelector('.bub'),p=document.querySelector('.popin');
 function set(){b.style.fontSize=P[i][1]+'px';b.textContent=P[i][0];}
+try{var n=parseInt(localStorage.getItem('brunchBubble')||'-1',10);i=(isNaN(n)?-1:n)+1;i=((i%P.length)+P.length)%P.length;localStorage.setItem('brunchBubble',String(i));}catch(e){i=Math.floor(Date.now()/7000)%P.length;}
 set();p.addEventListener('animationiteration',function(e){if(e.animationName!=='popin')return;i=(i+1)%P.length;set();});})();
+</script>
+<script>
+(function(){function fit(){document.querySelectorAll('.title,.tag,.eyebrow,.ribbon .d,.ribbon .t,.ribbon .l,.gm').forEach(function(e){var fs=parseFloat(getComputedStyle(e).fontSize),n=0;e.style.overflow='visible';while(e.scrollWidth>e.clientWidth+1&&fs>14&&n<80){fs*=0.97;e.style.fontSize=fs+'px';n++;}});}
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(fit);}window.addEventListener('load',fit);fit();})();
 </script>
 </body></html>
