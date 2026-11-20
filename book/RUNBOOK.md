@@ -1,6 +1,6 @@
 # Reso's slides — run book (10:15 am, 11:15 am, 2:15 pm, and 3:15 pm ET, daily)
 
-The 11:15 run exists for the Lakehouse Mon–Thu digest. At 11:15, build only stores whose newest digest arrived after 10:15 (normally just Lakehouse); if nothing new, push nothing and report nothing.
+The 11:15 run exists for the Lakehouse Mon–Thu digest and for Arlington's dinner digest (OpenTable sends it 11:15–11:30 am). At 11:15, build only stores whose newest digest arrived after 10:15 (normally Lakehouse Mon–Thu, plus Arlington if its digest has landed); if nothing new, push nothing and report nothing.
 
 The 3:15 run exists for 17 River and Lakewood (OH): both switch shifts at 4:00, so their dinner digests land ~3:10, after the 2:15 run. At 3:15 build only those two, and only if a digest arrived after 2:15; every other store's file stays untouched. Nothing new → push nothing, report nothing. (Tim 11.9.26.)
 
@@ -21,7 +21,7 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 | winterpark-resos.html | winterpark | `Bar Italia` + `Winter Park` | full |
 | lakehouse-resos.html | lakehouse | `Lakehouse` | full, header "Today's Reso's" — **one shift a day**; digest arrives ~11:00 am Mon–Thu (built by the 11:15 run) and ~10:00 am Fri–Sun (10:15 run). The 2:15 run never rebuilds it. |
 | lakewood-resos.html | lakewood | `Bar Italia` + `Lakewood` (not `Lakewood Ranch`) | full. **Lunch only Fri–Sun** — on Mon–Thu ignore any Lakewood lunch digest at the 10:15 run; the slide shows "Dinner only today" until the dinner build. Dinner digest ~3:10 pm → built by the 3:15 run, never 2:15. |
-| arlington-resos.html | arlington | `Arlington` | full. Lunch + dinner, 7 days (added 11.19.26): lunch digest builds at 10:15, dinner at 2:15. Until OpenTable's digest is switched on for Arlington, Tim sends the shift's reservations CSV and it builds with `--csv` (below). |
+| arlington-resos.html | arlington | `Arlington` | full (added 11.19.26). **Dinner only through Mon 11.23.26** — Arlington opens for lunch Tue 11.24.26. Tim has OpenTable sending the dinner digest at 11:15–11:30 am: build it at the 11:15 run if it has landed, otherwise at 2:15 (at 2:15 rebuild only if a newer digest arrived after the 11:15 build). Do not expect or report a missing Arlington lunch digest before 11.24. From Tue 11.24 (Tim updates the OpenTable digest schedule Mon 11.23 afternoon): lunch + dinner, 7 days — lunch at 10:15, dinner at 2:15 like Lola's. No digest → Tim sends the shift's reservations CSV and it builds with `--csv` (below); neither → leave the file untouched. (Tim 11.20.26.) |
 
 Bar Fuoco's OpenTable listing IS Après Fuoco (same restaurant; Bar Fuoco is closed for the season except those pop-up dates). Its digest arrives every day; on non-split dates ignore it silently — it is not an unmatched store and gets no slide of its own.
 Unknown restaurant name in a digest → don't guess; skip it and name it in the report.
