@@ -1,0 +1,96 @@
+{
+  "2026-11-24": {
+    "title": "INFLUENCER NIGHT!",
+    "subline": "Open seating · all night",
+    "tagline": "The whole night is dedicated to our local Cleveland influencers.",
+    "theme": "fuoco-bar",
+    "note": "Emily P. (@thingsivebeeneating) party size tbd",
+    "guests": [
+      {
+        "handle": "@AmandaPongallo",
+        "name": "Amanda P.",
+        "party": 2
+      },
+      {
+        "handle": "@clevelandvibes",
+        "name": "Kaitie & Kyle N.",
+        "party": 4
+      },
+      {
+        "handle": "@charlie_and_cynthia",
+        "name": "Cynthia K.",
+        "party": 2
+      },
+      {
+        "handle": "@alexiaphoenix",
+        "name": "Alexia P.",
+        "party": 2
+      },
+      {
+        "handle": "@Obviouslyrissa",
+        "name": "Marissa L.",
+        "party": 1
+      },
+      {
+        "handle": "@thingsivebeeneating",
+        "name": "Emily P.",
+        "party": 0
+      },
+      {
+        "handle": "@king_isaiah_king",
+        "name": "Isaiah K.",
+        "party": 2
+      },
+      {
+        "handle": "@bellaasadventuress",
+        "name": "Bella R.",
+        "party": 1
+      },
+      {
+        "handle": "@khushimpatell",
+        "name": "Khushi",
+        "party": 2
+      },
+      {
+        "handle": "@alyssafaidley",
+        "name": "Alyssa F.",
+        "party": 2
+      },
+      {
+        "handle": "@c_crouse22",
+        "name": "Courtney C.",
+        "party": 2
+      },
+      {
+        "handle": "@travelwithclee",
+        "name": "Court & Connor",
+        "party": 2
+      },
+      {
+        "handle": "@vickyana",
+        "name": "Vickyana",
+        "party": 2
+      },
+      {
+        "handle": "@theclevelandbucketlist",
+        "name": "Hailey & Liz",
+        "party": 2
+      },
+      {
+        "handle": "@nauticasharon",
+        "name": "Nautica",
+        "party": 1
+      },
+      {
+        "handle": "@wheretogoohio",
+        "name": "Danielle B.",
+        "party": 2
+      },
+      {
+        "handle": "@mariangely_xo",
+        "name": "Mariangely",
+        "party": 1
+      }
+    ]
+  }
+}

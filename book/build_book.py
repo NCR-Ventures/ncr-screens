@@ -26,11 +26,22 @@ from zoneinfo import ZoneInfo
 HERE = os.path.dirname(os.path.abspath(__file__))
 ET = ZoneInfo("America/New_York")
 
-APRES_DATES = {  # JoJo's screen splits with Après Fuoco on these dates
+APRES_DATES = {  # Bar Fuoco / Après Fuoco nights: the JoJo's file carries TWO slides, 12 s each (Tim 11.24.26; was a 960/960 split)
+    "2026-11-24",  # added 11.24.26 — Influencer Night (open seating; guest list in fuoco_events.json)
     "2026-11-25", "2026-11-27", "2026-11-28",
     "2026-12-04", "2026-12-05", "2026-12-11", "2026-12-12",
     "2026-12-18", "2026-12-19",
 }
+SLIDE_SECONDS = 12
+
+# Special Fuoco nights that are not an OpenTable book (e.g. Influencer Night 11.24.26: open seating, a
+# guest list Tim keeps in a sheet). Keyed by date; see fuoco_events.json beside this script.
+def load_fuoco_events():
+    p = os.path.join(HERE, "fuoco_events.json")
+    if not os.path.exists(p):
+        return {}
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
 
 # ----------------------------------------------------------------- parsing
 
@@ -326,6 +337,16 @@ THEMES = {
         mark=os.path.join(HERE, "assets", "apres-badge.png"),
         hot="#a02828", warm="#c98638", light=True, head_upper=False, head_italic=False,
     ),
+    "fuoco-bar": dict(  # Bar Fuoco light variant (decision 7): cream, #c98638 orange, #d56b27 deep orange, #443E39 brown
+        name="Bar Fuoco", footer="Bar Fuoco · Influencer Night",
+        bg="#faf6ef", ink="#443e39", muted="#7a6a62", dim="rgba(68,62,57,0.55)",
+        accent="#c98638", accent2="#d56b27", panel="rgba(201,134,56,0.12)", line="rgba(201,134,56,0.35)",
+        head_font="'Caveat', cursive", num_font="'Lora', Georgia, serif", body_font="'Jost', Arial, sans-serif",
+        gfont="Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;600;700",
+        logo=os.path.join(HERE, "assets", "fuoco-wordmark.png"), logo_h=120, logo_h_half=104,
+        mark=os.path.join(HERE, "assets", "fuoco-wordmark.png"),
+        hot="#d56b27", warm="#c98638", light=True, head_upper=False, head_italic=False,
+    ),
 }
 
 def bar_italia(location, slug):
@@ -579,6 +600,16 @@ html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);color:
 .wait .w1{font-family:var(--num);font-size:84px;color:var(--ink);line-height:1.1}
 .wait .w2{font-family:var(--body);font-size:22px;letter-spacing:5px;text-transform:uppercase;color:var(--accent2);margin-top:24px}
 body.stale .wait{display:flex}
+/* two-slide files (JoJo's + Bar Fuoco nights): one slide shown at a time, rotated by the script */
+.slide{position:absolute;inset:0;display:none}
+.slide.on{display:block}
+/* guest-list slide (Influencer Night) */
+.tagline{font-family:var(--head);font-size:40px;color:var(--accent2);line-height:1.15;margin-top:6px}
+.guests{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px;margin-top:18px;min-height:0;flex:1;align-content:stretch}
+.guest{background:var(--panel);border-left:4px solid var(--accent);border-radius:4px;padding:12px 18px;display:flex;flex-direction:column;justify-content:center;min-height:0;overflow:hidden}
+.guest .h{font-family:var(--body);font-weight:700;font-size:27px;color:var(--ink);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.guest .n{font-family:var(--body);font-size:19px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:12px;white-space:nowrap}
+.guest .n b{color:var(--hot);font-weight:700}
 """
 
 def why_for(r):
@@ -736,6 +767,74 @@ def render_full(d, t, received, single=False):
   <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only · names stay in the building</span></div>
 </div>"""
 
+def render_full_placeholder(t, date, text, received=""):
+    """full-width pane for a Fuoco night with no digest (and no special event)"""
+    body_h = 1080 - 160 - 48
+    return f"""
+<div class="pane full">
+  <div class="hdr">
+    {logo_block(t)}
+    <div class="shiftlab">
+      <div class="big">Dinner Reso's</div>
+      <div class="date">{pretty_date(date)}</div>
+      <div class="upd">OpenTable · updated {updated_label(received)}</div>
+    </div>
+  </div>
+  <div class="body" style="display:flex;align-items:center;justify-content:center;height:{body_h}px;padding:34px 64px 30px">
+    <div class="empty" style="text-align:center;font-size:44px">{text}</div>
+  </div>
+  <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only · names stay in the building</span></div>
+</div>"""
+
+def render_event(ev, t, date):
+    """Guest-list slide for a special Fuoco night (Influencer Night 11.24.26): open seating, no OpenTable book.
+    ev: {"title", "tagline", "guests": [{"handle", "name", "party"}], "note"}"""
+    body_h = 1080 - 160 - 48
+    guests = ev.get("guests", [])
+    sized = [g for g in guests if g.get("party")]
+    covers = sum(g["party"] for g in sized)
+    by_size = {}
+    for g in sized:
+        by_size[g["party"]] = by_size.get(g["party"], 0) + 1
+    tbd = len(guests) - len(sized)
+    def label(n, c):
+        if n == 1: return f"solo"
+        return f"part{'y' if c == 1 else 'ies'} of {n}"
+    tiles = [(len(guests), "creators confirmed")] + [(c, label(n, c)) for n, c in sorted(by_size.items(), key=lambda kv: -kv[0])]
+    tiles = tiles[:4]
+    stats = "".join(f'<div class="stat"><div class="v">{v}</div><div class="k">{html.escape(k)}</div></div>' for v, k in tiles)
+    cards = "".join(
+        f'<div class="guest"><div class="h">{html.escape(g["handle"])}</div>'
+        f'<div class="n">{html.escape(g.get("name", ""))}'
+        f'<b>{("party of " + str(g["party"])) if g.get("party") else "party size tbd"}</b></div></div>'
+        for g in guests)
+    note = f'<div class="tsnote">{html.escape(ev["note"])}</div>' if ev.get("note") else ""
+    mark = f'<img class="mark" src="{b64(t["mark"])}" alt="" style="width:520px;opacity:.05">' if t.get("mark") else ""
+    return f"""
+<div class="pane full">
+  {mark}
+  <div class="hdr">
+    {logo_block(t)}
+    <div class="shiftlab">
+      <div class="big" style="font-size:76px;font-weight:700">{html.escape(ev.get("title", "Influencer Night!"))}</div>
+      <div class="date">{pretty_date(date)}</div>
+      <div class="upd">{html.escape(ev.get("subline", "Open seating · all night"))}</div>
+    </div>
+  </div>
+  <div class="body" style="display:grid;grid-template-columns:560px minmax(0,1fr);gap:56px;height:{body_h}px;padding:34px 64px 30px">
+    <div class="hero" style="display:flex;flex-direction:column;justify-content:space-between;min-height:0">
+      <div><div class="num">{covers}</div><div class="cap">covers confirmed</div>{note}</div>
+      <div class="stats">{stats}</div>
+    </div>
+    <div class="book" style="min-height:0">
+      <div class="lbl">The guest list <span>open seating · no set times</span></div>
+      <div class="tagline">{html.escape(ev.get("tagline", "The whole night is dedicated to our local Cleveland influencers."))}</div>
+      <div class="guests">{cards}</div>
+    </div>
+  </div>
+  <div class="ftr"><span>{html.escape(t['footer'])}</span><span>Staff only · names stay in the building</span></div>
+</div>"""
+
 def render_half(d, t, received, side, placeholder=None):
     body_h = 1080 - 150 - 48
     if placeholder:
@@ -807,6 +906,15 @@ def page(title, t, inner, data_date, gfonts, lunch_days=None, post_times=None, d
     document.body.classList.toggle('stale', !!stale);
   }}
   check(); setInterval(check, 60000);
+  // two-slide files: rotate every SLIDE_SECONDS; ?slide=N freezes one slide (verification)
+  var slides = document.querySelectorAll('.slide');
+  if (slides.length > 1) {{
+    var want = parseInt(new URLSearchParams(location.search).get('slide') || '0', 10);
+    var cur = want > 0 ? Math.min(want, slides.length) - 1 : 0;
+    function show(i) {{ slides.forEach(function(s, j) {{ s.classList.toggle('on', j === i); }}); }}
+    show(cur);
+    if (!(want > 0)) setInterval(function() {{ cur = (cur + 1) % slides.length; show(cur); }}, {SLIDE_SECONDS * 1000});
+  }}
 }})();
 </script></body></html>"""
 
@@ -839,16 +947,30 @@ def main():
     events = parse_tripleseat(open(a.events, encoding="utf-8", errors="replace").read()) if a.events else []
     ts_notes = merge_events(d, events, cfg["theme"])
     if split:
-        t2 = THEMES[cfg["right"]]
+        # Fuoco night (11.24.26 rule): two full slides in one file, SLIDE_SECONDS each — JoJo's book first,
+        # then Bar Fuoco / Après Fuoco. A special event for the date (fuoco_events.json) replaces the
+        # Fuoco OpenTable book; otherwise the Fuoco digest (--email2) builds the second slide.
+        ev = load_fuoco_events().get(d.get("date", ""))
         d2 = None
-        if a.email2:
-            d2 = parse_digest(open(a.email2, encoding="utf-8", errors="replace").read())
-            ts_notes += merge_events(d2, events, cfg["right"])
-        right = render_half(d2, t2, a.received2 or a.received, "right",
-                            placeholder=None if d2 else cfg["right_missing"])
-        inner = render_half(d, t, a.received, "left") + right
+        if ev:
+            t2 = THEMES[ev.get("theme", "fuoco-bar")]
+            second = render_event(ev, t2, d.get("date", ""))
+            second_note = f"slide 2 = {ev.get('title', 'event')} ({len(ev.get('guests', []))} guests, {sum(g.get('party', 0) for g in ev.get('guests', []))} covers)"
+        else:
+            t2 = THEMES[cfg["right"]]
+            if a.email2:
+                d2 = parse_digest(open(a.email2, encoding="utf-8", errors="replace").read())
+                ts_notes += merge_events(d2, events, cfg["right"])
+                second = render_full(d2, t2, a.received2 or a.received)
+                second_note = f"slide 2 = {d2['restaurant']} covers={d2['covers']} res={d2['reservation_count']}"
+            else:
+                second = render_full_placeholder(t2, d.get("date", ""), cfg["right_missing"], a.received)
+                second_note = "slide 2 = placeholder (no Fuoco digest)"
+        inner = (f'<div class="slide on" style="{css_vars(t)}">{render_full(d, t, a.received)}</div>'
+                 f'<div class="slide" style="{css_vars(t2)}">{second}</div>')
         gf = [t["gfont"], t2["gfont"]]
         title = f"{t['name']} + {t2['name']} — {shift_label(d)}"
+        extra_notes = [second_note]
     else:
         inner = render_full(d, t, a.received, single=cfg.get("single_shift", False))
         gf = [t["gfont"]]
@@ -858,6 +980,8 @@ def main():
     print(f"wrote {a.out}: {d['restaurant']} {d['date']} {d['shift']} covers={d['covers']} res={d['reservation_count']} slots={len(d['slots'])} flagged={sum(1 for r in d['reservations'] if why_for(r))} split={bool(split)} tripleseat_added={d.get('ts_added', 0)}")
     for n in ts_notes:
         print("  tripleseat:", n)
+    for n in (extra_notes if split else []):
+        print("  ", n)
     # Safety net (11.10.26): an older run book may still hand the Bar Italia Beachwood digest to
     # --store beachwood as --email2. Build it as its own screen instead of dropping it.
     if a.store == "beachwood" and a.email2 and not split:

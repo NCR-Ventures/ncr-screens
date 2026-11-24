@@ -13,7 +13,7 @@ and push them to `NCR-Ventures/ncr-screens` main. Tim points ScreenCloud at the 
 |---|---|---|---|
 | lolas-resos.html | lolas | `Lola's Bistro` | full |
 | 17river-resos.html | 17river | `17 River` | full. Dinner digest ~3:10 pm → built by the 3:15 run, never 2:15. Lunch digest builds at 10:15. |
-| jojos-resos.html | jojos | `JoJo's Bar` (+ `Bar Fuoco` as `--email2` on Après dates) | full; split with Après Fuoco on 11/25, 11/27, 11/28, 12/4, 12/5, 12/11, 12/12, 12/18, 12/19 |
+| jojos-resos.html | jojos | `JoJo's Bar` (+ `Bar Fuoco` as `--email2` on Fuoco nights) | full. On Bar Fuoco nights (11/24, 11/25, 11/27, 11/28, 12/4, 12/5, 12/11, 12/12, 12/18, 12/19 — APRES_DATES in build_book.py) the file carries TWO full slides, 12 s each: JoJo's book, then Bar Fuoco / Après Fuoco. The 960/960 split was retired 11.24.26. A special night in `book/fuoco_events.json` (11/24 = Influencer Night, open seating, Tim's guest list) replaces the Fuoco OpenTable book on slide 2; the Fuoco digest is ignored that day. Verify both slides: `?slide=1` and `?slide=2` freeze one slide. |
 | beachwood-resos.html | beachwood | `Cedar Creek` | full (CCG only — the CCG + Bar Italia split was retired 11.10.26) |
 | bibeachwood-resos.html | bibeachwood | `Bar Italia` + `Beachwood` | full, own screen as of 11.10.26 |
 | sarasota-resos.html | sarasota | `Bar Italia` + (`Sarasota` or `Lakewood Ranch`) | full, header "Lakewood Ranch" |
@@ -58,7 +58,7 @@ The build line prints `tripleseat_added=N` and one note per adjustment. The sani
    python3 book/build_book.py --store jojos --email <scratch>/jojos.html --received <iso> --events <scratch>/tripleseat.html --out jojos-resos.html \
        [--fuoco-email <scratch>/fuoco.html --fuoco-received <iso>]   # on Après Fuoco dates, if a Fuoco digest exists
    ```
-   The script decides the JoJo's/Après split from the date (APRES_DATES in build_book.py).
+   The script decides the JoJo's + Fuoco two-slide file from the date (APRES_DATES in build_book.py); a date in book/fuoco_events.json gets that event's guest-list slide instead of the Fuoco digest.
 6. Verify: `python3 book/verify.py lolas-resos.html jojos-resos.html --outdir <scratch>` → every line must be `OK`.
    Then **view each PNG** and confirm nothing is clipped or empty-looking. FAIL → fix or stop; do not push a broken slide.
 7. Commit only the two HTML files (`git add lolas-resos.html jojos-resos.html`), message like
